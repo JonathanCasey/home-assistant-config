@@ -54,9 +54,12 @@ sensor:
       house_entry_exit_recent_triggered:
         value_template: >-
           {% if is_state('sensor.house_entry_exit_recent_data_ready', 'available') %}
+            true
+          {% endif %}
+      house_entry_exit_recent_last_date:
+        value_template: >-
+          {% if is_state('sensor.house_entry_exit_recent_data_ready', 'available') %}
             {{ state_attr('sensor.house_entry_exit_recent_data_ready', 'date') }}
-          {% else %}
-            false: {{ states('sensor.house_entry_exit_recent_data_ready') }}
           {% endif %}
 
 # Text to speech
