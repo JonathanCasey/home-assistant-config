@@ -18,8 +18,10 @@ homeassistant:
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+discovery:
+    
 # Show the introduction message on startup.
-introduction:
+# introduction:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 # http:
@@ -39,8 +41,11 @@ sensor:
     senders:
       - donotreply@frontpointsecurity.com
     name: house_entry_exit_recent_data_ready
-    value_template: >
+    value_template: >-
       {% if 'was Opened at' in subject %}
+        {# works? {% set mydict = {'triggered':true, 'last_date':date} %} #}
+        {# this does not work: {% set mydict['triggered'] = true %} #}
+        {# also works? {{ mydict }} #}
         available
       {% endif %}
       
