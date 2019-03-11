@@ -1,1 +1,33 @@
-[]
+
+- alias: 'Handle pending entry/exit triggers'
+  trigger:
+    - platform: state
+      entity_id: 'sensor.house_entry_exit_recent_trigger'
+      to: 'pending'
+    - platform: homeassistant
+      event: start
+  action:
+    - service: python_script.set_state
+      data_template:
+        entity_id: 'sensor.house_entry_exit_recent_last_date'
+        state: >-
+          {% set temp = state_attr('sensor.house_entry_exit_recent_trigger', 'date') %}
+          {{ temp }}
+    - service: python_script.set_state
+      data_template:
+        entity_id: 'sensor.house_entry_exit_recent_trigger'
+        state: 'cleared'
+    - service: persistent_notification.create
+      data:
+        message: >
+          {% set temp1 = strptime(state_attr('sensor.house_entry_exit_recent_trigger', 'date'),
+              '%a, %d %b %Y %H:%M:%S %z') %}
+          {% set temp2 = strptime(states('sensor.house_entry_exit_recent_last_date'),
+              '%a, %d %b %Y %H:%M:%S %z') %}
+          "Automation for pending entry/exit trigger ran." {{ temp1 }}  {{ temp2 }}
+          {% if temp1 == temp2 %}
+            "Equal!"
+          {% else %}
+            "Not the same..."
+          {% endif %}
+          

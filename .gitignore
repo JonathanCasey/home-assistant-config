@@ -7,6 +7,8 @@
 !.gitignore
 !*.md
 !.travis.yml
+!python_scripts
+!python_scripts/*.py
 
 # Ignore folders.
 .storage

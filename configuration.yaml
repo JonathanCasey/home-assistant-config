@@ -12,7 +12,7 @@ homeassistant:
   time_zone: America/New_York
   # Customization file
   customize: #!include customize.yaml
-    sensor.house_entry_exit_recent_data_ready:
+    sensor.house_entry_exit_recent_trigger:
       body: '<ommitted>'
 
 # Configure a default setup of Home Assistant (frontend, api, etc)
@@ -23,6 +23,11 @@ discovery:
 # Show the introduction message on startup.
 # introduction:
 
+logger:
+  default: warning
+  #logs:
+    #homeassistant.components.python_script: debug
+    
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 # http:
 #   base_url: example.duckdns.org:8123
@@ -40,26 +45,30 @@ sensor:
     password: !secret gmail_password
     senders:
       - donotreply@frontpointsecurity.com
-    name: house_entry_exit_recent_data_ready
+    name: house_entry_exit_recent_trigger
     value_template: >-
       {% if 'was Opened at' in subject %}
-        {# works? {% set mydict = {'triggered':true, 'last_date':date} %} #}
-        {# this does not work: {% set mydict['triggered'] = true %} #}
-        {# also works? {{ mydict }} #}
-        available
+        {% if( states('sensor.house_entry_exit_recent_last_date') == 'unknown'
+            or states('sensor.house_entry_exit_recent_last_date') == 'uninit'
+            or states('sensor.house_entry_exit_recent_last_date') == ''
+            or strptime(states('sensor.house_entry_exit_recent_last_date'),
+                '%a, %d %b %Y %H:%M:%S %z')
+              < strptime(date, '%a, %d %b %Y %H:%M:%S %z')) %}
+          pending
+        {% else %}
+          nothing_new
+        {% endif %}
+      {% else %}
+        no_emails
       {% endif %}
-      
   - platform: template
     sensors:
-      house_entry_exit_recent_triggered:
-        value_template: >-
-          {% if is_state('sensor.house_entry_exit_recent_data_ready', 'available') %}
-            true
-          {% endif %}
       house_entry_exit_recent_last_date:
         value_template: >-
-          {% if is_state('sensor.house_entry_exit_recent_data_ready', 'available') %}
-            {{ state_attr('sensor.house_entry_exit_recent_data_ready', 'date') }}
+          {% if states('sensor.house_entry_exit_recent_last_date') == '' %}
+            uninit
+          {% else %}
+            {{ states('sensor.house_entry_exit_recent_last_date') }}
           {% endif %}
 
 # Text to speech
@@ -69,6 +78,8 @@ tts:
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+
+python_script:
 
 panel_iframe:
   configurator:
