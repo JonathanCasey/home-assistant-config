@@ -48,10 +48,10 @@ sensor:
     name: house_entry_exit_recent_trigger
     value_template: >-
       {% if 'was Opened at' in subject %}
-        {% if( states('sensor.house_entry_exit_recent_last_date') == 'unknown'
-            or states('sensor.house_entry_exit_recent_last_date') == 'uninit'
-            or states('sensor.house_entry_exit_recent_last_date') == ''
-            or strptime(states('sensor.house_entry_exit_recent_last_date'),
+        {% if( states('variable.house_entry_exit_recent_last_date') == 'unknown'
+            or states('variable.house_entry_exit_recent_last_date') == 'uninit'
+            or states('variable.house_entry_exit_recent_last_date') == ''
+            or strptime(states('variable.house_entry_exit_recent_last_date'),
                 '%a, %d %b %Y %H:%M:%S %z')
               < strptime(date, '%a, %d %b %Y %H:%M:%S %z')) %}
           pending
@@ -61,15 +61,10 @@ sensor:
       {% else %}
         no_emails
       {% endif %}
-  - platform: template
-    sensors:
-      house_entry_exit_recent_last_date:
-        value_template: >-
-          {% if states('sensor.house_entry_exit_recent_last_date') == '' %}
-            uninit
-          {% else %}
-            {{ states('sensor.house_entry_exit_recent_last_date') }}
-          {% endif %}
+
+variable:
+  house_entry_exit_recent_last_date:
+    value: 'uninit'
 
 # Text to speech
 tts:

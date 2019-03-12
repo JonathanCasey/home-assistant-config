@@ -9,6 +9,9 @@
 !.travis.yml
 !python_scripts
 !python_scripts/*.py
+!custom_components
+!custom_components/*.py
+
 
 # Ignore folders.
 .storage
