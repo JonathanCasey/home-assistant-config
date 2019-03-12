@@ -1,51 +1,59 @@
 
-- alias: 'Handle pending entry/exit triggers'
+- alias: 'Handle pending entry/exit false triggers'
   trigger:
     - platform: state
       entity_id: 'sensor.house_entry_exit_recent_trigger'
-      to: 'pending_uninit'
-    - platform: homeassistant
-      event: start
-  action:
-    - service: variable.set_variable
-      data:
-        variable: 'house_entry_exit_recent_last_date'
-        value_template: >-
-          {% set temp = state_attr('sensor.house_entry_exit_recent_trigger', 'date') %}
-          {{ temp }}
-    - service: python_script.set_state
-      data_template:
-        entity_id: 'sensor.house_entry_exit_recent_trigger'
-        state: 'cleared_unint'
-    - service: persistent_notification.create
-      data:
-        message: >
-          {% set temp1 = strptime(state_attr('sensor.house_entry_exit_recent_trigger', 'date'),
-              '%a, %d %b %Y %H:%M:%S %z') %}
-          {% set temp2 = strptime(states('variable.house_entry_exit_recent_last_date'),
-              '%a, %d %b %Y %H:%M:%S %z') %}
-          "Automation for pending entry/exit trigger ran." {{ temp1 }}  {{ temp2 }}
-          {% if temp1 == temp2 %}
-            "Equal!"
-          {% else %}
-            "Not the same..."
-          {% endif %}
-          (from uninit)
-          
-          
-
-- alias: 'Handle pending entry/exit triggers2'
-  trigger:
-    - platform: state
-      entity_id: 'sensor.house_entry_exit_recent_trigger'
-      #to: 'pending_time'
+      to: 'pending'
     - platform: homeassistant
       event: start
   condition:
     - condition: template
       value_template: >
-        {{ 'pending_time' in states.sensor.house_entry_exit_recent_trigger.state and
-          'cleared_time' not in states.sensor.house_entry_exit_recent_trigger.state }}
+        {{ not states('variable.house_entry_exit_recent_last_date') == 'unknown'
+            and not states('variable.house_entry_exit_recent_last_date') == 'uninit'
+            and not states('variable.house_entry_exit_recent_last_date') == ''
+            and not strptime(states('variable.house_entry_exit_recent_last_date'),
+                '%a, %d %b %Y %H:%M:%S %z')
+              < strptime(state_attr('sensor.house_entry_exit_recent_trigger', 'date'),
+                '%a, %d %b %Y %H:%M:%S %z') }}
+  action:
+    - service: python_script.set_state
+      data_template:
+        entity_id: 'sensor.house_entry_exit_recent_trigger'
+        state: 'nothing_new'
+    - service: persistent_notification.create
+      data:
+        message: >
+          {% set temp1 = strptime(state_attr('sensor.house_entry_exit_recent_trigger', 'date'),
+              '%a, %d %b %Y %H:%M:%S %z') %}
+          {% set temp2 = strptime(states('variable.house_entry_exit_recent_last_date'),
+              '%a, %d %b %Y %H:%M:%S %z') %}
+          "Automation for pending entry/exit false trigger ran." {{ temp1 }}  {{ temp2 }}
+          {% if temp1 == temp2 %}
+            "Equal!"
+          {% else %}
+            "Not the same..."
+          {% endif %}
+          (nothing new)
+
+
+- alias: 'Handle pending entry/exit true triggers'
+  trigger:
+    - platform: state
+      entity_id: 'sensor.house_entry_exit_recent_trigger'
+      to: 'pending'
+    - platform: homeassistant
+      event: start
+  condition:
+    - condition: template
+      value_template: >
+        {{ states('variable.house_entry_exit_recent_last_date') == 'unknown'
+            or states('variable.house_entry_exit_recent_last_date') == 'uninit'
+            or states('variable.house_entry_exit_recent_last_date') == ''
+            or strptime(states('variable.house_entry_exit_recent_last_date'),
+                '%a, %d %b %Y %H:%M:%S %z')
+              < strptime(state_attr('sensor.house_entry_exit_recent_trigger', 'date'),
+                '%a, %d %b %Y %H:%M:%S %z') }}
   action:
     - service: variable.set_variable
       data:
@@ -56,8 +64,7 @@
     - service: python_script.set_state
       data_template:
         entity_id: 'sensor.house_entry_exit_recent_trigger'
-        state: >
-          'cleared_time ' {{ states.sensor.house_entry_exit_recent_trigger.state }}
+        state: 'cleared'
     - service: persistent_notification.create
       data:
         message: >
@@ -65,10 +72,11 @@
               '%a, %d %b %Y %H:%M:%S %z') %}
           {% set temp2 = strptime(states('variable.house_entry_exit_recent_last_date'),
               '%a, %d %b %Y %H:%M:%S %z') %}
-          "Automation for pending entry/exit trigger ran." {{ temp1 }}  {{ temp2 }}
+          "Automation for pending entry/exit true trigger ran." {{ temp1 }}  {{ temp2 }}
           {% if temp1 == temp2 %}
             "Equal!"
           {% else %}
             "Not the same..."
           {% endif %}
-          (from time)
+          (true and cleared)
+
