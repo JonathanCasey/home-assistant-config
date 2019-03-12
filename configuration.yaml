@@ -50,18 +50,19 @@ sensor:
       {% if 'was Opened at' in subject %}
         {% if( states('variable.house_entry_exit_recent_last_date') == 'unknown'
             or states('variable.house_entry_exit_recent_last_date') == 'uninit'
-            or states('variable.house_entry_exit_recent_last_date') == ''
-            or strptime(states('variable.house_entry_exit_recent_last_date'),
+            or states('variable.house_entry_exit_recent_last_date') == '') %}
+          pending_uninit
+        {% elif( strptime(states('variable.house_entry_exit_recent_last_date'),
                 '%a, %d %b %Y %H:%M:%S %z')
               < strptime(date, '%a, %d %b %Y %H:%M:%S %z')) %}
-          pending
+          pending_time older: {{states.variable.house_entry_exit_recent_last_date.state}} newer: {{date}}
         {% else %}
           nothing_new
         {% endif %}
       {% else %}
         no_emails
       {% endif %}
-
+      
 variable:
   house_entry_exit_recent_last_date:
     value: 'uninit'

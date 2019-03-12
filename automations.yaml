@@ -3,7 +3,7 @@
   trigger:
     - platform: state
       entity_id: 'sensor.house_entry_exit_recent_trigger'
-      to: 'pending'
+      to: 'pending_uninit'
     - platform: homeassistant
       event: start
   action:
@@ -16,7 +16,7 @@
     - service: python_script.set_state
       data_template:
         entity_id: 'sensor.house_entry_exit_recent_trigger'
-        state: 'cleared'
+        state: 'cleared_unint'
     - service: persistent_notification.create
       data:
         message: >
@@ -30,3 +30,45 @@
           {% else %}
             "Not the same..."
           {% endif %}
+          (from uninit)
+          
+          
+
+- alias: 'Handle pending entry/exit triggers2'
+  trigger:
+    - platform: state
+      entity_id: 'sensor.house_entry_exit_recent_trigger'
+      #to: 'pending_time'
+    - platform: homeassistant
+      event: start
+  condition:
+    - condition: template
+      value_template: >
+        {{ 'pending_time' in states.sensor.house_entry_exit_recent_trigger.state and
+          'cleared_time' not in states.sensor.house_entry_exit_recent_trigger.state }}
+  action:
+    - service: variable.set_variable
+      data:
+        variable: 'house_entry_exit_recent_last_date'
+        value_template: >-
+          {% set temp = state_attr('sensor.house_entry_exit_recent_trigger', 'date') %}
+          {{ temp }}
+    - service: python_script.set_state
+      data_template:
+        entity_id: 'sensor.house_entry_exit_recent_trigger'
+        state: >
+          'cleared_time ' {{ states.sensor.house_entry_exit_recent_trigger.state }}
+    - service: persistent_notification.create
+      data:
+        message: >
+          {% set temp1 = strptime(state_attr('sensor.house_entry_exit_recent_trigger', 'date'),
+              '%a, %d %b %Y %H:%M:%S %z') %}
+          {% set temp2 = strptime(states('variable.house_entry_exit_recent_last_date'),
+              '%a, %d %b %Y %H:%M:%S %z') %}
+          "Automation for pending entry/exit trigger ran." {{ temp1 }}  {{ temp2 }}
+          {% if temp1 == temp2 %}
+            "Equal!"
+          {% else %}
+            "Not the same..."
+          {% endif %}
+          (from time)
