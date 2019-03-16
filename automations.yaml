@@ -21,20 +21,20 @@
       data_template:
         entity_id: 'sensor.house_entry_exit_recent_trigger'
         state: 'nothing_new'
-    - service: persistent_notification.create
-      data:
-        message: >
-          {% set temp1 = strptime(state_attr('sensor.house_entry_exit_recent_trigger', 'date'),
-              '%a, %d %b %Y %H:%M:%S %z') %}
-          {% set temp2 = strptime(states('variable.house_entry_exit_recent_last_date'),
-              '%a, %d %b %Y %H:%M:%S %z') %}
-          "Automation for pending entry/exit false trigger ran." {{ temp1 }}  {{ temp2 }}
-          {% if temp1 == temp2 %}
-            "Equal!"
-          {% else %}
-            "Not the same..."
-          {% endif %}
-          (nothing new)
+    # - service: persistent_notification.create
+    #   data:
+    #     message: >
+    #       {% set temp1 = strptime(state_attr('sensor.house_entry_exit_recent_trigger', 'date'),
+    #           '%a, %d %b %Y %H:%M:%S %z') %}
+    #       {% set temp2 = strptime(states('variable.house_entry_exit_recent_last_date'),
+    #           '%a, %d %b %Y %H:%M:%S %z') %}
+    #       "Automation for pending entry/exit false trigger ran." {{ temp1 }}  {{ temp2 }}
+    #       {% if temp1 == temp2 %}
+    #         "Equal!"
+    #       {% else %}
+    #         "Not the same..."
+    #       {% endif %}
+    #       (nothing new)
 
 
 - alias: 'Handle pending entry/exit true triggers'
