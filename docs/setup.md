@@ -22,3 +22,14 @@ symlink files.
 See
 [this post](https://stackoverflow.com/questions/5917249/git-symlinks-in-windows#answer-52097145)
 for some additional info.
+
+
+### Remote development
+Doing all development on the hassio platform is a bit cumbersome.  Not only is
+the code editing not ideal, but the git installation is limited in functionality
+as well.
+
+The best solution to this is to install the
+[Samba share addon](https://www.home-assistant.io/addons/samba/) and then mount
+the `config` dir using samba.  Not only will this allow direct code editing,
+but it will also allow git to be used on the dev machine.
