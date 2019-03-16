@@ -1,0 +1,6 @@
+[submodule "python_scripts/hass-variables"]
+	path = python_scripts/hass-variables
+	url = git@github.com:rogro82/hass-variables.git
+[submodule "hass-variables"]
+	path = hass-variables
+	url = git@github.com:rogro82/hass-variables.git
