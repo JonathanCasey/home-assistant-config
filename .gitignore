@@ -16,6 +16,8 @@ known_devices.yaml
 plex.conf
 *.log
 *.db
+*.db-shm
+*.db-wal
 
 # Helper scripts
 rsync-pull.sh

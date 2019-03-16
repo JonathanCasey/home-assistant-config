@@ -40,14 +40,14 @@ from the dev machine:
 ```
 #!/bin/bash
 
-rsync -ahrv -e 'ssh -p <port>' <hassio-user>@<hassio-hostname/ip>:/config/ ./ --exclude={.git/*,.storage/*,.cloud/*,*.google.token/*,*__pycache__*,*.db,*.db-shm,*.db-,.HA_VERSION} --no-links
+rsync -ahrv -e 'ssh -p <port>' <hassio-user>@<hassio-hostname/ip>:/config/ ./ --exclude={.git/*,.storage/*,.cloud/*,*.google.token/*,*__pycache__*,*.db,*.db-shm,*.db-wal,.HA_VERSION} --no-links
 ```
 
 `rsync-push.sh`:
 ```
 #!/bin/bash
 
-rsync -ahrv ./ -e 'ssh -p <port>' <hassio-user>@<hassio-hostname/ip>:/config/ --exclude={.git/*,.storage/*,.cloud/*,*.google.token/*,*__pycache__*,*.db,*.db-shm,*.db-,.HA_VERSION}
+rsync -ahrv ./ -e 'ssh -p <port>' <hassio-user>@<hassio-hostname/ip>:/config/ --exclude={.git/*,.storage/*,.cloud/*,*.google.token/*,*__pycache__*,*.db,*.db-shm,*.db-wal,.HA_VERSION}
 --no-links
 ```
 
