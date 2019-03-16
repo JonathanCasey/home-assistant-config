@@ -20,5 +20,3 @@ plex.conf
 *.db-wal
 
 # Helper scripts
-rsync-pull.sh
-rsync-push.sh
