@@ -1,6 +1,6 @@
-[submodule "hass-variables"]
-	path = hass-variables
-	url = git@github.com:rogro82/hass-variables.git
 [submodule "submods/rodpayne__home-assistant"]
 	path = submods/rodpayne__home-assistant
 	url = git@github.com:rodpayne/home-assistant.git
+[submodule "submods/rogro82__hass-variables"]
+	path = submods/rogro82__hass-variables
+	url = git@github.com:rogro82/hass-variables.git
