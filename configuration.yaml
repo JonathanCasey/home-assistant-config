@@ -58,6 +58,12 @@ variable:
   house_entry_exit_recent_last_date:
     value: 'uninit'
 
+rest_command:
+  stringify_ha_test:
+    url: !secret stringify_ha_test_url
+    method: POST
+    verify_ssl: true
+
 # Text to speech
 tts:
   - platform: google

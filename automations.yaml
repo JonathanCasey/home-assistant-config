@@ -65,6 +65,7 @@
       data_template:
         entity_id: 'sensor.house_entry_exit_recent_trigger'
         state: 'cleared'
+    # - service: rest_command.stringify_ha_test
     - service: persistent_notification.create
       data:
         message: >
