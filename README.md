@@ -2,3 +2,6 @@
 
 # home-assistant-config
 Configuration for hassio / home assistant
+
+ - [Setup](docs/setup.md)
+ - [Usage](docs/usage.md)
