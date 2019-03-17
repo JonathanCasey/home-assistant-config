@@ -1,1 +1,1 @@
-/config/hass-variables/variable.py
+../hass-variables/variable.py
