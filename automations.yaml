@@ -66,6 +66,13 @@
         entity_id: 'sensor.house_entry_exit_recent_trigger'
         state: 'cleared'
     # - service: rest_command.stringify_ha_test
+    - service: light.turn_on
+      data:
+        entity_id:
+         - light.foyer
+         - light.outside
+        brightness: 255
+        transition: 2
     - service: persistent_notification.create
       data:
         message: >
