@@ -64,6 +64,9 @@ rest_command:
     method: POST
     verify_ssl: true
 
+timer:
+  house_entry_exit:
+
 # Text to speech
 tts:
   - platform: google

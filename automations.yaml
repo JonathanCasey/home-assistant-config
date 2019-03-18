@@ -95,3 +95,26 @@
          - light.outside
         brightness: 255
         transition: 2
+    - service: timer.start
+      data:
+        entity_id: timer.house_entry_exit
+        duration: '00:10:00'
+    - service: persistent_notification.create
+      data:
+        message: "Did turn lights on, timer started..."
+          
+- alias: 'Timeout end of house entry/exit'
+  initial_state: on
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.house_entry_exit
+  action:
+    service: light.turn_off
+    data:
+     entity_id:
+      - light.foyer
+      - light.outside
+     transition: 5
+      
