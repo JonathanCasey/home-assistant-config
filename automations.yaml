@@ -65,14 +65,6 @@
       data_template:
         entity_id: 'sensor.house_entry_exit_recent_trigger'
         state: 'cleared'
-    # - service: rest_command.stringify_ha_test
-    - service: light.turn_on
-      data:
-        entity_id:
-         - light.foyer
-         - light.outside
-        brightness: 255
-        transition: 2
     - service: persistent_notification.create
       data:
         message: >
@@ -87,4 +79,19 @@
             "Not the same..."
           {% endif %}
           (true and cleared)
-
+    # Nothing after this condition executes if it is false
+    - condition: or
+      # These need to be separated since otherwise day change not factored in
+      conditions:
+        - condition: sun
+          after: sunset
+        - condition: sun
+          before: sunrise
+    # - service: rest_command.stringify_ha_test
+    - service: light.turn_on
+      data:
+        entity_id:
+         - light.foyer
+         - light.outside
+        brightness: 255
+        transition: 2
