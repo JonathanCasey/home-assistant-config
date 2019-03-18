@@ -57,9 +57,6 @@ security_password:
 
 # The password for the web login portion of the SSH addon.
 ssh_addon_web_password:
-
-# A test stringify push url
-stringify_ha_test_url:
 ```
 
 ### `plex.conf`

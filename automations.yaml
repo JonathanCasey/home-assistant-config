@@ -87,12 +87,9 @@
           after: sunset
         - condition: sun
           before: sunrise
-    # - service: rest_command.stringify_ha_test
     - service: light.turn_on
       data:
-        entity_id:
-         - light.foyer
-         - light.outside
+        entity_id: light.outside
         brightness: 255
         transition: 2
     - service: timer.start
@@ -113,8 +110,6 @@
   action:
     service: light.turn_off
     data:
-     entity_id:
-      - light.foyer
-      - light.outside
+     entity_id: light.outside
      transition: 5
       
