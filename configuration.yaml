@@ -46,7 +46,7 @@ sensor:
     senders:
       - donotreply@frontpointsecurity.com
     name: house_entry_exit_recent_trigger
-    scan_interval: 10
+    scan_interval: 5
     value_template: >-
       {% if 'was Opened at' in subject %}
         pending
@@ -57,6 +57,9 @@ sensor:
 variable:
   house_entry_exit_recent_last_date:
     value: 'uninit'
+
+timer:
+  house_entry_exit:
 
 # Text to speech
 tts:
