@@ -65,20 +65,20 @@
       data_template:
         entity_id: 'sensor.house_entry_exit_recent_trigger'
         state: 'cleared'
-    - service: persistent_notification.create
-      data:
-        message: >
-          {% set temp1 = strptime(state_attr('sensor.house_entry_exit_recent_trigger', 'date'),
-              '%a, %d %b %Y %H:%M:%S %z') %}
-          {% set temp2 = strptime(states('variable.house_entry_exit_recent_last_date'),
-              '%a, %d %b %Y %H:%M:%S %z') %}
-          "Automation for pending entry/exit true trigger ran." {{ temp1 }}  {{ temp2 }}
-          {% if temp1 == temp2 %}
-            "Equal!"
-          {% else %}
-            "Not the same..."
-          {% endif %}
-          (true and cleared)
+    # - service: persistent_notification.create
+    #   data:
+    #     message: >
+    #       {% set temp1 = strptime(state_attr('sensor.house_entry_exit_recent_trigger', 'date'),
+    #           '%a, %d %b %Y %H:%M:%S %z') %}
+    #       {% set temp2 = strptime(states('variable.house_entry_exit_recent_last_date'),
+    #           '%a, %d %b %Y %H:%M:%S %z') %}
+    #       "Automation for pending entry/exit true trigger ran." {{ temp1 }}  {{ temp2 }}
+    #       {% if temp1 == temp2 %}
+    #         "Equal!"
+    #       {% else %}
+    #         "Not the same..."
+    #       {% endif %}
+    #       (true and cleared)
     # Nothing after this condition executes if it is false
     - condition: or
       # These need to be separated since otherwise day change not factored in
@@ -96,9 +96,9 @@
       data:
         entity_id: timer.house_entry_exit
         duration: '00:10:00'
-    - service: persistent_notification.create
-      data:
-        message: "Did turn lights on, timer started..."
+    # - service: persistent_notification.create
+    #   data:
+    #     message: "Did turn lights on, timer started..."
           
 - alias: 'Timeout end of house entry/exit'
   initial_state: on
