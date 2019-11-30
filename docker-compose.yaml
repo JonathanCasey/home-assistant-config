@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3.7'
 services:
   homeassistant:
     container_name: homeassistant
@@ -10,8 +10,7 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt:ro
     restart: on-failure
     depends_on:
-      mosquitto:
-        condition: service_started
+      - mosquitto
     healthcheck:
       test: ["CMD", "curl", "-f", "http://127.0.0.1:8123"]
       interval: 30s
@@ -29,12 +28,9 @@ services:
       - /etc/timezone:/etc/timezone:ro
     restart: "no" # because the exit code(s) are wrong
     depends_on:
-      mosquitto:
-        condition: service_started
-      mqtt-bridge:
-        condition: service_started
-      homeassistant:
-        condition: service_healthy
+      - mosquitto
+      - mqtt-bridge
+      - homeassistant
     healthcheck:
       test: ["CMD", "curl", "-f", "http://127.0.0.1:1880"]
       interval: 30s
@@ -62,8 +58,7 @@ services:
       - /opt/home-assistant/mqtt-bridge:/config
     restart: on-failure
     depends_on:
-      homeassistant:
-        condition: service_healthy
+      - homeassistant
 
   portainer:
     container_name: portainer
