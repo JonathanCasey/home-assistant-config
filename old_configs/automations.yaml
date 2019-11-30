@@ -1,0 +1,115 @@
+
+- alias: 'Handle pending entry/exit false triggers'
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: 'sensor.house_entry_exit_recent_trigger'
+      # to: 'pending' # This does not work for some stupid reason...
+  condition:
+    - condition: template
+      value_template: >
+        {{ states('sensor.house_entry_exit_recent_trigger') == 'pending' and
+            (not states('variable.house_entry_exit_recent_last_date') == 'unknown'
+            and not states('variable.house_entry_exit_recent_last_date') == 'uninit'
+            and not states('variable.house_entry_exit_recent_last_date') == ''
+            and not strptime(states('variable.house_entry_exit_recent_last_date'),
+                '%a, %d %b %Y %H:%M:%S %z')
+              < strptime(state_attr('sensor.house_entry_exit_recent_trigger', 'date'),
+                '%a, %d %b %Y %H:%M:%S %z')) }}
+  action:
+    - service: python_script.set_state
+      data_template:
+        entity_id: 'sensor.house_entry_exit_recent_trigger'
+        state: 'nothing_new'
+    # - service: persistent_notification.create
+    #   data:
+    #     message: >
+    #       {% set temp1 = strptime(state_attr('sensor.house_entry_exit_recent_trigger', 'date'),
+    #           '%a, %d %b %Y %H:%M:%S %z') %}
+    #       {% set temp2 = strptime(states('variable.house_entry_exit_recent_last_date'),
+    #           '%a, %d %b %Y %H:%M:%S %z') %}
+    #       "Automation for pending entry/exit false trigger ran." {{ temp1 }}  {{ temp2 }}
+    #       {% if temp1 == temp2 %}
+    #         "Equal!"
+    #       {% else %}
+    #         "Not the same..."
+    #       {% endif %}
+    #       (nothing new)
+
+
+- alias: 'Handle pending entry/exit true triggers'
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: 'sensor.house_entry_exit_recent_trigger'
+      # to: 'pending' # This does not work for some stupid reason...
+  condition:
+    - condition: template
+      value_template: >
+        {{ states('sensor.house_entry_exit_recent_trigger') == 'pending' and
+            (states('variable.house_entry_exit_recent_last_date') == 'unknown'
+            or states('variable.house_entry_exit_recent_last_date') == 'uninit'
+            or states('variable.house_entry_exit_recent_last_date') == ''
+            or strptime(states('variable.house_entry_exit_recent_last_date'),
+                '%a, %d %b %Y %H:%M:%S %z')
+              < strptime(state_attr('sensor.house_entry_exit_recent_trigger', 'date'),
+                '%a, %d %b %Y %H:%M:%S %z')) }}
+  action:
+    - service: variable.set_variable
+      data:
+        variable: 'house_entry_exit_recent_last_date'
+        value_template: >-
+          {% set temp = state_attr('sensor.house_entry_exit_recent_trigger', 'date') %}
+          {{ temp }}
+    - service: python_script.set_state
+      data_template:
+        entity_id: 'sensor.house_entry_exit_recent_trigger'
+        state: 'cleared'
+    # - service: persistent_notification.create
+    #   data:
+    #     message: >
+    #       {% set temp1 = strptime(state_attr('sensor.house_entry_exit_recent_trigger', 'date'),
+    #           '%a, %d %b %Y %H:%M:%S %z') %}
+    #       {% set temp2 = strptime(states('variable.house_entry_exit_recent_last_date'),
+    #           '%a, %d %b %Y %H:%M:%S %z') %}
+    #       "Automation for pending entry/exit true trigger ran." {{ temp1 }}  {{ temp2 }}
+    #       {% if temp1 == temp2 %}
+    #         "Equal!"
+    #       {% else %}
+    #         "Not the same..."
+    #       {% endif %}
+    #       (true and cleared)
+    # Nothing after this condition executes if it is false
+    - condition: or
+      # These need to be separated since otherwise day change not factored in
+      conditions:
+        - condition: sun
+          after: sunset
+        - condition: sun
+          before: sunrise
+    - service: light.turn_on
+      data:
+        entity_id: light.outside
+        brightness: 255
+        transition: 2
+    - service: timer.start
+      data:
+        entity_id: timer.house_entry_exit
+        duration: '00:10:00'
+    # - service: persistent_notification.create
+    #   data:
+    #     message: "Did turn lights on, timer started..."
+          
+- alias: 'Timeout end of house entry/exit'
+  initial_state: on
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.house_entry_exit
+  action:
+    service: light.turn_off
+    data:
+     entity_id: light.outside
+     transition: 5
+      
