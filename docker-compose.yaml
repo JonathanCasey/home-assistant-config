@@ -1,50 +1,15 @@
 version: '2.1'
 services:
-  grafana:
-    container_name: grafana
-    image: proxx/grafana-armv7
-    user: "1000"
-    ports:
-      - 3000:3000
-    volumes:
-      - /opt/grafana:/etc/grafana:rw
-      - /opt/grafana:/var/lib/grafana:rw
-      - /etc/timezone:/etc/timezone:ro
-    restart: on-failure
-    depends_on:
-      influxdb:
-        condition: service_healthy
-
-  influxdb:
-    container_name: influxdb
-    image: influxdb
-    ports:
-      - 8086:8086
-    volumes:
-      - /opt/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro
-      - /opt/influxdb:/var/lib/influxdb
-    restart: on-failure
-    healthcheck:
-      test: ["CMD", "curl", "-sI", "http://127.0.0.1:8086/ping"]
-      interval: 30s
-      timeout: 1s
-      retries: 24
-      
   homeassistant:
     container_name: homeassistant
-    image: homeassistant/raspberrypi3-homeassistant:0.87.1
+    image: homeassistant/home-assistant:stable
     network_mode: "host"
     volumes:
-      - /opt/homeassistant:/config
+      - /opt/home-assistant/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
-    devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0:rwm
-      - /dev/ttyUSB1:/dev/ttyUSB1:rwm
     restart: on-failure
     depends_on:
-      influxdb:
-        condition: service_healthy
       mosquitto:
         condition: service_started
     healthcheck:
@@ -55,11 +20,11 @@ services:
 
   node-red:
     container_name: node-red
-    image: nodered/node-red-docker:rpi-v8
+    image: nodered/node-red
     ports:
       - 1880:1880
     volumes:
-      - /opt/node-red:/data
+      - /opt/home-assistant/node-red:/data
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     restart: "no" # because the exit code(s) are wrong
@@ -84,19 +49,17 @@ services:
       - 1883:1883
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /opt/mosquitto:/mosquitto/config:ro
-      - /opt/mosquitto:/mosquitto/data
+      - /opt/home-assistant/mosquitto:/mosquitto/config:ro
+      - /opt/home-assistant/mosquitto:/mosquitto/data
     restart: on-failure
 
   mqtt-bridge:
     container_name: mqtt-bridge
-    build:
-      context: https://github.com/stjohnjohnson/smartthings-mqtt-bridge.git
-      dockerfile: Dockerfile-rpi
+    image: stjohnjohnson/smartthings-mqtt-bridge
     ports:
       - 8080:8080
     volumes:
-      - /opt/mqtt-bridge:/config
+      - /opt/home-assistant/mqtt-bridge:/config
     restart: on-failure
     depends_on:
       homeassistant:
@@ -108,18 +71,18 @@ services:
     ports:
       - 9000:9000
     volumes:
-      - /opt/portainer:/data:rw
+      - /opt/home-assistant/portainer:/data:rw
       - /var/run/docker.sock:/var/run/docker.sock
     restart: "no" # because the exit code(s) are wrong
 
   organizr:
     container_name: organizr
-    image: lsioarmhf/organizr
+    image: linuxserver/organizr
     ports:
       - 80:80
       - 443:443
     volumes:
-      - /opt/organizr:/config:rw
+      - /opt/home-assistant/organizr:/config:rw
       - /etc/letsencrypt:/etc/letsencrypt:ro
     environment:
       - PGID=1000
@@ -133,10 +96,10 @@ services:
 
   dockermon:
     container_name: dockermon
-    image: tribunex/ha-dockermon-pi
+    image: philhawthorne/ha-dockermon
     ports:
       - 8126:8126
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /opt/dockermon:/config
+      - /opt/home-assistant/dockermon:/config
     restart: on-failure
