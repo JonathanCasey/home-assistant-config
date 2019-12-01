@@ -17,8 +17,10 @@ of info, but when all other logs fail, this may give a hint...
 curl -v ADDR:PORT
 ```
 will try to connect and print any output from accessing that address and port.
-If just need to check if an error, `curl -f ADDR:PORT` will give nothing on
-success, and an error message on failure.
+If just need to check if an error, `curl -sS -o /dev/null ADDR:PORT` will give
+nothing on success, and an error message on failure.  The `-v` can be added such
+as `curl -sSv -o /dev/null ADDR:PORT` to get header info on pass without the
+response body.
 
 ```
 sudo tcpdump -i any port PORT
