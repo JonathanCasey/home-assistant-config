@@ -3,7 +3,7 @@ services:
   homeassistant:
     container_name: homeassistant
     image: homeassistant/home-assistant:stable
-    network_mode: "host"
+    network_mode: host
     volumes:
       - /opt/home-assistant/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
