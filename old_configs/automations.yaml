@@ -99,7 +99,7 @@
     # - service: persistent_notification.create
     #   data:
     #     message: "Did turn lights on, timer started..."
-          
+
 - alias: 'Timeout end of house entry/exit'
   initial_state: on
   trigger:
@@ -112,4 +112,3 @@
     data:
      entity_id: light.outside
      transition: 5
-      
