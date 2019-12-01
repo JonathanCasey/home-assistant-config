@@ -21,6 +21,7 @@ plex.conf
 .uuid
 portainer/config.json
 node-red/.config.json.backup
+node-red/.sessions.json
 
 # Helper scripts
 
