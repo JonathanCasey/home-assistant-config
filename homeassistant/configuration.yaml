@@ -20,7 +20,12 @@ homeassistant:
 ##### --------------- All others are listed alphabetically --------------- #####
 
 # Absolutely freaking required, even if empty -- otherwise refused on 8123
+config:
+conversation:
+discovery:
 frontend:
+history:
+http:
 
 
 influxdb:
@@ -38,7 +43,15 @@ influxdb:
   #     - sensor.other_junk_you_dont_care_about
 
 
+logbook:
+
+
 logger:
   default: warning
   #logs:
     #homeassistant.components.python_script: debug
+
+
+recorder:
+sun:
+updater:
