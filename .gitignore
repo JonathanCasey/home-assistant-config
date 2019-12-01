@@ -18,5 +18,16 @@ plex.conf
 *.db
 *.db-shm
 *.db-wal
+.uuid
+portainer/config.json
+node-red/.config.json.backup
 
 # Helper scripts
+
+
+# Security
+*.key
+*.pub
+
+# Node-RED
+node-red/node_modules/
