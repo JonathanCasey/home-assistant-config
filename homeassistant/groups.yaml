@@ -1,0 +1,5 @@
+upstairs_bathroom_lights:
+  entities:
+    - light.upstairs_bathroom_left
+    - light.upstairs_bathroom_middle
+    - light.upstairs_bathroom_right
