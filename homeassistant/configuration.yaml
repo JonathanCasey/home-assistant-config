@@ -27,9 +27,13 @@ conversation:
 discovery:
   ignore:
   enable:
+    - philips_hue
+
 frontend:
 history:
 http:
+
+group: !include groups.yaml
 
 
 influxdb:
