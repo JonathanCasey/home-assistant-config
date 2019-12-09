@@ -19,10 +19,14 @@ homeassistant:
 
 ##### --------------- All others are listed alphabetically --------------- #####
 
+automation: !include automations.yaml
 # Absolutely freaking required, even if empty -- otherwise refused on 8123
 config:
 conversation:
+
 discovery:
+  ignore:
+  enable:
 frontend:
 history:
 http:
@@ -53,5 +57,6 @@ logger:
 
 
 recorder:
+system_health:
 sun:
 updater:
