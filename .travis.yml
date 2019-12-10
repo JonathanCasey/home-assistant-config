@@ -5,7 +5,8 @@ git:
     # Handle git submodules yourself
     submodules: false
 before_install:
-  - mv homeassistant/mock_secrets.yaml homeassistant/secrets.yaml
+  - cd homeassistant
+  - mv mock_secrets.yaml secrets.yaml
   # Use sed to replace the SSH URL with the public URL, then initialize submodules
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
