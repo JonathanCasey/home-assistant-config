@@ -8,6 +8,8 @@ services:
       - /opt/home-assistant/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
+    devices:
+      - /dev/zwave0:/dev/zwave0
     restart: on-failure
     depends_on:
       - mosquitto

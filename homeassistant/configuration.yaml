@@ -64,3 +64,6 @@ recorder:
 system_health:
 sun:
 updater:
+
+zwave:
+  usb_path: /dev/zwave0
