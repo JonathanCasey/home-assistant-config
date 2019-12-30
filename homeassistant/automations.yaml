@@ -43,3 +43,31 @@
   action:
     - service: switch.turn_off
       entity_id: switch.christmas_tree
+
+
+- alias: 'Entry lights'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_multi_sensor_2
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    - service: timer.start
+      entity_id: timer.entry_lights
+    - service: light.turn_on
+      entity_id: group.outside_lights
+
+
+- alias: 'Entry lights timeout'
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.entry_lights
+  action:
+      service: light.turn_off
+      entity_id: group.outside_lights
