@@ -12,12 +12,32 @@ services:
       - /dev/zwave0:/dev/zwave0
     restart: on-failure
     depends_on:
+      - deconz
       - mosquitto
     healthcheck:
       test: ["CMD", "curl", "-f", "http://127.0.0.1:8123"]
       interval: 30s
       timeout: 10s
       retries: 6
+
+  deconz:
+    image: marthoc/deconz
+    container_name: deconz
+    network_mode: host
+    restart: always
+    volumes:
+      - /opt/home-assistant/deconz:/root/.local/share/dresden-elektronik/deCONZ
+    devices:
+      - /dev/zigbee0:/dev/ttyACM0
+    env_file:
+      - .secrets.env
+    environment:
+      - DECONZ_WEB_PORT=801
+      - DECONZ_WS_PORT=445
+      - DECONZ_VNC_PORT=5930
+      - DECONZ_VNC_MODE=1
+      - DEBUG_INFO=1
+      - TZ=America/New_York
 
   node-red:
     container_name: node-red
