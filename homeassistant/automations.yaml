@@ -1,4 +1,45 @@
 
+# Samsung button events:
+#  - 1001: Long press
+#  - 1002: Single press
+#  - 1004: Double press
+
+
+- alias: 'Test button short press'
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: button01
+        event: 1002 # Single press
+  action:
+    - service: light.toggle
+      entity_id: light.dining_table_light
+
+- alias: 'Test button long press'
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: button01
+        event: 1001 # Long press
+  action:
+    - service: light.toggle
+      entity_id: light.office_window
+
+- alias: 'Test button double press'
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: button01
+        event: 1004 # Double press
+  action:
+    - service: light.toggle
+      entity_id: light.office_closet_switch
+
+
+
 - alias: 'Set night light mode'
   trigger:
     - platform: time
