@@ -29,6 +29,18 @@ node-red/.sessions.json
 # Security
 *.key
 *.pub
+.secrets.env
+
+# deconz
+
+# dockermon
+
+# Home Assistant
+homeassistant/OZW_Log.txt
+
+# mosquitto
+
+# mqtt-bridge
 
 # Node-RED
 node-red/node_modules/
@@ -36,3 +48,6 @@ node-red/node_modules/
 # Organizr
 organizr/keys/
 organizr/log/
+organizr/organizr/loginLog.json
+
+# portainer
