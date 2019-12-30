@@ -1,5 +1,11 @@
 
 
+kitchen:
+  entities:
+    - light.kitchen_main_north
+    - light.kitchen_main_south
+
+
 outside_lights:
   entities:
     - light.outside_front
