@@ -9,6 +9,10 @@ before_install:
   # Use sed to replace the SSH URL with the public URL, then initialize submodules
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
+addons:
+  apt:
+    packages:
+    - libudev-dev
 install:
   - pip3 install homeassistant
 script:
