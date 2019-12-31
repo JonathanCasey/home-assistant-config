@@ -23,6 +23,16 @@ See
 [this post](https://stackoverflow.com/questions/5917249/git-symlinks-in-windows#answer-52097145)
 for some additional info.
 
+#### If showing pending changes...
+Note that windows may struggle with "typechange" status.  In this case, it is
+recommended to use:
+```
+git update-index --assume-unchanged <file1> <file2>
+```
+on all of the symlink files so they do not show as changed.
+
+To undo this, simply run the same command, but with `--no-assume-unchanged`.
+
 
 ### Remote development
 Doing all development on the hassio platform is a bit cumbersome.  Not only is
