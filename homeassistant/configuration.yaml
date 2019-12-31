@@ -59,7 +59,7 @@ logger:
   #logs:
     #homeassistant.components.python_script: debug
 
-
+python_script:
 recorder:
 system_health:
 sun:
@@ -69,6 +69,7 @@ timer:
     duration: '00:05:00'
 
 updater:
+variable:
 
 zwave:
   usb_path: /dev/zwave0
