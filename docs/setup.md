@@ -37,10 +37,9 @@ but it will also allow git to be used on the dev machine.
 
 
 ## Secrets
-These are in the root `/config` dir unless specified with a subpath in the
-heading.
+These are in the root dir unless specified with a subpath in the heading.
 
-### `secrets.yaml`
+### `homeassistant/secrets.yaml`
 In `secrets.yaml`, the following keys are expected to be included:
 ```
 # Latitude / Longitude to 6 decimal places.
@@ -59,7 +58,7 @@ security_password:
 ssh_addon_web_password:
 ```
 
-### `plex.conf`
+### `homeassistant/plex.conf`
 In `plex.conf`, the json structure will be provided by the addon when installed
 as a template, but copying it here:
 ```
@@ -74,3 +73,10 @@ as a template, but copying it here:
 
 The `token` can be obtained as the `X-Plex-Token` as documented
 [here](https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/).
+
+
+### `.secrets.env`
+
+```
+DECONZ_VNC_PASSWORD=
+```

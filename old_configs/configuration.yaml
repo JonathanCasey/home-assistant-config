@@ -19,7 +19,7 @@ homeassistant:
 default_config:
 
 discovery:
-    
+
 # Show the introduction message on startup.
 # introduction:
 
@@ -27,7 +27,7 @@ logger:
   default: warning
   #logs:
     #homeassistant.components.python_script: debug
-    
+
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 # http:
 #   base_url: example.duckdns.org:8123
@@ -36,7 +36,7 @@ logger:
 sensor:
   # Weather prediction
   - platform: yr
-  
+
   # Gmail - FrontPoint door sensor
   - platform: imap_email_content
     server: imap.gmail.com
@@ -53,7 +53,7 @@ sensor:
       {% else %}
         no_emails_today
       {% endif %}
-      
+
 variable:
   house_entry_exit_recent_last_date:
     value: 'uninit'
@@ -76,7 +76,7 @@ panel_iframe:
     title: Configurator
     icon: mdi:wrench
     url: http://hassio.local:3218
-    
+
 #alarm_control_panel:
 #  platform: alarmdotcom
 #  username: !secret frontpoint_username

@@ -1,0 +1,19 @@
+
+
+kitchen:
+  entities:
+    - light.kitchen_main_north
+    - light.kitchen_main_south
+
+
+outside_lights:
+  entities:
+    - light.outside_front
+    - light.outside_kitchen
+
+
+upstairs_bathroom_lights:
+  entities:
+    - light.upstairs_bathroom_left
+    - light.upstairs_bathroom_middle
+    - light.upstairs_bathroom_right

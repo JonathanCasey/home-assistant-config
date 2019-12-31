@@ -1,1 +1,0 @@
-../submods/rogro82__hass-variables/variable.py

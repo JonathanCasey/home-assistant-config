@@ -1,0 +1,91 @@
+
+# Samsung button events:
+#  - 1001: Long press
+#  - 1002: Single press
+#  - 1004: Double press
+
+
+- alias: 'Kitchen lights toggle'
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: button01
+        event: 1002 # Single press
+  action:
+    - service: light.toggle
+      entity_id: group.kitchen
+
+
+- alias: 'Set night light mode'
+  trigger:
+    - platform: time
+      at: '21:30'
+  action:
+    - service: light.turn_on
+      entity_id: group.upstairs_bathroom_lights
+      data:
+        brightness: 1
+    - delay: '00:00:02'
+    - service: light.turn_off
+      entity_id: group.upstairs_bathroom_lights
+
+
+- alias: 'Set day light mode'
+  trigger:
+    - platform: time
+      at: '4:30'
+  action:
+    - service: light.turn_on
+      entity_id: group.upstairs_bathroom_lights
+      data:
+        brightness_pct: 80
+    - delay: '00:00:02'
+    - service: light.turn_off
+      entity_id: group.upstairs_bathroom_lights
+
+
+- alias: 'Enable evening'
+  trigger:
+    - platform: time
+      at: '16:00'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.christmas_tree
+
+
+- alias: 'Enable night'
+  trigger:
+    - platform: time
+      at: '23:00'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.christmas_tree
+
+
+- alias: 'Entry lights'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_multi_sensor_2
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    - service: timer.start
+      entity_id: timer.entry_lights
+    - service: light.turn_on
+      entity_id: group.outside_lights
+
+
+- alias: 'Entry lights timeout'
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.entry_lights
+  action:
+      service: light.turn_off
+      entity_id: group.outside_lights

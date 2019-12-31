@@ -1,0 +1,122 @@
+version: '3.7'
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: homeassistant/home-assistant:stable
+    network_mode: host
+    volumes:
+      - /opt/home-assistant/homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    devices:
+      - /dev/zwave0:/dev/zwave0
+    restart: on-failure
+    depends_on:
+      - deconz
+      - mosquitto
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8123"]
+      interval: 30s
+      timeout: 10s
+      retries: 6
+
+  deconz:
+    image: marthoc/deconz
+    container_name: deconz
+    network_mode: host
+    restart: always
+    volumes:
+      - /opt/home-assistant/deconz:/root/.local/share/dresden-elektronik/deCONZ
+    devices:
+      - /dev/zigbee0:/dev/ttyACM0
+    env_file:
+      - .secrets.env
+    environment:
+      - DECONZ_WEB_PORT=801
+      - DECONZ_WS_PORT=445
+      - DECONZ_VNC_PORT=5930
+      - DECONZ_VNC_MODE=1
+      - DEBUG_INFO=1
+      - TZ=America/New_York
+
+  node-red:
+    container_name: node-red
+    image: nodered/node-red:latest
+    ports:
+      - 1880:1880
+    volumes:
+      - /opt/home-assistant/node-red:/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    restart: "no" # because the exit code(s) are wrong
+    depends_on:
+      - mosquitto
+      - mqtt-bridge
+      - homeassistant
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:1880"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    user: "1000:1000"
+    ports:
+      - 1883:1883
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /opt/home-assistant/mosquitto:/mosquitto/config:ro
+      - /opt/home-assistant/mosquitto:/mosquitto/data
+    restart: on-failure
+
+  mqtt-bridge:
+    container_name: mqtt-bridge
+    image: stjohnjohnson/smartthings-mqtt-bridge
+    ports:
+      - 8080:8080
+    volumes:
+      - /opt/home-assistant/mqtt-bridge:/config
+    restart: on-failure
+    depends_on:
+      - homeassistant
+
+  portainer:
+    container_name: portainer
+    image: portainer/portainer
+    ports:
+      - 9000:9000
+    volumes:
+      - /opt/home-assistant/portainer:/data:rw
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: "no" # because the exit code(s) are wrong
+
+  organizr:
+    container_name: organizr
+    image: linuxserver/organizr
+    ports:
+      - 10080:80
+      - 10443:443
+    volumes:
+      - /opt/home-assistant/organizr:/config:rw
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    environment:
+      - PGID=1000
+      - PUID=1000
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  dockermon:
+    container_name: dockermon
+    image: philhawthorne/ha-dockermon
+    ports:
+      - 8126:8126
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/home-assistant/dockermon:/config
+    restart: on-failure

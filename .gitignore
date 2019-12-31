@@ -18,5 +18,36 @@ plex.conf
 *.db
 *.db-shm
 *.db-wal
+.uuid
+portainer/config.json
+node-red/.config.json.backup
+node-red/.sessions.json
 
 # Helper scripts
+
+
+# Security
+*.key
+*.pub
+.secrets.env
+
+# deconz
+
+# dockermon
+
+# Home Assistant
+homeassistant/OZW_Log.txt
+
+# mosquitto
+
+# mqtt-bridge
+
+# Node-RED
+node-red/node_modules/
+
+# Organizr
+organizr/keys/
+organizr/log/
+organizr/organizr/loginLog.json
+
+# portainer

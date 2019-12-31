@@ -1,0 +1,75 @@
+homeassistant:
+
+  # Name of the location where Home Assistant is running
+  name: Home
+
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/New_York
+
+
+##### --------------- All others are listed alphabetically --------------- #####
+
+automation: !include automations.yaml
+# Absolutely freaking required, even if empty -- otherwise refused on 8123
+config:
+conversation:
+
+discovery:
+  ignore:
+  enable:
+    - philips_hue
+
+frontend:
+history:
+http:
+
+group: !include groups.yaml
+
+
+influxdb:
+  host: 192.168.1.56
+  port: 8086
+  username: !secret influxdb_username
+  password: !secret influxdb_password
+  database: homeassistant
+  default_measurement: state
+# exclude stuff that is pointless to log
+  # exclude:
+  #   domains:
+  #     - group
+  #   entities:
+  #     - sensor.other_junk_you_dont_care_about
+
+
+logbook:
+
+
+logger:
+  default: warning
+  #logs:
+    #homeassistant.components.python_script: debug
+
+python_script:
+recorder:
+system_health:
+sun:
+
+timer:
+  entry_lights:
+    duration: '00:05:00'
+
+updater:
+variable:
+
+zwave:
+  usb_path: /dev/zwave0
