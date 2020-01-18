@@ -27,7 +27,7 @@ conversation:
 discovery:
   ignore:
   enable:
-    - philips_hue
+    # - philips_hue # Only needed for initial discovery
 
 frontend:
 history:
