@@ -24,3 +24,9 @@ upstairs_bathroom_lights:
     - light.upstairs_bathroom_left
     - light.upstairs_bathroom_middle
     - light.upstairs_bathroom_right
+
+
+upstairs_hallway:
+  entities:
+    - light.upstairs_hall_north
+    - light.upstairs_hall_south
