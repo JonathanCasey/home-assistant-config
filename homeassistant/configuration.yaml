@@ -59,6 +59,30 @@ logger:
   #logs:
     #homeassistant.components.python_script: debug
 
+media_player:
+  - platform: yamaha
+    host: 192.168.1.64
+    source_ignore:
+      - "AUDIO1"
+      - "AUDIO2"
+      - "AV1"
+      - "AV2"
+      - "AV3"
+      - "AV4"
+      - "AV5"
+      - "AV6"
+      - "Deezer"
+      - "HDMI3"
+      - "HDMI4"
+      - "HDMI5"
+      - "SiriusXM"
+      - "USB"
+      - "V-AUX"
+    source_names:
+      HDMI1: "Nvidia Shield"
+      HDMI2: "Xbox 360"
+      PHONO: "Turntable / Vinyl"
+
 python_script:
 recorder:
 system_health:
