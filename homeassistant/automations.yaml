@@ -16,8 +16,6 @@
       entity_id: sun.sun
       state: 'below_horizon'
   action:
-    # service: light.toggle
-    # entity_id: light.office_entry
     - service: timer.cancel
       entity_id: timer.upstairs_hallway_lights
     - service: light.turn_on
@@ -30,10 +28,6 @@
     from: "on"
     to: "off"
   action:
-    # service: light.toggle
-    # entity_id: light.office_closet_switch
-    # service: light.turn_off
-    # entity_id: light.upstairs_hall_north
     - service: timer.start
       entity_id: timer.upstairs_hallway_lights
 
