@@ -6,6 +6,13 @@ kitchen:
     - light.kitchen_main_south
 
 
+office:
+  entities:
+    - light.office_closet_switch
+    - light.office_entry
+    - light.office_window
+
+
 outside_lights:
   entities:
     - light.outside_front

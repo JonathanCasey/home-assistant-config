@@ -17,6 +17,18 @@
       entity_id: group.kitchen
 
 
+- alias: 'Office lights toggle'
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: button02
+        event: 1002 # Single press
+  action:
+    - service: light.toggle
+      entity_id: group.office
+
+
 - alias: 'Set night light mode'
   trigger:
     - platform: time
