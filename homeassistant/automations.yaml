@@ -125,3 +125,33 @@
       state: 'idle'
     - service: light.turn_off
       entity_id: light.outside_kitchen
+
+
+- alias: 'Foyer motion lights'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.presence_13
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    - service: timer.start
+      entity_id: timer.foyer_lights
+    - service: light.turn_on
+      entity_id: light.foyer
+      data:
+        brightness_pct: 100
+
+
+- alias: 'Foyer lights timeout'
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.foyer_lights
+  action:
+      service: light.turn_off
+      entity_id: light.foyer

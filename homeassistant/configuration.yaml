@@ -91,6 +91,8 @@ sun:
 timer:
   entry_lights:
     duration: '00:05:00'
+  foyer_lights:
+    duration: '00:05:00'
   outside_kitchen_lights:
     duration: '00:05:00'
 
