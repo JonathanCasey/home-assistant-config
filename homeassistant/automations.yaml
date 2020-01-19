@@ -48,7 +48,7 @@
     - platform: event
       event_type: deconz_event
       event_data:
-        id: button01
+        id: st_button_01
         event: 1002 # Single press
   action:
     - service: light.toggle
@@ -60,7 +60,7 @@
     - platform: event
       event_type: deconz_event
       event_data:
-        id: button02
+        id: st_button_02
         event: 1002 # Single press
   action:
     - service: light.toggle
