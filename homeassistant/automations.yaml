@@ -67,6 +67,18 @@
       entity_id: group.office
 
 
+- alias: 'Master bedroom lights toggle'
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: st_button_03
+        event: 1002 # Single press
+  action:
+    - service: light.toggle
+      entity_id: group.bedroom_master
+
+
 - alias: 'Set night light mode'
   trigger:
     - platform: time

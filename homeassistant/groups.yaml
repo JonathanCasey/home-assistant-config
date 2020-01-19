@@ -1,4 +1,11 @@
 
+bedroom_master:
+  entities:
+    - light.master_bedroom_north
+    - light.master_bedroom_south
+    - light.master_bedroom_entry_north
+    - light.master_bedroom_entry_south
+
 
 kitchen:
   entities:
