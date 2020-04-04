@@ -2,7 +2,7 @@
     {
         "id": "bf163cd5.f84c",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Office Light Button",
         "disabled": false,
         "info": ""
     },
@@ -22,11 +22,111 @@
         "id": "3cae343.22b5bcc",
         "type": "server-events",
         "z": "bf163cd5.f84c",
-        "name": "",
-        "server": "",
-        "event_type": "",
-        "x": 160,
-        "y": 460,
+        "name": " Deconz Event (any)",
+        "server": "2f5bd1e0.67e40e",
+        "event_type": "deconz_event",
+        "x": 130,
+        "y": 400,
+        "wires": [
+            [
+                "d23b825e.b2605"
+            ]
+        ]
+    },
+    {
+        "id": "d23b825e.b2605",
+        "type": "switch",
+        "z": "bf163cd5.f84c",
+        "name": "Is Office Button?",
+        "property": "payload.event.id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "button_st_office",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 120,
+        "y": 520,
+        "wires": [
+            [
+                "3e59fa2.e73b206"
+            ]
+        ]
+    },
+    {
+        "id": "3b8bc8cf.939ae8",
+        "type": "api-call-service",
+        "z": "bf163cd5.f84c",
+        "name": "Toggle office lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "group.office",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 550,
+        "y": 520,
+        "wires": [
+            [
+                "ac86b665.134f48"
+            ]
+        ]
+    },
+    {
+        "id": "3e59fa2.e73b206",
+        "type": "switch",
+        "z": "bf163cd5.f84c",
+        "name": "Is press?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1002",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 520,
+        "wires": [
+            [
+                "3b8bc8cf.939ae8"
+            ]
+        ]
+    },
+    {
+        "id": "ac86b665.134f48",
+        "type": "api-call-service",
+        "z": "bf163cd5.f84c",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Office Light Button flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 840,
+        "y": 520,
         "wires": [
             []
         ]

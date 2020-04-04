@@ -83,18 +83,6 @@
       entity_id: group.kitchen
 
 
-- alias: 'Office lights toggle'
-  trigger:
-    - platform: event
-      event_type: deconz_event
-      event_data:
-        id: button_st_office
-        event: 1002 # Single press
-  action:
-    - service: light.toggle
-      entity_id: group.office
-
-
 - alias: 'Master bedroom lights toggle'
   trigger:
     - platform: event
