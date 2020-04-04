@@ -1,9 +1,23 @@
 
+bedroom_master:
+  entities:
+    - light.master_bedroom_north
+    - light.master_bedroom_south
+    - light.master_bedroom_entry_north
+    - light.master_bedroom_entry_south
+
 
 kitchen:
   entities:
     - light.kitchen_main_north
     - light.kitchen_main_south
+
+
+office:
+  entities:
+    - light.office_closet_switch
+    - light.office_entry
+    - light.office_window
 
 
 outside_lights:
@@ -17,3 +31,9 @@ upstairs_bathroom_lights:
     - light.upstairs_bathroom_left
     - light.upstairs_bathroom_middle
     - light.upstairs_bathroom_right
+
+
+upstairs_hallway:
+  entities:
+    - light.upstairs_hall_north
+    - light.upstairs_hall_south

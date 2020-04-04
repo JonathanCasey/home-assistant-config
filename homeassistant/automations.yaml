@@ -5,16 +5,106 @@
 #  - 1004: Double press
 
 
+- alias: 'Upstairs hallway motion triggered (day)'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ecolink_motion_detector_sensor
+    from: 'off'
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '05:00'
+      before: '21:00'
+  action:
+    - service: timer.cancel
+      entity_id: timer.upstairs_hallway_lights
+    - service: light.turn_on
+      entity_id: group.upstairs_hallway
+      data:
+        brightness_pct: 100
+
+
+- alias: 'Upstairs hallway motion triggered (night)'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ecolink_motion_detector_sensor
+    from: 'off'
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '21:00'
+      before: '05:00'
+  action:
+    - service: timer.cancel
+      entity_id: timer.upstairs_hallway_lights
+    - service: light.turn_on
+      entity_id: group.upstairs_hallway
+      data:
+        brightness: 1
+
+
+- alias: 'Upstairs hallway motion cleared'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ecolink_motion_detector_sensor
+    from: "on"
+    to: "off"
+  action:
+    - service: timer.start
+      entity_id: timer.upstairs_hallway_lights
+
+
+- alias: 'Upstairs hallway lights timeout'
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.upstairs_hallway_lights
+  action:
+      service: light.turn_off
+      entity_id: group.upstairs_hallway
+
+
 - alias: 'Kitchen lights toggle'
   trigger:
     - platform: event
       event_type: deconz_event
       event_data:
-        id: button01
+        id: st_button_01
         event: 1002 # Single press
   action:
     - service: light.toggle
       entity_id: group.kitchen
+
+
+- alias: 'Office lights toggle'
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: st_button_02
+        event: 1002 # Single press
+  action:
+    - service: light.toggle
+      entity_id: group.office
+
+
+- alias: 'Master bedroom lights toggle'
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: st_button_03
+        event: 1002 # Single press
+  action:
+    - service: light.toggle
+      entity_id: group.bedroom_master
 
 
 - alias: 'Set night light mode'
@@ -50,8 +140,8 @@
     - platform: time
       at: '16:00'
   action:
-    - service: switch.turn_on
-      entity_id: switch.christmas_tree
+  #   - service: switch.turn_on
+  #     entity_id: switch.christmas_tree
 
 
 - alias: 'Enable night'
@@ -87,5 +177,71 @@
       event_data:
         entity_id: timer.entry_lights
   action:
+    - service: light.turn_off
+      entity_id: light.outside_front
+    - condition: state
+      entity_id: timer.outside_kitchen_lights
+      state: 'idle'
+    - service: light.turn_off
+      entity_id: light.outside_kitchen
+
+
+- alias: 'Outside kitchen lights'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.openclose_16
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    - service: timer.start
+      entity_id: timer.outside_kitchen_lights
+    - service: light.turn_on
+      entity_id: light.outside_kitchen
+
+
+- alias: 'Outside kitchen lights timeout'
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.outside_kitchen_lights
+  action:
+    - condition: state
+      entity_id: timer.entry_lights
+      state: 'idle'
+    - service: light.turn_off
+      entity_id: light.outside_kitchen
+
+
+- alias: 'Foyer motion lights'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.presence_13
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    - service: timer.start
+      entity_id: timer.foyer_lights
+    - service: light.turn_on
+      entity_id: light.foyer
+      data:
+        brightness_pct: 100
+
+
+- alias: 'Foyer lights timeout'
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.foyer_lights
+  action:
       service: light.turn_off
-      entity_id: group.outside_lights
+      entity_id: light.foyer
