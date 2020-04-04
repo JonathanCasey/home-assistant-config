@@ -19,6 +19,16 @@ homeassistant:
 
 ##### --------------- All others are listed alphabetically --------------- #####
 
+alexa:
+  smart_home:
+    filter:
+      exclude_entities:
+        - group.kitchen
+        - group.office
+        - group.upstairs_hallway
+
+api:
+
 automation: !include automations.yaml
 # Absolutely freaking required, even if empty -- otherwise refused on 8123
 config:
@@ -56,7 +66,8 @@ logbook:
 
 logger:
   default: warning
-  #logs:
+  # logs:
+    # homeassistant.components.alexa: debug
     #homeassistant.components.python_script: debug
 
 media_player:
