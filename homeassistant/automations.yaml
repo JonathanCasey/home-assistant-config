@@ -71,18 +71,6 @@
       entity_id: group.upstairs_hallway
 
 
-- alias: 'Kitchen lights toggle'
-  trigger:
-    - platform: event
-      event_type: deconz_event
-      event_data:
-        id: button_st_kitchen
-        event: 1002 # Single press
-  action:
-    - service: light.toggle
-      entity_id: group.kitchen
-
-
 - alias: 'Set night light mode'
   trigger:
     - platform: time
