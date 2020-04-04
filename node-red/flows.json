@@ -19,26 +19,6 @@
         "cacheJson": true
     },
     {
-        "id": "64345ad2.553454",
-        "type": "ha-api",
-        "z": "bf163cd5.f84c",
-        "name": "",
-        "server": "2f5bd1e0.67e40e",
-        "protocol": "websocket",
-        "method": "get",
-        "path": "",
-        "data": "",
-        "dataType": "json",
-        "location": "payload",
-        "locationType": "msg",
-        "responseType": "json",
-        "x": 210,
-        "y": 600,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "3cae343.22b5bcc",
         "type": "server-events",
         "z": "bf163cd5.f84c",
@@ -48,28 +28,6 @@
         "x": 160,
         "y": 460,
         "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d38eafd3.db28a",
-        "type": "trigger-state",
-        "z": "bf163cd5.f84c",
-        "name": "",
-        "server": "",
-        "entityid": "",
-        "entityidfiltertype": "exact",
-        "debugenabled": false,
-        "constraints": [],
-        "constraintsmustmatch": "all",
-        "outputs": 2,
-        "customoutputs": [],
-        "outputinitially": false,
-        "state_type": "str",
-        "x": 380,
-        "y": 480,
-        "wires": [
-            [],
             []
         ]
     }
