@@ -1,16 +1,16 @@
 
-bedroom_master:
+kitchen:
+  entities:
+    - light.kitchen_main_north
+    - light.kitchen_main_south
+
+
+master_bedroom:
   entities:
     - light.master_bedroom_north
     - light.master_bedroom_south
     - light.master_bedroom_entry_north
     - light.master_bedroom_entry_south
-
-
-kitchen:
-  entities:
-    - light.kitchen_main_north
-    - light.kitchen_main_south
 
 
 office:

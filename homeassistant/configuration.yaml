@@ -24,6 +24,7 @@ alexa:
     filter:
       exclude_entities:
         - group.kitchen
+        - group.master_bedroom
         - group.office
         - group.upstairs_hallway
 

@@ -8,7 +8,7 @@
 - alias: 'Upstairs hallway motion triggered (day)'
   trigger:
     platform: state
-    entity_id: binary_sensor.ecolink_motion_detector_sensor
+    entity_id: binary_sensor.motion_sensor_eco_upstairs_hallway
     from: 'off'
     to: 'on'
   condition:
@@ -30,7 +30,7 @@
 - alias: 'Upstairs hallway motion triggered (night)'
   trigger:
     platform: state
-    entity_id: binary_sensor.ecolink_motion_detector_sensor
+    entity_id: binary_sensor.motion_sensor_eco_upstairs_hallway
     from: 'off'
     to: 'on'
   condition:
@@ -52,7 +52,7 @@
 - alias: 'Upstairs hallway motion cleared'
   trigger:
     platform: state
-    entity_id: binary_sensor.ecolink_motion_detector_sensor
+    entity_id: binary_sensor.motion_sensor_eco_upstairs_hallway
     from: "on"
     to: "off"
   action:
@@ -76,7 +76,7 @@
     - platform: event
       event_type: deconz_event
       event_data:
-        id: st_button_01
+        id: button_st_kitchen
         event: 1002 # Single press
   action:
     - service: light.toggle
@@ -88,7 +88,7 @@
     - platform: event
       event_type: deconz_event
       event_data:
-        id: st_button_02
+        id: button_st_office
         event: 1002 # Single press
   action:
     - service: light.toggle
@@ -100,11 +100,11 @@
     - platform: event
       event_type: deconz_event
       event_data:
-        id: st_button_03
+        id: button_st_master_bedroom
         event: 1002 # Single press
   action:
     - service: light.toggle
-      entity_id: group.bedroom_master
+      entity_id: group.master_bedroom
 
 
 - alias: 'Set night light mode'
@@ -156,7 +156,7 @@
 - alias: 'Entry lights'
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door_multi_sensor_2
+      entity_id: binary_sensor.multi_sensor_st_front_door_openclose
       from: 'off'
       to: 'on'
   condition:
@@ -189,7 +189,7 @@
 - alias: 'Outside kitchen lights'
   trigger:
     - platform: state
-      entity_id: binary_sensor.openclose_16
+      entity_id: binary_sensor.multi_sensor_st_kitchen_door_openclose
       from: 'off'
       to: 'on'
   condition:
@@ -220,7 +220,7 @@
 - alias: 'Foyer motion lights'
   trigger:
     - platform: state
-      entity_id: binary_sensor.presence_13
+      entity_id: binary_sensor.motion_sensor_hue_foyer
       from: 'off'
       to: 'on'
   condition:
