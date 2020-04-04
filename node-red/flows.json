@@ -7,6 +7,13 @@
         "info": ""
     },
     {
+        "id": "4c3e78a1.ebb138",
+        "type": "tab",
+        "label": "Master Bedroom Light Button",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -127,6 +134,119 @@
         "mustacheAltTags": false,
         "x": 840,
         "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a30fb6e1.491408",
+        "type": "server-events",
+        "z": "4c3e78a1.ebb138",
+        "name": " Deconz Event (any)",
+        "server": "2f5bd1e0.67e40e",
+        "event_type": "deconz_event",
+        "x": 90,
+        "y": 460,
+        "wires": [
+            [
+                "aad4aa21.577a98"
+            ]
+        ]
+    },
+    {
+        "id": "aad4aa21.577a98",
+        "type": "switch",
+        "z": "4c3e78a1.ebb138",
+        "name": "Is Master Bedroom Button?",
+        "property": "payload.event.id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "button_st_master_bedroom",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 120,
+        "y": 580,
+        "wires": [
+            [
+                "b3772296.72252"
+            ]
+        ]
+    },
+    {
+        "id": "52b13ab7.819424",
+        "type": "api-call-service",
+        "z": "4c3e78a1.ebb138",
+        "name": "Toggle master bedroom lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "group.master_bedroom",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 570,
+        "y": 580,
+        "wires": [
+            [
+                "17f19bed.57f464"
+            ]
+        ]
+    },
+    {
+        "id": "b3772296.72252",
+        "type": "switch",
+        "z": "4c3e78a1.ebb138",
+        "name": "Is press?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1002",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 580,
+        "wires": [
+            [
+                "52b13ab7.819424"
+            ]
+        ]
+    },
+    {
+        "id": "17f19bed.57f464",
+        "type": "api-call-service",
+        "z": "4c3e78a1.ebb138",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Master Bedroom Light Button flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 880,
+        "y": 580,
         "wires": [
             []
         ]
