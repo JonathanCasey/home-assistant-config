@@ -94,6 +94,7 @@ media_player:
       HDMI2: "Xbox 360"
       PHONO: "Turntable / Vinyl"
 
+mobile_app:
 python_script:
 recorder:
 system_health:
