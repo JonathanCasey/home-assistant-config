@@ -5,7 +5,7 @@
 #  - 1004: Double press
 
 
-- alias: 'Upstairs hallway motion triggered'
+- alias: 'Upstairs hallway motion triggered (day)'
   trigger:
     platform: state
     entity_id: binary_sensor.ecolink_motion_detector_sensor
@@ -15,11 +15,39 @@
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
+    - condition: time
+      after: '05:00'
+      before: '21:00'
   action:
     - service: timer.cancel
       entity_id: timer.upstairs_hallway_lights
     - service: light.turn_on
       entity_id: group.upstairs_hallway
+      data:
+        brightness_pct: 100
+
+
+- alias: 'Upstairs hallway motion triggered (night)'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ecolink_motion_detector_sensor
+    from: 'off'
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: time
+      after: '21:00'
+      before: '05:00'
+  action:
+    - service: timer.cancel
+      entity_id: timer.upstairs_hallway_lights
+    - service: light.turn_on
+      entity_id: group.upstairs_hallway
+      data:
+        brightness: 1
+
 
 - alias: 'Upstairs hallway motion cleared'
   trigger:
