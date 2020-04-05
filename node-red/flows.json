@@ -472,7 +472,8 @@
         "y": 580,
         "wires": [
             [
-                "881f2136.3abd6"
+                "881f2136.3abd6",
+                "1e3cfe7.c8f8702"
             ],
             [
                 "af9ec202.685c7"
@@ -671,8 +672,8 @@
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 380,
-        "y": 520,
+        "x": 360,
+        "y": 540,
         "wires": [
             [
                 "7c5a2e5c.bd53",
@@ -826,7 +827,8 @@
         "y": 680,
         "wires": [
             [
-                "ad0c1937.a3d408"
+                "ad0c1937.a3d408",
+                "e2377e7b.8d444"
             ],
             [
                 "eb2fd5d5.268818"
@@ -1026,7 +1028,7 @@
         "override_data": "msg",
         "blockInputOverrides": false,
         "x": 360,
-        "y": 620,
+        "y": 640,
         "wires": [
             [
                 "7a861800.e44a98",
@@ -1224,7 +1226,7 @@
         "outputs": 1,
         "output_only_on_state_change": true,
         "x": 90,
-        "y": 600,
+        "y": 560,
         "wires": [
             [
                 "ed05a9af.2d13e8"
@@ -1257,7 +1259,8 @@
         "y": 740,
         "wires": [
             [
-                "a9c95ae4.58e688"
+                "a9c95ae4.58e688",
+                "173f58f.68101a7"
             ],
             [
                 "564a61f6.d4c24",
@@ -1457,8 +1460,8 @@
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 360,
-        "y": 680,
+        "x": 340,
+        "y": 700,
         "wires": [
             [
                 "9bbf440e.7b9318",
@@ -1580,7 +1583,7 @@
         "outputs": 1,
         "output_only_on_state_change": true,
         "x": 90,
-        "y": 640,
+        "y": 600,
         "wires": [
             [
                 "210c5d3b.b91672"
@@ -1613,7 +1616,8 @@
         "y": 780,
         "wires": [
             [
-                "b49bc2c6.fad6d"
+                "b49bc2c6.fad6d",
+                "596d5487.fcaf4c"
             ],
             [
                 "7ec47fa6.5f3d9"
@@ -1812,8 +1816,8 @@
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 360,
-        "y": 720,
+        "x": 340,
+        "y": 740,
         "wires": [
             [
                 "70032b8c.d97914",
@@ -1927,7 +1931,7 @@
             "f86bebf4.644dc8"
         ],
         "x": 435,
-        "y": 640,
+        "y": 620,
         "wires": [
             [
                 "70032b8c.d97914",
@@ -2080,7 +2084,8 @@
         "y": 740,
         "wires": [
             [
-                "4afa2ec9.d218"
+                "4afa2ec9.d218",
+                "6108431a.4459bc"
             ],
             [
                 "1ae52074.bfe95"
@@ -2279,8 +2284,8 @@
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 360,
-        "y": 680,
+        "x": 340,
+        "y": 700,
         "wires": [
             [
                 "ec7a30c8.1f8a8",
@@ -3103,7 +3108,7 @@
             "2d335beb.472f24"
         ],
         "x": 435,
-        "y": 580,
+        "y": 560,
         "wires": [
             [
                 "26c8be2e.7537e2"
@@ -3130,12 +3135,133 @@
         "override_data": "msg",
         "blockInputOverrides": false,
         "x": 610,
-        "y": 580,
+        "y": 560,
         "wires": [
             [
                 "a9086fd2.b11ff"
             ],
             []
+        ]
+    },
+    {
+        "id": "1e3cfe7.c8f8702",
+        "type": "switch",
+        "z": "1d296556.09592b",
+        "name": "Is on from motion?",
+        "property": "did_turn_light_on",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 370,
+        "y": 480,
+        "wires": [
+            [
+                "d2caa878.c990f8",
+                "7c5a2e5c.bd53"
+            ]
+        ]
+    },
+    {
+        "id": "e2377e7b.8d444",
+        "type": "switch",
+        "z": "62ce34cf.a7671c",
+        "name": "Is on from motion?",
+        "property": "did_turn_light_on",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 350,
+        "y": 580,
+        "wires": [
+            [
+                "ba91b17f.0c531",
+                "7a861800.e44a98"
+            ]
+        ]
+    },
+    {
+        "id": "6108431a.4459bc",
+        "type": "switch",
+        "z": "35ab222c.a6eb9e",
+        "name": "Is on from motion?",
+        "property": "did_turn_light_on",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 350,
+        "y": 640,
+        "wires": [
+            [
+                "54f9b66e.05ccf8",
+                "ec7a30c8.1f8a8"
+            ]
+        ]
+    },
+    {
+        "id": "173f58f.68101a7",
+        "type": "switch",
+        "z": "e9868773.797078",
+        "name": "Is on from open/close?",
+        "property": "did_turn_light_on",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 640,
+        "wires": [
+            [
+                "f86bebf4.644dc8",
+                "9bbf440e.7b9318",
+                "188eb2ed.d8ca8d"
+            ]
+        ]
+    },
+    {
+        "id": "596d5487.fcaf4c",
+        "type": "switch",
+        "z": "884319a9.e92148",
+        "name": "Is on from open/close?",
+        "property": "did_turn_light_on",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 320,
+        "y": 680,
+        "wires": [
+            [
+                "70032b8c.d97914",
+                "e3887ade.188898"
+            ]
         ]
     }
 ]
