@@ -819,8 +819,8 @@
         "wires": [
             [],
             [
-                "7f74d9fe.189ad8",
-                "dd8ba79c.bea668"
+                "dd8ba79c.bea668",
+                "55c8cbae.a6c8e4"
             ]
         ]
     },
@@ -828,7 +828,7 @@
         "id": "7f74d9fe.189ad8",
         "type": "api-call-service",
         "z": "62ce34cf.a7671c",
-        "name": "Turn on light",
+        "name": "Turn on light (max)",
         "server": "2f5bd1e0.67e40e",
         "version": 1,
         "debugenabled": false,
@@ -841,8 +841,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 890,
-        "y": 620,
+        "x": 1070,
+        "y": 700,
         "wires": [
             [
                 "d9ab294f.c1d178"
@@ -912,8 +912,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 890,
-        "y": 800,
+        "x": 1030,
+        "y": 820,
         "wires": [
             [
                 "d9ab294f.c1d178"
@@ -1039,8 +1039,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 1160,
-        "y": 720,
+        "x": 1380,
+        "y": 740,
         "wires": [
             []
         ]
@@ -1079,6 +1079,53 @@
                 "d36ab12a.bf533"
             ],
             []
+        ]
+    },
+    {
+        "id": "55c8cbae.a6c8e4",
+        "type": "time-range-switch",
+        "z": "62ce34cf.a7671c",
+        "name": "Is night-light time?",
+        "lat": "",
+        "lon": "",
+        "startTime": "21:00",
+        "endTime": "05:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 850,
+        "y": 660,
+        "wires": [
+            [
+                "100c1cb7.820a43"
+            ],
+            [
+                "7f74d9fe.189ad8"
+            ]
+        ]
+    },
+    {
+        "id": "100c1cb7.820a43",
+        "type": "api-call-service",
+        "z": "62ce34cf.a7671c",
+        "name": "Turn on light (dim)",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "group.upstairs_hallway",
+        "data": "{\"brightness\":1}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1070,
+        "y": 620,
+        "wires": [
+            [
+                "d9ab294f.c1d178"
+            ]
         ]
     }
 ]
