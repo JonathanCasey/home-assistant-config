@@ -52,6 +52,8 @@ services:
       # - mosquitto
       # - mqtt-bridge
       - homeassistant
+    environment:
+      - TZ=America/New_York
     healthcheck:
       test: ["CMD", "curl", "-f", "http://127.0.0.1:1880"]
       interval: 30s

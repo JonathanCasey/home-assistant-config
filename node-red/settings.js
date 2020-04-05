@@ -14,6 +14,8 @@
  * limitations under the License.
  **/
 
+process.env.TZ = "America/New_York";
+
 // The `https` setting requires the `fs` module. Uncomment the following
 // to make it available:
 //var fs = require("fs");
