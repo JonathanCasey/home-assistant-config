@@ -106,8 +106,6 @@ timer:
     duration: '00:05:00'
   outside_kitchen_lights:
     duration: '00:05:00'
-  upstairs_hallway_lights:
-    duration: '00:02:00'
 
 updater:
 variable:
