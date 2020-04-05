@@ -2509,8 +2509,8 @@
         "y": 380,
         "wires": [
             [
-                "818717c2.dbe6e8",
-                "7d8308dc.e52bb8"
+                "7d8308dc.e52bb8",
+                "1b9c8db9.b485c2"
             ],
             [
                 "bca4e90.5a43f18"
@@ -2534,8 +2534,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 830,
-        "y": 340,
+        "x": 1050,
+        "y": 360,
         "wires": [
             [
                 "adc3ea04.4a0798"
@@ -2559,8 +2559,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 1280,
-        "y": 400,
+        "x": 1400,
+        "y": 360,
         "wires": [
             []
         ]
@@ -2777,8 +2777,37 @@
         "y": 280,
         "wires": [
             [
-                "1ada85ab.c1fa2a"
+                "1ada85ab.c1fa2a",
+                "adc3ea04.4a0798"
             ]
+        ]
+    },
+    {
+        "id": "1b9c8db9.b485c2",
+        "type": "api-current-state",
+        "z": "390fc521.dffd0a",
+        "name": "Single occupant?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.single_occupant",
+        "state_type": "habool",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 770,
+        "y": 360,
+        "wires": [
+            [
+                "818717c2.dbe6e8"
+            ],
+            []
         ]
     }
 ]

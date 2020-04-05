@@ -68,6 +68,12 @@ influxdb:
   #     - sensor.other_junk_you_dont_care_about
 
 
+input_boolean:
+  single_occupant:
+    name: Single occupant mode
+    icon: mdi:account-check
+
+
 logbook:
 
 
