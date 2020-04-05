@@ -13,7 +13,7 @@ services:
     restart: on-failure
     depends_on:
       - deconz
-      - mosquitto
+      # - mosquitto
     healthcheck:
       test: ["CMD", "curl", "-f", "http://127.0.0.1:8123"]
       interval: 30s
@@ -42,45 +42,46 @@ services:
   node-red:
     container_name: node-red
     image: nodered/node-red:latest
-    ports:
-      - 1880:1880
+    network_mode: host
     volumes:
       - /opt/home-assistant/node-red:/data
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     restart: "no" # because the exit code(s) are wrong
     depends_on:
-      - mosquitto
-      - mqtt-bridge
+      # - mosquitto
+      # - mqtt-bridge
       - homeassistant
+    environment:
+      - TZ=America/New_York
     healthcheck:
       test: ["CMD", "curl", "-f", "http://127.0.0.1:1880"]
       interval: 30s
       timeout: 10s
       retries: 5
 
-  mosquitto:
-    container_name: mosquitto
-    image: eclipse-mosquitto
-    user: "1000:1000"
-    ports:
-      - 1883:1883
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /opt/home-assistant/mosquitto:/mosquitto/config:ro
-      - /opt/home-assistant/mosquitto:/mosquitto/data
-    restart: on-failure
-
-  mqtt-bridge:
-    container_name: mqtt-bridge
-    image: stjohnjohnson/smartthings-mqtt-bridge
-    ports:
-      - 8080:8080
-    volumes:
-      - /opt/home-assistant/mqtt-bridge:/config
-    restart: on-failure
-    depends_on:
-      - homeassistant
+  # mosquitto:
+  #   container_name: mosquitto
+  #   image: eclipse-mosquitto
+  #   user: "1000:1000"
+  #   ports:
+  #     - 1883:1883
+  #   volumes:
+  #     - /etc/localtime:/etc/localtime:ro
+  #     - /opt/home-assistant/mosquitto:/mosquitto/config:ro
+  #     - /opt/home-assistant/mosquitto:/mosquitto/data
+  #   restart: on-failure
+  #
+  # mqtt-bridge:
+  #   container_name: mqtt-bridge
+  #   image: stjohnjohnson/smartthings-mqtt-bridge
+  #   ports:
+  #     - 8080:8080
+  #   volumes:
+  #     - /opt/home-assistant/mqtt-bridge:/config
+  #   restart: on-failure
+  #   depends_on:
+  #     - homeassistant
 
   portainer:
     container_name: portainer

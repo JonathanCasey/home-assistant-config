@@ -44,6 +44,7 @@ homeassistant/OZW_Log.txt
 
 # Node-RED
 node-red/node_modules/
+node-red/*.backup
 
 # Organizr
 organizr/keys/
