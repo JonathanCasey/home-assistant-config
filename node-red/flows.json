@@ -2440,8 +2440,8 @@
         "halt_if_compare": "is",
         "outputs": 1,
         "output_only_on_state_change": true,
-        "x": 140,
-        "y": 320,
+        "x": 240,
+        "y": 340,
         "wires": [
             [
                 "86d81007.82813"
@@ -2475,8 +2475,8 @@
         "halt_if_compare": "is",
         "outputs": 1,
         "output_only_on_state_change": true,
-        "x": 140,
-        "y": 400,
+        "x": 240,
+        "y": 420,
         "wires": [
             [
                 "86d81007.82813"
@@ -2487,7 +2487,7 @@
         "id": "86d81007.82813",
         "type": "switch",
         "z": "390fc521.dffd0a",
-        "name": "",
+        "name": "New play/pause state?",
         "property": "payload",
         "propertyType": "msg",
         "rules": [
@@ -2505,13 +2505,16 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 370,
-        "y": 360,
+        "x": 520,
+        "y": 380,
         "wires": [
             [
-                "818717c2.dbe6e8"
+                "818717c2.dbe6e8",
+                "7d8308dc.e52bb8"
             ],
-            []
+            [
+                "bca4e90.5a43f18"
+            ]
         ]
     },
     {
@@ -2531,8 +2534,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 630,
-        "y": 320,
+        "x": 830,
+        "y": 340,
         "wires": [
             [
                 "adc3ea04.4a0798"
@@ -2556,10 +2559,226 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 940,
-        "y": 360,
+        "x": 1280,
+        "y": 400,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "904c234f.3223e",
+        "type": "api-current-state",
+        "z": "390fc521.dffd0a",
+        "name": "Light not on yet?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "override_topic": false,
+        "entity_id": "group.living_room",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 770,
+        "y": 540,
+        "wires": [
+            [
+                "8807a907.455148",
+                "35b24348.f405bc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8807a907.455148",
+        "type": "change",
+        "z": "390fc521.dffd0a",
+        "name": "Mark light on by pause",
+        "rules": [
+            {
+                "t": "set",
+                "p": "did_turn_light_on",
+                "pt": "flow",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bca4e90.5a43f18",
+        "type": "api-current-state",
+        "z": "390fc521.dffd0a",
+        "name": "Is dark?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "below_horizon",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "sun.sun",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 720,
+        "y": 440,
+        "wires": [
+            [
+                "904c234f.3223e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1ada85ab.c1fa2a",
+        "type": "change",
+        "z": "390fc521.dffd0a",
+        "name": "Clear light on by pause or user",
+        "rules": [
+            {
+                "t": "set",
+                "p": "did_turn_light_on",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1290,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4f29d4bd.23044c",
+        "type": "server-state-changed",
+        "z": "390fc521.dffd0a",
+        "name": "Was light turned off by this or user?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "group.living_room",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 980,
+        "y": 180,
+        "wires": [
+            [
+                "1ada85ab.c1fa2a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "35b24348.f405bc",
+        "type": "api-call-service",
+        "z": "390fc521.dffd0a",
+        "name": "Turn on light (dim)",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "group.living_room",
+        "data": "{\"brightness\":1}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1030,
+        "y": 480,
+        "wires": [
+            [
+                "adc3ea04.4a0798"
+            ]
+        ]
+    },
+    {
+        "id": "7d8308dc.e52bb8",
+        "type": "switch",
+        "z": "390fc521.dffd0a",
+        "name": "Is on from pause?",
+        "property": "did_turn_light_on",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 770,
+        "y": 280,
+        "wires": [
+            [
+                "5a0ce2de.6ff3cc"
+            ]
+        ]
+    },
+    {
+        "id": "5a0ce2de.6ff3cc",
+        "type": "api-call-service",
+        "z": "390fc521.dffd0a",
+        "name": "Turn off living room lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "group.living_room",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1010,
+        "y": 280,
+        "wires": [
+            [
+                "1ada85ab.c1fa2a"
+            ]
         ]
     }
 ]
