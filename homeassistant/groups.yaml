@@ -1,13 +1,30 @@
 
+dining_room:
+  entities:
+    - switch.dining_room_hutch
+    - light.dining_table_light
+
+
 downstairs_hallway:
   entities:
     - light.downstairs_hall_south
+
+
+foyer:
+  entities:
+    - light.foyer_overhead
 
 
 kitchen:
   entities:
     - light.kitchen_main_north
     - light.kitchen_main_south
+
+
+living_room:
+  entities:
+    - light.living_room_slider
+    - light.living_room_tv
 
 
 master_bedroom:
@@ -25,13 +42,13 @@ office:
     - light.office_window
 
 
-outside_lights:
+outside:
   entities:
     - light.outside_front
     - light.outside_kitchen
 
 
-upstairs_bathroom_lights:
+upstairs_bathroom:
   entities:
     - light.upstairs_bathroom_left
     - light.upstairs_bathroom_middle
@@ -42,3 +59,18 @@ upstairs_hallway:
   entities:
     - light.upstairs_hall_north
     - light.upstairs_hall_south
+
+
+########## --------------------- Negative Groups --------------------- #########
+
+not_living_room_lights:
+  entities:
+    - group.dining_room
+    - group.downstairs_hallway
+    - group.foyer
+    - group.kitchen
+    - group.master_bedroom
+    - group.office
+    - group.outside
+    # - group.upstairs_bathroom
+    - group.upstairs_hallway
