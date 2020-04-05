@@ -133,7 +133,8 @@
             [
                 "3b8bc8cf.939ae8"
             ]
-        ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
     },
     {
         "id": "ac86b665.134f48",
@@ -246,7 +247,8 @@
             [
                 "52b13ab7.819424"
             ]
-        ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
     },
     {
         "id": "17f19bed.57f464",
@@ -359,7 +361,8 @@
             [
                 "e1166209.a2d2e"
             ]
-        ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
     },
     {
         "id": "5c4fa7d4.fd52b8",
@@ -1127,5 +1130,35 @@
                 "d9ab294f.c1d178"
             ]
         ]
+    },
+    {
+        "id": "bacb1514.190848",
+        "type": "comment",
+        "z": "bf163cd5.f84c",
+        "name": "Samsung button event codes",
+        "info": "### Samsung button events\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press",
+        "x": 360,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "685a42b7.cb068c",
+        "type": "comment",
+        "z": "4c3e78a1.ebb138",
+        "name": "Samsung button event codes",
+        "info": "### Samsung button events\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press",
+        "x": 340,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "f42dda3.af91b28",
+        "type": "comment",
+        "z": "7b5378f9.154968",
+        "name": "Samsung button event codes",
+        "info": "### Samsung button events\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press",
+        "x": 340,
+        "y": 300,
+        "wires": []
     }
 ]
