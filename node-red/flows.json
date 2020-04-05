@@ -1239,7 +1239,8 @@
                 "a9c95ae4.58e688"
             ],
             [
-                "564a61f6.d4c24"
+                "564a61f6.d4c24",
+                "330b6021.6dbe9"
             ]
         ]
     },
@@ -1440,7 +1441,8 @@
         "wires": [
             [
                 "9bbf440e.7b9318",
-                "188eb2ed.d8ca8d"
+                "188eb2ed.d8ca8d",
+                "f86bebf4.644dc8"
             ],
             []
         ]
@@ -1762,11 +1764,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 380,
-        "y": 900,
+        "x": 260,
+        "y": 840,
         "wires": [
             [
-                "45061cb8.b1e6c4"
+                "16446335.cbdf7d"
             ]
         ]
     },
@@ -1875,12 +1877,125 @@
         "outputs": 2,
         "output_only_on_state_change": true,
         "x": 620,
-        "y": 1020,
+        "y": 1060,
         "wires": [
             [
                 "c25cc010.43d42"
             ],
             []
+        ]
+    },
+    {
+        "id": "f86bebf4.644dc8",
+        "type": "link out",
+        "z": "e9868773.797078",
+        "name": "Out: Front Door Open After Dark Triggered",
+        "links": [
+            "efb9ed8a.2ea77"
+        ],
+        "x": 555,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "efb9ed8a.2ea77",
+        "type": "link in",
+        "z": "884319a9.e92148",
+        "name": "In: Front Door Open After Dark Triggered",
+        "links": [
+            "f86bebf4.644dc8"
+        ],
+        "x": 435,
+        "y": 640,
+        "wires": [
+            [
+                "70032b8c.d97914",
+                "e3887ade.188898"
+            ]
+        ]
+    },
+    {
+        "id": "16446335.cbdf7d",
+        "type": "api-current-state",
+        "z": "884319a9.e92148",
+        "name": "Is front door closed?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "binary_sensor.multi_sensor_st_front_door_openclose",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 400,
+        "y": 900,
+        "wires": [
+            [
+                "db2d66d0.bc1d68"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "db2d66d0.bc1d68",
+        "type": "api-current-state",
+        "z": "884319a9.e92148",
+        "name": "Is kitchen door closed?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "binary_sensor.multi_sensor_st_kitchen_door_openclose",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 440,
+        "y": 960,
+        "wires": [
+            [
+                "45061cb8.b1e6c4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "330b6021.6dbe9",
+        "type": "link out",
+        "z": "e9868773.797078",
+        "name": "Out: Front Door Closed Triggered",
+        "links": [
+            "944af35a.97916"
+        ],
+        "x": 295,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "944af35a.97916",
+        "type": "link in",
+        "z": "884319a9.e92148",
+        "name": "In: Front Door Closed Triggered",
+        "links": [
+            "330b6021.6dbe9"
+        ],
+        "x": 115,
+        "y": 940,
+        "wires": [
+            [
+                "7ec47fa6.5f3d9"
+            ]
         ]
     }
 ]
