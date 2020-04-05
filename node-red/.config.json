@@ -570,7 +570,7 @@
   "node-red-contrib-time-range-switch": {
    "name": "node-red-contrib-time-range-switch",
    "version": "1.0.0",
-   "local": false,
+   "local": true,
    "nodes": {
     "time-range-switch": {
      "name": "time-range-switch",
