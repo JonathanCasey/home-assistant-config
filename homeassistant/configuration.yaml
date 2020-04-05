@@ -72,6 +72,10 @@ input_boolean:
   single_occupant:
     name: Single occupant mode
     icon: mdi:account-check
+  pending_relinquish_to_motion:
+    name: Flag relinquish to motion
+    initial: false
+    icon: mdi:motion-sensor
 
 
 logbook:
