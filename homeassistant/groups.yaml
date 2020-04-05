@@ -1,4 +1,9 @@
 
+downstairs_hallway:
+  entities:
+    - light.downstairs_hall_south
+
+
 kitchen:
   entities:
     - light.kitchen_main_north
