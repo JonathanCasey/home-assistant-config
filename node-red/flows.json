@@ -70,6 +70,13 @@
         "info": ""
     },
     {
+        "id": "c35af4f2.4cd108",
+        "type": "tab",
+        "label": "Phone Location",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -3261,6 +3268,94 @@
             [
                 "70032b8c.d97914",
                 "e3887ade.188898"
+            ]
+        ]
+    },
+    {
+        "id": "d513b5b1.6f0e18",
+        "type": "server-state-changed",
+        "z": "c35af4f2.4cd108",
+        "name": "Phone arrived home",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "device_tracker.sm_n970u",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 350,
+        "y": 520,
+        "wires": [
+            [
+                "229f2e70.a0b3a2",
+                "17d225c7.3c968a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "229f2e70.a0b3a2",
+        "type": "api-call-service",
+        "z": "c35af4f2.4cd108",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Phone Location flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 640,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "17d225c7.3c968a",
+        "type": "link out",
+        "z": "c35af4f2.4cd108",
+        "name": "Out: Phone Arrived Home",
+        "links": [
+            "c578334b.d5d9d"
+        ],
+        "x": 535,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "c578334b.d5d9d",
+        "type": "link in",
+        "z": "e9868773.797078",
+        "name": "In: Phone Arrived Home",
+        "links": [
+            "17d225c7.3c968a"
+        ],
+        "x": 295,
+        "y": 780,
+        "wires": [
+            [
+                "a9c95ae4.58e688"
             ]
         ]
     }
