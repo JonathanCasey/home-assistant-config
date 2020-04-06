@@ -11,12 +11,12 @@
       at: '21:30'
   action:
     - service: light.turn_on
-      entity_id: group.upstairs_bathroom_lights
+      entity_id: group.upstairs_bathroom
       data:
         brightness: 1
     - delay: '00:00:02'
     - service: light.turn_off
-      entity_id: group.upstairs_bathroom_lights
+      entity_id: group.upstairs_bathroom
 
 
 - alias: 'Set day light mode'
@@ -25,12 +25,12 @@
       at: '4:30'
   action:
     - service: light.turn_on
-      entity_id: group.upstairs_bathroom_lights
+      entity_id: group.upstairs_bathroom
       data:
         brightness_pct: 80
     - delay: '00:00:02'
     - service: light.turn_off
-      entity_id: group.upstairs_bathroom_lights
+      entity_id: group.upstairs_bathroom
 
 
 - alias: 'Enable evening'
