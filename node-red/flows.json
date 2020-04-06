@@ -77,6 +77,13 @@
         "info": ""
     },
     {
+        "id": "66eaa4d8.773f4c",
+        "type": "tab",
+        "label": "Skip Next on Yamaha",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -3357,6 +3364,142 @@
             [
                 "a9c95ae4.58e688"
             ]
+        ]
+    },
+    {
+        "id": "b1738366.76173",
+        "type": "server-state-changed",
+        "z": "66eaa4d8.773f4c",
+        "name": "Flagged to skip next on yamaha?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.pending_yamaha_skip_next",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 130,
+        "y": 440,
+        "wires": [
+            [
+                "d9200866.dead68",
+                "fe35a553.2f2e68"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d9200866.dead68",
+        "type": "api-current-state",
+        "z": "66eaa4d8.773f4c",
+        "name": "Is yamaha on?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "override_topic": false,
+        "entity_id": "media_player.yamaha_receiver",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 400,
+        "y": 400,
+        "wires": [
+            [
+                "15ab89b5.405906"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "15ab89b5.405906",
+        "type": "api-call-service",
+        "z": "66eaa4d8.773f4c",
+        "name": "Skip to next",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "media_next_track",
+        "entityId": "media_player.yamaha_receiver",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 620,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fe35a553.2f2e68",
+        "type": "api-call-service",
+        "z": "66eaa4d8.773f4c",
+        "name": "Clear skip next on yamaha flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.pending_yamaha_skip_next",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 450,
+        "y": 460,
+        "wires": [
+            [
+                "2033d86b.f74768"
+            ]
+        ]
+    },
+    {
+        "id": "2033d86b.f74768",
+        "type": "api-call-service",
+        "z": "66eaa4d8.773f4c",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Skip Next on Yamaha flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 760,
+        "y": 460,
+        "wires": [
+            []
         ]
     }
 ]
