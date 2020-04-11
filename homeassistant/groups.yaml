@@ -63,7 +63,7 @@ upstairs_hallway:
 
 ########## --------------------- Negative Groups --------------------- #########
 
-not_living_room_lights:
+all_lights_except_living_room:
   entities:
     - group.dining_room
     - group.downstairs_hallway

@@ -2553,7 +2553,7 @@
         "debugenabled": false,
         "service_domain": "light",
         "service": "turn_off",
-        "entityId": "group.not_living_room_lights",
+        "entityId": "group.all_lights_except_living_room",
         "data": "",
         "dataType": "json",
         "mergecontext": "",
