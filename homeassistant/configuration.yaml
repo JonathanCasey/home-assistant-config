@@ -81,6 +81,14 @@ input_boolean:
     initial: false
     icon: mdi:skip-next
 
+input_select:
+  car_alarm:
+    name: Car Alarm
+    options:
+      - Cleared
+      - Triggered
+    icon: mdi:shield-car
+
 
 logbook:
 
