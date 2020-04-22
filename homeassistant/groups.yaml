@@ -48,6 +48,11 @@ outside:
     - light.outside_kitchen
 
 
+triggered_alarms:
+  entities:
+    - input_boolean.car_alarm_triggered
+
+
 upstairs_bathroom:
   entities:
     - light.upstairs_bathroom_left
