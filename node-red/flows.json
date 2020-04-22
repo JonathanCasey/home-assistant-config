@@ -84,6 +84,20 @@
         "info": ""
     },
     {
+        "id": "bec3a76b.4b57e8",
+        "type": "tab",
+        "label": "Alarm Triggered",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "5a3565e2.10464c",
+        "type": "tab",
+        "label": "Example S/R",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -3500,6 +3514,646 @@
         "y": 460,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "d0eb5b.db1924a8",
+        "type": "server-state-changed",
+        "z": "bec3a76b.4b57e8",
+        "name": "Car alarm triggered",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.car_alarm_triggered",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 60,
+        "y": 380,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "5737f738.e691a8",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.office",
+        "data": "{\"brightness_pct\":100,\"color_name\":\"red\",\"flash\":\"long\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 330,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f37025ee.c53498",
+        "type": "delay",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "15",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 420,
+        "y": 300,
+        "wires": [
+            [
+                "5737f738.e691a8"
+            ]
+        ]
+    },
+    {
+        "id": "85279ec5.18371",
+        "type": "api-current-state",
+        "z": "bec3a76b.4b57e8",
+        "name": "Is still triggered?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.car_alarm_triggered",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 540,
+        "y": 380,
+        "wires": [
+            [
+                "f37025ee.c53498"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "86b2e7e1.bb7a38",
+        "type": "ha-get-entities",
+        "z": "bec3a76b.4b57e8",
+        "server": "2f5bd1e0.67e40e",
+        "name": "Get individual light states",
+        "rules": [
+            {
+                "property": "",
+                "logic": "jsonata",
+                "value": "$exists($entity().attributes.is_hue_group) = false",
+                "valueType": "jsonata"
+            },
+            {
+                "property": "entity_id",
+                "logic": "starts_with",
+                "value": "light.",
+                "valueType": "str"
+            }
+        ],
+        "output_type": "array",
+        "output_empty_results": false,
+        "output_location_type": "msg",
+        "output_location": "payload",
+        "output_results_count": 1,
+        "x": 550,
+        "y": 620,
+        "wires": [
+            [
+                "5046f986.924c18",
+                "cf5911c8.5bdce"
+            ]
+        ],
+        "info": "This filters out hue groups since lights within a group may have different settings (which it looks like Hue just \"averages\" the settings to report a single number set for all of the lights)."
+    },
+    {
+        "id": "5ab6cf0b.c6e8e",
+        "type": "debug",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1190,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "2b1bd952.12eef6",
+        "type": "ha-get-entities",
+        "z": "5a3565e2.10464c",
+        "server": "2f5bd1e0.67e40e",
+        "name": "Get States",
+        "rules": [
+            {
+                "property": "entity_id",
+                "logic": "is",
+                "value": "^(light|switch|climate)\\.+",
+                "valueType": "re"
+            }
+        ],
+        "output_type": "array",
+        "output_empty_results": false,
+        "output_location_type": "msg",
+        "output_location": "payload",
+        "output_results_count": 1,
+        "x": 310,
+        "y": 480,
+        "wires": [
+            [
+                "98779eef.54d09"
+            ]
+        ]
+    },
+    {
+        "id": "11998cc2.5c7843",
+        "type": "inject",
+        "z": "5a3565e2.10464c",
+        "name": "Store states",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 134,
+        "y": 480,
+        "wires": [
+            [
+                "2b1bd952.12eef6"
+            ]
+        ]
+    },
+    {
+        "id": "fe98c188.3679f",
+        "type": "comment",
+        "z": "5a3565e2.10464c",
+        "name": "How Kermit would do store states",
+        "info": "https://community.home-assistant.io/t/example-saving-and-restoring-states/99061",
+        "x": 178,
+        "y": 432,
+        "wires": []
+    },
+    {
+        "id": "98779eef.54d09",
+        "type": "function",
+        "z": "5a3565e2.10464c",
+        "name": "transform data",
+        "func": "const entities = msg.payload.map((e) => {\n    const domain = e.entity_id.split('.')[0];\n    const payload = {};\n\n    switch(domain) {\n        case 'switch':\n            payload.domain = domain;\n            payload.service = `turn_${e.state}`;\n            payload.data = {\n                entity_id: e.entity_id,\n            }\n            break;\n         case 'light':\n            payload.domain = domain;\n            payload.service = `turn_${e.state}`;\n            payload.data = {\n                entity_id: e.entity_id,\n                brightness: e.attributes.brightness,\n                color_temp: e.attributes.color_temp,\n                xy_color: e.attributes.xy_color,\n            };    \n            break;\n        case 'climate':\n            payload.domain = 'climate';\n            payload.service = `set_temperature`;\n            payload.data = {\n                entity_id: e.entity_id,\n                temperature: e.attributes.temperature,\n                target_temp_low: e.attributes.min_temp,\n                target_temp_high: e.attributes.max_temp,\n                operation_mode: e.attributes.operation_mode\n            };\n            break;\n    }\n    return payload;\n});\n// Save the states\nflow.set('savedStates', entities);\n\n// create a blank message object with out new payload\nmsg = { payload: entities };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 496,
+        "y": 480,
+        "wires": [
+            [
+                "df19bf74.0e8cc"
+            ]
+        ]
+    },
+    {
+        "id": "df19bf74.0e8cc",
+        "type": "debug",
+        "z": "5a3565e2.10464c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 662,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "f768d1b6.f9a73",
+        "type": "inject",
+        "z": "5a3565e2.10464c",
+        "name": "Restore states",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 600,
+        "wires": [
+            [
+                "4715aaf2.4e5f54"
+            ]
+        ]
+    },
+    {
+        "id": "4715aaf2.4e5f54",
+        "type": "change",
+        "z": "5a3565e2.10464c",
+        "name": "Get Saved States",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "savedStates",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 326,
+        "y": 600,
+        "wires": [
+            [
+                "25af091d.6b6226"
+            ]
+        ]
+    },
+    {
+        "id": "ecf27eb9.31c92",
+        "type": "debug",
+        "z": "5a3565e2.10464c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 770,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "25af091d.6b6226",
+        "type": "split",
+        "z": "5a3565e2.10464c",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 494,
+        "y": 600,
+        "wires": [
+            [
+                "e26e76f7.41a018"
+            ]
+        ]
+    },
+    {
+        "id": "f110fec5.aaefe",
+        "type": "api-call-service",
+        "z": "5a3565e2.10464c",
+        "name": "Restore States",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "",
+        "service": "",
+        "entityId": "",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 670,
+        "y": 700,
+        "wires": [
+            [
+                "ecf27eb9.31c92"
+            ]
+        ]
+    },
+    {
+        "id": "e26e76f7.41a018",
+        "type": "delay",
+        "z": "5a3565e2.10464c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "10",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 520,
+        "y": 780,
+        "wires": [
+            [
+                "f110fec5.aaefe"
+            ]
+        ]
+    },
+    {
+        "id": "5046f986.924c18",
+        "type": "function",
+        "z": "bec3a76b.4b57e8",
+        "name": "transform data",
+        "func": "const entities = msg.payload.map((e) => {\n    const domain = e.entity_id.split('.')[0];\n    const payload = {};\n\n    switch(domain) {\n        case 'switch':\n            payload.domain = domain;\n            payload.service = `turn_${e.state}`;\n            payload.data = {\n                entity_id: e.entity_id,\n            }\n            break;\n         case 'light':\n            payload.domain = domain;\n            payload.service = `turn_${e.state}`;\n            payload.data = {\n                entity_id: e.entity_id,\n                brightness: e.attributes.brightness,\n                color_temp: e.attributes.color_temp,\n                xy_color: e.attributes.xy_color,\n            };    \n            break;\n        case 'climate':\n            payload.domain = 'climate';\n            payload.service = `set_temperature`;\n            payload.data = {\n                entity_id: e.entity_id,\n                temperature: e.attributes.temperature,\n                target_temp_low: e.attributes.min_temp,\n                target_temp_high: e.attributes.max_temp,\n                operation_mode: e.attributes.operation_mode\n            };\n            break;\n    }\n    return payload;\n});\n// Save the states\nflow.set(msg.state_name, entities);\n\n// create a blank message object with out new payload\nmsg = { payload: entities, state_name: msg.state_name };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 780,
+        "y": 620,
+        "wires": [
+            [
+                "5fdc398f.08c0b8"
+            ]
+        ]
+    },
+    {
+        "id": "268d5ae.006fda6",
+        "type": "change",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set state name to original",
+        "rules": [
+            {
+                "t": "set",
+                "p": "state_name",
+                "pt": "msg",
+                "to": "original_state",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 270,
+        "y": 620,
+        "wires": [
+            [
+                "86b2e7e1.bb7a38"
+            ]
+        ]
+    },
+    {
+        "id": "5fdc398f.08c0b8",
+        "type": "switch",
+        "z": "bec3a76b.4b57e8",
+        "name": "Which state name?",
+        "property": "state_name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "original_state",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "on_state",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1000,
+        "y": 620,
+        "wires": [
+            [
+                "543dfd4c.5c5054"
+            ],
+            [
+                "5ab6cf0b.c6e8e"
+            ]
+        ]
+    },
+    {
+        "id": "543dfd4c.5c5054",
+        "type": "change",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set state name to on",
+        "rules": [
+            {
+                "t": "set",
+                "p": "state_name",
+                "pt": "msg",
+                "to": "on_state",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 540,
+        "wires": [
+            [
+                "e9a3bae0.cbe828"
+            ]
+        ]
+    },
+    {
+        "id": "79fbc1f9.8cb12",
+        "type": "inject",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 160,
+        "y": 700,
+        "wires": [
+            [
+                "268d5ae.006fda6"
+            ]
+        ]
+    },
+    {
+        "id": "8b6bbbd7.94b878",
+        "type": "delay",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "30",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 700,
+        "y": 540,
+        "wires": [
+            [
+                "86b2e7e1.bb7a38"
+            ]
+        ]
+    },
+    {
+        "id": "e9a3bae0.cbe828",
+        "type": "function",
+        "z": "bec3a76b.4b57e8",
+        "name": "transform data 2",
+        "func": "const entities = msg.payload.map((e) => {\n    const payload = {};\n    \n    payload.domain = e.data.entity_id.split('.')[0];\n    payload.service = `turn_on`;\n    payload.data = {\n        entity_id: e.entity_id,\n    }\n\n    return payload;\n});\n\n// create a blank message object with out new payload\nmsg = { payload: entities, state_name: msg.state_name };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 500,
+        "y": 460,
+        "wires": [
+            [
+                "f33b7dae.5d58a"
+            ]
+        ]
+    },
+    {
+        "id": "f33b7dae.5d58a",
+        "type": "split",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 710,
+        "y": 440,
+        "wires": [
+            [
+                "bc8fffa7.cc216"
+            ]
+        ]
+    },
+    {
+        "id": "9c70ed3d.f0259",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Restore States",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "",
+        "service": "",
+        "entityId": "",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 940,
+        "y": 440,
+        "wires": [
+            [
+                "72693fa3.ba2ab"
+            ]
+        ]
+    },
+    {
+        "id": "bc8fffa7.cc216",
+        "type": "delay",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "5",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 910,
+        "y": 380,
+        "wires": [
+            [
+                "9c70ed3d.f0259"
+            ]
+        ]
+    },
+    {
+        "id": "cf5911c8.5bdce",
+        "type": "debug",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 830,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "72693fa3.ba2ab",
+        "type": "join",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": 950,
+        "y": 500,
+        "wires": [
+            [
+                "8b6bbbd7.94b878"
+            ]
         ]
     }
 ]
