@@ -3988,7 +3988,7 @@
         "y": 540,
         "wires": [
             [
-                "e9a3bae0.cbe828"
+                "9c70ed3d.f0259"
             ]
         ]
     },
@@ -4018,8 +4018,8 @@
         "z": "bec3a76b.4b57e8",
         "name": "",
         "pauseType": "delay",
-        "timeout": "30",
-        "timeoutUnits": "seconds",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
         "rate": "1",
         "nbRateUnits": "1",
         "rateUnits": "second",
@@ -4027,8 +4027,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 700,
-        "y": 540,
+        "x": 790,
+        "y": 500,
         "wires": [
             [
                 "86b2e7e1.bb7a38"
@@ -4036,85 +4036,27 @@
         ]
     },
     {
-        "id": "e9a3bae0.cbe828",
-        "type": "function",
-        "z": "bec3a76b.4b57e8",
-        "name": "transform data 2",
-        "func": "const entities = msg.payload.map((e) => {\n    const payload = {};\n    \n    payload.domain = e.data.entity_id.split('.')[0];\n    payload.service = `turn_on`;\n    payload.data = {\n        entity_id: e.entity_id,\n    }\n\n    return payload;\n});\n\n// create a blank message object with out new payload\nmsg = { payload: entities, state_name: msg.state_name };\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 500,
-        "y": 460,
-        "wires": [
-            [
-                "f33b7dae.5d58a"
-            ]
-        ]
-    },
-    {
-        "id": "f33b7dae.5d58a",
-        "type": "split",
-        "z": "bec3a76b.4b57e8",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "",
-        "x": 710,
-        "y": 440,
-        "wires": [
-            [
-                "bc8fffa7.cc216"
-            ]
-        ]
-    },
-    {
         "id": "9c70ed3d.f0259",
         "type": "api-call-service",
         "z": "bec3a76b.4b57e8",
-        "name": "Restore States",
+        "name": "Turn on all lights",
         "server": "2f5bd1e0.67e40e",
         "version": 1,
         "debugenabled": false,
-        "service_domain": "",
-        "service": "",
-        "entityId": "",
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.house",
         "data": "",
         "dataType": "json",
         "mergecontext": "",
         "output_location": "payload",
         "output_location_type": "msg",
         "mustacheAltTags": false,
-        "x": 940,
-        "y": 440,
+        "x": 540,
+        "y": 500,
         "wires": [
             [
-                "72693fa3.ba2ab"
-            ]
-        ]
-    },
-    {
-        "id": "bc8fffa7.cc216",
-        "type": "delay",
-        "z": "bec3a76b.4b57e8",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "2",
-        "timeoutUnits": "seconds",
-        "rate": "5",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 910,
-        "y": 380,
-        "wires": [
-            [
-                "9c70ed3d.f0259"
+                "8b6bbbd7.94b878"
             ]
         ]
     },
@@ -4131,29 +4073,5 @@
         "x": 830,
         "y": 760,
         "wires": []
-    },
-    {
-        "id": "72693fa3.ba2ab",
-        "type": "join",
-        "z": "bec3a76b.4b57e8",
-        "name": "",
-        "mode": "auto",
-        "build": "string",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": "false",
-        "timeout": "",
-        "count": "",
-        "reduceRight": false,
-        "x": 950,
-        "y": 500,
-        "wires": [
-            [
-                "8b6bbbd7.94b878"
-            ]
-        ]
     }
 ]
