@@ -4064,8 +4064,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 130,
-        "y": 800,
+        "x": 210,
+        "y": 940,
         "wires": [
             [
                 "a22027dd.a3a988"
@@ -4083,8 +4083,8 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 590,
-        "y": 880,
+        "x": 570,
+        "y": 920,
         "wires": [
             [
                 "4c3d14bf.8b079c"
@@ -4108,8 +4108,8 @@
         "output_location": "payload",
         "output_location_type": "msg",
         "mustacheAltTags": false,
-        "x": 960,
-        "y": 880,
+        "x": 860,
+        "y": 840,
         "wires": [
             [
                 "81abfff4.40e7c"
@@ -4132,7 +4132,7 @@
         "randomUnits": "seconds",
         "drop": false,
         "x": 760,
-        "y": 880,
+        "y": 920,
         "wires": [
             [
                 "65b9ef9e.e10f5"
@@ -4150,7 +4150,7 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 1490,
+        "x": 1390,
         "y": 900,
         "wires": []
     },
@@ -4170,8 +4170,8 @@
         "timeout": "",
         "count": "",
         "reduceRight": false,
-        "x": 1150,
-        "y": 880,
+        "x": 1050,
+        "y": 840,
         "wires": [
             [
                 "57d08dcc.be1d54"
@@ -4186,8 +4186,8 @@
         "func": "// Save the states\nentities = flow.get(msg.state_name);\n\n// create a blank message object with out new payload\nmsg = { payload: entities, state_name: msg.state_name };\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 420,
-        "y": 880,
+        "x": 600,
+        "y": 840,
         "wires": [
             [
                 "7bb9f94f.580cc8"
@@ -4216,8 +4216,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1310,
-        "y": 880,
+        "x": 1230,
+        "y": 840,
         "wires": [
             [
                 "b2304da.00036b"
@@ -4242,7 +4242,7 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 410,
+        "x": 590,
         "y": 760,
         "wires": [
             [
@@ -4269,8 +4269,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 200,
-        "y": 880,
+        "x": 380,
+        "y": 840,
         "wires": [
             [
                 "12c97065.d235b"
@@ -4296,7 +4296,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 680,
+        "x": 860,
         "y": 760,
         "wires": [
             [
@@ -4502,5 +4502,41 @@
         "x": 1130,
         "y": 480,
         "wires": []
+    },
+    {
+        "id": "c71ea66a.e69218",
+        "type": "server-state-changed",
+        "z": "bec3a76b.4b57e8",
+        "name": "Alert reset confirmed?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_select.alarm_alert",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "Cleared",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 140,
+        "y": 760,
+        "wires": [
+            [
+                "a22027dd.a3a988"
+            ],
+            []
+        ]
     }
 ]
