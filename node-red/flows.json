@@ -4071,38 +4071,11 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 150,
-        "y": 880,
+        "x": 130,
+        "y": 800,
         "wires": [
             [
-                "ac349fda.fdd8f"
-            ]
-        ]
-    },
-    {
-        "id": "ac349fda.fdd8f",
-        "type": "change",
-        "z": "bec3a76b.4b57e8",
-        "name": "Get Saved On States",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "on_state",
-                "tot": "flow"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 400,
-        "y": 880,
-        "wires": [
-            [
-                "7bb9f94f.580cc8"
+                "a22027dd.a3a988"
             ]
         ]
     },
@@ -4174,123 +4147,6 @@
         ]
     },
     {
-        "id": "70c9fa98.094454",
-        "type": "change",
-        "z": "bec3a76b.4b57e8",
-        "name": "Get Saved Original States",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "original_state",
-                "tot": "flow"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 410,
-        "y": 980,
-        "wires": [
-            [
-                "18bbbf5.df6ae41"
-            ]
-        ]
-    },
-    {
-        "id": "18bbbf5.df6ae41",
-        "type": "split",
-        "z": "bec3a76b.4b57e8",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "",
-        "x": 610,
-        "y": 980,
-        "wires": [
-            [
-                "cf396f08.3fac9"
-            ]
-        ]
-    },
-    {
-        "id": "4ab58278.a541dc",
-        "type": "api-call-service",
-        "z": "bec3a76b.4b57e8",
-        "name": "Restore States",
-        "server": "2f5bd1e0.67e40e",
-        "version": 1,
-        "debugenabled": false,
-        "service_domain": "",
-        "service": "",
-        "entityId": "",
-        "data": "",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "payload",
-        "output_location_type": "msg",
-        "mustacheAltTags": false,
-        "x": 960,
-        "y": 980,
-        "wires": [
-            [
-                "adb377de.b34128"
-            ]
-        ]
-    },
-    {
-        "id": "cf396f08.3fac9",
-        "type": "delay",
-        "z": "bec3a76b.4b57e8",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "2",
-        "timeoutUnits": "seconds",
-        "rate": "10",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 760,
-        "y": 980,
-        "wires": [
-            [
-                "4ab58278.a541dc"
-            ]
-        ]
-    },
-    {
-        "id": "a6e52847.2c2a68",
-        "type": "delay",
-        "z": "bec3a76b.4b57e8",
-        "name": "Let lights turn on",
-        "pauseType": "delay",
-        "timeout": "2",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 170,
-        "y": 980,
-        "wires": [
-            [
-                "70c9fa98.094454"
-            ]
-        ]
-    },
-    {
         "id": "adb377de.b34128",
         "type": "debug",
         "z": "bec3a76b.4b57e8",
@@ -4301,8 +4157,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 1170,
-        "y": 980,
+        "x": 1490,
+        "y": 900,
         "wires": []
     },
     {
@@ -4325,7 +4181,133 @@
         "y": 880,
         "wires": [
             [
-                "a6e52847.2c2a68"
+                "57d08dcc.be1d54"
+            ]
+        ]
+    },
+    {
+        "id": "12c97065.d235b",
+        "type": "function",
+        "z": "bec3a76b.4b57e8",
+        "name": "Get saved data",
+        "func": "// Save the states\nentities = flow.get(msg.state_name);\n\n// create a blank message object with out new payload\nmsg = { payload: entities, state_name: msg.state_name };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 420,
+        "y": 880,
+        "wires": [
+            [
+                "7bb9f94f.580cc8"
+            ]
+        ]
+    },
+    {
+        "id": "57d08dcc.be1d54",
+        "type": "switch",
+        "z": "bec3a76b.4b57e8",
+        "name": "Which state?",
+        "property": "state_name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on_state",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "original_state",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1310,
+        "y": 880,
+        "wires": [
+            [
+                "b2304da.00036b"
+            ],
+            [
+                "adb377de.b34128"
+            ]
+        ]
+    },
+    {
+        "id": "b2304da.00036b",
+        "type": "delay",
+        "z": "bec3a76b.4b57e8",
+        "name": "Let lights turn on",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 410,
+        "y": 760,
+        "wires": [
+            [
+                "bdb774a9.fc7cb8"
+            ]
+        ]
+    },
+    {
+        "id": "a22027dd.a3a988",
+        "type": "change",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set to restore on state",
+        "rules": [
+            {
+                "t": "set",
+                "p": "state_name",
+                "pt": "msg",
+                "to": "on_state",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 880,
+        "wires": [
+            [
+                "12c97065.d235b"
+            ]
+        ]
+    },
+    {
+        "id": "bdb774a9.fc7cb8",
+        "type": "change",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set to restore original state",
+        "rules": [
+            {
+                "t": "set",
+                "p": "state_name",
+                "pt": "msg",
+                "to": "original_state",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 760,
+        "wires": [
+            [
+                "12c97065.d235b"
             ]
         ]
     }
