@@ -85,6 +85,16 @@ input_boolean:
     icon: mdi:skip-next
 
 
+input_select:
+  alarm_alert:
+    name: Alarm Alert Status
+    options:
+      - Cleared
+      - Alert active
+      - Awaiting reset
+    icon: mdi:shield
+
+
 logbook:
 
 
