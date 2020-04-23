@@ -4058,5 +4058,275 @@
                 "8b6bbbd7.94b878"
             ]
         ]
+    },
+    {
+        "id": "e593b0b8.aacca",
+        "type": "inject",
+        "z": "bec3a76b.4b57e8",
+        "name": "Restore states",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 880,
+        "wires": [
+            [
+                "ac349fda.fdd8f"
+            ]
+        ]
+    },
+    {
+        "id": "ac349fda.fdd8f",
+        "type": "change",
+        "z": "bec3a76b.4b57e8",
+        "name": "Get Saved On States",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "on_state",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 880,
+        "wires": [
+            [
+                "7bb9f94f.580cc8"
+            ]
+        ]
+    },
+    {
+        "id": "7bb9f94f.580cc8",
+        "type": "split",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 590,
+        "y": 880,
+        "wires": [
+            [
+                "4c3d14bf.8b079c"
+            ]
+        ]
+    },
+    {
+        "id": "65b9ef9e.e10f5",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Restore States",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "",
+        "service": "",
+        "entityId": "",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 960,
+        "y": 880,
+        "wires": [
+            [
+                "81abfff4.40e7c"
+            ]
+        ]
+    },
+    {
+        "id": "4c3d14bf.8b079c",
+        "type": "delay",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "10",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 760,
+        "y": 880,
+        "wires": [
+            [
+                "65b9ef9e.e10f5"
+            ]
+        ]
+    },
+    {
+        "id": "70c9fa98.094454",
+        "type": "change",
+        "z": "bec3a76b.4b57e8",
+        "name": "Get Saved Original States",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "original_state",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 980,
+        "wires": [
+            [
+                "18bbbf5.df6ae41"
+            ]
+        ]
+    },
+    {
+        "id": "18bbbf5.df6ae41",
+        "type": "split",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 610,
+        "y": 980,
+        "wires": [
+            [
+                "cf396f08.3fac9"
+            ]
+        ]
+    },
+    {
+        "id": "4ab58278.a541dc",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Restore States",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "",
+        "service": "",
+        "entityId": "",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 960,
+        "y": 980,
+        "wires": [
+            [
+                "adb377de.b34128"
+            ]
+        ]
+    },
+    {
+        "id": "cf396f08.3fac9",
+        "type": "delay",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "10",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 760,
+        "y": 980,
+        "wires": [
+            [
+                "4ab58278.a541dc"
+            ]
+        ]
+    },
+    {
+        "id": "a6e52847.2c2a68",
+        "type": "delay",
+        "z": "bec3a76b.4b57e8",
+        "name": "Let lights turn on",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 170,
+        "y": 980,
+        "wires": [
+            [
+                "70c9fa98.094454"
+            ]
+        ]
+    },
+    {
+        "id": "adb377de.b34128",
+        "type": "debug",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1170,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "81abfff4.40e7c",
+        "type": "join",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": 1150,
+        "y": 880,
+        "wires": [
+            [
+                "a6e52847.2c2a68"
+            ]
+        ]
     }
 ]
