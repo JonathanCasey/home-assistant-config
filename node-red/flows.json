@@ -3549,7 +3549,9 @@
             [
                 "4f8f2463.0a2c5c"
             ],
-            []
+            [
+                "5688115f.ef31e"
+            ]
         ]
     },
     {
@@ -3657,7 +3659,8 @@
         "y": 380,
         "wires": [
             [
-                "5046f986.924c18"
+                "5046f986.924c18",
+                "88fd7bc1.ae5848"
             ]
         ],
         "info": "This filters out hue groups since lights within a group may have different settings (which it looks like Hue just \"averages\" the settings to report a single number set for all of the lights)."
@@ -4373,6 +4376,131 @@
         "targetType": "full",
         "x": 1330,
         "y": 420,
+        "wires": []
+    },
+    {
+        "id": "73cd822f.2b7ffc",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set to awaiting reset",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_select",
+        "service": "select_option",
+        "entityId": "input_select.alarm_alert",
+        "data": "{\"option\":\"Awaiting reset\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 740,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5688115f.ef31e",
+        "type": "api-current-state",
+        "z": "bec3a76b.4b57e8",
+        "name": "Is alert active now?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "Alert active",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_select.alarm_alert",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 490,
+        "y": 180,
+        "wires": [
+            [
+                "73cd822f.2b7ffc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "972f1eaf.95c4a",
+        "type": "server-state-changed",
+        "z": "bec3a76b.4b57e8",
+        "name": "Alert just cleared and ready for reset?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_select.alarm_alert",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "Awaiting reset",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 190,
+        "y": 640,
+        "wires": [
+            [
+                "3689482c.522928"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3689482c.522928",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.office",
+        "data": "{\"brightness_pct\":100,\"color_temp\":1}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 530,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "88fd7bc1.ae5848",
+        "type": "debug",
+        "z": "bec3a76b.4b57e8",
+        "name": "Light state",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1130,
+        "y": 480,
         "wires": []
     }
 ]
