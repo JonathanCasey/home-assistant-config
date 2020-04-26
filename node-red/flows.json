@@ -3952,8 +3952,8 @@
                 "543dfd4c.5c5054"
             ],
             [
-                "5ab6cf0b.c6e8e",
-                "5737f738.e691a8"
+                "5737f738.e691a8",
+                "765963cc.b06e2c"
             ]
         ]
     },
@@ -4151,7 +4151,7 @@
         "complete": "true",
         "targetType": "full",
         "x": 1350,
-        "y": 1100,
+        "y": 1180,
         "wires": []
     },
     {
@@ -4324,7 +4324,9 @@
         "x": 490,
         "y": 120,
         "wires": [
-            []
+            [
+                "a9af11c6.9dba1"
+            ]
         ]
     },
     {
@@ -4375,8 +4377,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 1330,
-        "y": 420,
+        "x": 1390,
+        "y": 480,
         "wires": []
     },
     {
@@ -4399,7 +4401,9 @@
         "x": 740,
         "y": 180,
         "wires": [
-            []
+            [
+                "a9af11c6.9dba1"
+            ]
         ]
     },
     {
@@ -4645,7 +4649,9 @@
         "x": 880,
         "y": 1280,
         "wires": [
-            []
+            [
+                "1696f942.925c47"
+            ]
         ]
     },
     {
@@ -4696,7 +4702,9 @@
         "x": 880,
         "y": 1220,
         "wires": [
-            []
+            [
+                "1696f942.925c47"
+            ]
         ]
     },
     {
@@ -4770,7 +4778,9 @@
         "x": 860,
         "y": 680,
         "wires": [
-            []
+            [
+                "3d4179a2.a2a396"
+            ]
         ]
     },
     {
@@ -4790,13 +4800,132 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 1140,
+        "x": 1120,
+        "y": 1100,
+        "wires": [
+            [
+                "aee571f7.a9f67"
+            ]
+        ],
+        "info": "Could do this direct on node-red, but for now going through HA to get the logging."
+    },
+    {
+        "id": "765963cc.b06e2c",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Log alert lights to HA",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Alarm alert lights triggered. [Alarm Triggered flow]\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1360,
+        "y": 420,
+        "wires": [
+            [
+                "5ab6cf0b.c6e8e"
+            ]
+        ]
+    },
+    {
+        "id": "3d4179a2.a2a396",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Log acknowledge to HA",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Acknowledgement of alarm triggered. [Alarm Triggered flow]\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1150,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aee571f7.a9f67",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Log clear to HA",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Clear of alarm triggered. [Alarm Triggered flow]\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1360,
         "y": 1100,
         "wires": [
             [
                 "adb377de.b34128"
             ]
-        ],
-        "info": "Could do this direct on node-red, but for now going through HA to get the logging."
+        ]
+    },
+    {
+        "id": "1696f942.925c47",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Log phone action to HA",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Updated alarm state from phone notificaiton. [Alarm Triggered flow]\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1230,
+        "y": 1260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a9af11c6.9dba1",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Log alarm trigger to HA",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Responded to alarm trigger flag change. [Alarm Triggered flow]\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1050,
+        "y": 160,
+        "wires": [
+            []
+        ]
     }
 ]
