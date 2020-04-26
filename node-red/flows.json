@@ -4065,7 +4065,7 @@
         "once": false,
         "onceDelay": 0.1,
         "x": 210,
-        "y": 940,
+        "y": 1100,
         "wires": [
             [
                 "a22027dd.a3a988"
@@ -4084,7 +4084,7 @@
         "stream": false,
         "addname": "",
         "x": 570,
-        "y": 920,
+        "y": 1080,
         "wires": [
             [
                 "4c3d14bf.8b079c"
@@ -4109,7 +4109,7 @@
         "output_location_type": "msg",
         "mustacheAltTags": false,
         "x": 860,
-        "y": 840,
+        "y": 1000,
         "wires": [
             [
                 "81abfff4.40e7c"
@@ -4132,7 +4132,7 @@
         "randomUnits": "seconds",
         "drop": false,
         "x": 760,
-        "y": 920,
+        "y": 1080,
         "wires": [
             [
                 "65b9ef9e.e10f5"
@@ -4151,7 +4151,7 @@
         "complete": "true",
         "targetType": "full",
         "x": 1390,
-        "y": 900,
+        "y": 1060,
         "wires": []
     },
     {
@@ -4171,7 +4171,7 @@
         "count": "",
         "reduceRight": false,
         "x": 1050,
-        "y": 840,
+        "y": 1000,
         "wires": [
             [
                 "57d08dcc.be1d54"
@@ -4187,7 +4187,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 600,
-        "y": 840,
+        "y": 1000,
         "wires": [
             [
                 "7bb9f94f.580cc8"
@@ -4217,7 +4217,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1230,
-        "y": 840,
+        "y": 1000,
         "wires": [
             [
                 "b2304da.00036b"
@@ -4243,7 +4243,7 @@
         "randomUnits": "seconds",
         "drop": false,
         "x": 590,
-        "y": 760,
+        "y": 920,
         "wires": [
             [
                 "bdb774a9.fc7cb8"
@@ -4270,7 +4270,7 @@
         "to": "",
         "reg": false,
         "x": 380,
-        "y": 840,
+        "y": 1000,
         "wires": [
             [
                 "12c97065.d235b"
@@ -4297,7 +4297,7 @@
         "to": "",
         "reg": false,
         "x": 860,
-        "y": 760,
+        "y": 920,
         "wires": [
             [
                 "12c97065.d235b"
@@ -4358,7 +4358,8 @@
         "y": 300,
         "wires": [
             [
-                "268d5ae.006fda6"
+                "268d5ae.006fda6",
+                "f73b6f0d.c5348"
             ],
             []
         ]
@@ -4485,7 +4486,9 @@
         "x": 530,
         "y": 640,
         "wires": [
-            []
+            [
+                "91a5751b.e198b8"
+            ]
         ]
     },
     {
@@ -4531,10 +4534,202 @@
         "outputs": 2,
         "output_only_on_state_change": true,
         "x": 140,
-        "y": 760,
+        "y": 920,
         "wires": [
             [
-                "a22027dd.a3a988"
+                "a22027dd.a3a988",
+                "b551893d.2876e8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "91a5751b.e198b8",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Prompt reset on phone",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_sm_n970u",
+        "entityId": "",
+        "data": "{\"title\":\"Alarm Triggered and Cleared\",\"message\":\"House is awaiting reset\",\"data\":{\"tag\":\"alarm_alert_awaiting_reset_prompt\",\"actions\":[{\"action\":\"reset_alarm\",\"title\":\"Reset house\"}]}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 800,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1e1c810d.fa9cdf",
+        "type": "inject",
+        "z": "bec3a76b.4b57e8",
+        "name": "Test notification",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 540,
+        "y": 700,
+        "wires": [
+            [
+                "91a5751b.e198b8"
+            ]
+        ]
+    },
+    {
+        "id": "b857ee27.83511",
+        "type": "server-events",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "server": "2f5bd1e0.67e40e",
+        "event_type": "mobile_app_notification_action",
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "x": 250,
+        "y": 800,
+        "wires": [
+            [
+                "8b647146.2f88e"
+            ]
+        ]
+    },
+    {
+        "id": "8b647146.2f88e",
+        "type": "switch",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "property": "payload.event.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "reset_alarm",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 800,
+        "wires": [
+            [
+                "e2718d23.1596b"
+            ]
+        ]
+    },
+    {
+        "id": "b551893d.2876e8",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Clear reset prompt notificaiton",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_sm_n970u",
+        "entityId": "",
+        "data": "{\"message\":\"clear_notification\",\"data\":{\"tag\":\"alarm_alert_awaiting_reset_prompt\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 430,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f73b6f0d.c5348",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Clear reset prompt notificaiton",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_sm_n970u",
+        "entityId": "",
+        "data": "{\"message\":\"clear_notification\",\"data\":{\"tag\":\"alarm_alert_awaiting_reset_prompt\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 410,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d02fc76c.8f0538",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set to cleared",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_select",
+        "service": "select_option",
+        "entityId": "input_select.alarm_alert",
+        "data": "{\"option\":\"Cleared\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 880,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e2718d23.1596b",
+        "type": "api-current-state",
+        "z": "bec3a76b.4b57e8",
+        "name": "Is not triggered?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "Alert active",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "override_topic": false,
+        "entity_id": "input_select.alarm_alert",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 680,
+        "y": 800,
+        "wires": [
+            [
+                "d02fc76c.8f0538"
             ],
             []
         ]
