@@ -91,7 +91,7 @@ input_select:
     options:
       - Cleared
       - Alert active
-      - Awaiting reset
+      - Acknowledged
     icon: mdi:shield
 
 
