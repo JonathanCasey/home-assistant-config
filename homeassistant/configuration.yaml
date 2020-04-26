@@ -72,6 +72,9 @@ input_boolean:
   car_alarm_triggered:
     name: Car Alarm Triggered
     icon: mdi:shield-car
+  house_alarm_triggered:
+    name: House Alarm Triggered
+    icon: mdi:shield-home
   single_occupant:
     name: Single occupant mode
     icon: mdi:account-check

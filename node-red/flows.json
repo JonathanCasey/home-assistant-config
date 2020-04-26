@@ -3520,7 +3520,7 @@
         "id": "d0eb5b.db1924a8",
         "type": "server-state-changed",
         "z": "bec3a76b.4b57e8",
-        "name": "Car alarm triggered or cleared?",
+        "name": "Car/House alarm triggered or cleared?",
         "server": "2f5bd1e0.67e40e",
         "version": 1,
         "exposeToHomeAssistant": false,
@@ -3534,7 +3534,7 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "input_boolean.car_alarm_triggered",
+        "entityidfilter": "group.triggered_alarms",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
@@ -3544,7 +3544,7 @@
         "outputs": 2,
         "output_only_on_state_change": true,
         "x": 190,
-        "y": 240,
+        "y": 80,
         "wires": [
             [
                 "4f8f2463.0a2c5c"
@@ -3990,8 +3990,8 @@
         "z": "bec3a76b.4b57e8",
         "name": "Let lights turn on",
         "pauseType": "delay",
-        "timeout": "500",
-        "timeoutUnits": "milliseconds",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
         "rateUnits": "second",
@@ -4084,7 +4084,7 @@
         "pauseType": "rate",
         "timeout": "2",
         "timeoutUnits": "seconds",
-        "rate": "10",
+        "rate": "5",
         "nbRateUnits": "1",
         "rateUnits": "second",
         "randomFirst": "1",
@@ -4178,7 +4178,7 @@
         "z": "bec3a76b.4b57e8",
         "name": "Let lights turn on",
         "pauseType": "delay",
-        "timeout": "2",
+        "timeout": "5",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -4267,7 +4267,7 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 510,
-        "y": 200,
+        "y": 40,
         "wires": [
             [
                 "a9af11c6.9dba1"
@@ -4306,7 +4306,7 @@
         "wires": [
             [
                 "268d5ae.006fda6",
-                "61d8dd61.452804"
+                "8496950d.2f6188"
             ],
             []
         ]
@@ -4329,7 +4329,7 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 760,
-        "y": 260,
+        "y": 100,
         "wires": [
             [
                 "a9af11c6.9dba1"
@@ -4356,7 +4356,7 @@
         "override_data": "msg",
         "blockInputOverrides": false,
         "x": 510,
-        "y": 260,
+        "y": 100,
         "wires": [
             [
                 "73cd822f.2b7ffc"
@@ -4633,14 +4633,14 @@
         "service_domain": "notify",
         "service": "mobile_app_sm_n970u",
         "entityId": "",
-        "data": "{\"title\":\"Car Alarm Triggered\",\"message\":\"Acknowledge to stop flashing, clear to return lights to previous state.\",\"data\":{\"tag\":\"alarm_alert_acknowledge_clear_prompt\",\"actions\":[{\"action\":\"acknowledge_alarm\",\"title\":\"Acknowledge\"},{\"action\":\"clear_alarm\",\"title\":\"Clear and Reset\"}]}}",
+        "data": "{\"title\":\"{{alarms_triggered_name}} Alarm Triggered\",\"message\":\"Acknowledge to stop flashing, clear to return lights to previous state.\",\"data\":{\"tag\":\"alarm_alert_acknowledge_clear_prompt\",\"actions\":[{\"action\":\"acknowledge_alarm\",\"title\":\"Acknowledge\"},{\"action\":\"clear_alarm\",\"title\":\"Clear and Reset\"}]}}",
         "dataType": "json",
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 450,
-        "y": 380,
+        "x": 1110,
+        "y": 320,
         "wires": [
             []
         ]
@@ -4683,7 +4683,7 @@
         "debugenabled": false,
         "service_domain": "input_boolean",
         "service": "turn_off",
-        "entityId": "input_boolean.car_alarm_triggered",
+        "entityId": "group.triggered_alarms",
         "data": "",
         "dataType": "json",
         "mergecontext": "",
@@ -4834,9 +4834,207 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 1070,
-        "y": 240,
+        "y": 80,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "8496950d.2f6188",
+        "type": "api-current-state",
+        "z": "bec3a76b.4b57e8",
+        "name": "Is car triggered?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.car_alarm_triggered",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 340,
+        "y": 320,
+        "wires": [
+            [
+                "bac31854.c98ae8"
+            ],
+            [
+                "ee6d3554.429c48"
+            ]
+        ]
+    },
+    {
+        "id": "bac31854.c98ae8",
+        "type": "api-current-state",
+        "z": "bec3a76b.4b57e8",
+        "name": "Is house triggered?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.house_alarm_triggered",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 550,
+        "y": 260,
+        "wires": [
+            [
+                "e6b6648f.b62c58"
+            ],
+            [
+                "ca1f5fef.0d014"
+            ]
+        ]
+    },
+    {
+        "id": "ee6d3554.429c48",
+        "type": "api-current-state",
+        "z": "bec3a76b.4b57e8",
+        "name": "Is house triggered?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.house_alarm_triggered",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 550,
+        "y": 360,
+        "wires": [
+            [
+                "d66aa569.2fe258"
+            ],
+            [
+                "fbdd1f2d.f9d39"
+            ]
+        ]
+    },
+    {
+        "id": "ca1f5fef.0d014",
+        "type": "change",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set name for car triggered",
+        "rules": [
+            {
+                "t": "set",
+                "p": "alarms_triggered_name",
+                "pt": "msg",
+                "to": "Car",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 790,
+        "y": 280,
+        "wires": [
+            [
+                "61d8dd61.452804"
+            ]
+        ]
+    },
+    {
+        "id": "e6b6648f.b62c58",
+        "type": "change",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set name for both triggered",
+        "rules": [
+            {
+                "t": "set",
+                "p": "alarms_triggered_name",
+                "pt": "msg",
+                "to": "Car/House",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 220,
+        "wires": [
+            [
+                "61d8dd61.452804"
+            ]
+        ]
+    },
+    {
+        "id": "d66aa569.2fe258",
+        "type": "change",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set name for house triggered",
+        "rules": [
+            {
+                "t": "set",
+                "p": "alarms_triggered_name",
+                "pt": "msg",
+                "to": "House",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 340,
+        "wires": [
+            [
+                "61d8dd61.452804"
+            ]
+        ]
+    },
+    {
+        "id": "fbdd1f2d.f9d39",
+        "type": "change",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set name for none triggered",
+        "rules": [
+            {
+                "t": "set",
+                "p": "alarms_triggered_name",
+                "pt": "msg",
+                "to": "None?",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 400,
+        "wires": [
+            [
+                "61d8dd61.452804"
+            ]
         ]
     }
 ]

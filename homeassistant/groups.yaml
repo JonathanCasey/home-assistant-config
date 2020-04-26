@@ -49,8 +49,10 @@ outside:
 
 
 triggered_alarms:
+  name: Triggered Alarms
   entities:
     - input_boolean.car_alarm_triggered
+    - input_boolean.house_alarm_triggered
 
 
 upstairs_bathroom:
