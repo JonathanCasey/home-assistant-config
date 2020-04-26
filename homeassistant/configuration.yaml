@@ -134,6 +134,13 @@ media_player:
 mobile_app:
 python_script:
 recorder:
+
+
+rest_command:
+  autoremote_mercedes_start:
+    url: !secret autoremote_msg_mercedes_start
+
+
 system_health:
 sun:
 updater:
