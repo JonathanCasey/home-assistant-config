@@ -3520,7 +3520,7 @@
         "id": "d0eb5b.db1924a8",
         "type": "server-state-changed",
         "z": "bec3a76b.4b57e8",
-        "name": "Car alarm triggered or cleared?",
+        "name": "Car/House alarm triggered or cleared?",
         "server": "2f5bd1e0.67e40e",
         "version": 1,
         "exposeToHomeAssistant": false,
@@ -3534,7 +3534,7 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "input_boolean.car_alarm_triggered",
+        "entityidfilter": "group.triggered_alarms",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
@@ -4683,7 +4683,7 @@
         "debugenabled": false,
         "service_domain": "input_boolean",
         "service": "turn_off",
-        "entityId": "input_boolean.car_alarm_triggered",
+        "entityId": "group.triggered_alarms",
         "data": "",
         "dataType": "json",
         "mergecontext": "",
