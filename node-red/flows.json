@@ -4359,7 +4359,7 @@
         "wires": [
             [
                 "268d5ae.006fda6",
-                "f73b6f0d.c5348"
+                "61d8dd61.452804"
             ],
             []
         ]
@@ -4457,8 +4457,8 @@
         "halt_if_compare": "is",
         "outputs": 2,
         "output_only_on_state_change": true,
-        "x": 130,
-        "y": 640,
+        "x": 170,
+        "y": 680,
         "wires": [
             [
                 "3689482c.522928"
@@ -4483,8 +4483,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 530,
-        "y": 640,
+        "x": 570,
+        "y": 680,
         "wires": [
             [
                 "91a5751b.e198b8"
@@ -4547,21 +4547,21 @@
         "id": "91a5751b.e198b8",
         "type": "api-call-service",
         "z": "bec3a76b.4b57e8",
-        "name": "Prompt reset on phone",
+        "name": "Prompt clear on phone",
         "server": "2f5bd1e0.67e40e",
         "version": 1,
         "debugenabled": false,
         "service_domain": "notify",
         "service": "mobile_app_sm_n970u",
         "entityId": "",
-        "data": "{\"title\":\"Alarm Triggered and Cleared\",\"message\":\"House is awaiting reset\",\"data\":{\"tag\":\"alarm_alert_acknowledge_clear_prompt\",\"actions\":[{\"action\":\"reset_alarm\",\"title\":\"Reset house\"}]}}",
+        "data": "{\"title\":\"Car Alarm Acknowledged\",\"message\":\"Clear to return lights to previous state.\",\"data\":{\"tag\":\"alarm_alert_acknowledge_clear_prompt\",\"actions\":[{\"action\":\"clear_alarm\",\"title\":\"Clear and Reset\"}]}}",
         "dataType": "json",
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 800,
-        "y": 640,
+        "x": 840,
+        "y": 680,
         "wires": [
             []
         ]
@@ -4578,8 +4578,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 540,
-        "y": 700,
+        "x": 580,
+        "y": 740,
         "wires": [
             [
                 "91a5751b.e198b8"
@@ -4590,7 +4590,7 @@
         "id": "b857ee27.83511",
         "type": "server-events",
         "z": "bec3a76b.4b57e8",
-        "name": "",
+        "name": "Mobile notification action",
         "server": "2f5bd1e0.67e40e",
         "event_type": "mobile_app_notification_action",
         "exposeToHomeAssistant": false,
@@ -4604,8 +4604,8 @@
                 "value": ""
             }
         ],
-        "x": 250,
-        "y": 800,
+        "x": 190,
+        "y": 1240,
         "wires": [
             [
                 "8b647146.2f88e"
@@ -4622,18 +4622,26 @@
         "rules": [
             {
                 "t": "eq",
-                "v": "reset_alarm",
+                "v": "acknowledge_alarm",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "clear_alarm",
                 "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 1,
-        "x": 510,
-        "y": 800,
+        "outputs": 2,
+        "x": 490,
+        "y": 1240,
         "wires": [
             [
-                "e2718d23.1596b"
+                "7b8b357d.9c49cc"
+            ],
+            [
+                "d02fc76c.8f0538"
             ]
         ]
     },
@@ -4657,30 +4665,9 @@
         "x": 430,
         "y": 860,
         "wires": [
-            []
-        ]
-    },
-    {
-        "id": "f73b6f0d.c5348",
-        "type": "api-call-service",
-        "z": "bec3a76b.4b57e8",
-        "name": "Clear reset prompt notificaiton",
-        "server": "2f5bd1e0.67e40e",
-        "version": 1,
-        "debugenabled": false,
-        "service_domain": "notify",
-        "service": "mobile_app_sm_n970u",
-        "entityId": "",
-        "data": "{\"message\":\"clear_notification\",\"data\":{\"tag\":\"alarm_alert_acknowledge_clear_prompt\"}}",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": false,
-        "x": 410,
-        "y": 240,
-        "wires": [
-            []
+            [
+                "61c0d9aa.dc7c48"
+            ]
         ]
     },
     {
@@ -4700,23 +4687,23 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 880,
-        "y": 800,
+        "x": 860,
+        "y": 1320,
         "wires": [
             []
         ]
     },
     {
-        "id": "e2718d23.1596b",
+        "id": "7b8b357d.9c49cc",
         "type": "api-current-state",
         "z": "bec3a76b.4b57e8",
-        "name": "Is not triggered?",
+        "name": "Is triggered?",
         "server": "2f5bd1e0.67e40e",
         "version": 1,
         "outputs": 2,
         "halt_if": "Alert active",
         "halt_if_type": "str",
-        "halt_if_compare": "is_not",
+        "halt_if_compare": "is",
         "override_topic": false,
         "entity_id": "input_select.alarm_alert",
         "state_type": "str",
@@ -4725,12 +4712,81 @@
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 680,
-        "y": 800,
+        "x": 650,
+        "y": 1220,
         "wires": [
             [
-                "d02fc76c.8f0538"
+                "d09da2ee.578aa"
             ],
+            []
+        ]
+    },
+    {
+        "id": "d09da2ee.578aa",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set to acknowledged",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_select",
+        "service": "select_option",
+        "entityId": "input_select.alarm_alert",
+        "data": "{\"option\":\"Acknowledged\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 880,
+        "y": 1220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "61d8dd61.452804",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Prompt ack or clear on phone",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_sm_n970u",
+        "entityId": "",
+        "data": "{\"title\":\"Car Alarm Triggered\",\"message\":\"Acknowledge to stop flashing, clear to return lights to previous state.\",\"data\":{\"tag\":\"alarm_alert_acknowledge_clear_prompt\",\"actions\":[{\"action\":\"acknowledge_alarm\",\"title\":\"Acknowledge\"},{\"action\":\"clear_alarm\",\"title\":\"Clear and Reset\"}]}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 450,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "61c0d9aa.dc7c48",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Ensure alarm not triggered",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.car_alarm_triggered",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 740,
+        "y": 860,
+        "wires": [
             []
         ]
     }
