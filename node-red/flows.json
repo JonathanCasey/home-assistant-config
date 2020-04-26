@@ -4487,7 +4487,7 @@
         "y": 680,
         "wires": [
             [
-                "91a5751b.e198b8"
+                "61c0d9aa.dc7c48"
             ]
         ]
     },
@@ -4541,49 +4541,6 @@
                 "b551893d.2876e8"
             ],
             []
-        ]
-    },
-    {
-        "id": "91a5751b.e198b8",
-        "type": "api-call-service",
-        "z": "bec3a76b.4b57e8",
-        "name": "Prompt clear on phone",
-        "server": "2f5bd1e0.67e40e",
-        "version": 1,
-        "debugenabled": false,
-        "service_domain": "notify",
-        "service": "mobile_app_sm_n970u",
-        "entityId": "",
-        "data": "{\"title\":\"Car Alarm Acknowledged\",\"message\":\"Clear to return lights to previous state.\",\"data\":{\"tag\":\"alarm_alert_acknowledge_clear_prompt\",\"actions\":[{\"action\":\"clear_alarm\",\"title\":\"Clear and Reset\"}]}}",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": false,
-        "x": 840,
-        "y": 680,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "1e1c810d.fa9cdf",
-        "type": "inject",
-        "z": "bec3a76b.4b57e8",
-        "name": "Test notification",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 580,
-        "y": 740,
-        "wires": [
-            [
-                "91a5751b.e198b8"
-            ]
         ]
     },
     {
@@ -4641,7 +4598,7 @@
                 "7b8b357d.9c49cc"
             ],
             [
-                "d02fc76c.8f0538"
+                "50d870e1.a1f82"
             ]
         ]
     },
@@ -4665,9 +4622,7 @@
         "x": 430,
         "y": 860,
         "wires": [
-            [
-                "61c0d9aa.dc7c48"
-            ]
+            []
         ]
     },
     {
@@ -4687,8 +4642,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 860,
-        "y": 1320,
+        "x": 880,
+        "y": 1280,
         "wires": [
             []
         ]
@@ -4768,6 +4723,34 @@
         ]
     },
     {
+        "id": "50d870e1.a1f82",
+        "type": "api-current-state",
+        "z": "bec3a76b.4b57e8",
+        "name": "Is acknowledged?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "Acknowledged",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_select.alarm_alert",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 670,
+        "y": 1280,
+        "wires": [
+            [
+                "d02fc76c.8f0538"
+            ],
+            []
+        ]
+    },
+    {
         "id": "61c0d9aa.dc7c48",
         "type": "api-call-service",
         "z": "bec3a76b.4b57e8",
@@ -4784,8 +4767,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 740,
-        "y": 860,
+        "x": 860,
+        "y": 680,
         "wires": [
             []
         ]
