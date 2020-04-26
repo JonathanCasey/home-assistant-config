@@ -78,6 +78,10 @@ input_boolean:
   single_occupant:
     name: Single occupant mode
     icon: mdi:account-check
+  pending_mercedes_start:
+    name: Flag Mercedes to start
+    initial: false
+    icon: mdi:car-cog
   pending_relinquish_to_motion:
     name: Flag relinquish to motion
     initial: false
