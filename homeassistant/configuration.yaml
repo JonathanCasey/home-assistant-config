@@ -78,6 +78,10 @@ input_boolean:
   single_occupant:
     name: Single occupant mode
     icon: mdi:account-check
+  pending_mercedes_start:
+    name: Flag Mercedes to start
+    initial: false
+    icon: mdi:car-cog
   pending_relinquish_to_motion:
     name: Flag relinquish to motion
     initial: false
@@ -134,6 +138,13 @@ media_player:
 mobile_app:
 python_script:
 recorder:
+
+
+rest_command:
+  autoremote_mercedes_start:
+    url: !secret autoremote_msg_mercedes_start
+
+
 system_health:
 sun:
 updater:

@@ -98,6 +98,13 @@
         "info": ""
     },
     {
+        "id": "e393795c.3d6e88",
+        "type": "tab",
+        "label": "Start Mercedes",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -5035,6 +5042,115 @@
             [
                 "61d8dd61.452804"
             ]
+        ]
+    },
+    {
+        "id": "a14400a6.04e44",
+        "type": "api-call-service",
+        "z": "e393795c.3d6e88",
+        "name": "Send Start to Tasker",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "rest_command",
+        "service": "autoremote_mercedes_start",
+        "entityId": "",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 460,
+        "y": 300,
+        "wires": [
+            [
+                "557ae43.ca7501c"
+            ]
+        ]
+    },
+    {
+        "id": "d4d1253e.82c2b8",
+        "type": "server-state-changed",
+        "z": "e393795c.3d6e88",
+        "name": "Flagged to start?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.pending_mercedes_start",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 220,
+        "y": 300,
+        "wires": [
+            [
+                "a14400a6.04e44"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "557ae43.ca7501c",
+        "type": "api-call-service",
+        "z": "e393795c.3d6e88",
+        "name": "Clear start flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.pending_mercedes_start",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 700,
+        "y": 300,
+        "wires": [
+            [
+                "e2b7ecee.0930c"
+            ]
+        ]
+    },
+    {
+        "id": "e2b7ecee.0930c",
+        "type": "api-call-service",
+        "z": "e393795c.3d6e88",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Start Mercedes flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 960,
+        "y": 300,
+        "wires": [
+            []
         ]
     }
 ]
