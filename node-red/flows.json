@@ -84,6 +84,20 @@
         "info": ""
     },
     {
+        "id": "bec3a76b.4b57e8",
+        "type": "tab",
+        "label": "Alarm Triggered",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "5a3565e2.10464c",
+        "type": "tab",
+        "label": "Example S/R",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -3498,6 +3512,1329 @@
         "mustacheAltTags": false,
         "x": 760,
         "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d0eb5b.db1924a8",
+        "type": "server-state-changed",
+        "z": "bec3a76b.4b57e8",
+        "name": "Car alarm triggered or cleared?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.car_alarm_triggered",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 190,
+        "y": 240,
+        "wires": [
+            [
+                "4f8f2463.0a2c5c"
+            ],
+            [
+                "5688115f.ef31e"
+            ]
+        ]
+    },
+    {
+        "id": "5737f738.e691a8",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Flash all lights red",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "group.functional_lights",
+        "data": "{\"brightness_pct\":100,\"color_name\":\"red\",\"flash\":\"long\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 490,
+        "y": 660,
+        "wires": [
+            [
+                "f37025ee.c53498"
+            ]
+        ]
+    },
+    {
+        "id": "f37025ee.c53498",
+        "type": "delay",
+        "z": "bec3a76b.4b57e8",
+        "name": "Wait to retrigger flash",
+        "pauseType": "delay",
+        "timeout": "15",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 720,
+        "y": 660,
+        "wires": [
+            [
+                "85279ec5.18371"
+            ]
+        ],
+        "info": "Hue flash sometimes times out it seems, so need to keep sending..."
+    },
+    {
+        "id": "85279ec5.18371",
+        "type": "api-current-state",
+        "z": "bec3a76b.4b57e8",
+        "name": "Is still triggered?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "Alert active",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_select.alarm_alert",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 940,
+        "y": 660,
+        "wires": [
+            [
+                "5737f738.e691a8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "86b2e7e1.bb7a38",
+        "type": "ha-get-entities",
+        "z": "bec3a76b.4b57e8",
+        "server": "2f5bd1e0.67e40e",
+        "name": "Get individual light states",
+        "rules": [
+            {
+                "property": "",
+                "logic": "jsonata",
+                "value": "$exists($entity().attributes.is_hue_group) = false",
+                "valueType": "jsonata"
+            },
+            {
+                "property": "entity_id",
+                "logic": "starts_with",
+                "value": "light.",
+                "valueType": "str"
+            }
+        ],
+        "output_type": "array",
+        "output_empty_results": false,
+        "output_location_type": "msg",
+        "output_location": "payload",
+        "output_results_count": 1,
+        "x": 710,
+        "y": 540,
+        "wires": [
+            [
+                "5046f986.924c18"
+            ]
+        ],
+        "info": "This filters out hue groups since lights within a group may have different settings (which it looks like Hue just \"averages\" the settings to report a single number set for all of the lights)."
+    },
+    {
+        "id": "2b1bd952.12eef6",
+        "type": "ha-get-entities",
+        "z": "5a3565e2.10464c",
+        "server": "2f5bd1e0.67e40e",
+        "name": "Get States",
+        "rules": [
+            {
+                "property": "entity_id",
+                "logic": "is",
+                "value": "^(light|switch|climate)\\.+",
+                "valueType": "re"
+            }
+        ],
+        "output_type": "array",
+        "output_empty_results": false,
+        "output_location_type": "msg",
+        "output_location": "payload",
+        "output_results_count": 1,
+        "x": 310,
+        "y": 480,
+        "wires": [
+            [
+                "98779eef.54d09"
+            ]
+        ]
+    },
+    {
+        "id": "11998cc2.5c7843",
+        "type": "inject",
+        "z": "5a3565e2.10464c",
+        "name": "Store states",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 134,
+        "y": 480,
+        "wires": [
+            [
+                "2b1bd952.12eef6"
+            ]
+        ]
+    },
+    {
+        "id": "fe98c188.3679f",
+        "type": "comment",
+        "z": "5a3565e2.10464c",
+        "name": "How Kermit would do store states",
+        "info": "https://community.home-assistant.io/t/example-saving-and-restoring-states/99061",
+        "x": 178,
+        "y": 432,
+        "wires": []
+    },
+    {
+        "id": "98779eef.54d09",
+        "type": "function",
+        "z": "5a3565e2.10464c",
+        "name": "transform data",
+        "func": "const entities = msg.payload.map((e) => {\n    const domain = e.entity_id.split('.')[0];\n    const payload = {};\n\n    switch(domain) {\n        case 'switch':\n            payload.domain = domain;\n            payload.service = `turn_${e.state}`;\n            payload.data = {\n                entity_id: e.entity_id,\n            }\n            break;\n         case 'light':\n            payload.domain = domain;\n            payload.service = `turn_${e.state}`;\n            payload.data = {\n                entity_id: e.entity_id,\n                brightness: e.attributes.brightness,\n                color_temp: e.attributes.color_temp,\n                xy_color: e.attributes.xy_color,\n            };    \n            break;\n        case 'climate':\n            payload.domain = 'climate';\n            payload.service = `set_temperature`;\n            payload.data = {\n                entity_id: e.entity_id,\n                temperature: e.attributes.temperature,\n                target_temp_low: e.attributes.min_temp,\n                target_temp_high: e.attributes.max_temp,\n                operation_mode: e.attributes.operation_mode\n            };\n            break;\n    }\n    return payload;\n});\n// Save the states\nflow.set('savedStates', entities);\n\n// create a blank message object with out new payload\nmsg = { payload: entities };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 496,
+        "y": 480,
+        "wires": [
+            [
+                "df19bf74.0e8cc"
+            ]
+        ]
+    },
+    {
+        "id": "df19bf74.0e8cc",
+        "type": "debug",
+        "z": "5a3565e2.10464c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 662,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "f768d1b6.f9a73",
+        "type": "inject",
+        "z": "5a3565e2.10464c",
+        "name": "Restore states",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 600,
+        "wires": [
+            [
+                "4715aaf2.4e5f54"
+            ]
+        ]
+    },
+    {
+        "id": "4715aaf2.4e5f54",
+        "type": "change",
+        "z": "5a3565e2.10464c",
+        "name": "Get Saved States",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "savedStates",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 326,
+        "y": 600,
+        "wires": [
+            [
+                "25af091d.6b6226"
+            ]
+        ]
+    },
+    {
+        "id": "ecf27eb9.31c92",
+        "type": "debug",
+        "z": "5a3565e2.10464c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 770,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "25af091d.6b6226",
+        "type": "split",
+        "z": "5a3565e2.10464c",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 494,
+        "y": 600,
+        "wires": [
+            [
+                "e26e76f7.41a018"
+            ]
+        ]
+    },
+    {
+        "id": "f110fec5.aaefe",
+        "type": "api-call-service",
+        "z": "5a3565e2.10464c",
+        "name": "Restore States",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "",
+        "service": "",
+        "entityId": "",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 670,
+        "y": 700,
+        "wires": [
+            [
+                "ecf27eb9.31c92"
+            ]
+        ]
+    },
+    {
+        "id": "e26e76f7.41a018",
+        "type": "delay",
+        "z": "5a3565e2.10464c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "10",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 520,
+        "y": 780,
+        "wires": [
+            [
+                "f110fec5.aaefe"
+            ]
+        ]
+    },
+    {
+        "id": "5046f986.924c18",
+        "type": "function",
+        "z": "bec3a76b.4b57e8",
+        "name": "Org data and save",
+        "func": "const entities = msg.payload.map((e) => {\n    const domain = e.entity_id.split('.')[0];\n    const payload = {};\n\n    switch(domain) {\n        case 'switch':\n            payload.domain = domain;\n            payload.service = `turn_${e.state}`;\n            payload.data = {\n                entity_id: e.entity_id,\n            }\n            break;\n         case 'light':\n            payload.domain = domain;\n            payload.service = `turn_${e.state}`;\n            payload.data = {\n                entity_id: e.entity_id,\n                brightness: e.attributes.brightness,\n                color_temp: e.attributes.color_temp,\n                xy_color: e.attributes.xy_color,\n            };    \n            break;\n        case 'climate':\n            payload.domain = 'climate';\n            payload.service = `set_temperature`;\n            payload.data = {\n                entity_id: e.entity_id,\n                temperature: e.attributes.temperature,\n                target_temp_low: e.attributes.min_temp,\n                target_temp_high: e.attributes.max_temp,\n                operation_mode: e.attributes.operation_mode\n            };\n            break;\n    }\n    return payload;\n});\n// Save the states\nflow.set(msg.state_name, entities);\n\n// create a blank message object with out new payload\nmsg = { payload: entities, state_name: msg.state_name };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 950,
+        "y": 540,
+        "wires": [
+            [
+                "5fdc398f.08c0b8"
+            ]
+        ]
+    },
+    {
+        "id": "268d5ae.006fda6",
+        "type": "change",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set to save original state",
+        "rules": [
+            {
+                "t": "set",
+                "p": "state_name",
+                "pt": "msg",
+                "to": "original_state",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 540,
+        "wires": [
+            [
+                "86b2e7e1.bb7a38"
+            ]
+        ]
+    },
+    {
+        "id": "5fdc398f.08c0b8",
+        "type": "switch",
+        "z": "bec3a76b.4b57e8",
+        "name": "Which state?",
+        "property": "state_name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "original_state",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "on_state",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1140,
+        "y": 540,
+        "wires": [
+            [
+                "543dfd4c.5c5054"
+            ],
+            [
+                "5737f738.e691a8",
+                "765963cc.b06e2c"
+            ]
+        ]
+    },
+    {
+        "id": "543dfd4c.5c5054",
+        "type": "change",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set to save on state",
+        "rules": [
+            {
+                "t": "set",
+                "p": "state_name",
+                "pt": "msg",
+                "to": "on_state",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 460,
+        "wires": [
+            [
+                "9c70ed3d.f0259"
+            ]
+        ]
+    },
+    {
+        "id": "8b6bbbd7.94b878",
+        "type": "delay",
+        "z": "bec3a76b.4b57e8",
+        "name": "Let lights turn on",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 970,
+        "y": 460,
+        "wires": [
+            [
+                "86b2e7e1.bb7a38"
+            ]
+        ]
+    },
+    {
+        "id": "9c70ed3d.f0259",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Turn on all lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "group.functional_lights",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 700,
+        "y": 460,
+        "wires": [
+            [
+                "8b6bbbd7.94b878"
+            ]
+        ]
+    },
+    {
+        "id": "7bb9f94f.580cc8",
+        "type": "split",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 510,
+        "y": 1160,
+        "wires": [
+            [
+                "4c3d14bf.8b079c"
+            ]
+        ]
+    },
+    {
+        "id": "65b9ef9e.e10f5",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Restore States",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "",
+        "service": "",
+        "entityId": "",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 880,
+        "y": 1080,
+        "wires": [
+            [
+                "81abfff4.40e7c"
+            ]
+        ]
+    },
+    {
+        "id": "4c3d14bf.8b079c",
+        "type": "delay",
+        "z": "bec3a76b.4b57e8",
+        "name": "Limit msg rate to not overload Hue",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "10",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 760,
+        "y": 1160,
+        "wires": [
+            [
+                "65b9ef9e.e10f5"
+            ]
+        ]
+    },
+    {
+        "id": "81abfff4.40e7c",
+        "type": "join",
+        "z": "bec3a76b.4b57e8",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": 1070,
+        "y": 1080,
+        "wires": [
+            [
+                "57d08dcc.be1d54"
+            ]
+        ]
+    },
+    {
+        "id": "12c97065.d235b",
+        "type": "function",
+        "z": "bec3a76b.4b57e8",
+        "name": "Get saved data",
+        "func": "// Save the states\nentities = flow.get(msg.state_name);\n\n// create a blank message object with out new payload\nmsg = { payload: entities, state_name: msg.state_name };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 620,
+        "y": 1080,
+        "wires": [
+            [
+                "7bb9f94f.580cc8"
+            ]
+        ]
+    },
+    {
+        "id": "57d08dcc.be1d54",
+        "type": "switch",
+        "z": "bec3a76b.4b57e8",
+        "name": "Which state?",
+        "property": "state_name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on_state",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "original_state",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1250,
+        "y": 1080,
+        "wires": [
+            [
+                "b2304da.00036b"
+            ],
+            [
+                "c2e4c267.ce43"
+            ]
+        ]
+    },
+    {
+        "id": "b2304da.00036b",
+        "type": "delay",
+        "z": "bec3a76b.4b57e8",
+        "name": "Let lights turn on",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 610,
+        "y": 1000,
+        "wires": [
+            [
+                "bdb774a9.fc7cb8"
+            ]
+        ]
+    },
+    {
+        "id": "a22027dd.a3a988",
+        "type": "change",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set to restore on state",
+        "rules": [
+            {
+                "t": "set",
+                "p": "state_name",
+                "pt": "msg",
+                "to": "on_state",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 1080,
+        "wires": [
+            [
+                "12c97065.d235b"
+            ]
+        ]
+    },
+    {
+        "id": "bdb774a9.fc7cb8",
+        "type": "change",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set to restore original state",
+        "rules": [
+            {
+                "t": "set",
+                "p": "state_name",
+                "pt": "msg",
+                "to": "original_state",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 1000,
+        "wires": [
+            [
+                "12c97065.d235b"
+            ]
+        ]
+    },
+    {
+        "id": "4f8f2463.0a2c5c",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Ensure alert active",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_select",
+        "service": "select_option",
+        "entityId": "input_select.alarm_alert",
+        "data": "{\"option\":\"Alert active\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 510,
+        "y": 200,
+        "wires": [
+            [
+                "a9af11c6.9dba1"
+            ]
+        ]
+    },
+    {
+        "id": "bb6bce71.d2c1b",
+        "type": "server-state-changed",
+        "z": "bec3a76b.4b57e8",
+        "name": "Alert just activated?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_select.alarm_alert",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "Alert active",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 150,
+        "y": 460,
+        "wires": [
+            [
+                "268d5ae.006fda6",
+                "61d8dd61.452804"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "73cd822f.2b7ffc",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set to acknowledged",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_select",
+        "service": "select_option",
+        "entityId": "input_select.alarm_alert",
+        "data": "{\"option\":\"Acknowledged\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 760,
+        "y": 260,
+        "wires": [
+            [
+                "a9af11c6.9dba1"
+            ]
+        ]
+    },
+    {
+        "id": "5688115f.ef31e",
+        "type": "api-current-state",
+        "z": "bec3a76b.4b57e8",
+        "name": "Is alert active now?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "Alert active",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_select.alarm_alert",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 510,
+        "y": 260,
+        "wires": [
+            [
+                "73cd822f.2b7ffc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "972f1eaf.95c4a",
+        "type": "server-state-changed",
+        "z": "bec3a76b.4b57e8",
+        "name": "Alert acknowledged?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_select.alarm_alert",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "Acknowledged",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 190,
+        "y": 800,
+        "wires": [
+            [
+                "3689482c.522928"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3689482c.522928",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Turn on all lights solid max alertness",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "group.functional_lights",
+        "data": "{\"brightness_pct\":100,\"color_temp\":1}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 510,
+        "y": 800,
+        "wires": [
+            [
+                "61c0d9aa.dc7c48"
+            ]
+        ]
+    },
+    {
+        "id": "c71ea66a.e69218",
+        "type": "server-state-changed",
+        "z": "bec3a76b.4b57e8",
+        "name": "Alert reset confirmed?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_select.alarm_alert",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "Cleared",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 180,
+        "y": 1000,
+        "wires": [
+            [
+                "a22027dd.a3a988",
+                "b551893d.2876e8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b857ee27.83511",
+        "type": "server-events",
+        "z": "bec3a76b.4b57e8",
+        "name": "Mobile notification action",
+        "server": "2f5bd1e0.67e40e",
+        "event_type": "mobile_app_notification_action",
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "x": 210,
+        "y": 1380,
+        "wires": [
+            [
+                "8b647146.2f88e"
+            ]
+        ]
+    },
+    {
+        "id": "8b647146.2f88e",
+        "type": "switch",
+        "z": "bec3a76b.4b57e8",
+        "name": "Which button?",
+        "property": "payload.event.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "acknowledge_alarm",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "clear_alarm",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 440,
+        "y": 1380,
+        "wires": [
+            [
+                "7b8b357d.9c49cc"
+            ],
+            [
+                "50d870e1.a1f82"
+            ]
+        ]
+    },
+    {
+        "id": "b551893d.2876e8",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Clear reset prompt notificaiton",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_sm_n970u",
+        "entityId": "",
+        "data": "{\"message\":\"clear_notification\",\"data\":{\"tag\":\"alarm_alert_acknowledge_clear_prompt\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 450,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d02fc76c.8f0538",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set to cleared",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_select",
+        "service": "select_option",
+        "entityId": "input_select.alarm_alert",
+        "data": "{\"option\":\"Cleared\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 880,
+        "y": 1420,
+        "wires": [
+            [
+                "1696f942.925c47"
+            ]
+        ]
+    },
+    {
+        "id": "7b8b357d.9c49cc",
+        "type": "api-current-state",
+        "z": "bec3a76b.4b57e8",
+        "name": "Is triggered?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "Alert active",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_select.alarm_alert",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 650,
+        "y": 1360,
+        "wires": [
+            [
+                "d09da2ee.578aa"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d09da2ee.578aa",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Set to acknowledged",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_select",
+        "service": "select_option",
+        "entityId": "input_select.alarm_alert",
+        "data": "{\"option\":\"Acknowledged\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 880,
+        "y": 1360,
+        "wires": [
+            [
+                "1696f942.925c47"
+            ]
+        ]
+    },
+    {
+        "id": "61d8dd61.452804",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Prompt ack or clear on phone",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_sm_n970u",
+        "entityId": "",
+        "data": "{\"title\":\"Car Alarm Triggered\",\"message\":\"Acknowledge to stop flashing, clear to return lights to previous state.\",\"data\":{\"tag\":\"alarm_alert_acknowledge_clear_prompt\",\"actions\":[{\"action\":\"acknowledge_alarm\",\"title\":\"Acknowledge\"},{\"action\":\"clear_alarm\",\"title\":\"Clear and Reset\"}]}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 450,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "50d870e1.a1f82",
+        "type": "api-current-state",
+        "z": "bec3a76b.4b57e8",
+        "name": "Is acknowledged?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "Acknowledged",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_select.alarm_alert",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 670,
+        "y": 1420,
+        "wires": [
+            [
+                "d02fc76c.8f0538"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "61c0d9aa.dc7c48",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Ensure alarm not triggered",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.car_alarm_triggered",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 840,
+        "y": 800,
+        "wires": [
+            [
+                "3d4179a2.a2a396"
+            ]
+        ]
+    },
+    {
+        "id": "c2e4c267.ce43",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Flag to relinquish to motion",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.pending_relinquish_to_motion",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1040,
+        "y": 1240,
+        "wires": [
+            [
+                "aee571f7.a9f67"
+            ]
+        ],
+        "info": "Could do this direct on node-red, but for now going through HA to get the logging."
+    },
+    {
+        "id": "765963cc.b06e2c",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Log alert lights to HA",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Alarm alert lights triggered. [Alarm Triggered flow]\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1180,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3d4179a2.a2a396",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Log acknowledge to HA",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Acknowledgement of alarm triggered. [Alarm Triggered flow]\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1130,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aee571f7.a9f67",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Log clear to HA",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Clear of alarm triggered. [Alarm Triggered flow]\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1280,
+        "y": 1240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1696f942.925c47",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Log phone action to HA",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Updated alarm state from phone notificaiton. [Alarm Triggered flow]\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1190,
+        "y": 1400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a9af11c6.9dba1",
+        "type": "api-call-service",
+        "z": "bec3a76b.4b57e8",
+        "name": "Log alarm trigger to HA",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Responded to alarm trigger flag change. [Alarm Triggered flow]\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1070,
+        "y": 240,
         "wires": [
             []
         ]

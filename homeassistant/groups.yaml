@@ -48,6 +48,11 @@ outside:
     - light.outside_kitchen
 
 
+triggered_alarms:
+  entities:
+    - input_boolean.car_alarm_triggered
+
+
 upstairs_bathroom:
   entities:
     - light.upstairs_bathroom_left
@@ -59,6 +64,15 @@ upstairs_hallway:
   entities:
     - light.upstairs_hall_north
     - light.upstairs_hall_south
+
+
+
+########## ------------------- Hybrid/Zone Groups -------------------- #########
+functional_lights:
+  entities:
+    - light.house
+    - light.dining_table_light
+
 
 
 ########## --------------------- Negative Groups --------------------- #########
