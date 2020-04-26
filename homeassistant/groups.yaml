@@ -66,6 +66,15 @@ upstairs_hallway:
     - light.upstairs_hall_south
 
 
+
+########## ------------------- Hybrid/Zone Groups -------------------- #########
+functional_lights:
+  entities:
+    - light.house
+    - light.dining_table_light
+
+
+
 ########## --------------------- Negative Groups --------------------- #########
 
 all_lights_except_living_room:
