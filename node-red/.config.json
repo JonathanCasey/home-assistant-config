@@ -613,7 +613,10 @@
      "flowRefresh": false
     }
    },
-   "menu-menu-item-palette": true
+   "menu-menu-item-palette": true,
+   "menu-deploymenu-item-flow": false,
+   "menu-deploymenu-item-full": true,
+   "menu-deploymenu-item-node": false
   }
  }
 }
