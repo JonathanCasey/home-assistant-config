@@ -121,3 +121,21 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /opt/home-assistant/dockermon:/config
     restart: on-failure
+
+  # sonarr:
+  #   container_name: sonarr
+  #   image: linuxserver/sonarr
+  #   network_mode: host
+  #   ports:
+  #     - 28989:8989
+  #   volumes:
+  #     - /opt/home-assistant/sonarr:/config
+  #     - /etc/localtime:/etc/localtime:ro
+  #     - /media/bulk/hd-latest/shared/Sonarr/downloads:/downloads
+  #     - /media/bulk/hd-latest/shared/Sonarr/tvshows:/tv
+  #     - /media/bulk/hd-latest/shared/Sonarr/shared:/shared
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=America/New_York
+  #   restart: always
