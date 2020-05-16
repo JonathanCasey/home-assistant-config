@@ -1,4 +1,7 @@
 
+
+########## ----------------------- Full Rooms ------------------------ #########
+
 dining_room:
   entities:
     - switch.dining_room_hutch
@@ -73,6 +76,14 @@ upstairs_hallway:
   entities:
     - light.upstairs_hall_north
     - light.upstairs_hall_south
+
+
+
+########## ------------------------ Sub Rooms ------------------------ #########
+washer_and_fridge:
+  entities:
+    - light.laundry_fridge
+    - light.laundry_washer
 
 
 

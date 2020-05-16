@@ -5758,11 +5758,12 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 230,
-        "y": 700,
+        "x": 210,
+        "y": 780,
         "wires": [
             [
-                "40b3d527.341c6c"
+                "40b3d527.341c6c",
+                "9e3194ff.7878b8"
             ]
         ]
     },
@@ -5770,21 +5771,21 @@
         "id": "e643fd72.bbf38",
         "type": "api-call-service",
         "z": "e6c80f9f.2d85a",
-        "name": "Toggle laundry room lights",
+        "name": "Turn on washer/fridge lights",
         "server": "2f5bd1e0.67e40e",
         "version": 1,
         "debugenabled": false,
         "service_domain": "light",
-        "service": "toggle",
-        "entityId": "group.laundry_room",
+        "service": "turn_on",
+        "entityId": "group.washer_and_fridge",
         "data": "",
         "dataType": "json",
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 670,
-        "y": 700,
+        "x": 900,
+        "y": 780,
         "wires": [
             [
                 "3963d4b.c8f6a2c"
@@ -5808,11 +5809,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 460,
+        "x": 420,
         "y": 700,
         "wires": [
             [
-                "e643fd72.bbf38"
+                "68b5974a.f10e78"
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
@@ -5834,8 +5835,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 940,
-        "y": 700,
+        "x": 1220,
+        "y": 780,
         "wires": [
             []
         ]
@@ -5849,5 +5850,141 @@
         "x": 440,
         "y": 460,
         "wires": []
+    },
+    {
+        "id": "68b5974a.f10e78",
+        "type": "api-current-state",
+        "z": "e6c80f9f.2d85a",
+        "name": "Is washer/fridge on?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "group.washer_and_fridge",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 620,
+        "y": 700,
+        "wires": [
+            [
+                "39f1b9bd.8e7816"
+            ],
+            [
+                "e643fd72.bbf38"
+            ]
+        ]
+    },
+    {
+        "id": "9e3194ff.7878b8",
+        "type": "switch",
+        "z": "e6c80f9f.2d85a",
+        "name": "Is double press?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1004",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 440,
+        "y": 860,
+        "wires": [
+            [
+                "fa969d60.fa40c"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "fa969d60.fa40c",
+        "type": "api-current-state",
+        "z": "e6c80f9f.2d85a",
+        "name": "Is e-box on?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.laundry_electrical_box",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 630,
+        "y": 860,
+        "wires": [
+            [
+                "39f1b9bd.8e7816"
+            ],
+            [
+                "22bf1bde.9d54f4"
+            ]
+        ]
+    },
+    {
+        "id": "39f1b9bd.8e7816",
+        "type": "api-call-service",
+        "z": "e6c80f9f.2d85a",
+        "name": "Turn off laundry room lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "group.laundry_room",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 900,
+        "y": 660,
+        "wires": [
+            [
+                "3963d4b.c8f6a2c"
+            ]
+        ]
+    },
+    {
+        "id": "22bf1bde.9d54f4",
+        "type": "api-call-service",
+        "z": "e6c80f9f.2d85a",
+        "name": "Turn on laundry room lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "group.laundry_room",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 900,
+        "y": 920,
+        "wires": [
+            [
+                "3963d4b.c8f6a2c"
+            ]
+        ]
     }
 ]
