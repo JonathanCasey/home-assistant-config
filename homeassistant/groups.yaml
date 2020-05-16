@@ -21,6 +21,13 @@ kitchen:
     - light.kitchen_main_south
 
 
+laundry_room:
+  entities:
+    - light.laundry_electrical_box
+    - light.laundry_fridge
+    - light.laundry_washer
+
+
 living_room:
   entities:
     - light.living_room_slider
