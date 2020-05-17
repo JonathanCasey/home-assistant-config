@@ -119,6 +119,13 @@
         "info": ""
     },
     {
+        "id": "7a29c613.b063d8",
+        "type": "tab",
+        "label": "Living Room Switch",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -5984,6 +5991,452 @@
         "wires": [
             [
                 "3963d4b.c8f6a2c"
+            ]
+        ]
+    },
+    {
+        "id": "39cd40b7.f1b2e",
+        "type": "server-events",
+        "z": "7a29c613.b063d8",
+        "name": " Deconz Event (any)",
+        "server": "2f5bd1e0.67e40e",
+        "event_type": "deconz_event",
+        "x": 150,
+        "y": 720,
+        "wires": [
+            [
+                "b55ef9de.458e68"
+            ]
+        ]
+    },
+    {
+        "id": "b55ef9de.458e68",
+        "type": "switch",
+        "z": "7a29c613.b063d8",
+        "name": "Is Living Room Switch?",
+        "property": "payload.event.id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "switch_hue_living_room",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 190,
+        "y": 800,
+        "wires": [
+            [
+                "e019762.dd47f88",
+                "cbd66a92.d0b1c8",
+                "8692e443.9a2b48",
+                "f75dd00c.e4817"
+            ]
+        ]
+    },
+    {
+        "id": "e019762.dd47f88",
+        "type": "switch",
+        "z": "7a29c613.b063d8",
+        "name": "Is on button?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "1\\d+",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 500,
+        "wires": [
+            [
+                "b13a67ab.b5e0e8",
+                "576f5102.3fbda"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "790012f9.dd246c",
+        "type": "api-call-service",
+        "z": "7a29c613.b063d8",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Living Room Switch flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1300,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dae74b5b.f30368",
+        "type": "comment",
+        "z": "7a29c613.b063d8",
+        "name": "Samsung switch event codes",
+        "info": "## Samsung switch events\n\n### Which button\n - 1xxx: On\n - 2xxx: Brighter\n - 3xxx: Darker\n - 4xxx: Off\n\n### Which event\n - xxx0: Button down-press\n - xxx1: Periodic hold report (1 per sec)\n - xxx2: Button up-release (not held)\n - xxx3: Button up-release (after held)",
+        "x": 200,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "cbd66a92.d0b1c8",
+        "type": "switch",
+        "z": "7a29c613.b063d8",
+        "name": "Is brighter button?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "2\\d+",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 470,
+        "y": 700,
+        "wires": [
+            [
+                "c7fcab94.a760b8",
+                "85c57ffb.e1d62"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "8692e443.9a2b48",
+        "type": "switch",
+        "z": "7a29c613.b063d8",
+        "name": "Is darker button?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "3\\d+",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 470,
+        "y": 900,
+        "wires": [
+            [
+                "70b2e202.5bde1c",
+                "69e579da.2282f8"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "f75dd00c.e4817",
+        "type": "switch",
+        "z": "7a29c613.b063d8",
+        "name": "Is off button?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "4\\d+",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 1100,
+        "wires": [
+            [
+                "394451d5.cbd38e",
+                "ca0286e5.eec9b8"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "b13a67ab.b5e0e8",
+        "type": "switch",
+        "z": "7a29c613.b063d8",
+        "name": "Is held?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "\\d+1",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 680,
+        "y": 460,
+        "wires": [
+            [
+                "df9fc1d3.af523"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "576f5102.3fbda",
+        "type": "switch",
+        "z": "7a29c613.b063d8",
+        "name": "Was tapped?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "\\d+2",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 690,
+        "y": 540,
+        "wires": [
+            [
+                "df9fc1d3.af523"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "c7fcab94.a760b8",
+        "type": "switch",
+        "z": "7a29c613.b063d8",
+        "name": "Is held?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "\\d+1",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 680,
+        "y": 660,
+        "wires": [
+            []
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "85c57ffb.e1d62",
+        "type": "switch",
+        "z": "7a29c613.b063d8",
+        "name": "Was tapped?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "\\d+2",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 690,
+        "y": 740,
+        "wires": [
+            []
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "70b2e202.5bde1c",
+        "type": "switch",
+        "z": "7a29c613.b063d8",
+        "name": "Is held?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "\\d+1",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 680,
+        "y": 860,
+        "wires": [
+            []
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "69e579da.2282f8",
+        "type": "switch",
+        "z": "7a29c613.b063d8",
+        "name": "Was tapped?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "\\d+2",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 690,
+        "y": 940,
+        "wires": [
+            []
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "394451d5.cbd38e",
+        "type": "switch",
+        "z": "7a29c613.b063d8",
+        "name": "Is held?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "\\d+1",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 680,
+        "y": 1060,
+        "wires": [
+            [
+                "3bc1c346.3473ec"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "ca0286e5.eec9b8",
+        "type": "switch",
+        "z": "7a29c613.b063d8",
+        "name": "Was tapped?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "\\d+2",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 690,
+        "y": 1140,
+        "wires": [
+            [
+                "3bc1c346.3473ec"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "df9fc1d3.af523",
+        "type": "api-call-service",
+        "z": "7a29c613.b063d8",
+        "name": "Turn on living room lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "group.living_room",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 970,
+        "y": 540,
+        "wires": [
+            [
+                "790012f9.dd246c"
+            ]
+        ]
+    },
+    {
+        "id": "3bc1c346.3473ec",
+        "type": "api-call-service",
+        "z": "7a29c613.b063d8",
+        "name": "Turn off living room lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "group.living_room",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 970,
+        "y": 1140,
+        "wires": [
+            [
+                "790012f9.dd246c"
             ]
         ]
     }
