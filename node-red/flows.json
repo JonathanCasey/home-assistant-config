@@ -7083,7 +7083,7 @@
         "id": "567a2da5.82ad14",
         "type": "api-call-service",
         "z": "bc4cdd27.07d12",
-        "name": "Turn on upstairs bathroom lights",
+        "name": "Turn on all upstairs bathroom lights",
         "server": "2f5bd1e0.67e40e",
         "version": 1,
         "debugenabled": false,
@@ -7096,7 +7096,7 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 1570,
+        "x": 1580,
         "y": 400,
         "wires": [
             [
@@ -7108,7 +7108,7 @@
         "id": "4323a289.d98c8c",
         "type": "api-call-service",
         "z": "bc4cdd27.07d12",
-        "name": "Turn off upstairs bathroom lights",
+        "name": "Turn off all upstairs bathroom lights",
         "server": "2f5bd1e0.67e40e",
         "version": 1,
         "debugenabled": false,
@@ -7121,7 +7121,7 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 1550,
+        "x": 1560,
         "y": 1040,
         "wires": [
             [
