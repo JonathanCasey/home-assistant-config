@@ -7090,17 +7090,17 @@
         "service_domain": "light",
         "service": "turn_on",
         "entityId": "group.upstairs_bathroom",
-        "data": "",
-        "dataType": "json",
+        "data": "$flowContext('pending_brightness') ? {\t  'brightness': $flowContext('pending_brightness.brightness')\t} : {}",
+        "dataType": "jsonata",
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 1550,
+        "x": 1570,
         "y": 400,
         "wires": [
             [
-                "bdfc83d4.9d004"
+                "8c232c56.e74bc"
             ]
         ]
     },
@@ -7393,18 +7393,18 @@
         "id": "78e7e8a1.515548",
         "type": "function",
         "z": "bc4cdd27.07d12",
-        "name": "Which lights (or all)?",
-        "func": "// 0, 3 not expected to be used\nconst light_on_config = {\n    0: [],\n    1: ['light.upstairs_bathroom_middle'],\n    2: ['light.upstairs_bathroom_left',\n            'light.upstairs_bathroom_right'],\n    3: ['light.upstairs_bathroom_left',\n            'light.upstairs_bathroom_middle',\n            'light.upstairs_bathroom_right'],\n};\n\nvar new_msgs = [];\n\nconst num_lights_max = 3;\nvar num_lights_total = 0;\nvar num_lights_on = 0;\n\n\nmsg.payload.forEach((e) => {\n    num_lights_total += 1;\n    if (e.state == 'on') {\n        num_lights_on +=1 ;\n    }\n});\n\n\nif (num_lights_on + 1 >= num_lights_total ||\n        num_lights_on < 0 ||\n        num_lights_total > num_lights_max) {\n    // Route to turn on all lights\n    return [null, msg];\n}\n\n\nfunction build_payload(entity, turn_on) {\n    const payload = {};\n    payload.domain = 'light';\n    \n    if (turn_on) {\n        payload.service = 'turn_on';\n    } else {\n        payload.service = 'turn_off';\n    }\n    \n    payload.data = {\n        entity_id: entity.entity_id\n    };\n    \n    return payload;\n}\n\nconst desired_lights_on = light_on_config[num_lights_on+1];\n\nfunction add_light_msgs(turn_on) {\n    msg.payload.forEach((e) => {\n        if ((desired_lights_on.includes(e.entity_id) &&\n                turn_on) || (!turn_on &&\n                !desired_lights_on.includes(e.entity_id))) {\n            const payload = build_payload(e, turn_on);\n            new_msgs.push({ payload: payload});\n        }\n    });\n}\n\n// Want on first in case overload hub\nadd_light_msgs(true);\nadd_light_msgs(false);\nreturn [new_msgs, null];\n",
+        "name": "Which lights / brightness (or all)?",
+        "func": "// 0, 3 not expected to be used\nconst light_on_config = {\n    0: [],\n    1: ['light.upstairs_bathroom_middle'],\n    2: ['light.upstairs_bathroom_left',\n            'light.upstairs_bathroom_right'],\n    3: ['light.upstairs_bathroom_left',\n            'light.upstairs_bathroom_middle',\n            'light.upstairs_bathroom_right'],\n};\n\nvar new_msgs = [];\n\nconst num_lights_max = 3;\nvar num_lights_total = 0;\nvar num_lights_on = 0;\n\n\nmsg.payload.forEach((e) => {\n    num_lights_total += 1;\n    if (e.state == 'on') {\n        num_lights_on +=1 ;\n    }\n});\n\n\nif (num_lights_on + 1 >= num_lights_total ||\n        num_lights_on < 0 ||\n        num_lights_total > num_lights_max) {\n    // Route to turn on all lights\n    return [null, msg];\n}\n\n\nfunction add_brightness(entity, payload) {\n    if (!flow.get('pending_brightness')) {\n        return;\n    }\n    \n    var pending_lights = flow.get('pending_brightness.pending_lights');\n    var pending_index = pending_lights.indexOf(entity.entity_id);\n    if (pending_index == -1) {\n        return;\n    }\n    \n    payload.data.brightness = flow.get('pending_brightness.brightness');\n    // Delete pending light from list\n    pending_lights.splice(pending_index, 1);\n    \n    if (pending_lights.length === 0) {\n        flow.set('pending_brightness', undefined);\n    }\n}\n\n\nfunction build_payload(entity, turn_on) {\n    const payload = {};\n    payload.domain = 'light';\n    \n    if (turn_on) {\n        payload.service = 'turn_on';\n    } else {\n        payload.service = 'turn_off';\n    }\n    \n    payload.data = {\n        entity_id: entity.entity_id\n    };\n    \n    if (turn_on) {\n        add_brightness(entity, payload);\n    }\n    \n    return payload;\n}\n\nconst desired_lights_on = light_on_config[num_lights_on+1];\n\nfunction add_light_msgs(turn_on) {\n    msg.payload.forEach((e) => {\n        if ((desired_lights_on.includes(e.entity_id) &&\n                turn_on) || (!turn_on &&\n                !desired_lights_on.includes(e.entity_id))) {\n            const payload = build_payload(e, turn_on);\n            new_msgs.push({ payload: payload});\n        }\n    });\n}\n\n// Want on first in case overload hub\nadd_light_msgs(true);\nadd_light_msgs(false);\nreturn [new_msgs, null];\n",
         "outputs": 2,
         "noerr": 0,
-        "x": 1260,
+        "x": 1270,
         "y": 340,
         "wires": [
             [
                 "65edb766.1b0748"
             ],
             [
-                "567a2da5.82ad14"
+                "fdc8e3dd.02692"
             ]
         ]
     },
@@ -7425,7 +7425,7 @@
         "output_location": "payload",
         "output_location_type": "msg",
         "mustacheAltTags": false,
-        "x": 1550,
+        "x": 1570,
         "y": 280,
         "wires": [
             [
@@ -7477,6 +7477,106 @@
             [
                 "c8fcfd1e.3c3f9"
             ],
+            [
+                "fdc8e3dd.02692"
+            ]
+        ]
+    },
+    {
+        "id": "b57bcf8f.84fe4",
+        "type": "inject",
+        "z": "bc4cdd27.07d12",
+        "name": "Day ended, Night started",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 21 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 310,
+        "y": 140,
+        "wires": [
+            [
+                "bc8c9712.d4dcb8"
+            ]
+        ]
+    },
+    {
+        "id": "145d75d.9914d8a",
+        "type": "inject",
+        "z": "bc4cdd27.07d12",
+        "name": "Day started, Night ended",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "30 04 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 310,
+        "y": 200,
+        "wires": [
+            [
+                "2a862f25.f1b53"
+            ]
+        ]
+    },
+    {
+        "id": "bc8c9712.d4dcb8",
+        "type": "function",
+        "z": "bc4cdd27.07d12",
+        "name": "Queue night brightness",
+        "func": "var data = {}\n\ndata.brightness = 1;\ndata.pending_lights = [\n        'light.upstairs_bathroom_left',\n        'light.upstairs_bathroom_middle',\n        'light.upstairs_bathroom_right',\n];\ndata.pending_clear = false;\n\nflow.set('pending_brightness', data);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 610,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2a862f25.f1b53",
+        "type": "function",
+        "z": "bc4cdd27.07d12",
+        "name": "Queue day brightness",
+        "func": "var data = {}\n\ndata.brightness = Math.round(255*0.8);\ndata.pending_lights = [\n        'light.upstairs_bathroom_left',\n        'light.upstairs_bathroom_middle',\n        'light.upstairs_bathroom_right',\n];\ndata.pending_clear = false;\n\nflow.set('pending_brightness', data);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 600,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8c232c56.e74bc",
+        "type": "function",
+        "z": "bc4cdd27.07d12",
+        "name": "Clear executed pending brightness",
+        "func": "if (flow.get('pending_brightness.pending_clear') === true) {\n    flow.set('pending_brightness', undefined);\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1640,
+        "y": 480,
+        "wires": [
+            [
+                "bdfc83d4.9d004"
+            ]
+        ]
+    },
+    {
+        "id": "fdc8e3dd.02692",
+        "type": "function",
+        "z": "bc4cdd27.07d12",
+        "name": "Flag to clear pending brightness",
+        "func": "if (flow.get('pending_brightness')) {\n    flow.set('pending_brightness.pending_clear', true);\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1250,
+        "y": 400,
+        "wires": [
             [
                 "567a2da5.82ad14"
             ]
