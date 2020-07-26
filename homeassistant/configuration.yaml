@@ -145,6 +145,10 @@ rest_command:
     url: !secret autoremote_msg_mercedes_start
 
 
+roku:
+  - host: 192.168.1.72  # Master bedroom TV
+
+
 system_health:
 sun:
 updater:
