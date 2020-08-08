@@ -23,12 +23,16 @@ portainer/config.json
 node-red/.config.json.backup
 node-red/.sessions.json
 
+# Backup
+backup/backup.conf
+
 # Helper scripts
 
 
 # Security
 *.key
 *.pub
+*.pem
 .secrets.env
 
 # deconz
@@ -37,6 +41,7 @@ node-red/.sessions.json
 
 # Home Assistant
 homeassistant/OZW_Log.txt
+homeassistant/zwcfg_0xe1bc9a5c.xml
 
 # mosquitto
 
