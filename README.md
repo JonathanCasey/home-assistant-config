@@ -6,3 +6,4 @@ Configuration for hassio / home assistant
  - [Setup](docs/setup.md)
  - [Usage](docs/usage.md)
  - [Debug](docs/debug.md)
+ - [Backup](docs/backup.md)

@@ -23,6 +23,9 @@ portainer/config.json
 node-red/.config.json.backup
 node-red/.sessions.json
 
+# Backup
+backup/backup.conf
+
 # Helper scripts
 
 
