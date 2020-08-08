@@ -102,7 +102,7 @@ def build_backup_zip_name():
     git_branch_code = get_git_branch_code()
     git_status_code = get_git_status_code()
 
-    zip_name = f'ha_backup_{timestamp}_{git_hash}_{git_branch_code}'
+    zip_name = f'ha_backup_{timestamp}_{git_hash}-{git_branch_code}'
     if git_status_code:
         zip_name += f'-{git_status_code}'
     zip_name += '.zip'
