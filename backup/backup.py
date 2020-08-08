@@ -9,8 +9,10 @@ Module Attributes:
 (C) Copyright 2020 JC.  All Rights Reserved Worldwide.
 """
 import configparser
+import datetime as dt
 import os
 import os.path
+import subprocess
 import zipfile
 
 
@@ -31,14 +33,79 @@ def load_config_data():
     return dst_root_folder
 
 
+def get_git_branch_code():
+    """Gets the git branch and encodes into a code.
+
+    Format is the branch code of `m`aster, `d`evelop, or other `b`ranch.
+
+    Return:
+      git_branch_code (str): The current git branch code.
+    """
+    ps = subprocess.Popen(('git', 'symbolic-ref', 'HEAD'),
+            stdout=subprocess.PIPE)
+    git_branch = subprocess.check_output(
+            ('sed', '-e', 's/^refs\/heads\///'),
+            stdin=ps.stdout).decode("utf-8").strip()
+
+    if git_branch == 'master':
+        return 'm'
+    elif git_branch == 'develop':
+        return 'd'
+    return 'b'
+
+
+def get_git_status_code():
+    """Gets the git status and encodes general file states.
+
+    Format is `x-y`, where `x` is the listing of all `X` values from the short
+    git status, and `y` is the listing of all `Y` values from the short git
+    status.  Each section puts the letters in alphabetical order, and `?` is
+    replaced by `u`, and `!` is replaced by `i`.
+
+    Returns:
+      git_status_code (str): The git status code summary string.
+    """
+    git_status = subprocess.check_output(
+            ['git', 'status', '--short']).decode("utf-8").strip()
+
+    x_codes = set()
+    y_codes = set()
+
+    for line in git_status.splitlines():
+        x = line[0].replace('?', 'u').replace('!', 'i')
+        y = line[1].replace('?', 'u').replace('!', 'i')
+
+        if x and x != ' ':
+            x_codes.add(x)
+
+        if y and y != ' ':
+            y_codes.add(y)
+
+    x_str = ''.join(sorted(x_codes))
+    y_str = ''.join(sorted(y_codes))
+
+    if not x_codes and not y_codes:
+        return ''
+
+    return f'{x_str}-{y_str}'
+
+
 def build_backup_zip_name():
     """Builds the backup zip file name (no dirs).
 
     Returns:
       zip_name (str): The name of the zip file to use for this backup.
     """
-    # TEMP: Hardcoding name for a hot sec...
-    zip_name = 'test.zip'
+    timestamp = dt.datetime.now().strftime('%Y%m%d-%H%M%S')
+    git_hash = subprocess.check_output(
+            ['git', 'rev-parse', '--short', 'HEAD']).decode("utf-8").strip()
+    git_branch_code = get_git_branch_code()
+    git_status_code = get_git_status_code()
+
+    zip_name = f'ha_backup_{timestamp}_{git_hash}_{git_branch_code}'
+    if git_status_code:
+        zip_name += f'-{git_status_code}'
+    zip_name += '.zip'
     return zip_name
 
 
