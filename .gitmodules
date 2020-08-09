@@ -4,6 +4,6 @@
 [submodule "rogro82__hass-variables"]
 	path = homeassistant/submods/rogro82__hass-variables
   url = git@github.com:rogro82/hass-variables.git
-[submodule "homeassistant/submods/hacs__integration"]
+[submodule "hacs__integration"]
 	path = homeassistant/submods/hacs__integration
 	url = git@github.com:hacs/integration.git
