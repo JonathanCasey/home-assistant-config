@@ -4,3 +4,7 @@
 [submodule "rogro82__hass-variables"]
 	path = homeassistant/submods/rogro82__hass-variables
   url = git@github.com:rogro82/hass-variables.git
+[submodule "keatontaylor__alexa-actions"]
+	path = homeassistant/submods/keatontaylor__alexa-actions
+	url = git@github.com:keatontaylor/alexa-actions.git
+	branch = master
