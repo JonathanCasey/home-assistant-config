@@ -133,6 +133,13 @@
         "info": ""
     },
     {
+        "id": "b9e6e1b8.4fd",
+        "type": "tab",
+        "label": "Alexa Actionable Notifications Example",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -7579,6 +7586,1349 @@
         "wires": [
             [
                 "567a2da5.82ad14"
+            ]
+        ]
+    },
+    {
+        "id": "7a632496.3b0ccc",
+        "type": "server-events",
+        "z": "b9e6e1b8.4fd",
+        "name": "Alexa Actionable Notification",
+        "server": "2f5bd1e0.67e40e",
+        "event_type": "alexa_actionable_notification",
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "x": 300,
+        "y": 520,
+        "wires": [
+            [
+                "8bb05090.e0387",
+                "270460c5.90df7"
+            ]
+        ]
+    },
+    {
+        "id": "8bb05090.e0387",
+        "type": "switch",
+        "z": "b9e6e1b8.4fd",
+        "name": "Event IDs",
+        "property": "payload.event.event_id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "actionable_notification_event_name",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "actionable_notification_another_name",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "actionable_notification_event_cascade1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "actionable_notification_event_cascade2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "more",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "even more",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 6,
+        "x": 500,
+        "y": 520,
+        "wires": [
+            [
+                "ca61ef8b.773a7"
+            ],
+            [
+                "99f6f0d4.49a1b"
+            ],
+            [
+                "79eb093d.bd9c38"
+            ],
+            [
+                "d00fa421.51d158"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "847176eb.c082c8",
+        "type": "link in",
+        "z": "b9e6e1b8.4fd",
+        "name": "1",
+        "links": [
+            "ca61ef8b.773a7"
+        ],
+        "x": 1155,
+        "y": 400,
+        "wires": [
+            [
+                "7e686526.2a917c"
+            ]
+        ]
+    },
+    {
+        "id": "ca61ef8b.773a7",
+        "type": "link out",
+        "z": "b9e6e1b8.4fd",
+        "name": "1",
+        "links": [
+            "847176eb.c082c8"
+        ],
+        "x": 615,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "c98b610f.6e334",
+        "type": "bigtimer",
+        "z": "b9e6e1b8.4fd",
+        "outtopic": "",
+        "outpayload1": "On",
+        "outpayload2": "",
+        "name": "Timer Based",
+        "comment": "",
+        "starttime": "720",
+        "endtime": "0",
+        "starttime2": 0,
+        "endtime2": 0,
+        "startoff": 0,
+        "endoff": 0,
+        "startoff2": 0,
+        "endoff2": 0,
+        "offs": 0,
+        "outtext1": "",
+        "outtext2": "",
+        "timeout": 1440,
+        "sun": true,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "jan": true,
+        "feb": true,
+        "mar": true,
+        "apr": true,
+        "may": true,
+        "jun": true,
+        "jul": true,
+        "aug": true,
+        "sep": true,
+        "oct": true,
+        "nov": true,
+        "dec": true,
+        "day1": 0,
+        "month1": 0,
+        "day2": 0,
+        "month2": 0,
+        "day3": 0,
+        "month3": 0,
+        "day4": 0,
+        "month4": 0,
+        "day5": 0,
+        "month5": 0,
+        "day6": 0,
+        "month6": 0,
+        "day7": "",
+        "month7": "",
+        "day8": "",
+        "month8": "",
+        "day9": "",
+        "month9": "",
+        "day10": "",
+        "month10": "",
+        "day11": "",
+        "month11": "",
+        "day12": "",
+        "month12": "",
+        "d1": 0,
+        "w1": 0,
+        "d2": 0,
+        "w2": 0,
+        "d3": 0,
+        "w3": 0,
+        "d4": 0,
+        "w4": 0,
+        "d5": 0,
+        "w5": 0,
+        "d6": 0,
+        "w6": 0,
+        "xday1": 0,
+        "xmonth1": 0,
+        "xday2": 0,
+        "xmonth2": 0,
+        "xday3": 0,
+        "xmonth3": 0,
+        "xday4": 0,
+        "xmonth4": 0,
+        "xday5": 0,
+        "xmonth5": 0,
+        "xday6": 0,
+        "xmonth6": 0,
+        "xd1": 0,
+        "xw1": 0,
+        "xd2": 0,
+        "xw2": 0,
+        "xd3": 0,
+        "xw3": 0,
+        "xd4": 0,
+        "xw4": 0,
+        "xd5": 0,
+        "xw5": 0,
+        "xd6": 0,
+        "xw6": 0,
+        "suspend": false,
+        "random": false,
+        "repeat": false,
+        "atstart": false,
+        "odd": false,
+        "even": false,
+        "x": 610,
+        "y": 760,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "6ad0e2d3.0a0a3c",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "Ask",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "script",
+        "service": "activate_alexa_actionable_notification",
+        "entityId": "",
+        "data": "{\"text\":\"Place a Question Here 2\",\"event_id\":\"actionable_notification_another_name\",\"alexa_device\":\"media_player.jonathan_s_master_bedroom_echo_dot\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 790,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9ad7a673.7e1088",
+        "type": "switch",
+        "z": "b9e6e1b8.4fd",
+        "name": "Responses",
+        "property": "payload.event.event_response",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ResponseYes",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ResponseNo",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ResponseNone",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 1310,
+        "y": 740,
+        "wires": [
+            [
+                "6e57e326.6ef15c"
+            ],
+            [
+                "18d225c0.03d73a"
+            ],
+            [
+                "a90bf19c.3a913"
+            ]
+        ]
+    },
+    {
+        "id": "99f6f0d4.49a1b",
+        "type": "link out",
+        "z": "b9e6e1b8.4fd",
+        "name": "2",
+        "links": [
+            "67f074ca.3a573c"
+        ],
+        "x": 715,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "67f074ca.3a573c",
+        "type": "link in",
+        "z": "b9e6e1b8.4fd",
+        "name": "2",
+        "links": [
+            "99f6f0d4.49a1b"
+        ],
+        "x": 895,
+        "y": 920,
+        "wires": [
+            [
+                "dd2d3bd6.12ea18"
+            ]
+        ]
+    },
+    {
+        "id": "eee11a21.e0e128",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "Ask",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "script",
+        "service": "activate_alexa_actionable_notification",
+        "entityId": "",
+        "data": "{\"text\":\"Place a Question Here\",\"event_id\":\"actionable_notification_event_name\",\"alexa_device\":\"media_player.jonathan_s_master_bedroom_echo_dot\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1390,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "11f01d32.b07eb3",
+        "type": "server-state-changed",
+        "z": "b9e6e1b8.4fd",
+        "name": "What do you want to be the trigger",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "x": 1040,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "de118a42.23d428",
+        "type": "comment",
+        "z": "b9e6e1b8.4fd",
+        "name": "Copy these response portions as many times as needed, for as many automations that you want",
+        "info": "",
+        "x": 1290,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "7c4f2967.e16478",
+        "type": "comment",
+        "z": "b9e6e1b8.4fd",
+        "name": "Change what happens for each response based on what you want to happen (call service, for example)",
+        "info": "",
+        "x": 1570,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "1ef5b97a.37a117",
+        "type": "comment",
+        "z": "b9e6e1b8.4fd",
+        "name": "Just add the specific EVENT_ID here that matches what is in the \"Ask\" node then pipe it out to its corrisponding \"Responses\" node",
+        "info": "",
+        "x": 510,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "944095ee.6028b8",
+        "type": "comment",
+        "z": "b9e6e1b8.4fd",
+        "name": "In the \"Ask\" node it gives directions on how to fill it out",
+        "info": "",
+        "x": 1360,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "a395be52.9e19b",
+        "type": "comment",
+        "z": "b9e6e1b8.4fd",
+        "name": "Another example with a timer",
+        "info": "",
+        "x": 700,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "dd2d3bd6.12ea18",
+        "type": "switch",
+        "z": "b9e6e1b8.4fd",
+        "name": "Person IDs",
+        "property": "payload.event.event_person_id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "person1",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "person2",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 1010,
+        "y": 920,
+        "wires": [
+            [
+                "9ad7a673.7e1088"
+            ],
+            [
+                "96f3fff.7a8e6"
+            ],
+            [
+                "24910205.cb504e"
+            ]
+        ]
+    },
+    {
+        "id": "29fbfaaf.5c8486",
+        "type": "comment",
+        "z": "b9e6e1b8.4fd",
+        "name": "Place the unique Person IDs here",
+        "info": "",
+        "x": 990,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "6ca44931.794008",
+        "type": "comment",
+        "z": "b9e6e1b8.4fd",
+        "name": "A blank Person ID will allow a response from anyone",
+        "info": "",
+        "x": 990,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "270460c5.90df7",
+        "type": "debug",
+        "z": "b9e6e1b8.4fd",
+        "name": "Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 250,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "1c24895.c2c7277",
+        "type": "comment",
+        "z": "b9e6e1b8.4fd",
+        "name": "Debug node is only needed to get the exact Person ID",
+        "info": "",
+        "x": 260,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "fe7b0bb1.7be5f8",
+        "type": "comment",
+        "z": "b9e6e1b8.4fd",
+        "name": "Once IDs are obtained for each person this node can be deleted",
+        "info": "",
+        "x": 290,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "7e686526.2a917c",
+        "type": "switch",
+        "z": "b9e6e1b8.4fd",
+        "name": "Responses",
+        "property": "payload.event.event_response",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ResponseYes",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ResponseNo",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ResponseNone",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 1270,
+        "y": 400,
+        "wires": [
+            [
+                "e56e7788.c12e18"
+            ],
+            [
+                "3148c510.60797a"
+            ],
+            [
+                "6efb91ce.3e7dd"
+            ]
+        ]
+    },
+    {
+        "id": "6efb91ce.3e7dd",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "What you want when NOTHING is said",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "light.office_window",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1600,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "96f3fff.7a8e6",
+        "type": "switch",
+        "z": "b9e6e1b8.4fd",
+        "name": "Responses",
+        "property": "payload.event.event_response",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ResponseYes",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ResponseNo",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ResponseNone",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 1310,
+        "y": 880,
+        "wires": [
+            [
+                "911c99bf.6630f8"
+            ],
+            [
+                "3ddaf1d1.faed8e"
+            ],
+            [
+                "445a66ae.260ec8"
+            ]
+        ]
+    },
+    {
+        "id": "24910205.cb504e",
+        "type": "switch",
+        "z": "b9e6e1b8.4fd",
+        "name": "Responses",
+        "property": "payload.event.event_response",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ResponseYes",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ResponseNo",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ResponseNone",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 1310,
+        "y": 1040,
+        "wires": [
+            [
+                "e83f04af.9cd2e8"
+            ],
+            [
+                "1b4b96e3.8bbea9"
+            ],
+            [
+                "8227225e.40119"
+            ]
+        ]
+    },
+    {
+        "id": "3b01d7a2.3b6758",
+        "type": "comment",
+        "z": "b9e6e1b8.4fd",
+        "name": "Cascade example",
+        "info": "",
+        "x": 410,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "31316ea9.c8b9a2",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "Ask",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "script",
+        "service": "activate_alexa_actionable_notification",
+        "entityId": "",
+        "data": "{\"text\":\"Place a Question Here 3\",\"event_id\":\"actionable_notification_event_cascade1\",\"alexa_device\":\"media_player.jonathan_s_master_bedroom_echo_dot\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 470,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d641d7b9.0c9568",
+        "type": "server-state-changed",
+        "z": "b9e6e1b8.4fd",
+        "name": "What do you want to be the trigger",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "x": 240,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "79eb093d.bd9c38",
+        "type": "link out",
+        "z": "b9e6e1b8.4fd",
+        "name": "3",
+        "links": [
+            "44b993d6.e17b9c"
+        ],
+        "x": 735,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "44b993d6.e17b9c",
+        "type": "link in",
+        "z": "b9e6e1b8.4fd",
+        "name": "3",
+        "links": [
+            "79eb093d.bd9c38"
+        ],
+        "x": 155,
+        "y": 1320,
+        "wires": [
+            [
+                "da3bbbce.f84378"
+            ]
+        ]
+    },
+    {
+        "id": "da3bbbce.f84378",
+        "type": "switch",
+        "z": "b9e6e1b8.4fd",
+        "name": "Responses",
+        "property": "payload.event.event_response",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ResponseYes",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ResponseNo",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ResponseNone",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 265,
+        "y": 1320,
+        "wires": [
+            [
+                "fe58eec1.b6ba6"
+            ],
+            [
+                "bbbd587d.d373e8"
+            ],
+            [
+                "7b226cbf.073504"
+            ]
+        ]
+    },
+    {
+        "id": "fe58eec1.b6ba6",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "What you want when YES is said",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "light.office_closet_switch",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 560,
+        "y": 1280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7b226cbf.073504",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "What you want when NO is said",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "light.office_entry",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 535,
+        "y": 1340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bbbd587d.d373e8",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "Ask",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "script",
+        "service": "activate_alexa_actionable_notification",
+        "entityId": "",
+        "data": "{\"text\":\"Place a Question Here 5\",\"event_id\":\"actionable_notification_event_cascade2\",\"alexa_device\":\"media_player.jonathan_s_master_bedroom_echo_dot\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 465,
+        "y": 1400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d00fa421.51d158",
+        "type": "link out",
+        "z": "b9e6e1b8.4fd",
+        "name": "4",
+        "links": [
+            "d944b966.139ce8"
+        ],
+        "x": 620,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "d944b966.139ce8",
+        "type": "link in",
+        "z": "b9e6e1b8.4fd",
+        "name": "4",
+        "links": [
+            "d00fa421.51d158"
+        ],
+        "x": 155,
+        "y": 1520,
+        "wires": [
+            [
+                "bd237b69.13a1f8"
+            ]
+        ]
+    },
+    {
+        "id": "bd237b69.13a1f8",
+        "type": "switch",
+        "z": "b9e6e1b8.4fd",
+        "name": "Responses",
+        "property": "payload.event.event_response",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ResponseYes",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ResponseNo",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ResponseNone",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 270,
+        "y": 1520,
+        "wires": [
+            [
+                "de404974.713278"
+            ],
+            [
+                "85ac37ce.18bc68"
+            ],
+            [
+                "a39de1cc.55749"
+            ]
+        ]
+    },
+    {
+        "id": "de404974.713278",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "What you want when YES is said",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "light.office_window",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 555,
+        "y": 1460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "85ac37ce.18bc68",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "What you want when NO is said",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "light.office_window",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 550,
+        "y": 1520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "db618301.403f5",
+        "type": "comment",
+        "z": "b9e6e1b8.4fd",
+        "name": "Cascade first device",
+        "info": "",
+        "x": 250,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "2ed4e8e1.041208",
+        "type": "comment",
+        "z": "b9e6e1b8.4fd",
+        "name": "Cascade second device",
+        "info": "",
+        "x": 260,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "68b5a33a.98ae6c",
+        "type": "comment",
+        "z": "b9e6e1b8.4fd",
+        "name": "This example loops between two devices forever until it gets a response from one of them",
+        "info": "",
+        "x": 370,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "a39de1cc.55749",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "Ask",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "script",
+        "service": "activate_alexa_actionable_notification",
+        "entityId": "",
+        "data": "{\"text\":\"Place a Question Here 6\",\"event_id\":\"actionable_notification_event_cascade1\",\"alexa_device\":\"media_player.jonathan_s_master_bedroom_echo_dot\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 470,
+        "y": 1580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4827f306.d7809c",
+        "type": "comment",
+        "z": "b9e6e1b8.4fd",
+        "name": "Add more to extend loop",
+        "info": "",
+        "x": 350,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "e56e7788.c12e18",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "What you want when YES is said",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "light.office_closet_switch",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1580,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3148c510.60797a",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "What you want when NO is said",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "light.office_entry",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1570,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a90bf19c.3a913",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "What you want when NOTHING is said",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "light.office_window",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1610,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6e57e326.6ef15c",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "What you want when YES is said",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "light.office_closet_switch",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1590,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "18d225c0.03d73a",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "What you want when NO is said",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "light.office_entry",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1580,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "445a66ae.260ec8",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "What you want when NOTHING is said",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "light.office_window",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1670,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "911c99bf.6630f8",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "What you want when YES is said",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "light.office_closet_switch",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1650,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3ddaf1d1.faed8e",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "What you want when NO is said",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "light.office_entry",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1640,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8227225e.40119",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "What you want when NOTHING is said",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "light.office_window",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1710,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e83f04af.9cd2e8",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "What you want when YES is said",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "light.office_closet_switch",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1690,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1b4b96e3.8bbea9",
+        "type": "api-call-service",
+        "z": "b9e6e1b8.4fd",
+        "name": "What you want when NO is said",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "toggle",
+        "entityId": "light.office_entry",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1680,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cc81c4ae.d77aa8",
+        "type": "inject",
+        "z": "b9e6e1b8.4fd",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 180,
+        "y": 1140,
+        "wires": [
+            [
+                "31316ea9.c8b9a2"
+            ]
+        ]
+    },
+    {
+        "id": "59ff173a.a41758",
+        "type": "inject",
+        "z": "b9e6e1b8.4fd",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 1060,
+        "y": 180,
+        "wires": [
+            [
+                "eee11a21.e0e128"
             ]
         ]
     }

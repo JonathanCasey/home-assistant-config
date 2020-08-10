@@ -4,6 +4,7 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
+        "node-red-contrib-bigtimer": "~2.3.1",
         "node-red-contrib-home-assistant-websocket": "~0.22.2",
         "node-red-contrib-stoptimer": "0.0.7",
         "node-red-contrib-time-range-switch": "~1.0.0"
