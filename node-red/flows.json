@@ -140,6 +140,13 @@
         "info": ""
     },
     {
+        "id": "392db80.c724a48",
+        "type": "tab",
+        "label": "Alexa, Where's the Beer?",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -8929,6 +8936,159 @@
         "wires": [
             [
                 "eee11a21.e0e128"
+            ]
+        ]
+    },
+    {
+        "id": "c2c748e2.645f88",
+        "type": "server-state-changed",
+        "z": "392db80.c724a48",
+        "name": "Requested?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.request_alexa_wheres_the_beer",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 140,
+        "y": 320,
+        "wires": [
+            [
+                "e9183cf0.bcf87",
+                "5bb24db4.6a76a4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e9183cf0.bcf87",
+        "type": "api-call-service",
+        "z": "392db80.c724a48",
+        "name": "Cleared request flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.request_alexa_wheres_the_beer",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 380,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e41ac9ce.5953e8",
+        "type": "api-call-service",
+        "z": "392db80.c724a48",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Alexa, Where's the Beer flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 440,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5bb24db4.6a76a4",
+        "type": "api-call-service",
+        "z": "392db80.c724a48",
+        "name": "Update last called Alexa",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "alexa_media",
+        "service": "update_last_called",
+        "entityId": "",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 390,
+        "y": 320,
+        "wires": [
+            [
+                "84412271.2da62"
+            ]
+        ]
+    },
+    {
+        "id": "84412271.2da62",
+        "type": "api-call-service",
+        "z": "392db80.c724a48",
+        "name": "Give directions",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": true,
+        "service_domain": "notify",
+        "service": "alexa_media",
+        "entityId": "",
+        "data": "{\"target\":[\"{{ states.sensor.last_alexa.state }}\"],\"message\":\"Go downstairs and take a right at the bottom.  It is the last door on the right, past the bathroom.\",\"data\":{\"type\":\"announce\",\"method\":\"all\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 400,
+        "y": 380,
+        "wires": [
+            [
+                "e41ac9ce.5953e8"
+            ]
+        ]
+    },
+    {
+        "id": "57c5d396.65e2fc",
+        "type": "inject",
+        "z": "392db80.c724a48",
+        "name": "",
+        "topic": "Test on last alexa",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 140,
+        "y": 400,
+        "wires": [
+            [
+                "84412271.2da62"
             ]
         ]
     }
