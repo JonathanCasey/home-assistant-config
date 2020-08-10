@@ -93,6 +93,10 @@ input_boolean:
     name: Flag skip next on yamaha
     initial: false
     icon: mdi:skip-next
+  request_alexa_wheres_the_beer:
+    name: Request where's the beer from Alexa
+    initial: false
+    icon: mdi:glass-mug-variant
 
 
 input_select:
