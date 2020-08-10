@@ -169,6 +169,8 @@ roku:
 
 script: !include_dir_merge_named scripts
 
+sensor: !include sensors.yaml
+
 
 system_health:
 sun:
