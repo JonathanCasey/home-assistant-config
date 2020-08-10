@@ -7945,6 +7945,7 @@
         "id": "11f01d32.b07eb3",
         "type": "server-state-changed",
         "z": "b9e6e1b8.4fd",
+        "d": true,
         "name": "What do you want to be the trigger",
         "server": "2f5bd1e0.67e40e",
         "version": 1,
@@ -7959,18 +7960,21 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "",
+        "entityidfilter": "light.office",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
-        "haltifstate": "",
+        "haltifstate": "na",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "outputs": 1,
+        "outputs": 2,
         "output_only_on_state_change": true,
         "x": 1040,
         "y": 220,
         "wires": [
+            [
+                "eee11a21.e0e128"
+            ],
             []
         ]
     },
@@ -8301,6 +8305,7 @@
         "id": "d641d7b9.0c9568",
         "type": "server-state-changed",
         "z": "b9e6e1b8.4fd",
+        "d": true,
         "name": "What do you want to be the trigger",
         "server": "2f5bd1e0.67e40e",
         "version": 1,
@@ -8315,18 +8320,21 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "",
+        "entityidfilter": "light.office",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
-        "haltifstate": "",
+        "haltifstate": "na",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "outputs": 1,
+        "outputs": 2,
         "output_only_on_state_change": true,
         "x": 240,
         "y": 1200,
         "wires": [
+            [
+                "31316ea9.c8b9a2"
+            ],
             []
         ]
     },
