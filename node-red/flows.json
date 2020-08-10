@@ -8974,8 +8974,8 @@
         "halt_if_compare": "is",
         "outputs": 2,
         "output_only_on_state_change": true,
-        "x": 140,
-        "y": 320,
+        "x": 170,
+        "y": 220,
         "wires": [
             [
                 "e9183cf0.bcf87",
@@ -9001,8 +9001,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 380,
-        "y": 240,
+        "x": 420,
+        "y": 160,
         "wires": [
             []
         ]
@@ -9024,8 +9024,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 440,
-        "y": 460,
+        "x": 840,
+        "y": 400,
         "wires": [
             []
         ]
@@ -9047,11 +9047,11 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 390,
-        "y": 320,
+        "x": 420,
+        "y": 220,
         "wires": [
             [
-                "84412271.2da62"
+                "a303f65c.3c3028"
             ]
         ]
     },
@@ -9059,21 +9059,21 @@
         "id": "84412271.2da62",
         "type": "api-call-service",
         "z": "392db80.c724a48",
-        "name": "Give directions",
+        "name": "Give directions from upstairs",
         "server": "2f5bd1e0.67e40e",
         "version": 1,
         "debugenabled": true,
         "service_domain": "notify",
         "service": "alexa_media",
         "entityId": "",
-        "data": "{\"target\":[\"{{ states.sensor.last_alexa.state }}\"],\"message\":\"Go downstairs and take a right at the bottom.  It is the last door on the right, past the bathroom.\",\"data\":{\"type\":\"announce\",\"method\":\"all\"}}",
+        "data": "{\"target\":[\"{{ payload }}\"],\"message\":\"Go downstairs and take a right at the bottom.  It is the last door on the right, past the bathroom.\",\"data\":{\"type\":\"announce\",\"method\":\"all\"}}",
         "dataType": "json",
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 400,
-        "y": 380,
+        "x": 500,
+        "y": 340,
         "wires": [
             [
                 "e41ac9ce.5953e8"
@@ -9081,22 +9081,142 @@
         ]
     },
     {
-        "id": "57c5d396.65e2fc",
-        "type": "inject",
+        "id": "123351a6.947bae",
+        "type": "switch",
         "z": "392db80.c724a48",
-        "name": "",
-        "topic": "Test on last alexa",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 140,
+        "name": "Which Alexa device?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "media_player.jonathan_s_master_bedroom_echo_dot",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "media_player.jonathan_s_dining_room_echo_dot",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "media_player.jonathan_s_living_room_echo_dot",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "media_player.jonathan_s_alexa_apps",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "media_player.this_device",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 6,
+        "x": 200,
         "y": 400,
         "wires": [
             [
                 "84412271.2da62"
+            ],
+            [
+                "84412271.2da62"
+            ],
+            [
+                "6bd63b6e.190684"
+            ],
+            [
+                "3c5232b6.6bf90e"
+            ],
+            [
+                "3c5232b6.6bf90e"
+            ],
+            [
+                "3c5232b6.6bf90e"
+            ]
+        ]
+    },
+    {
+        "id": "a303f65c.3c3028",
+        "type": "api-current-state",
+        "z": "392db80.c724a48",
+        "name": "Get last called Alexa device",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "sensor.last_alexa",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 740,
+        "y": 220,
+        "wires": [
+            [
+                "123351a6.947bae"
+            ]
+        ]
+    },
+    {
+        "id": "6bd63b6e.190684",
+        "type": "api-call-service",
+        "z": "392db80.c724a48",
+        "name": "Give directions from downstairs",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": true,
+        "service_domain": "notify",
+        "service": "alexa_media",
+        "entityId": "",
+        "data": "{\"target\":[\"{{ payload }}\"],\"message\":\"Walk from the living room down the hallway.  It is the last door on the right, past the bathroom.\",\"data\":{\"type\":\"announce\",\"method\":\"all\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 510,
+        "y": 400,
+        "wires": [
+            [
+                "e41ac9ce.5953e8"
+            ]
+        ]
+    },
+    {
+        "id": "3c5232b6.6bf90e",
+        "type": "api-call-service",
+        "z": "392db80.c724a48",
+        "name": "Report unknown location",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": true,
+        "service_domain": "notify",
+        "service": "alexa_media",
+        "entityId": "",
+        "data": "{\"target\":[\"{{ payload }}\"],\"message\":\"Sorry, I do not know where you are, but I hope you find your beer, and yourself.\",\"data\":{\"type\":\"announce\",\"method\":\"all\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 490,
+        "y": 460,
+        "wires": [
+            [
+                "e41ac9ce.5953e8"
             ]
         ]
     }
