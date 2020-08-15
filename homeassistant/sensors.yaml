@@ -8,5 +8,6 @@
           - media_player.jonathan_s_dining_room_echo_dot
           - media_player.jonathan_s_living_room_echo_dot
           - media_player.jonathan_s_master_bedroom_echo_dot
+          - media_player.jonathan_s_office_echo_flex
         value_template: >
           {{ states.media_player | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}

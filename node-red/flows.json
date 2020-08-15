@@ -9100,6 +9100,11 @@
             },
             {
                 "t": "eq",
+                "v": "media_player.jonathan_s_office_echo_flex",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
                 "v": "media_player.jonathan_s_living_room_echo_dot",
                 "vt": "str"
             },
@@ -9119,10 +9124,13 @@
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 6,
+        "outputs": 7,
         "x": 200,
         "y": 400,
         "wires": [
+            [
+                "84412271.2da62"
+            ],
             [
                 "84412271.2da62"
             ],
