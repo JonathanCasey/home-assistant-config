@@ -138,7 +138,7 @@ upstairs_bathroom_individual:
 upstairs_hallway:
   name: Upstairs Hallway
   entities:
-    - light.upstairs_hall
+    - light.upstairs_hallway
 
 upstairs_hallway_individual:
   name: Individual Upstairs Hallway Lights
