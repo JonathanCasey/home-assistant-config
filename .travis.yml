@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.5"
+  - "3.8"
 git:
     # Handle git submodules yourself
     submodules: false
@@ -14,6 +14,6 @@ addons:
     packages:
     - libudev-dev
 install:
-  - pip3 install homeassistant
+  - pip3 install homeassistant==0.113.3
 script:
   - hass --script check_config --config homeassistant
