@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.5"
+  - "3.8"
 git:
     # Handle git submodules yourself
     submodules: false
