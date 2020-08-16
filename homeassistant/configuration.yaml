@@ -23,16 +23,17 @@ alexa:
   smart_home:
     filter:
       exclude_entities:
-        # - group.dining_room
-        - group.downstairs_hallway
-        - group.foyer
-        - group.kitchen
-        - group.living_room
-        - group.master_bedroom
-        - group.office
-        - group.outside
-        - group.upstairs_bathroom
-        - group.upstairs_hallway
+        - light.downstairs_hallway
+        - light.foyer
+        - light.house
+        - light.kitchen
+        - light.laundry_room
+        - light.living_room
+        - light.master_bedroom
+        - light.office
+        - light.outside
+        - light.upstairs_bathroom
+        - light.upstairs_hallway
 
 api:
 

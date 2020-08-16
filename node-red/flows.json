@@ -2616,7 +2616,7 @@
         "debugenabled": false,
         "service_domain": "light",
         "service": "turn_off",
-        "entityId": "group.all_lights_except_living_room",
+        "entityId": "group.all_lights_except_living_room_and_bathrooms",
         "data": "",
         "dataType": "json",
         "mergecontext": "",
@@ -3613,7 +3613,7 @@
         "debugenabled": false,
         "service_domain": "light",
         "service": "turn_on",
-        "entityId": "group.functional_lights",
+        "entityId": "group.house",
         "data": "{\"brightness_pct\":100,\"color_name\":\"red\",\"flash\":\"long\"}",
         "dataType": "json",
         "mergecontext": "",
@@ -4066,7 +4066,7 @@
         "debugenabled": false,
         "service_domain": "light",
         "service": "turn_on",
-        "entityId": "group.functional_lights",
+        "entityId": "group.house",
         "data": "",
         "dataType": "json",
         "mergecontext": "",
@@ -4459,7 +4459,7 @@
         "debugenabled": false,
         "service_domain": "light",
         "service": "turn_on",
-        "entityId": "group.functional_lights",
+        "entityId": "group.house",
         "data": "{\"brightness_pct\":100,\"color_temp\":1}",
         "dataType": "json",
         "mergecontext": "",
@@ -6491,7 +6491,7 @@
             {
                 "property": "entity_id",
                 "logic": "in_group",
-                "value": "group.living_room",
+                "value": "group.living_room_individual",
                 "valueType": "str"
             }
         ],
@@ -7165,7 +7165,7 @@
             {
                 "property": "entity_id",
                 "logic": "in_group",
-                "value": "group.upstairs_bathroom",
+                "value": "group.upstairs_bathroom_individual",
                 "valueType": "str"
             }
         ],
@@ -7385,7 +7385,7 @@
             {
                 "property": "entity_id",
                 "logic": "in_group",
-                "value": "group.upstairs_bathroom",
+                "value": "group.upstairs_bathroom_individual",
                 "valueType": "str"
             }
         ],
