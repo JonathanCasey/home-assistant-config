@@ -9090,32 +9090,32 @@
         "rules": [
             {
                 "t": "eq",
-                "v": "media_player.jonathan_s_master_bedroom_echo_dot",
+                "v": "media_player.alexa_master_bedroom",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "media_player.jonathan_s_dining_room_echo_dot",
+                "v": "media_player.alexa_dining_room",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "media_player.jonathan_s_office_echo_flex",
+                "v": "media_player.alexa_office",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "media_player.jonathan_s_living_room_echo_dot",
+                "v": "media_player.alexa_living_room",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "media_player.jonathan_s_alexa_apps",
+                "v": "media_player.alexa_alexa_apps_jc",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "media_player.this_device",
+                "v": "media_player.alexa_note_10_jc",
                 "vt": "str"
             },
             {
