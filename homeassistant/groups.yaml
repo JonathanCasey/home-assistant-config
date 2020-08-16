@@ -13,7 +13,7 @@ dining_room:
     - light.dining_table_light
 
 dining_room_entire:
-  name: Entire Dining Room
+  name: (Entire) Dining Room
   entities:
     - group.dining_room
     - switch.dining_room_hutch
@@ -37,7 +37,7 @@ kitchen:
     - light.kitchen
 
 kitchen_individual:
-  name: Individual Kitchen Lights
+  name: Kitchen (Individual)
   all: true
   entities:
     - light.kitchen_main_north
@@ -50,7 +50,7 @@ laundry_room:
     - light.laundry_room
 
 laundry_room_individual:
-  name: Individual Laundry Room Lights
+  name: Laundry Room (Individual)
   all: true
   entities:
     - light.laundry_electrical_box
@@ -64,14 +64,14 @@ living_room:
     - light.living_room
 
 living_room_individual:
-  name: Individual Living Room Lights
+  name: Living Room (Individual)
   all: true
   entities:
     - light.living_room_slider
     - light.living_room_tv
 
 living_room_entire:
-  name: Entire Living Room
+  name: (Entire) Living Room
   entities:
     - group.living_room
     - switch.bar_bridge
@@ -83,7 +83,7 @@ master_bedroom:
     - light.master_bedroom
 
 master_bedroom_individual:
-  name: Individual Master Bedroom Lights
+  name: Master Bedroom (Individual)
   all: true
   entities:
     - light.master_bedroom_north
@@ -100,7 +100,7 @@ office:
     - light.office_window
 
 office_individual:
-  name: Individual Office Lights
+  name: Office (Individual)
   all: true
   entities:
     - light.office_closet_switch
@@ -114,7 +114,7 @@ outside:
     - light.outside
 
 outside_individual:
-  name: Individual Outside Lights
+  name: Outside (Individual)
   all: true
   entities:
     - light.outside_front
@@ -127,7 +127,7 @@ upstairs_bathroom:
     - light.upstairs_bathroom
 
 upstairs_bathroom_individual:
-  name: Individual Upstairs Bathroom Lights
+  name: Upstairs Bathroom (Individual)
   all: true
   entities:
     - light.upstairs_bathroom_left
@@ -141,7 +141,7 @@ upstairs_hallway:
     - light.upstairs_hallway
 
 upstairs_hallway_individual:
-  name: Individual Upstairs Hallway Lights
+  name: Upstairs Hallway (Individual)
   all: true
   entities:
     - light.upstairs_hall_north
@@ -168,7 +168,7 @@ house:
     - light.house
 
 house_entire:
-  name: Entire House
+  name: (Entire) House
   entities:
     - group.dining_room_entire
     - light.house
