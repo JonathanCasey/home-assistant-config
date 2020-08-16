@@ -1,30 +1,57 @@
 
+# *_entire: Group indicated by *, plus other auxillary items
+# *_individual: Group indicated by *, but each light bulb individually
+# otherwise: Group for optimal execution speed/reliability
+
+
 
 ########## ----------------------- Full Rooms ------------------------ #########
 
 dining_room:
+  name: Dining Room
   entities:
-    - switch.dining_room_hutch
     - light.dining_table_light
+
+dining_room_entire:
+  name: Entire Dining Room
+  entities:
+    - group.dining_room
+    - switch.dining_room_hutch
 
 
 downstairs_hallway:
+  name: Downstairs Hallway
   entities:
     - light.downstairs_hall_south
 
 
 foyer:
+  name: Foyer
   entities:
     - light.foyer_overhead
 
 
 kitchen:
+  name: Kitchen
+  entities:
+    - light.kitchen
+
+kitchen_individual:
+  name: Individual Kitchen Lights
+  all: true
   entities:
     - light.kitchen_main_north
     - light.kitchen_main_south
 
 
 laundry_room:
+  name: Laundry Room
+  entities:
+    - light.laundry_room
+
+laundry_room_individual:
+  name: Individual Laundry Room Lights
+  all: true
   entities:
     - light.laundry_electrical_box
     - light.laundry_fridge
@@ -32,12 +59,32 @@ laundry_room:
 
 
 living_room:
+  name: Living Room
+  entities:
+    - light.living_room
+
+living_room_individual:
+  name: Individual Living Room Lights
+  all: true
   entities:
     - light.living_room_slider
     - light.living_room_tv
 
+living_room_entire:
+  name: Entire Living Room
+  entities:
+    - group.living_room
+    - switch.bar_bridge
+
 
 master_bedroom:
+  name: Master Bedroom
+  entities:
+    - light.master_bedroom
+
+master_bedroom_individual:
+  name: Individual Master Bedroom Lights
+  all: true
   entities:
     - light.master_bedroom_north
     - light.master_bedroom_south
@@ -46,6 +93,15 @@ master_bedroom:
 
 
 office:
+  name: Office
+  entities:
+    - light.office_closet_switch
+    - light.office_entry
+    - light.office_window
+
+office_individual:
+  name: Individual Office Lights
+  all: true
   entities:
     - light.office_closet_switch
     - light.office_entry
@@ -53,19 +109,26 @@ office:
 
 
 outside:
+  name: Outside
+  entities:
+    - light.outside
+
+outside_individual:
+  name: Individual Outside Lights
+  all: true
   entities:
     - light.outside_front
     - light.outside_kitchen
 
 
-triggered_alarms:
-  name: Triggered Alarms
-  entities:
-    - input_boolean.car_alarm_triggered
-    - input_boolean.house_alarm_triggered
-
-
 upstairs_bathroom:
+  name: Upstairs Bathroom
+  entities:
+    - light.upstairs_bathroom
+
+upstairs_bathroom_individual:
+  name: Individual Upstairs Bathroom Lights
+  all: true
   entities:
     - light.upstairs_bathroom_left
     - light.upstairs_bathroom_middle
@@ -73,6 +136,13 @@ upstairs_bathroom:
 
 
 upstairs_hallway:
+  name: Upstairs Hallway
+  entities:
+    - light.upstairs_hall
+
+upstairs_hallway_individual:
+  name: Individual Upstairs Hallway Lights
+  all: true
   entities:
     - light.upstairs_hall_north
     - light.upstairs_hall_south
@@ -80,7 +150,9 @@ upstairs_hallway:
 
 
 ########## ------------------------ Sub Rooms ------------------------ #########
+
 washer_and_fridge:
+  name: Washer and Fridge Lights
   entities:
     - light.laundry_fridge
     - light.laundry_washer
@@ -88,23 +160,43 @@ washer_and_fridge:
 
 
 ########## ------------------- Hybrid/Zone Groups -------------------- #########
-functional_lights:
+
+house:
+  name: House
   entities:
+    - group.dining_room
     - light.house
-    - light.dining_table_light
+
+house_entire:
+  name: Entire House
+  entities:
+    - group.dining_room_entire
+    - light.house
+    - switch.bar_bridge
+
+
+dining_and_kitchen:
+  name: Dining, Kitchen
+  entities:
+    - group.dining_room
+    - group.kitchen
 
 
 
 ########## --------------------- Negative Groups --------------------- #########
 
-all_lights_except_living_room:
+all_lights_except_living_room_and_bathrooms:
+  name: All Lights except Living Room and Bathrooms
   entities:
     - group.dining_room
-    - group.downstairs_hallway
-    - group.foyer
-    - group.kitchen
-    - group.master_bedroom
-    - group.office
-    - group.outside
-    # - group.upstairs_bathroom
-    - group.upstairs_hallway
+    - light.all_except_living_room_bathroom
+
+
+
+########## ------------------------ None Rooms ------------------------ #########
+
+triggered_alarms:
+  name: Triggered Alarms
+  entities:
+    - input_boolean.car_alarm_triggered
+    - input_boolean.house_alarm_triggered
