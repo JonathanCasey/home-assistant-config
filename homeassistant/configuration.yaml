@@ -130,6 +130,10 @@ input_boolean:
     name: Flag relinquish to motion
     initial: false
     icon: mdi:motion-sensor
+  pending_workout_finish:
+    name: Flag workout finish
+    initial: false
+    icon: mdi:music-rest-whole
   pending_yamaha_skip_next:
     name: Flag skip next on yamaha
     initial: false

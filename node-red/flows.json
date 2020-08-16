@@ -147,6 +147,13 @@
         "info": ""
     },
     {
+        "id": "a28e9600.dc1528",
+        "type": "tab",
+        "label": "Finish Workout",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -9226,6 +9233,285 @@
             [
                 "e41ac9ce.5953e8"
             ]
+        ]
+    },
+    {
+        "id": "6ff9a31.ea1615c",
+        "type": "server-state-changed",
+        "z": "a28e9600.dc1528",
+        "name": "Flagged to finish workout?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.pending_workout_finish",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 150,
+        "y": 460,
+        "wires": [
+            [
+                "eb7e7599.5b5708",
+                "fc9e38e0.a3b1e8",
+                "3f3a9430.ebfdcc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "eb7e7599.5b5708",
+        "type": "api-current-state",
+        "z": "a28e9600.dc1528",
+        "name": "Is yamaha on?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "override_topic": false,
+        "entity_id": "media_player.yamaha_receiver",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 420,
+        "y": 500,
+        "wires": [
+            [
+                "67b02314.fbc45c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "67b02314.fbc45c",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Pause Airplay",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "media_pause",
+        "entityId": "media_player.yamaha_receiver",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 640,
+        "y": 500,
+        "wires": [
+            [
+                "9d5ebc30.eec99"
+            ]
+        ]
+    },
+    {
+        "id": "fc9e38e0.a3b1e8",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Clear finish workout flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.pending_workout_finish",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 450,
+        "y": 300,
+        "wires": [
+            [
+                "88e01428.13a4d8"
+            ]
+        ]
+    },
+    {
+        "id": "88e01428.13a4d8",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Finish Workout flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 780,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9d5ebc30.eec99",
+        "type": "delay",
+        "z": "a28e9600.dc1528",
+        "name": "Allow 1s to pause",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 850,
+        "y": 500,
+        "wires": [
+            [
+                "b0d7d07c.34c0b"
+            ]
+        ]
+    },
+    {
+        "id": "b0d7d07c.34c0b",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Change source back to Shield",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "select_source",
+        "entityId": "media_player.yamaha_receiver",
+        "data": "{\"source\":\"Nvidia Shield\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 470,
+        "y": 600,
+        "wires": [
+            [
+                "bb963c0d.8362"
+            ]
+        ]
+    },
+    {
+        "id": "bb963c0d.8362",
+        "type": "delay",
+        "z": "a28e9600.dc1528",
+        "name": "Allow 1s to change source",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 770,
+        "y": 600,
+        "wires": [
+            [
+                "b6da1e8a.6fe0f"
+            ]
+        ]
+    },
+    {
+        "id": "b6da1e8a.6fe0f",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Turn off yamaha",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "turn_off",
+        "entityId": "media_player.yamaha_receiver",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 420,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3f3a9430.ebfdcc",
+        "type": "delay",
+        "z": "a28e9600.dc1528",
+        "name": "Allow 30s to leave room",
+        "pauseType": "delay",
+        "timeout": "30",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 450,
+        "y": 420,
+        "wires": [
+            [
+                "d4393221.77afa"
+            ]
+        ]
+    },
+    {
+        "id": "d4393221.77afa",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Turn off living room lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "ligh",
+        "service": "turn_off",
+        "entityId": "group.living_room",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 750,
+        "y": 420,
+        "wires": [
+            []
         ]
     }
 ]
