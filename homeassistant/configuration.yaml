@@ -25,6 +25,7 @@ alexa:
       exclude_entities:
         - light.downstairs_hallway
         - light.foyer
+        - light.guest_bedroom
         - light.house
         - light.kitchen
         - light.laundry_room
