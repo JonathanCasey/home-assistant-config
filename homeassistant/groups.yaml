@@ -31,10 +31,30 @@ foyer:
     - light.foyer_overhead
 
 
+guest_bedroom:
+  name: Guest Bedroom
+  entities:
+    - light.guest_bedroom
+
+guest_bedroom_individual:
+  name: Guest Bedroom (Individual)
+  all: true
+  entities:
+    - light.guest_bedroom_entry
+    - light.guest_bedroom_closet
+    - light.guest_bedroom_window
+    - light.guest_bedroom_inside_corner
+
+
 kitchen:
   name: Kitchen
   entities:
-    - light.kitchen
+    - light.kitchen_main_overhead
+
+kitchen_sink:
+  name: Kitchen Sink
+  entities:
+    - light.kitchen_sink_overhead
 
 kitchen_individual:
   name: Kitchen (Individual)
@@ -42,6 +62,13 @@ kitchen_individual:
   entities:
     - light.kitchen_main_north
     - light.kitchen_main_south
+    - light.kitchen_sink_north
+    - light.kitchen_sink_south
+
+kitchen_entire:
+  name: (Entire) Kitchen
+  entities:
+    - light.kitchen
 
 
 laundry_room:
