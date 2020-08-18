@@ -9499,7 +9499,7 @@
         "server": "2f5bd1e0.67e40e",
         "version": 1,
         "debugenabled": false,
-        "service_domain": "ligh",
+        "service_domain": "light",
         "service": "turn_off",
         "entityId": "group.living_room",
         "data": "",
