@@ -9441,31 +9441,8 @@
         "y": 600,
         "wires": [
             [
-                "b6da1e8a.6fe0f"
+                "f6a7909b.d74c8"
             ]
-        ]
-    },
-    {
-        "id": "b6da1e8a.6fe0f",
-        "type": "api-call-service",
-        "z": "a28e9600.dc1528",
-        "name": "Turn off yamaha",
-        "server": "2f5bd1e0.67e40e",
-        "version": 1,
-        "debugenabled": false,
-        "service_domain": "media_player",
-        "service": "turn_off",
-        "entityId": "media_player.yamaha_receiver",
-        "data": "",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": false,
-        "x": 420,
-        "y": 680,
-        "wires": [
-            []
         ]
     },
     {
@@ -9510,6 +9487,100 @@
         "mustacheAltTags": false,
         "x": 750,
         "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f6a7909b.d74c8",
+        "type": "delay",
+        "z": "a28e9600.dc1528",
+        "name": "Allow 15s for TV to turn on from Shield CEC",
+        "pauseType": "delay",
+        "timeout": "15",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 630,
+        "y": 680,
+        "wires": [
+            [
+                "f38c1a14.d41eb8"
+            ]
+        ]
+    },
+    {
+        "id": "f38c1a14.d41eb8",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Turn off Shield (and TV)",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "turn_off",
+        "entityId": "media_player.living_room_nvidia_shield",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 450,
+        "y": 760,
+        "wires": [
+            [
+                "a1562502.e40fe8"
+            ]
+        ]
+    },
+    {
+        "id": "a1562502.e40fe8",
+        "type": "delay",
+        "z": "a28e9600.dc1528",
+        "name": "Allow 1s for CEC to go thru",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 800,
+        "y": 760,
+        "wires": [
+            [
+                "e4df0ccb.23ae9"
+            ]
+        ]
+    },
+    {
+        "id": "e4df0ccb.23ae9",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Turn off Yamaha",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "turn_off",
+        "entityId": "media_player.yamaha_receiver",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 420,
+        "y": 840,
         "wires": [
             []
         ]
