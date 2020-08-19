@@ -95,7 +95,7 @@ kitchen:
 kitchen_entire:
   name: (Entire) Kitchen
   entities:
-    - light.kitchen
+    - light.kitchen_2 # Hue group including main + sink
 
 
 # Grouping just for lovelace -- See lights.yaml for one to use
