@@ -3697,7 +3697,7 @@
             {
                 "property": "",
                 "logic": "jsonata",
-                "value": "$exists($entity().attributes.is_hue_group) = false",
+                "value": "($exists($entity().attributes.is_hue_group)\t    = false)\t  and\t($exists($entity().attributes.entity_id)\t    = false)",
                 "valueType": "jsonata"
             },
             {
