@@ -1,226 +1,255 @@
 
-# *_entire: Group indicated by *, plus other auxillary items
+# *_entire: Group indicated by *, optimal execution, plus other auxillary items
 # *_individual: Group indicated by *, but each light bulb individually
 # otherwise: Group for optimal execution speed/reliability
+
+# Groups purely of lights moved to lights.yaml for enhanced functionality
 
 
 
 ########## ----------------------- Full Rooms ------------------------ #########
 
-dining_room:
-  name: Dining Room
-  entities:
-    - light.dining_table_light
+# -- See lights.yaml
+# dining_room:
+#   name: Dining Room
+#   entities:
+#     - light.dining_table_light
 
 dining_room_entire:
   name: (Entire) Dining Room
   entities:
-    - group.dining_room
+    - light.dining_room
     - switch.dining_room_hutch
 
 
-downstairs_hallway:
-  name: Downstairs Hallway
-  entities:
-    - light.downstairs_hall_south
+# -- See lights.yaml
+# downstairs_hallway:
+#   name: Downstairs Hallway
+#   entities:
+#     - light.downstairs_hall_south
 
 
-foyer:
-  name: Foyer
-  entities:
-    - light.foyer_overhead
+# -- See lights.yaml
+# foyer:
+#   name: Foyer
+#   entities:
+#     - light.foyer_overhead
 
 
-guest_bedroom:
-  name: Guest Bedroom
-  entities:
-    - light.guest_bedroom
+# -- See lights.yaml
+# guest_bedroom:
+#   name: Guest Bedroom
+#   entities:
+#     - light.guest_bedroom
 
-guest_bedroom_individual:
-  name: Guest Bedroom (Individual)
-  all: true
-  entities:
-    - light.guest_bedroom_entry
-    - light.guest_bedroom_closet
-    - light.guest_bedroom_window
-    - light.guest_bedroom_inside_corner
+# -- See lights.yaml
+# guest_bedroom_individual:
+#   name: Guest Bedroom (Individual)
+#   all: true
+#   entities:
+#     - light.guest_bedroom_entry
+#     - light.guest_bedroom_closet
+#     - light.guest_bedroom_window
+#     - light.guest_bedroom_inside_corner
 
 
-kitchen:
-  name: Kitchen
-  entities:
-    - light.kitchen_main_overhead
+# -- See lights.yaml
+# kitchen:
+#   name: Kitchen
+#   entities:
+#     - light.kitchen_main_overhead
 
-kitchen_sink:
-  name: Kitchen Sink
-  entities:
-    - light.kitchen_sink_overhead
+# -- See lights.yaml
+# kitchen_sink:
+#   name: Kitchen Sink
+#   entities:
+#     - light.kitchen_sink_overhead
 
-kitchen_individual:
-  name: Kitchen (Individual)
-  all: true
-  entities:
-    - light.kitchen_main_north
-    - light.kitchen_main_south
-    - light.kitchen_sink_north
-    - light.kitchen_sink_south
+# -- See lights.yaml
+# kitchen_individual:
+#   name: Kitchen (Individual)
+#   all: true
+#   entities:
+#     - light.kitchen_main_north
+#     - light.kitchen_main_south
+#     - light.kitchen_sink_north
+#     - light.kitchen_sink_south
 
+# Should be lights.yaml, but naming consistency wins this round...
 kitchen_entire:
   name: (Entire) Kitchen
   entities:
     - light.kitchen
 
 
-laundry_room:
-  name: Laundry Room
-  entities:
-    - light.laundry_room
+# -- See lights.yaml
+# laundry_room:
+#   name: Laundry Room
+#   entities:
+#     - light.laundry_room
 
-laundry_room_individual:
-  name: Laundry Room (Individual)
-  all: true
-  entities:
-    - light.laundry_electrical_box
-    - light.laundry_fridge
-    - light.laundry_washer
+# -- See lights.yaml
+# laundry_room_individual:
+#   name: Laundry Room (Individual)
+#   all: true
+#   entities:
+#     - light.laundry_electrical_box
+#     - light.laundry_fridge
+#     - light.laundry_washer
 
 
-living_room:
-  name: Living Room
-  entities:
-    - light.living_room
+# -- See lights.yaml
+# living_room:
+#   name: Living Room
+#   entities:
+#     - light.living_room
 
-living_room_individual:
-  name: Living Room (Individual)
-  all: true
-  entities:
-    - light.living_room_slider
-    - light.living_room_tv
+# -- See lights.yaml
+# living_room_individual:
+#   name: Living Room (Individual)
+#   all: true
+#   entities:
+#     - light.living_room_slider
+#     - light.living_room_tv
 
 living_room_entire:
   name: (Entire) Living Room
   entities:
-    - group.living_room
+    - light.living_room
     - switch.bar_bridge
 
 
-master_bedroom:
-  name: Master Bedroom
-  entities:
-    - light.master_bedroom
+# -- See lights.yaml
+# master_bedroom:
+#   name: Master Bedroom
+#   entities:
+#     - light.master_bedroom
 
-master_bedroom_individual:
-  name: Master Bedroom (Individual)
-  all: true
-  entities:
-    - light.master_bedroom_north
-    - light.master_bedroom_south
-    - light.master_bedroom_entry_north
-    - light.master_bedroom_entry_south
-
-
-office:
-  name: Office
-  entities:
-    - light.office_closet_switch
-    - light.office_entry
-    - light.office_window
-
-office_individual:
-  name: Office (Individual)
-  all: true
-  entities:
-    - light.office_closet_switch
-    - light.office_entry
-    - light.office_window
+# -- See lights.yaml
+# master_bedroom_individual:
+#   name: Master Bedroom (Individual)
+#   all: true
+#   entities:
+#     - light.master_bedroom_north
+#     - light.master_bedroom_south
+#     - light.master_bedroom_entry_north
+#     - light.master_bedroom_entry_south
 
 
-outside:
-  name: Outside
-  entities:
-    - light.outside
+# -- See lights.yaml
+# office:
+#   name: Office
+#   entities:
+#     - light.office_closet_switch
+#     - light.office_entry
+#     - light.office_window
 
-outside_individual:
-  name: Outside (Individual)
-  all: true
-  entities:
-    - light.outside_front
-    - light.outside_kitchen
-
-
-upstairs_bathroom:
-  name: Upstairs Bathroom
-  entities:
-    - light.upstairs_bathroom
-
-upstairs_bathroom_individual:
-  name: Upstairs Bathroom (Individual)
-  all: true
-  entities:
-    - light.upstairs_bathroom_left
-    - light.upstairs_bathroom_middle
-    - light.upstairs_bathroom_right
+# -- See lights.yaml
+# office_individual:
+#   name: Office (Individual)
+#   all: true
+#   entities:
+#     - light.office_closet_switch
+#     - light.office_entry
+#     - light.office_window
 
 
-upstairs_hallway:
-  name: Upstairs Hallway
-  entities:
-    - light.upstairs_hallway
+# -- See lights.yaml
+# outside:
+#   name: Outside
+#   entities:
+#     - light.outside
 
-upstairs_hallway_individual:
-  name: Upstairs Hallway (Individual)
-  all: true
-  entities:
-    - light.upstairs_hall_north
-    - light.upstairs_hall_south
+# -- See lights.yaml
+# outside_individual:
+#   name: Outside (Individual)
+#   all: true
+#   entities:
+#     - light.outside_front
+#     - light.outside_kitchen
+
+
+# -- See lights.yaml
+# upstairs_bathroom:
+#   name: Upstairs Bathroom
+#   entities:
+#     - light.upstairs_bathroom
+
+# -- See lights.yaml
+# upstairs_bathroom_individual:
+#   name: Upstairs Bathroom (Individual)
+#   all: true
+#   entities:
+#     - light.upstairs_bathroom_left
+#     - light.upstairs_bathroom_middle
+#     - light.upstairs_bathroom_right
+
+
+# -- See lights.yaml
+# upstairs_hallway:
+#   name: Upstairs Hallway
+#   entities:
+#     - light.upstairs_hallway
+
+# -- See lights.yaml
+# upstairs_hallway_individual:
+#   name: Upstairs Hallway (Individual)
+#   all: true
+#   entities:
+#     - light.upstairs_hall_north
+#     - light.upstairs_hall_south
 
 
 
 ########## ------------------------ Sub Rooms ------------------------ #########
 
-washer_and_fridge:
-  name: Washer and Fridge Lights
-  entities:
-    - light.laundry_fridge
-    - light.laundry_washer
+# -- See lights.yaml
+# washer_and_fridge:
+#   name: Washer and Fridge Lights
+#   entities:
+#     - light.laundry_fridge
+#     - light.laundry_washer
 
 
 
 ########## ------------------- Hybrid/Zone Groups -------------------- #########
 
-house:
-  name: House
-  entities:
-    - group.dining_room
-    - light.house
+# -- See lights.yaml
+# house:
+#   name: House
+#   entities:
+#     - group.dining_room
+#     - light.house
 
 house_entire:
   name: (Entire) House
   entities:
-    - group.dining_room_entire
-    - light.house
+    - light.house_lights
     - switch.bar_bridge
+    - switch.dining_room_hutch
 
 
-dining_and_kitchen:
-  name: Dining, Kitchen
-  entities:
-    - group.dining_room
-    - group.kitchen
+# -- See lights.yaml
+# dining_and_kitchen:
+#   name: Dining, Kitchen
+#   entities:
+#     - group.dining_room
+#     - group.kitchen
 
 
 
 ########## --------------------- Negative Groups --------------------- #########
 
-all_lights_except_living_room_and_bathrooms:
-  name: All Lights except Living Room and Bathrooms
-  entities:
-    - group.dining_room
-    - light.all_except_living_room_bathroom
+# -- See lights.yaml
+# all_lights_except_living_room_and_bathrooms:
+#   name: All Lights except Living Room and Bathrooms
+#   entities:
+#     - group.dining_room
+#     - light.all_except_living_room_bathroom
 
 
 
-########## ------------------------ None Rooms ------------------------ #########
+########## ------------------------ None Rooms ----------------------- #########
 
 triggered_alarms:
   name: Triggered Alarms
