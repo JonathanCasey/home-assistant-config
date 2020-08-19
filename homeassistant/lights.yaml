@@ -1,0 +1,217 @@
+
+# *_entire: Group indicated by *, plus other auxillary items
+# *_individual: Group indicated by *, but each light bulb individually
+# otherwise: Group for optimal execution speed/reliability
+
+# Hue group used where same exact desired name and entities
+# For light groups including non-light entities, see groups.yaml
+
+
+
+########## ----------------------- Full Rooms ------------------------ #########
+
+- platform: group
+  name: Dining Room
+  entities:
+    - light.dining_table_light
+
+
+# -- See Hue group (same name)
+# - platform: group
+#   name: Downstairs Hallway
+#   entities:
+#     - light.downstairs_hallway_2
+#     - light.downstairs_hall_south
+
+# -- See Hue group (same name)
+# - platform: group
+#   name: Foyer
+#   entities:
+#     - light.foyer_2
+#     - light.foyer_overhead
+
+
+# -- See Hue group (same name)
+# - platform: group
+#   name: Guest Bedroom
+#   entities:
+#     - light.guest_bedroom_2
+
+- platform: group
+  name: Guest Bedroom (Individual)
+  # all: true
+  entities:
+    - light.guest_bedroom_entry
+    - light.guest_bedroom_closet
+    - light.guest_bedroom_window
+    - light.guest_bedroom_inside_corner
+
+
+- platform: group
+  name: Kitchen
+  entities:
+    - light.kitchen_main_overhead
+
+- platform: group
+  name: Kitchen Sink
+  entities:
+    - light.kitchen_sink_overhead
+
+- platform: group
+  name: Kitchen (Individual)
+  # all: true
+  entities:
+    - light.kitchen_main_north
+    - light.kitchen_main_south
+    - light.kitchen_sink_north
+    - light.kitchen_sink_south
+
+# Should be here, but for naming convention consistency, moved to groups.yaml
+# - platform: group
+#   name: (Entire) Kitchen
+#   entities:
+#     - light.kitchen_2
+
+
+# -- See Hue group (same name)
+# - platform: group
+#   name: Laundry Room
+#   entities:
+#     - light.laundry_room_2
+
+- platform: group
+  name: Laundry Room (Individual)
+  # all: true
+  entities:
+    - light.laundry_electrical_box
+    - light.laundry_fridge
+    - light.laundry_washer
+
+
+# -- See Hue group (same name)
+# - platform: group
+#   name: Living Room
+#   entities:
+#     - light.living_room_2
+
+- platform: group
+  name: Living Room (Individual)
+  # all: true
+  entities:
+    - light.living_room_slider
+    - light.living_room_tv
+
+
+# -- See Hue group (same name)
+# - platform: group
+#   name: Master Bedroom
+#   entities:
+#     - light.master_bedroom_2
+
+- platform: group
+  name: Master Bedroom (Individual)
+  # all: true
+  entities:
+    - light.master_bedroom_north
+    - light.master_bedroom_south
+    - light.master_bedroom_entry_north
+    - light.master_bedroom_entry_south
+
+
+# -- See Hue group (same name)
+# - platform: group
+#   name: Office
+#   entities:
+#     - light.office_2
+
+- platform: group
+  name: Office (Individual)
+  # all: true
+  entities:
+    - light.office_closet_switch
+    - light.office_entry
+    - light.office_window
+
+
+# -- See Hue group (same name)
+# outside:
+#   name: Outside
+#   entities:
+#     - light.outside_2
+
+- platform: group
+  name: Outside (Individual)
+  # all: true
+  entities:
+    - light.outside_front
+    - light.outside_kitchen
+
+
+# -- See Hue group (same name)
+# - platform: group
+#   name: Upstairs Bathroom
+#   entities:
+#     - light.upstairs_bathroom_2
+
+- platform: group
+  name: Upstairs Bathroom (Individual)
+  # all: true
+  entities:
+    - light.upstairs_bathroom_left
+    - light.upstairs_bathroom_middle
+    - light.upstairs_bathroom_right
+
+
+# -- See Hue group (same name)
+# - platform: group
+#   name: Upstairs Hallway
+#   entities:
+#     - light.upstairs_hallway_2
+
+- platform: group
+  name: Upstairs Hallway (Individual)
+  # all: true
+  entities:
+    - light.upstairs_hall_north
+    - light.upstairs_hall_south
+
+
+
+########## ------------------------ Sub Rooms ------------------------ #########
+
+- platform: group
+  name: Washer and Fridge
+  entities:
+    - light.laundry_fridge
+    - light.laundry_washer
+
+
+
+########## ------------------- Hybrid/Zone Groups -------------------- #########
+
+- platform: group
+  name: House Lights
+  entities:
+    - light.dining_room
+    - light.house
+
+
+- platform: group
+  name: Dining, Kitchen
+  entities:
+    - light.dining_room
+    - light.kitchen
+
+
+
+########## --------------------- Negative Groups --------------------- #########
+
+- platform: group
+  name: All Lights except Living Room and Bathrooms
+  entities:
+    - light.dining_room
+    - light.all_except_living_room_bathroom
+
+
+
+########## ------------------------ None Rooms ----------------------- #########

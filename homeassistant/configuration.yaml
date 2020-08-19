@@ -23,19 +23,34 @@ alexa:
   smart_home:
     filter:
       exclude_entities:
-        - light.downstairs_hallway
-        - light.foyer
-        - light.guest_bedroom
-        - light.house
-        - light.kitchen
-        - light.laundry_room
-        - light.living_room
-        - light.master_bedroom
-        - light.office
-        - light.outside
-        - light.upstairs_bathroom
-        - light.upstairs_hallway
+        # Exclude any possible hue group dupes from HA group overrides
+        - light.downstairs_hallway_2
+        - light.foyer_2
+        - light.guest_bedroom_2
+        - light.house_2
+        - light.kitchen_2
+        - light.laundry_room_2
+        - light.living_room_2
+        - light.master_bedroom_2
+        - light.office_2
+        - light.outside_2
+        - light.upstairs_bathroom_2
+        - light.upstairs_hallway_2
 
+        # Group dupes created just for lovelace
+        - group.dining_room
+        - group.downstairs_hallway
+        - group.guest_bedroom
+        - group.kitchen
+        - group.laundry_room
+        - group.living_room
+        - group.master_bedroom
+        - group.office
+        - group.outside
+        - group.upstairs_bathroom
+        - group.upstairs_hallway
+
+        # Exclude all the other Alexa items
         - media_player.alexa_apps_jc
         - media_player.alexa_dining_room
         - media_player.alexa_everywhere
@@ -163,6 +178,8 @@ input_text:
         "This is a test of the alexa actions custom skill. Did it work?",
         "event": "actionable.skill.test"}'
 
+
+light: !include lights.yaml
 
 logbook:
 
