@@ -37,6 +37,19 @@ alexa:
         - light.upstairs_bathroom_2
         - light.upstairs_hallway_2
 
+        # Group dupes created just for lovelace
+        - group.dining_room
+        - group.downstairs_hallway
+        - group.guest_bedroom
+        - group.kitchen
+        - group.laundry_room
+        - group.living_room
+        - group.master_bedroom
+        - group.office
+        - group.outside
+        - group.upstairs_bathroom
+        - group.upstairs_hallway
+
         # Exclude all the other Alexa items
         - media_player.alexa_apps_jc
         - media_player.alexa_dining_room

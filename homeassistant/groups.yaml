@@ -9,11 +9,12 @@
 
 ########## ----------------------- Full Rooms ------------------------ #########
 
-# -- See lights.yaml
-# dining_room:
-#   name: Dining Room
-#   entities:
-#     - light.dining_table_light
+# Grouping just for lovelace -- See lights.yaml for one to use
+dining_room:
+  name: Dining Room
+  entities:
+    - light.dining_room
+    - light.dining_table_light
 
 dining_room_entire:
   name: (Entire) Dining Room
@@ -22,42 +23,57 @@ dining_room_entire:
     - switch.dining_room_hutch
 
 
-# -- See lights.yaml
-# downstairs_hallway:
-#   name: Downstairs Hallway
-#   entities:
-#     - light.downstairs_hall_south
+# Grouping just for lovelace -- See lights.yaml for one to use
+downstairs_hallway:
+  name: Downstairs Hallway
+  entities:
+    - light.downstairs_hallway
+    - light.downstairs_hall_south
 
 
-# -- See lights.yaml
-# foyer:
-#   name: Foyer
-#   entities:
-#     - light.foyer_overhead
+# Grouping just for lovelace -- See lights.yaml for one to use
+foyer:
+  name: Foyer
+  entities:
+    - light.foyer
+    - light.foyer_overhead
 
 
-# -- See lights.yaml
-# guest_bedroom:
-#   name: Guest Bedroom
-#   entities:
-#     - light.guest_bedroom
+# Grouping just for lovelace -- See lights.yaml for one to use
+guest_bedroom:
+  name: Guest Bedroom
+  entities:
+    - light.guest_bedroom
+    - light.guest_bedroom_individual
+    - light.guest_bedroom_entry
+    - light.guest_bedroom_closet
+    - light.guest_bedroom_window
+    - light.guest_bedroom_inside_corner
 
 # -- See lights.yaml
 # guest_bedroom_individual:
 #   name: Guest Bedroom (Individual)
 #   all: true
 #   entities:
-#     - light.guest_bedroom_entry
-#     - light.guest_bedroom_closet
-#     - light.guest_bedroom_window
-#     - light.guest_bedroom_inside_corner
+    # - light.guest_bedroom_entry
+    # - light.guest_bedroom_closet
+    # - light.guest_bedroom_window
+    # - light.guest_bedroom_inside_corner
 
 
-# -- See lights.yaml
-# kitchen:
-#   name: Kitchen
-#   entities:
-#     - light.kitchen_main_overhead
+# Grouping just for lovelace -- See lights.yaml for one to use
+kitchen:
+  name: Kitchen
+  entities:
+    - light.kitchen
+    - light.kitchen_sink
+    - light.kitchen_individual
+    - light.kitchen_main_overhead
+    - light.kitchen_sink_overhead
+    - light.kitchen_main_north
+    - light.kitchen_main_south
+    - light.kitchen_sink_north
+    - light.kitchen_sink_south
 
 # -- See lights.yaml
 # kitchen_sink:
@@ -82,11 +98,16 @@ kitchen_entire:
     - light.kitchen
 
 
-# -- See lights.yaml
-# laundry_room:
-#   name: Laundry Room
-#   entities:
-#     - light.laundry_room
+# Grouping just for lovelace -- See lights.yaml for one to use
+laundry_room:
+  name: Laundry Room
+  entities:
+    - light.laundry_room
+    - light.washer_and_fridge
+    - light.laundry_room_individual
+    - light.laundry_electrical_box
+    - light.laundry_fridge
+    - light.laundry_washer
 
 # -- See lights.yaml
 # laundry_room_individual:
@@ -98,11 +119,14 @@ kitchen_entire:
 #     - light.laundry_washer
 
 
-# -- See lights.yaml
-# living_room:
-#   name: Living Room
-#   entities:
-#     - light.living_room
+# Grouping just for lovelace -- See lights.yaml for one to use
+living_room:
+  name: Living Room
+  entities:
+    - light.living_room
+    - light.living_room_individual
+    - light.living_room_slider
+    - light.living_room_tv
 
 # -- See lights.yaml
 # living_room_individual:
@@ -119,11 +143,16 @@ living_room_entire:
     - switch.bar_bridge
 
 
-# -- See lights.yaml
-# master_bedroom:
-#   name: Master Bedroom
-#   entities:
-#     - light.master_bedroom
+# Grouping just for lovelace -- See lights.yaml for one to use
+master_bedroom:
+  name: Master Bedroom
+  entities:
+    - light.master_bedroom
+    - light.master_bedroom_individual
+    - light.master_bedroom_north
+    - light.master_bedroom_south
+    - light.master_bedroom_entry_north
+    - light.master_bedroom_entry_south
 
 # -- See lights.yaml
 # master_bedroom_individual:
@@ -136,13 +165,15 @@ living_room_entire:
 #     - light.master_bedroom_entry_south
 
 
-# -- See lights.yaml
-# office:
-#   name: Office
-#   entities:
-#     - light.office_closet_switch
-#     - light.office_entry
-#     - light.office_window
+# Grouping just for lovelace -- See lights.yaml for one to use
+office:
+  name: Office
+  entities:
+    - light.office
+    - light.office_individual
+    - light.office_closet_switch
+    - light.office_entry
+    - light.office_window
 
 # -- See lights.yaml
 # office_individual:
@@ -154,11 +185,14 @@ living_room_entire:
 #     - light.office_window
 
 
-# -- See lights.yaml
-# outside:
-#   name: Outside
-#   entities:
-#     - light.outside
+# Grouping just for lovelace -- See lights.yaml for one to use
+outside:
+  name: Outside
+  entities:
+    - light.outside
+    - light.outside_individual
+    - light.outside_front
+    - light.outside_kitchen
 
 # -- See lights.yaml
 # outside_individual:
@@ -169,11 +203,15 @@ living_room_entire:
 #     - light.outside_kitchen
 
 
-# -- See lights.yaml
-# upstairs_bathroom:
-#   name: Upstairs Bathroom
-#   entities:
-#     - light.upstairs_bathroom
+# Grouping just for lovelace -- See lights.yaml for one to use
+upstairs_bathroom:
+  name: Upstairs Bathroom
+  entities:
+    - light.upstairs_bathroom
+    - light.upstairs_bathroom_individual
+    - light.upstairs_bathroom_left
+    - light.upstairs_bathroom_middle
+    - light.upstairs_bathroom_right
 
 # -- See lights.yaml
 # upstairs_bathroom_individual:
@@ -185,11 +223,14 @@ living_room_entire:
 #     - light.upstairs_bathroom_right
 
 
-# -- See lights.yaml
-# upstairs_hallway:
-#   name: Upstairs Hallway
-#   entities:
-#     - light.upstairs_hallway
+# Grouping just for lovelace -- See lights.yaml for one to use
+upstairs_hallway:
+  name: Upstairs Hallway
+  entities:
+    - light.upstairs_hallway
+    - light.upstairs_hallway_individual
+    - light.upstairs_hall_north
+    - light.upstairs_hall_south
 
 # -- See lights.yaml
 # upstairs_hallway_individual:
