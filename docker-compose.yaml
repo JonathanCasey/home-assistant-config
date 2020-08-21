@@ -21,7 +21,7 @@ services:
       retries: 6
 
   deconz:
-    image: marthoc/deconz:amd64-2.05.77
+    image: marthoc/deconz
     container_name: deconz
     network_mode: host
     restart: always
