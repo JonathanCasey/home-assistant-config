@@ -16,6 +16,15 @@ import subprocess
 import zipfile
 
 
+def get_root_dir():
+    """Gets the absolute path to the root dir of this repo.
+
+    Returns:
+      (os.path): Absolute path to the repo root dir.
+    """
+    this_script_dir = os.path.dirname(os.path.realpath(__file__))
+    return os.path.dirname(this_script_dir)
+
 
 def load_config_data():
     """Loads data from config file.
@@ -25,8 +34,11 @@ def load_config_data():
         MUST already exist -- it will NOT be created here to avoid mistakes
         causing possible multiple folders being generated.
     """
+    backup_conf_filepath = os.path.join(get_root_dir(),
+            'backup', 'backup.conf')
+
     cp = configparser.ConfigParser()
-    cp.read('backup.conf')
+    cp.read(backup_conf_filepath)
 
     dst_root_folder = cp['backup']['destination']
 
@@ -42,7 +54,8 @@ def get_git_branch_code():
       git_branch_code (str): The current git branch code.
     """
     ps = subprocess.Popen(('git', 'symbolic-ref', 'HEAD'),
-            stdout=subprocess.PIPE)
+            stdout=subprocess.PIPE,
+            cwd=get_root_dir())
     git_branch = subprocess.check_output(
             ('sed', '-e', 's/^refs\/heads\///'),
             stdin=ps.stdout).decode("utf-8").strip()
@@ -66,7 +79,9 @@ def get_git_status_code():
       git_status_code (str): The git status code summary string.
     """
     git_status = subprocess.check_output(
-            ['git', 'status', '--short']).decode("utf-8").strip()
+                ['git', 'status', '--short'],
+                cwd=get_root_dir()
+            ).decode("utf-8").strip()
 
     x_codes = set()
     y_codes = set()
@@ -98,7 +113,9 @@ def build_backup_zip_name():
     """
     timestamp = dt.datetime.now().strftime('%Y%m%d-%H%M%S')
     git_hash = subprocess.check_output(
-            ['git', 'rev-parse', '--short', 'HEAD']).decode("utf-8").strip()
+            ['git', 'rev-parse', '--short', 'HEAD'],
+            cwd=get_root_dir()
+            ).decode("utf-8").strip()
     git_branch_code = get_git_branch_code()
     git_status_code = get_git_status_code()
 
@@ -139,7 +156,7 @@ def zip_and_save(zip_filepath):
     Args:
       zip_filepath: The full path and filename of the zip file.
     """
-    src_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+    src_dir = get_root_dir()
     zip_file = zipfile.ZipFile(zip_filepath, 'w', zipfile.ZIP_DEFLATED)
 
     for current_dir, sub_dirs, files in os.walk(src_dir):
