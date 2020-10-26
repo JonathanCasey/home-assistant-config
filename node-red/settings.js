@@ -235,11 +235,18 @@ module.exports = {
     // provided here will enable file-based context that flushes to disk every 30 seconds.
     // Refer to the documentation for further options: https://nodered.org/docs/api/context/
     //
-    //contextStorage: {
-    //    default: {
-    //        module:"localfilesystem"
-    //    },
-    //},
+    contextStorage: {
+      default: 'memoryOnly',
+      memoryOnly: {
+          module: 'memory'
+      },
+      file: {
+          module: 'localfilesystem',
+          config: {
+              dir: '/data/config'
+          }
+       }
+    },
 
     // The following property can be used to order the categories in the editor
     // palette. If a node's category is not in the list, the category will get

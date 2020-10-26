@@ -1,0 +1,135 @@
+{
+    "spotlight_sensors": {
+        "binary_sensor.motion_sensor_eco_downstairs_hallway": {
+            "is_endpoint": false,
+            "rooms_for_this": {
+                "light.downstairs_hallway": {
+                    "max_pct": 100
+                }
+            },
+            "rooms_adjacent_with_sensors": [
+                "light.living_room"
+            ],
+            "rooms_adjacent_without_sensors": {
+                "light.foyer": {
+                    "max_pct": 100
+                },
+                "light.washer_and_fridge": {
+                    "max_pct": 100
+                }
+            },
+            "sensors_overlap_into": [
+                "binary_sensor.motion_sensor_eco_living_room"
+            ],
+            "sensors_adjacent": [
+                "binary_sensor.motion_sensor_eco_living_room"
+            ]
+
+
+            ,"other_delayed_off_only_for_this": {
+                "something.yamaha_and_shield": {
+                    "delay": "30m"
+                }
+            }
+
+
+
+        },
+        "binary_sensor.motion_sensor_eco_kitchen": {
+            "is_endpoint": true,
+            "rooms_for_this": {
+                "light.kitchen": {
+                    "max_pct": 100
+                },
+                "light.dining_room": {
+                    "max_pct": 68
+                }
+            },
+            "rooms_adjacent_with_sensors": [
+                "light.upstairs_hallway"
+            ],
+            "rooms_adjacent_without_sensors": {
+
+            },
+            "sensors_overlap_into": [
+
+            ],
+            "sensors_adjacent": [
+                "binary_sensor.motion_sensor_eco_upstairs_hallway"
+            ]
+        },
+        "binary_sensor.motion_sensor_eco_living_room": {
+            "rooms_for_this": {
+                "light.living_room": {
+                    "max_pct": 100
+                }
+            },
+            "is_endpoint": true,
+            "rooms_adjacent_with_sensors": [
+                "light.downstairs_hallway"
+            ],
+            "rooms_adjacent_without_sensors": {
+
+            },
+            "sensors_overlap_into": [
+
+            ],
+            "sensors_adjacent": [
+                "binary_sensor.motion_sensor_eco_downstairs_hallway"
+            ]
+        },
+        "binary_sensor.motion_sensor_eco_office": {
+            "is_endpoint": true,
+            "rooms_for_this": {
+                "light.office": {
+                    "max_pct": 100
+                }
+            },
+            "rooms_adjacent_with_sensors": [
+                "light.upstairs_hallway"
+            ],
+            "rooms_adjacent_without_sensors": {
+
+            },
+            "sensors_overlap_into": [
+
+            ],
+            "sensors_adjacent": [
+                "binary_sensor.motion_sensor_eco_upstairs_hallway"
+            ]
+        },
+        "binary_sensor.motion_sensor_eco_upstairs_hallway": {
+            "is_endpoint": false,
+            "rooms_for_this": {
+                "light.upstairs_hallway": {
+                    "max_pct": 100
+                }
+            },
+            "rooms_adjacent_with_sensors": [
+                "light.kitchen",
+                "light.office"
+            ],
+            "rooms_adjacent_without_sensors": {
+                "light.foyer": {
+                    "max_pct": 100
+                },
+                "light.guest_bedroom": {
+                    "max_pct": 100
+                },
+                "light.master_bedroom": {
+                    "max_pct": 50
+                },
+                "light.upstairs_bathroom": {
+                    "max_pct": 80
+                }
+            },
+            "sensors_overlap_into": [
+                "binary_sensor.motion_sensor_eco_kitchen"
+            ],
+            "sensors_adjacent": [
+                "binary_sensor.motion_sensor_eco_kitchen",
+                "binary_sensor.motion_sensor_eco_office"
+            ]
+        }
+    }
+}
