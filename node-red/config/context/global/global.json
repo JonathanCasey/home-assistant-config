@@ -1,0 +1,301 @@
+{
+    "room_configs": {
+        "room.dining_room": {
+            "is_endpoint": true,
+            "auto-on_devices": {
+                "light.dining_room": {
+
+                }
+            },
+            "off-only_devices": {
+                "switch.dining_room_hutch": {
+
+                }
+            },
+            "rooms_adjacent_with_sensors": [
+                "room.kitchen",
+                "room.upstairs_hallway"
+            ],
+            "rooms_adjacent_without_sensors": [
+
+            ]
+        },
+        "room.downstairs_bathroom": {
+            "is_endpoint": true,
+            "auto-on_devices": {
+
+            },
+            "off-only_devices": {
+
+            },
+            "rooms_adjacent_with_sensors": [
+                "room.downstairs_hallway"
+            ],
+            "rooms_adjacent_without_sensors": [
+
+            ]
+        },
+        "room.downstairs_hallway": {
+            "is_endpoint": false,
+            "auto-on_devices": {
+                "light.downstairs_hallway": {
+
+                }
+            },
+            "off-only_devices": {
+
+            },
+            "rooms_adjacent_with_sensors": [
+                "room.living_room"
+            ],
+            "rooms_adjacent_without_sensors": [
+                "room.downstairs_bathroom",
+                "room.foyer",
+                "room.furnace_room",
+                "room.laundry_room",
+                "room.music_room"
+            ]
+        },
+        "room.foyer": {
+            "is_endpoint": false,
+            "auto-on_devices": {
+                "light.foyer": {
+
+                }
+            },
+            "off-only_devices": {
+
+            },
+            "rooms_adjacent_with_sensors": [
+                "room.downstairs_hallway",
+                "room.upstairs_hallway"
+            ],
+            "rooms_adjacent_without_sensors": [
+
+            ]
+        },
+        "room.furnace_room": {
+            "is_endpoint": true,
+            "auto-on_devices": {
+
+            },
+            "off-only_devices": {
+
+            },
+            "rooms_adjacent_with_sensors": [
+                "room.downstairs_hallway"
+            ],
+            "rooms_adjacent_without_sensors": [
+
+            ]
+        },
+        "room.guest_bedroom": {
+            "is_endpoint": true,
+            "auto-on_devices": {
+                "light.guest_bedroom": {
+
+                }
+            },
+            "off-only_devices": {
+
+            },
+            "rooms_adjacent_with_sensors": [
+                "room.upstairs_hallway"
+            ],
+            "rooms_adjacent_without_sensors": [
+
+            ]
+        },
+        "room.kitchen": {
+            "is_endpoint": true,
+            "auto-on_devices": {
+                "light.kitchen": {
+
+                }
+            },
+            "off-only_devices": {
+                "light.kitchen_sink": {
+
+                }
+            },
+            "rooms_adjacent_with_sensors": [
+                "room.dining_room",
+                "room.upstairs_hallway"
+            ],
+            "rooms_adjacent_without_sensors": [
+
+            ]
+        },
+        "room.laundry_room": {
+            "is_endpoint": true,
+            "auto-on_devices": {
+                "light.washer_and_fridge": {
+
+                }
+            },
+            "off-only_devices": {
+                "light.laundry_room": {
+
+                }
+            },
+            "rooms_adjacent_with_sensors": [
+                "room.downstairs_hallway"
+            ],
+            "rooms_adjacent_without_sensors": [
+                "room.music_room"
+            ]
+        },
+        "room.liquor_room": {
+            "is_endpoint": true,
+            "auto-on_devices": {
+
+            },
+            "off-only_devices": {
+
+            },
+            "rooms_adjacent_with_sensors": [
+                "room.living_room"
+            ],
+            "rooms_adjacent_without_sensors": [
+
+            ]
+        },
+        "room.living_room": {
+            "is_endpoint": true,
+            "auto-on_devices": {
+                "light.living_room": {
+
+                }
+            },
+            "off-only_devices": {
+                "switch.bar_bridge": {
+
+                }
+            },
+            "rooms_adjacent_with_sensors": [
+                "room.downstairs_hallway"
+            ],
+            "rooms_adjacent_without_sensors": [
+                "room.liquor_room"
+            ]
+        },
+        "room.master_bedroom": {
+            "is_endpoint": true,
+            "auto-on_devices": {
+                "light.master_bedroom": {
+
+                }
+            },
+            "off-only_devices": {
+
+            },
+            "rooms_adjacent_with_sensors": [
+                "room.upstairs_hallway"
+            ],
+            "rooms_adjacent_without_sensors": [
+
+            ]
+        },
+        "room.music_room": {
+            "is_endpoint": true,
+            "auto-on_devices": {
+
+            },
+            "off-only_devices": {
+
+            },
+            "rooms_adjacent_with_sensors": [
+                "room.downstairs_hallway"
+            ],
+            "rooms_adjacent_without_sensors": [
+                "room.laundry_room"
+            ]
+        },
+        "room.office": {
+            "is_endpoint": true,
+            "auto-on_devices": {
+                "light.office": {
+
+                }
+            },
+            "off-only_devices": {
+
+            },
+            "rooms_adjacent_with_sensors": [
+                "room.upstairs_hallway"
+            ],
+            "rooms_adjacent_without_sensors": [
+
+            ]
+        },
+        "room.upstairs_bathroom": {
+            "is_endpoint": true,
+            "auto-on_devices": {
+                "light.upstairs_bathroom": {
+
+                }
+            },
+            "off-only_devices": {
+
+            },
+            "rooms_adjacent_with_sensors": [
+                "room.upstairs_hallway"
+            ],
+            "rooms_adjacent_without_sensors": [
+
+            ]
+        },
+        "room.upstairs_hallway": {
+            "is_endpoint": false,
+            "auto-on_devices": {
+                "light.upstairs_hallway": {
+
+                }
+            },
+            "off-only_devices": {
+
+            },
+            "rooms_adjacent_with_sensors": [
+                "room.dining_room",
+                "room.kitchen",
+                "room.office"
+            ],
+            "rooms_adjacent_without_sensors": [
+                "room.foyer",
+                "room.guest_bedroom",
+                "room.master_bedroom",
+                "room.upstairs_bathroom"
+            ]
+        }
+    },
+
+
+    "sensor_configs": {
+        "binary_sensor.motion_sensor_eco_downstairs_hallway": {
+            "rooms_for_this": [
+                "room.downstairs_hallway"
+            ]
+        },
+        "binary_sensor.motion_sensor_eco_kitchen": {
+            "rooms_for_this": [
+                "room.kitchen",
+                "room.dining_room"
+            ]
+        },
+        "binary_sensor.motion_sensor_eco_living_room": {
+            "rooms_for_this": [
+                "room.living_room"
+            ]
+        },
+        "binary_sensor.motion_sensor_eco_office": {
+            "rooms_for_this": [
+                "room.office"
+            ]
+        },
+        "binary_sensor.motion_sensor_eco_upstairs_hallway": {
+            "rooms_for_this": [
+                "room.upstairs_hallway"
+            ]
+        }
+    }
+}
