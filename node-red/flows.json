@@ -7562,7 +7562,7 @@
         "type": "function",
         "z": "bc4cdd27.07d12",
         "name": "Queue night brightness",
-        "func": "var data = {}\n\ndata.brightness = 1;\ndata.pending_lights = [\n        'light.upstairs_bathroom_left',\n        'light.upstairs_bathroom_middle',\n        'light.upstairs_bathroom_right',\n];\ndata.pending_clear = false;\n\nflow.set('pending_brightness', data);\n\nreturn msg;",
+        "func": "var data = {}\n\ndata.brightness = 20;\ndata.pending_lights = [\n        'light.upstairs_bathroom_left',\n        'light.upstairs_bathroom_middle',\n        'light.upstairs_bathroom_right',\n];\ndata.pending_clear = false;\n\nflow.set('pending_brightness', data);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 610,
@@ -10241,7 +10241,8 @@
         "y": 720,
         "wires": [
             [
-                "43a268a8.75aab8"
+                "43a268a8.75aab8",
+                "1c72eaf.e8d9215"
             ]
         ]
     },
@@ -10256,8 +10257,8 @@
         "tostatus": false,
         "complete": "\"Done\"",
         "targetType": "jsonata",
-        "x": 1320,
-        "y": 720,
+        "x": 1330,
+        "y": 680,
         "wires": []
     },
     {
@@ -10396,5 +10397,28 @@
         "x": 760,
         "y": 200,
         "wires": []
+    },
+    {
+        "id": "1c72eaf.e8d9215",
+        "type": "api-call-service",
+        "z": "888dfbf1.eaaba8",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Spotlight flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1400,
+        "y": 720,
+        "wires": [
+            []
+        ]
     }
 ]
