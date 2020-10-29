@@ -536,11 +536,11 @@
         "halt_if_compare": "is",
         "outputs": 1,
         "output_only_on_state_change": true,
-        "x": 110,
-        "y": 440,
+        "x": 130,
+        "y": 360,
         "wires": [
             [
-                "cd526cf1.d6312"
+                "c6a17f72.67465"
             ]
         ]
     },
@@ -891,11 +891,11 @@
         "halt_if_compare": "is",
         "outputs": 1,
         "output_only_on_state_change": true,
-        "x": 90,
-        "y": 540,
+        "x": 130,
+        "y": 440,
         "wires": [
             [
-                "fb3e86e1.e68a28"
+                "9e728add.a96578"
             ]
         ]
     },
@@ -2148,11 +2148,11 @@
         "halt_if_compare": "is",
         "outputs": 1,
         "output_only_on_state_change": true,
-        "x": 90,
-        "y": 600,
+        "x": 130,
+        "y": 500,
         "wires": [
             [
-                "19a3e8f6.8fed97"
+                "19863ef.06735c1"
             ]
         ]
     },
@@ -10059,11 +10059,11 @@
         "halt_if_compare": "is",
         "outputs": 1,
         "output_only_on_state_change": true,
-        "x": 270,
-        "y": 360,
+        "x": 170,
+        "y": 240,
         "wires": [
             [
-                "8282401f.cff1d"
+                "6f73bb20.498ab4"
             ]
         ]
     },
@@ -10274,5 +10274,117 @@
         "x": 890,
         "y": 660,
         "wires": []
+    },
+    {
+        "id": "6f73bb20.498ab4",
+        "type": "api-current-state",
+        "z": "888dfbf1.eaaba8",
+        "name": "Is spotlight enabled?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.spotlight_mode",
+        "state_type": "habool",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "blockInputOverrides": false,
+        "x": 380,
+        "y": 320,
+        "wires": [
+            [
+                "8282401f.cff1d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c6a17f72.67465",
+        "type": "api-current-state",
+        "z": "1d296556.09592b",
+        "name": "Is spotlight disabled?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.spotlight_mode",
+        "state_type": "habool",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "blockInputOverrides": false,
+        "x": 140,
+        "y": 440,
+        "wires": [
+            [
+                "cd526cf1.d6312"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9e728add.a96578",
+        "type": "api-current-state",
+        "z": "62ce34cf.a7671c",
+        "name": "Is spotlight disabled?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.spotlight_mode",
+        "state_type": "habool",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "blockInputOverrides": false,
+        "x": 140,
+        "y": 520,
+        "wires": [
+            [
+                "fb3e86e1.e68a28"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "19863ef.06735c1",
+        "type": "api-current-state",
+        "z": "35ab222c.a6eb9e",
+        "name": "Is spotlight disabled?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.spotlight_mode",
+        "state_type": "habool",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "blockInputOverrides": false,
+        "x": 140,
+        "y": 580,
+        "wires": [
+            [
+                "19a3e8f6.8fed97"
+            ],
+            []
+        ]
     }
 ]

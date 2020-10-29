@@ -172,6 +172,9 @@ input_boolean:
     name: Request where's the beer from Alexa
     initial: false
     icon: mdi:glass-mug-variant
+  spotlight_mode:
+    name: Spotlight mode (single occ)
+    icon: mdi:spotlight
 
 
 input_select:
