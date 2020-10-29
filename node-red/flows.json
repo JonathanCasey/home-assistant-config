@@ -9724,26 +9724,6 @@
         "wires": []
     },
     {
-        "id": "cec1a2c5.6ae26",
-        "type": "inject",
-        "z": "888dfbf1.eaaba8",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 420,
-        "y": 300,
-        "wires": [
-            [
-                "cc176d1.65d709"
-            ]
-        ]
-    },
-    {
         "id": "485d32a8.8ab04c",
         "type": "function",
         "z": "888dfbf1.eaaba8",
@@ -9838,20 +9818,6 @@
             [
                 "f7138491.80a0e8"
             ]
-        ]
-    },
-    {
-        "id": "cc176d1.65d709",
-        "type": "function",
-        "z": "888dfbf1.eaaba8",
-        "name": "",
-        "func": "//msg.payload = global.get(\n//        \"binary_sensor.motion_sensor_eco_upstairs_bathroom\");\ntmp = global.get(\"sensor_configs\", \"file\");\ntest = tmp[\"binary_sensor.motion_sensor_eco_upstairs_hallway\"].rooms_for_this[0];\nmsg.test = test;\n//msg.keys = global.keys(\"file\");\n//msg.test = tmp;\nmsg.test2 = \"no test\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 620,
-        "y": 300,
-        "wires": [
-            []
         ]
     },
     {
@@ -10126,24 +10092,6 @@
             [
                 "c0524bde.553058"
             ]
-        ]
-    },
-    {
-        "id": "13a439ac.6ec146",
-        "type": "inject",
-        "z": "888dfbf1.eaaba8",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 290,
-        "y": 1000,
-        "wires": [
-            []
         ]
     },
     {
