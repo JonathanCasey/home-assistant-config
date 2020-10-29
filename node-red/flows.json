@@ -9765,8 +9765,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 180,
-        "y": 400,
+        "x": 140,
+        "y": 200,
         "wires": [
             [
                 "f7138491.80a0e8"
@@ -9792,8 +9792,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 380,
-        "y": 440,
+        "x": 340,
+        "y": 240,
         "wires": [
             [
                 "8282401f.cff1d"
@@ -9812,8 +9812,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 180,
-        "y": 480,
+        "x": 140,
+        "y": 280,
         "wires": [
             [
                 "f7138491.80a0e8"
@@ -9904,8 +9904,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 870,
-        "y": 520,
+        "x": 860,
+        "y": 360,
         "wires": []
     },
     {
@@ -9932,8 +9932,8 @@
         "func": "\nvar room_states = global.get(\"room_states\");\nvar room_configs = global.get(\n            \"room_configs\", \"file\");\n\nif (room_states === undefined) {\n    room_states = {};\n}\n\nnode.warn(room_configs);\n\n\n//Object.keys(room_configs).forEach((e) => {\n//});\nnode.warn(\"start\");\nfor (var room_name in room_configs) {\n    //node.warn(room_name);\n}\nnode.warn(\"end\");\n\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 530,
-        "y": 900,
+        "x": 470,
+        "y": 920,
         "wires": [
             [
                 "5221efec.bd1d5"
@@ -9945,14 +9945,14 @@
         "type": "inject",
         "z": "888dfbf1.eaaba8",
         "name": "",
-        "topic": "",
+        "topic": "Run one-time cmd",
         "payload": "",
         "payloadType": "date",
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 250,
+        "x": 200,
         "y": 920,
         "wires": [
             [
@@ -9971,8 +9971,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 770,
-        "y": 940,
+        "x": 670,
+        "y": 920,
         "wires": []
     },
     {
@@ -9995,7 +9995,7 @@
         "id": "ed718cc7.9b98c",
         "type": "change",
         "z": "888dfbf1.eaaba8",
-        "name": "",
+        "name": "Override sensor state (mock op)",
         "rules": [
             {
                 "t": "set",
@@ -10010,8 +10010,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 560,
-        "y": 540,
+        "x": 770,
+        "y": 240,
         "wires": [
             []
         ]
@@ -10060,7 +10060,7 @@
         "outputs": 1,
         "output_only_on_state_change": true,
         "x": 170,
-        "y": 240,
+        "y": 380,
         "wires": [
             [
                 "6f73bb20.498ab4"
@@ -10086,8 +10086,8 @@
         "output_location_type": "msg",
         "output_location": "lights_snapshot",
         "output_results_count": 1,
-        "x": 1520,
-        "y": 420,
+        "x": 1500,
+        "y": 500,
         "wires": [
             [
                 "c0524bde.553058"
@@ -10105,8 +10105,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 650,
-        "y": 660,
+        "x": 530,
+        "y": 680,
         "wires": []
     },
     {
@@ -10271,8 +10271,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 890,
-        "y": 660,
+        "x": 740,
+        "y": 680,
         "wires": []
     },
     {
@@ -10294,8 +10294,8 @@
         "entity_location": "",
         "override_data": "none",
         "blockInputOverrides": false,
-        "x": 380,
-        "y": 320,
+        "x": 260,
+        "y": 440,
         "wires": [
             [
                 "8282401f.cff1d"
@@ -10386,5 +10386,15 @@
             ],
             []
         ]
+    },
+    {
+        "id": "a134996.c854468",
+        "type": "comment",
+        "z": "888dfbf1.eaaba8",
+        "name": "Where to insert",
+        "info": "To test with this mock option, route from \"Get sensor states\" to this, then this to \"Process sensor transition\" and \"Sensor input\".\n\nTo remove, no connections to this; and instead, \"Get sensor states\" goes direct to \"Process sensor transition\" and \"Sensors input\".",
+        "x": 760,
+        "y": 200,
+        "wires": []
     }
 ]
