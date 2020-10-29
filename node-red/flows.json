@@ -161,6 +161,13 @@
         "info": ""
     },
     {
+        "id": "888dfbf1.eaaba8",
+        "type": "tab",
+        "label": "Spotlight",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -9714,6 +9721,608 @@
         "info": "### Samsung button events\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press",
         "x": 420,
         "y": 320,
+        "wires": []
+    },
+    {
+        "id": "cec1a2c5.6ae26",
+        "type": "inject",
+        "z": "888dfbf1.eaaba8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 420,
+        "y": 300,
+        "wires": [
+            [
+                "cc176d1.65d709"
+            ]
+        ]
+    },
+    {
+        "id": "485d32a8.8ab04c",
+        "type": "function",
+        "z": "888dfbf1.eaaba8",
+        "name": "Process sensor transition",
+        "func": "var did_trigger_sensor = false;\nif (msg.payload == \"on\") {\n    did_trigger_sensor = true;\n}\n\nvar rooms_confirmed_possibly = [];\nvar rooms_readying = [];\nvar rooms_vacant = [];\n\nvar sensor_configs = global.get(\n            \"sensor_configs\", \"file\");\nvar sensor_config = sensor_configs[\n            msg.data.entity_id];\nvar this_sensor_rooms = sensor_config.rooms_for_this;\n\n\nif (did_trigger_sensor) {\n    rooms_readying.push(...this_sensor_rooms);\n}\nelse {\n    var other_sensor_on = false;\n    var lowest_time_since_changed_ms = -1;\n    var this_time_since_changed_ms = -1;\n    \n    msg.sensors_snapshot.forEach((e) => {\n        if (e.state == \"on\" &&\n                e.entity_id !=\n                    msg.data.entity_id) {\n            other_sensor_on = true;\n        }\n        if (lowest_time_since_changed_ms === -1 ||\n                e.timeSinceChangedMs <\n                    lowest_time_since_changed_ms) {\n            lowest_time_since_changed_ms =\n                    e.timeSinceChangedMs;\n        }\n        if (e.entity_id == msg.data.entity_id) {\n            this_time_since_changed_ms =\n                    e.timeSinceChangedMs;\n        }\n    });\n    \n    if (other_sensor_on) {\n        rooms_vacant.push(...this_sensor_rooms);\n    }\n    else if (this_time_since_changed_ms ==\n            lowest_time_since_changed_ms) {\n        rooms_confirmed_possibly.push(\n                ...this_sensor_rooms);    \n    }\n    // Else, not that latest -- skip\n}\n\n\nfunction build_msg_from_rooms(rooms) {\n    if (rooms === undefined || rooms.length === 0) {\n        return null;\n    }\n    return {rooms_to_update: rooms};\n}\n\nvar msg_confirmed_possibly =\n        build_msg_from_rooms(\n            rooms_confirmed_possibly);\nvar msg_readying =\n        build_msg_from_rooms(rooms_readying);\nvar msg_vacant =\n        build_msg_from_rooms(rooms_vacant);\n\nmsgs = [msg_confirmed_possibly,\n        msg_readying,\n        msg_vacant];\n\nreturn msgs;",
+        "outputs": 3,
+        "noerr": 0,
+        "x": 890,
+        "y": 420,
+        "wires": [
+            [
+                "c314b77b.445748",
+                "57284b45.1b0204"
+            ],
+            [
+                "360ba06c.9da9e",
+                "fd3296c5.91fc98"
+            ],
+            [
+                "71f6b747.9beb88",
+                "373f464d.3907da"
+            ]
+        ],
+        "outputLabels": [
+            "confirmed_possibly",
+            "readying",
+            "vacant"
+        ]
+    },
+    {
+        "id": "e0beee1.e9e121",
+        "type": "inject",
+        "z": "888dfbf1.eaaba8",
+        "name": "Mock on",
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 180,
+        "y": 400,
+        "wires": [
+            [
+                "f7138491.80a0e8"
+            ]
+        ]
+    },
+    {
+        "id": "f7138491.80a0e8",
+        "type": "change",
+        "z": "888dfbf1.eaaba8",
+        "name": "Add mock ID sensors",
+        "rules": [
+            {
+                "t": "set",
+                "p": "data",
+                "pt": "msg",
+                "to": "{\"entity_id\":\"binary_sensor.motion_sensor_eco_office\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 440,
+        "wires": [
+            [
+                "8282401f.cff1d"
+            ]
+        ]
+    },
+    {
+        "id": "139547b7.e9b6d8",
+        "type": "inject",
+        "z": "888dfbf1.eaaba8",
+        "name": "Mock off",
+        "topic": "",
+        "payload": "off",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 180,
+        "y": 480,
+        "wires": [
+            [
+                "f7138491.80a0e8"
+            ]
+        ]
+    },
+    {
+        "id": "cc176d1.65d709",
+        "type": "function",
+        "z": "888dfbf1.eaaba8",
+        "name": "",
+        "func": "//msg.payload = global.get(\n//        \"binary_sensor.motion_sensor_eco_upstairs_bathroom\");\ntmp = global.get(\"sensor_configs\", \"file\");\ntest = tmp[\"binary_sensor.motion_sensor_eco_upstairs_hallway\"].rooms_for_this[0];\nmsg.test = test;\n//msg.keys = global.keys(\"file\");\n//msg.test = tmp;\nmsg.test2 = \"no test\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 620,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8282401f.cff1d",
+        "type": "ha-get-entities",
+        "z": "888dfbf1.eaaba8",
+        "server": "2f5bd1e0.67e40e",
+        "name": "Get sensor states",
+        "rules": [
+            {
+                "property": "entity_id",
+                "logic": "starts_with",
+                "value": "binary_sensor.motion_sensor_eco",
+                "valueType": "str"
+            }
+        ],
+        "output_type": "array",
+        "output_empty_results": false,
+        "output_location_type": "msg",
+        "output_location": "sensors_snapshot",
+        "output_results_count": 1,
+        "x": 590,
+        "y": 380,
+        "wires": [
+            [
+                "485d32a8.8ab04c",
+                "ac27a21f.0663f"
+            ]
+        ]
+    },
+    {
+        "id": "c314b77b.445748",
+        "type": "debug",
+        "z": "888dfbf1.eaaba8",
+        "name": "Confirmed_possibly",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1170,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "360ba06c.9da9e",
+        "type": "debug",
+        "z": "888dfbf1.eaaba8",
+        "name": "Readying",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1140,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "71f6b747.9beb88",
+        "type": "debug",
+        "z": "888dfbf1.eaaba8",
+        "name": "Vacant",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1130,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "ac27a21f.0663f",
+        "type": "debug",
+        "z": "888dfbf1.eaaba8",
+        "name": "Sensors input",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 870,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "57284b45.1b0204",
+        "type": "function",
+        "z": "888dfbf1.eaaba8",
+        "name": "Process rooms confirmed possibly",
+        "func": "\nvar room_configs = global.get(\n            \"room_configs\", \"file\");\nvar all_room_names = Object.keys(room_configs);\n\nvar room_states = global.get(\"room_states\");\nif (room_states === undefined) {\n    room_states = {};\n}\n\nvar rooms_make_confirmed = [];\nvar rooms_make_possibly = [];\nvar rooms_make_vacant = [];\n\nmsg.rooms_to_update.forEach((e) => {\n    rooms_make_possibly.push(\n            ...room_configs[e].rooms_adjacent_without_sensors);\n});\n\nif (rooms_make_possibly.length === 0) {\n    rooms_make_confirmed.push(...msg.rooms_to_update);\n}\nelse {\n    rooms_make_possibly.push(\n            ...msg.rooms_to_update);\n}\n\nall_room_names.forEach((rn) => {\n    if (room_states[rn] === undefined) {\n        room_states[rn] = {};\n        room_states[rn].is_occupied = \"no init\";\n    }\n    \n    if (rooms_make_confirmed.includes(rn)) {\n        room_states[rn].is_occupied = \"confirmed\";\n    }\n    else if (rooms_make_possibly.includes(rn)) {\n        room_states[rn].is_occupied = \"possibly\";\n    }\n    else {\n        rooms_make_vacant.push(rn);\n        room_states[rn].is_occupied = \"vacant\";\n    }\n});\n\nglobal.set(\"room_states\", room_states);\n\n//node.warn(rooms_make_confirmed);\n//node.warn(rooms_make_possibly);\n//node.warn(rooms_make_vacant);\n//node.warn(room_states);\n\nmsg = {};\n//msg.rooms_make_max = rooms_make_possibly;\nmsg.rooms_make_off = rooms_make_vacant;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1220,
+        "y": 340,
+        "wires": [
+            [
+                "745cd936.8da718"
+            ]
+        ]
+    },
+    {
+        "id": "98f2bac9.dd7238",
+        "type": "function",
+        "z": "888dfbf1.eaaba8",
+        "name": "Ensure room states exist",
+        "func": "\nvar room_states = global.get(\"room_states\");\nvar room_configs = global.get(\n            \"room_configs\", \"file\");\n\nif (room_states === undefined) {\n    room_states = {};\n}\n\nnode.warn(room_configs);\n\n\n//Object.keys(room_configs).forEach((e) => {\n//});\nnode.warn(\"start\");\nfor (var room_name in room_configs) {\n    //node.warn(room_name);\n}\nnode.warn(\"end\");\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 530,
+        "y": 900,
+        "wires": [
+            [
+                "5221efec.bd1d5"
+            ]
+        ]
+    },
+    {
+        "id": "441da915.ac73d8",
+        "type": "inject",
+        "z": "888dfbf1.eaaba8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 250,
+        "y": 920,
+        "wires": [
+            [
+                "98f2bac9.dd7238"
+            ]
+        ]
+    },
+    {
+        "id": "5221efec.bd1d5",
+        "type": "debug",
+        "z": "888dfbf1.eaaba8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 770,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "373f464d.3907da",
+        "type": "function",
+        "z": "888dfbf1.eaaba8",
+        "name": "Process rooms vacant",
+        "func": "\nvar room_configs = global.get(\n            \"room_configs\", \"file\");\nvar all_room_names = Object.keys(room_configs);\n\nvar room_states = global.get(\"room_states\");\nif (room_states === undefined) {\n    room_states = {};\n}\n\nvar rooms_make_vacant = [];\n\nmsg.rooms_to_update.forEach((e) => {\n    rooms_make_vacant.push(e);    \n    rooms_make_vacant.push(\n            ...room_configs[e].rooms_adjacent_without_sensors);\n});\n\nall_room_names.forEach((rn) => {\n    if (room_states[rn] === undefined) {\n        room_states[rn] = {};\n        room_states[rn].is_occupied = \"no init\";\n    }\n    \n    if (rooms_make_vacant.includes(rn)) {\n        room_states[rn].is_occupied = \"vacant\";\n    }\n});\n\nglobal.set(\"room_states\", room_states);\n\n//node.warn(rooms_make_vacant);\n//node.warn(room_states);\n\nmsg = {};\nmsg.rooms_make_off = rooms_make_vacant;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1180,
+        "y": 500,
+        "wires": [
+            [
+                "745cd936.8da718"
+            ]
+        ]
+    },
+    {
+        "id": "ed718cc7.9b98c",
+        "type": "change",
+        "z": "888dfbf1.eaaba8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "sensors_snapshot[4].state",
+                "pt": "msg",
+                "to": "on",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fd3296c5.91fc98",
+        "type": "function",
+        "z": "888dfbf1.eaaba8",
+        "name": "Process rooms readying",
+        "func": "\nvar room_configs = global.get(\n            \"room_configs\", \"file\");\nvar all_room_names = Object.keys(room_configs);\n\nvar room_states = global.get(\"room_states\");\nif (room_states === undefined) {\n    room_states = {};\n}\n\nvar rooms_make_readying_max = [];\nvar rooms_make_readying_min = [];\nvar is_only_occupied_endpoint = true;\n\nmsg.rooms_to_update.forEach((e) => {\n    if (room_states[e] === undefined ||\n            room_states[e].is_occupied == \"vacant\" ||\n            !room_configs[e].is_endpoint) {\n        is_only_occupied_endpoint = false;\n    }\n    \n    rooms_make_readying_max.push(e);\n    rooms_make_readying_max.push(\n            ...room_configs[e].rooms_adjacent_without_sensors);\n    rooms_make_readying_min.push(\n            ...room_configs[e].rooms_adjacent_with_sensors);\n});\n\nif (is_only_occupied_endpoint) {\n    rooms_make_readying_max = [];\n    rooms_make_readying_min = [];\n}\nelse {\n    \n    all_room_names.forEach((rn) => {\n        if (room_states[rn] === undefined) {\n            room_states[rn] = {};\n            room_states[rn].is_occupied = \"no init\";\n        }\n        \n        if (rooms_make_readying_max.includes(rn) ||\n                rooms_make_readying_min.includes(rn)) {\n            room_states[rn].is_occupied = \"readying\";\n        }\n    });\n    \n    global.set(\"room_states\", room_states);\n}\n\n//node.warn(rooms_make_readying_max);\n//node.warn(rooms_make_readying_min);\n//node.warn(room_states);\n\nmsg = {};\n\nif (!is_only_occupied_endpoint) {\n    msg.rooms_make_max = rooms_make_readying_max;\n    msg.rooms_make_min = rooms_make_readying_min;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1190,
+        "y": 420,
+        "wires": [
+            [
+                "745cd936.8da718"
+            ]
+        ]
+    },
+    {
+        "id": "59e14cff.4507b4",
+        "type": "server-state-changed",
+        "z": "888dfbf1.eaaba8",
+        "name": "Foyer Motion Event",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "binary_sensor.motion_sensor_eco",
+        "entityidfiltertype": "substring",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "jsonata",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "x": 270,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "745cd936.8da718",
+        "type": "ha-get-entities",
+        "z": "888dfbf1.eaaba8",
+        "server": "2f5bd1e0.67e40e",
+        "name": "Get light states",
+        "rules": [
+            {
+                "property": "entity_id",
+                "logic": "starts_with",
+                "value": "light.",
+                "valueType": "str"
+            }
+        ],
+        "output_type": "array",
+        "output_empty_results": false,
+        "output_location_type": "msg",
+        "output_location": "lights_snapshot",
+        "output_results_count": 1,
+        "x": 1520,
+        "y": 420,
+        "wires": [
+            [
+                "c0524bde.553058"
+            ]
+        ]
+    },
+    {
+        "id": "13a439ac.6ec146",
+        "type": "inject",
+        "z": "888dfbf1.eaaba8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 290,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "90078417.0811f8",
+        "type": "debug",
+        "z": "888dfbf1.eaaba8",
+        "name": "Rooms to change",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 650,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "c0524bde.553058",
+        "type": "ha-get-entities",
+        "z": "888dfbf1.eaaba8",
+        "server": "2f5bd1e0.67e40e",
+        "name": "Get switch states",
+        "rules": [
+            {
+                "property": "entity_id",
+                "logic": "starts_with",
+                "value": "switch.",
+                "valueType": "str"
+            }
+        ],
+        "output_type": "array",
+        "output_empty_results": false,
+        "output_location_type": "msg",
+        "output_location": "switches_snapshot",
+        "output_results_count": 1,
+        "x": 270,
+        "y": 720,
+        "wires": [
+            [
+                "90078417.0811f8",
+                "c46eb29.297cb5"
+            ]
+        ]
+    },
+    {
+        "id": "c46eb29.297cb5",
+        "type": "function",
+        "z": "888dfbf1.eaaba8",
+        "name": "Create HA commands",
+        "func": "var room_configs = global.get(\n            \"room_configs\", \"file\");\n\nvar lights_snapshot = {}\nmsg.lights_snapshot.forEach((e) => {\n    lights_snapshot[e.entity_id] = e;\n});\n\nvar switches_snapshot = {}\nmsg.switches_snapshot.forEach((e) => {\n    switches_snapshot[e.entity_id] = e;\n});\n\n\nfunction build_cmd(\n        entity_id, state,\n        target_bright, is_min_bright) {\n    const domain = entity_id.split('.')[0];\n    const payload = {};\n    var need_cmd = false;\n    var snapshot;\n    var new_brightness;\n    \n    switch(domain) {\n        case 'switch':\n            snapshot = switches_snapshot[entity_id];\n            if (snapshot.state != state) {\n                need_cmd = true;\n            }\n            break;\n        case 'light':\n            snapshot = lights_snapshot[entity_id];\n            if (state == \"on\") {\n                var existing_brightness;\n                if (snapshot.attributes.brightness !== undefined) {\n                    existing_brightness = snapshot.attributes.brightness;\n                }\n                \n                if (existing_brightness === undefined ||\n                        (target_bright > existing_brightness &&\n                            is_min_bright) ||\n                        (target_bright < existing_brightness &&\n                            !is_min_bright)) {\n                    new_brightness = target_bright;\n                    need_cmd = true;\n                }\n                \n                if (snapshot.state != \"on\") {\n                    need_cmd = true;\n                }\n            }\n            else {\n                if (snapshot.state != \"off\") {\n                    need_cmd = true;\n                }\n            }\n            break;\n    }\n        \n    if (need_cmd) {\n        payload.domain = domain;\n        payload.service = `turn_${state}`;\n        payload.data = {\n            entity_id: entity_id,\n        }\n        \n        if (new_brightness !== undefined) {\n            payload.data.brightness = new_brightness;\n        }\n        \n        return payload;\n    }\n    return null;\n}\n\n\nvar payloads = [];\nvar rn;\n\n\nif (msg.rooms_make_max !== undefined) {\n    msg.rooms_make_max.forEach((e) => {\n        for (rn in room_configs[e][\"auto-on_devices\"]) {\n            payload = build_cmd(rn, \"on\", 255, true);\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n    });\n}\n\nif (msg.rooms_make_min !== undefined) {\n    msg.rooms_make_min.forEach((e) => {\n        for (rn in room_configs[e][\"auto-on_devices\"]) {\n            payload = build_cmd(rn, \"on\", 1, true);\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n    });\n}\n\nif (msg.rooms_make_off !== undefined) {\n    msg.rooms_make_off.forEach((e) => {\n        for (rn in room_configs[e][\"auto-on_devices\"]) {\n            payload = build_cmd(rn, \"off\");\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n        for (rn in room_configs[e][\"off-only_devices\"]) {\n            payload = build_cmd(rn, \"off\");\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n    });\n}\n\n\nmsg = { payload: payloads };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 540,
+        "y": 720,
+        "wires": [
+            [
+                "4af0ccc7.87d384",
+                "f985c490.7b7878"
+            ]
+        ]
+    },
+    {
+        "id": "f985c490.7b7878",
+        "type": "split",
+        "z": "888dfbf1.eaaba8",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 730,
+        "y": 720,
+        "wires": [
+            [
+                "ea3e4690.913c68"
+            ]
+        ]
+    },
+    {
+        "id": "ea3e4690.913c68",
+        "type": "delay",
+        "z": "888dfbf1.eaaba8",
+        "name": "Limit msg rate to not overload Hue",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "5",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 840,
+        "y": 780,
+        "wires": [
+            [
+                "5e0bf89c.02daf8"
+            ]
+        ]
+    },
+    {
+        "id": "5e0bf89c.02daf8",
+        "type": "api-call-service",
+        "z": "888dfbf1.eaaba8",
+        "name": "Restore States",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "",
+        "service": "",
+        "entityId": "",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 980,
+        "y": 720,
+        "wires": [
+            [
+                "e01b14a8.7dc638"
+            ]
+        ]
+    },
+    {
+        "id": "e01b14a8.7dc638",
+        "type": "join",
+        "z": "888dfbf1.eaaba8",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": 1170,
+        "y": 720,
+        "wires": [
+            [
+                "43a268a8.75aab8"
+            ]
+        ]
+    },
+    {
+        "id": "43a268a8.75aab8",
+        "type": "debug",
+        "z": "888dfbf1.eaaba8",
+        "name": "Done",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1320,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "4af0ccc7.87d384",
+        "type": "debug",
+        "z": "888dfbf1.eaaba8",
+        "name": "HA cmd",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 890,
+        "y": 660,
         "wires": []
     }
 ]
