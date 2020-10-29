@@ -278,23 +278,23 @@
         },
         "binary_sensor.motion_sensor_eco_kitchen": {
             "rooms_for_this": [
-                "light.kitchen",
-                "light.dining_room"
+                "room.kitchen",
+                "room.dining_room"
             ]
         },
         "binary_sensor.motion_sensor_eco_living_room": {
             "rooms_for_this": [
-                "light.living_room"
+                "room.living_room"
             ]
         },
         "binary_sensor.motion_sensor_eco_office": {
             "rooms_for_this": [
-                "light.office"
+                "room.office"
             ]
         },
         "binary_sensor.motion_sensor_eco_upstairs_hallway": {
             "rooms_for_this": [
-                "light.upstairs_hallway"
+                "room.upstairs_hallway"
             ]
         }
     }
