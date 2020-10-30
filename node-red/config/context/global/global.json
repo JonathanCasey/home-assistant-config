@@ -296,6 +296,23 @@
             "rooms_for_this": [
                 "room.upstairs_hallway"
             ]
+        },
+
+        "binary_sensor.multi_sensor_st_front_door_openclose": {
+            "rooms_for_this": [
+                "room.foyer"
+            ]
+        },
+        "binary_sensor.multi_sensor_st_kitchen_door_openclose": {
+            "rooms_for_this": [
+                "room.kitchen"
+            ]
+        },
+
+        "media_player.plex_jc_shield_mrmc": {
+            "rooms_for_this": [
+                "room.living_room"
+            ]
         }
     }
 }
