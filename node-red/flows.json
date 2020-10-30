@@ -2606,7 +2606,7 @@
         "wires": [
             [
                 "7d8308dc.e52bb8",
-                "1b9c8db9.b485c2"
+                "946a044.bc3e4f8"
             ],
             [
                 "bca4e90.5a43f18"
@@ -2614,7 +2614,7 @@
         ]
     },
     {
-        "id": "818717c2.dbe6e8",
+        "id": "82112456.ef2958",
         "type": "api-call-service",
         "z": "390fc521.dffd0a",
         "name": "Turn off non-living room lights",
@@ -2631,7 +2631,7 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 1050,
-        "y": 360,
+        "y": 400,
         "wires": [
             [
                 "adc3ea04.4a0798"
@@ -2681,7 +2681,7 @@
         "override_data": "msg",
         "blockInputOverrides": false,
         "x": 770,
-        "y": 540,
+        "y": 580,
         "wires": [
             [
                 "8807a907.455148",
@@ -2710,7 +2710,7 @@
         "to": "",
         "reg": false,
         "x": 1040,
-        "y": 580,
+        "y": 620,
         "wires": [
             []
         ]
@@ -2735,7 +2735,7 @@
         "override_data": "msg",
         "blockInputOverrides": false,
         "x": 720,
-        "y": 440,
+        "y": 480,
         "wires": [
             [
                 "904c234f.3223e"
@@ -2763,7 +2763,7 @@
         "to": "",
         "reg": false,
         "x": 1290,
-        "y": 220,
+        "y": 200,
         "wires": [
             []
         ]
@@ -2796,7 +2796,7 @@
         "outputs": 2,
         "output_only_on_state_change": true,
         "x": 980,
-        "y": 180,
+        "y": 160,
         "wires": [
             [
                 "1ada85ab.c1fa2a"
@@ -2822,7 +2822,7 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 1030,
-        "y": 480,
+        "y": 520,
         "wires": [
             [
                 "adc3ea04.4a0798"
@@ -2845,7 +2845,7 @@
         "repair": false,
         "outputs": 1,
         "x": 770,
-        "y": 280,
+        "y": 260,
         "wires": [
             [
                 "5a0ce2de.6ff3cc"
@@ -2870,7 +2870,7 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 1010,
-        "y": 280,
+        "y": 260,
         "wires": [
             [
                 "1ada85ab.c1fa2a",
@@ -2879,7 +2879,7 @@
         ]
     },
     {
-        "id": "1b9c8db9.b485c2",
+        "id": "ecaf9e39.a1c89",
         "type": "api-current-state",
         "z": "390fc521.dffd0a",
         "name": "Single occupant?",
@@ -2897,11 +2897,11 @@
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 770,
-        "y": 360,
+        "x": 790,
+        "y": 420,
         "wires": [
             [
-                "818717c2.dbe6e8"
+                "82112456.ef2958"
             ],
             []
         ]
@@ -8977,8 +8977,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 140,
-        "y": 200,
+        "x": 120,
+        "y": 520,
         "wires": [
             [
                 "f7138491.80a0e8"
@@ -9004,8 +9004,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
-        "y": 240,
+        "x": 320,
+        "y": 560,
         "wires": [
             [
                 "8282401f.cff1d"
@@ -9024,8 +9024,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 140,
-        "y": 280,
+        "x": 120,
+        "y": 600,
         "wires": [
             [
                 "f7138491.80a0e8"
@@ -9065,7 +9065,7 @@
         "type": "debug",
         "z": "888dfbf1.eaaba8",
         "name": "Confirmed_possibly",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -9080,7 +9080,7 @@
         "type": "debug",
         "z": "888dfbf1.eaaba8",
         "name": "Readying",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -9095,7 +9095,7 @@
         "type": "debug",
         "z": "888dfbf1.eaaba8",
         "name": "Vacant",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -9110,7 +9110,7 @@
         "type": "debug",
         "z": "888dfbf1.eaaba8",
         "name": "Sensors input",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -9222,8 +9222,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 770,
-        "y": 240,
+        "x": 710,
+        "y": 500,
         "wires": [
             []
         ]
@@ -9311,7 +9311,7 @@
         "type": "debug",
         "z": "888dfbf1.eaaba8",
         "name": "Rooms to change",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -9478,7 +9478,7 @@
         "type": "debug",
         "z": "888dfbf1.eaaba8",
         "name": "HA cmd",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -9606,8 +9606,8 @@
         "z": "888dfbf1.eaaba8",
         "name": "Where to insert",
         "info": "To test with this mock option, route from \"Get sensor states\" to this, then this to \"Process sensor transition\" and \"Sensor input\".\n\nTo remove, no connections to this; and instead, \"Get sensor states\" goes direct to \"Process sensor transition\" and \"Sensors input\".",
-        "x": 760,
-        "y": 200,
+        "x": 700,
+        "y": 540,
         "wires": []
     },
     {
@@ -9631,6 +9631,176 @@
         "y": 720,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "f941c435.3be748",
+        "type": "link out",
+        "z": "390fc521.dffd0a",
+        "name": "JC's Plex on Shield played",
+        "links": [
+            "94595d9.08b6ba"
+        ],
+        "x": 975,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "94595d9.08b6ba",
+        "type": "link in",
+        "z": "888dfbf1.eaaba8",
+        "name": "",
+        "links": [
+            "f941c435.3be748"
+        ],
+        "x": 235,
+        "y": 280,
+        "wires": [
+            [
+                "44bd958.72d456c"
+            ]
+        ]
+    },
+    {
+        "id": "6d1a97df.d83818",
+        "type": "debug",
+        "z": "888dfbf1.eaaba8",
+        "name": "Instant confirm sensor input",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 880,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "44bd958.72d456c",
+        "type": "api-current-state",
+        "z": "888dfbf1.eaaba8",
+        "name": "Is spotlight enabled?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.spotlight_mode",
+        "state_type": "habool",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "blockInputOverrides": false,
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "6d1a97df.d83818",
+                "4f2af63.5adb108"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c8add23a.45aef",
+        "type": "server-state-changed",
+        "z": "888dfbf1.eaaba8",
+        "name": "Door open/close Event",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "binary_sensor.multi_sensor_st_",
+        "entityidfiltertype": "substring",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "jsonata",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "x": 160,
+        "y": 200,
+        "wires": [
+            [
+                "44bd958.72d456c"
+            ]
+        ]
+    },
+    {
+        "id": "4f2af63.5adb108",
+        "type": "function",
+        "z": "888dfbf1.eaaba8",
+        "name": "Process instant confirm sensors",
+        "func": "var rooms_confirmed = [];\n\nvar sensor_configs = global.get(\n            \"sensor_configs\", \"file\");\n            \nif (msg.data.entity_id in sensor_configs) {\n    var sensor_config = sensor_configs[\n            msg.data.entity_id];\n    var this_sensor_rooms =\n            sensor_config.rooms_for_this;\n\n    rooms_confirmed.push(...this_sensor_rooms);\n}\n\n\nfunction build_msg_from_rooms(rooms) {\n    if (rooms === undefined || rooms.length === 0) {\n        return null;\n    }\n    return {rooms_to_update: rooms};\n}\n\n\nvar msg_confirmed =\n        build_msg_from_rooms(\n            rooms_confirmed);\n\n\nreturn msg_confirmed;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 890,
+        "y": 260,
+        "wires": [
+            [
+                "57284b45.1b0204",
+                "79b024d8.90d69c"
+            ]
+        ]
+    },
+    {
+        "id": "79b024d8.90d69c",
+        "type": "debug",
+        "z": "888dfbf1.eaaba8",
+        "name": "Confirmed_definitely",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1175,
+        "y": 258,
+        "wires": []
+    },
+    {
+        "id": "946a044.bc3e4f8",
+        "type": "api-current-state",
+        "z": "390fc521.dffd0a",
+        "name": "Is spotlight enabled?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.spotlight_mode",
+        "state_type": "habool",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "blockInputOverrides": false,
+        "x": 780,
+        "y": 360,
+        "wires": [
+            [
+                "f941c435.3be748",
+                "adc3ea04.4a0798"
+            ],
+            [
+                "ecaf9e39.a1c89"
+            ]
         ]
     }
 ]
