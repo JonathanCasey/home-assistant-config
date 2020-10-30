@@ -165,6 +165,20 @@
         "cacheJson": true
     },
     {
+        "id": "48ca387f.7f63d8",
+        "type": "semaphore-config",
+        "z": "",
+        "name": "Spotlight HA queue",
+        "capacity": "1"
+    },
+    {
+        "id": "7df2c2af.096bec",
+        "type": "semaphore-config",
+        "z": "",
+        "name": "Spotlight HA dequeue loop",
+        "capacity": "1"
+    },
+    {
         "id": "3cae343.22b5bcc",
         "type": "server-events",
         "z": "bf163cd5.f84c",
@@ -8989,7 +9003,7 @@
         "id": "f7138491.80a0e8",
         "type": "change",
         "z": "888dfbf1.eaaba8",
-        "name": "Add mock ID sensors",
+        "name": "Add mock ID sensors (office)",
         "rules": [
             {
                 "t": "set",
@@ -9004,8 +9018,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 320,
-        "y": 560,
+        "x": 340,
+        "y": 540,
         "wires": [
             [
                 "8282401f.cff1d"
@@ -9025,7 +9039,7 @@
         "once": false,
         "onceDelay": 0.1,
         "x": 120,
-        "y": 600,
+        "y": 560,
         "wires": [
             [
                 "f7138491.80a0e8"
@@ -9135,57 +9149,6 @@
                 "745cd936.8da718"
             ]
         ]
-    },
-    {
-        "id": "98f2bac9.dd7238",
-        "type": "function",
-        "z": "888dfbf1.eaaba8",
-        "name": "Ensure room states exist",
-        "func": "\nvar room_states = global.get(\"room_states\");\nvar room_configs = global.get(\n            \"room_configs\", \"file\");\n\nif (room_states === undefined) {\n    room_states = {};\n}\n\nnode.warn(room_configs);\n\n\n//Object.keys(room_configs).forEach((e) => {\n//});\nnode.warn(\"start\");\nfor (var room_name in room_configs) {\n    //node.warn(room_name);\n}\nnode.warn(\"end\");\n\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 470,
-        "y": 920,
-        "wires": [
-            [
-                "5221efec.bd1d5"
-            ]
-        ]
-    },
-    {
-        "id": "441da915.ac73d8",
-        "type": "inject",
-        "z": "888dfbf1.eaaba8",
-        "name": "",
-        "topic": "Run one-time cmd",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 200,
-        "y": 920,
-        "wires": [
-            [
-                "98f2bac9.dd7238"
-            ]
-        ]
-    },
-    {
-        "id": "5221efec.bd1d5",
-        "type": "debug",
-        "z": "888dfbf1.eaaba8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 670,
-        "y": 920,
-        "wires": []
     },
     {
         "id": "373f464d.3907da",
@@ -9354,7 +9317,7 @@
         "type": "function",
         "z": "888dfbf1.eaaba8",
         "name": "Create HA commands",
-        "func": "var room_configs = global.get(\n            \"room_configs\", \"file\");\n\nvar lights_snapshot = {}\nmsg.lights_snapshot.forEach((e) => {\n    lights_snapshot[e.entity_id] = e;\n});\n\nvar switches_snapshot = {}\nmsg.switches_snapshot.forEach((e) => {\n    switches_snapshot[e.entity_id] = e;\n});\n\n\nfunction build_cmd(\n        entity_id, state,\n        target_bright, is_min_bright) {\n    const domain = entity_id.split('.')[0];\n    const payload = {};\n    var need_cmd = false;\n    var snapshot;\n    var new_brightness;\n    \n    switch(domain) {\n        case 'switch':\n            snapshot = switches_snapshot[entity_id];\n            if (snapshot.state != state) {\n                need_cmd = true;\n            }\n            break;\n        case 'light':\n            snapshot = lights_snapshot[entity_id];\n            if (state == \"on\") {\n                var existing_brightness;\n                if (snapshot.attributes.brightness !== undefined) {\n                    existing_brightness = snapshot.attributes.brightness;\n                }\n                \n                if (existing_brightness === undefined ||\n                        (target_bright > existing_brightness &&\n                            is_min_bright) ||\n                        (target_bright < existing_brightness &&\n                            !is_min_bright)) {\n                    new_brightness = target_bright;\n                    need_cmd = true;\n                }\n                \n                if (snapshot.state != \"on\") {\n                    need_cmd = true;\n                }\n            }\n            else {\n                if (snapshot.state != \"off\") {\n                    need_cmd = true;\n                }\n            }\n            break;\n    }\n        \n    if (need_cmd) {\n        payload.domain = domain;\n        payload.service = `turn_${state}`;\n        payload.data = {\n            entity_id: entity_id,\n        }\n        \n        if (new_brightness !== undefined) {\n            payload.data.brightness = new_brightness;\n        }\n        \n        return payload;\n    }\n    return null;\n}\n\n\nvar payloads = [];\nvar rn;\n\n\nif (msg.rooms_make_max !== undefined) {\n    msg.rooms_make_max.forEach((e) => {\n        for (rn in room_configs[e][\"auto-on_devices\"]) {\n            payload = build_cmd(rn, \"on\", 255, true);\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n    });\n}\n\nif (msg.rooms_make_min !== undefined) {\n    msg.rooms_make_min.forEach((e) => {\n        for (rn in room_configs[e][\"auto-on_devices\"]) {\n            payload = build_cmd(rn, \"on\", 2, true);\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n    });\n}\n\nif (msg.rooms_make_off !== undefined) {\n    msg.rooms_make_off.forEach((e) => {\n        for (rn in room_configs[e][\"auto-on_devices\"]) {\n            payload = build_cmd(rn, \"off\");\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n        for (rn in room_configs[e][\"off-only_devices\"]) {\n            payload = build_cmd(rn, \"off\");\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n    });\n}\n\n\nmsg = { payload: payloads };\nreturn msg;",
+        "func": "var room_configs = global.get(\n            \"room_configs\", \"file\");\n\nvar lights_snapshot = {}\nmsg.lights_snapshot.forEach((e) => {\n    lights_snapshot[e.entity_id] = e;\n});\n\nvar switches_snapshot = {}\nmsg.switches_snapshot.forEach((e) => {\n    switches_snapshot[e.entity_id] = e;\n});\n\n\nfunction build_cmd(\n        op_type, entity_id, state,\n        target_bright, is_min_bright) {\n    const domain = entity_id.split('.')[0];\n    var need_cmd = false;\n    var snapshot;\n    var new_brightness;\n    \n    switch(domain) {\n        case 'switch':\n            snapshot = switches_snapshot[entity_id];\n            if (snapshot.state != state) {\n                need_cmd = true;\n            }\n            break;\n        case 'light':\n            snapshot = lights_snapshot[entity_id];\n            if (state == \"on\") {\n                var existing_brightness;\n                if (snapshot.attributes.brightness !== undefined) {\n                    existing_brightness = snapshot.attributes.brightness;\n                }\n                \n                if (existing_brightness === undefined ||\n                        (target_bright > existing_brightness &&\n                            is_min_bright) ||\n                        (target_bright < existing_brightness &&\n                            !is_min_bright)) {\n                    new_brightness = target_bright;\n                    need_cmd = true;\n                }\n                \n                if (snapshot.state != \"on\") {\n                    need_cmd = true;\n                }\n            }\n            else {\n                if (snapshot.state != \"off\") {\n                    need_cmd = true;\n                }\n            }\n            break;\n    }\n        \n    if (need_cmd) {\n        const msg = {\n            payload: {\n                domain: domain,\n                service: `turn_${state}`,\n                data: {\n                    entity_id: entity_id,\n                },\n            },\n            spotlight_metadata: {\n                op_type: op_type,\n                create_time: new Date().toISOString(),\n            },\n        };\n        \n        if (new_brightness !== undefined) {\n            msg.payload.data.brightness = new_brightness;\n        }\n        \n        return msg;\n    }\n    return null;\n}\n\n\nvar payloads = [];\nvar payload;\nvar rn;\n\n\nif (msg.rooms_make_max !== undefined) {\n    msg.rooms_make_max.forEach((e) => {\n        for (rn in room_configs[e][\"auto-on_devices\"]) {\n            payload = build_cmd(\"make_max\",\n                    rn, \"on\", 255, true);\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n    });\n}\n\nif (msg.rooms_make_min !== undefined) {\n    msg.rooms_make_min.forEach((e) => {\n        for (rn in room_configs[e][\"auto-on_devices\"]) {\n            payload = build_cmd(\"make_min\",\n                    rn, \"on\", 2, true);\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n    });\n}\n\nif (msg.rooms_make_off !== undefined) {\n    msg.rooms_make_off.forEach((e) => {\n        for (rn in room_configs[e][\"auto-on_devices\"]) {\n            payload = build_cmd(\"make_off\",\n                    rn, \"off\");\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n        for (rn in room_configs[e][\"off-only_devices\"]) {\n            payload = build_cmd(rn, \"off\");\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n    });\n}\n\n\nmsg = { queue_data: payloads };\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 540,
@@ -9362,26 +9325,7 @@
         "wires": [
             [
                 "4af0ccc7.87d384",
-                "f985c490.7b7878"
-            ]
-        ]
-    },
-    {
-        "id": "f985c490.7b7878",
-        "type": "split",
-        "z": "888dfbf1.eaaba8",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "",
-        "x": 730,
-        "y": 720,
-        "wires": [
-            [
-                "ea3e4690.913c68"
+                "5ab4b215.7b13bc"
             ]
         ]
     },
@@ -9393,15 +9337,15 @@
         "pauseType": "rate",
         "timeout": "2",
         "timeoutUnits": "seconds",
-        "rate": "5",
+        "rate": "4",
         "nbRateUnits": "1",
         "rateUnits": "second",
         "randomFirst": "1",
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 840,
-        "y": 780,
+        "x": 820,
+        "y": 900,
         "wires": [
             [
                 "5e0bf89c.02daf8"
@@ -9412,7 +9356,7 @@
         "id": "5e0bf89c.02daf8",
         "type": "api-call-service",
         "z": "888dfbf1.eaaba8",
-        "name": "Restore States",
+        "name": "Send HA cmd",
         "server": "2f5bd1e0.67e40e",
         "version": 1,
         "debugenabled": false,
@@ -9425,36 +9369,11 @@
         "output_location": "payload",
         "output_location_type": "msg",
         "mustacheAltTags": false,
-        "x": 980,
-        "y": 720,
+        "x": 1100,
+        "y": 900,
         "wires": [
             [
-                "e01b14a8.7dc638"
-            ]
-        ]
-    },
-    {
-        "id": "e01b14a8.7dc638",
-        "type": "join",
-        "z": "888dfbf1.eaaba8",
-        "name": "",
-        "mode": "auto",
-        "build": "string",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": "false",
-        "timeout": "",
-        "count": "",
-        "reduceRight": false,
-        "x": 1170,
-        "y": 720,
-        "wires": [
-            [
-                "43a268a8.75aab8",
-                "1c72eaf.e8d9215"
+                "7f4d5ece.e73cf"
             ]
         ]
     },
@@ -9463,21 +9382,21 @@
         "type": "debug",
         "z": "888dfbf1.eaaba8",
         "name": "Done",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "\"Done\"",
         "targetType": "jsonata",
-        "x": 1330,
-        "y": 680,
+        "x": 1610,
+        "y": 880,
         "wires": []
     },
     {
         "id": "4af0ccc7.87d384",
         "type": "debug",
         "z": "888dfbf1.eaaba8",
-        "name": "HA cmd",
+        "name": "HA cmds",
         "active": false,
         "tosidebar": true,
         "console": false,
@@ -9627,8 +9546,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 1400,
-        "y": 720,
+        "x": 1680,
+        "y": 920,
         "wires": [
             []
         ]
@@ -9802,5 +9721,431 @@
                 "ecaf9e39.a1c89"
             ]
         ]
+    },
+    {
+        "id": "3f95a2b3.15b83e",
+        "type": "change",
+        "z": "888dfbf1.eaaba8",
+        "name": "Add mock ID sensors (up hall)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "data",
+                "pt": "msg",
+                "to": "{\"entity_id\":\"binary_sensor.motion_sensor_eco_upstairs_hallway\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 620,
+        "wires": [
+            [
+                "8282401f.cff1d"
+            ]
+        ]
+    },
+    {
+        "id": "67a9000f.3af86",
+        "type": "inject",
+        "z": "888dfbf1.eaaba8",
+        "name": "Mock on",
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 600,
+        "wires": [
+            [
+                "3f95a2b3.15b83e"
+            ]
+        ]
+    },
+    {
+        "id": "add780f3.548ee",
+        "type": "inject",
+        "z": "888dfbf1.eaaba8",
+        "name": "Mock off",
+        "topic": "",
+        "payload": "off",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 640,
+        "wires": [
+            [
+                "3f95a2b3.15b83e"
+            ]
+        ]
+    },
+    {
+        "id": "5ab4b215.7b13bc",
+        "type": "semaphore-take",
+        "z": "888dfbf1.eaaba8",
+        "config": "48ca387f.7f63d8",
+        "name": "Get HA queue lock",
+        "x": 790,
+        "y": 720,
+        "wires": [
+            [
+                "b7b6b82e.1a3d68"
+            ]
+        ]
+    },
+    {
+        "id": "788671bf.c8b0b",
+        "type": "semaphore-leave",
+        "z": "888dfbf1.eaaba8",
+        "config": "48ca387f.7f63d8",
+        "name": "Release HA queue",
+        "x": 1250,
+        "y": 720,
+        "wires": [
+            [
+                "b47632e1.ac4d2"
+            ]
+        ]
+    },
+    {
+        "id": "b7b6b82e.1a3d68",
+        "type": "function",
+        "z": "888dfbf1.eaaba8",
+        "name": "Queue and prioritize",
+        "func": "\nvar queues = {};\nqueues.max = flow.get(\"ha_cmd_queue_max\");\nif (queues.max === undefined) {\n    queues.max = [];\n}\n\nqueues.min = flow.get(\"ha_cmd_queue_min\");\nif (queues.min === undefined) {\n    queues.min = [];\n}\n\nqueues.off = flow.get(\"ha_cmd_queue_off\");\nif (queues.off === undefined) {\n    queues.off = [];\n}\n\n\nfunction search_queue(queue_name, entity_id) {\n    var index = queues[queue_name].\n            findIndex((e) => {\n        return e.payload.data.entity_id ==\n                entity_id;\n    });\n    \n    if (index == -1) {\n        return null;\n    }\n    \n    return {\n        queue_name: queue_name,\n        index: index,\n    };\n}\n\n\nfunction find_existing(entity_id) {\n    var res;\n\n    res = search_queue(\"max\", entity_id);\n    if (res !== null) {\n        return res;\n    }\n    \n    res = search_queue(\"min\", entity_id);\n    if (res !== null) {\n        return res;\n    }\n    \n    res = search_queue(\"off\", entity_id);\n    if (res !== null) {\n        return res;\n    }\n    \n    return null;\n}\n\n\nmsg.queue_data.forEach((e) => {\n    existing = find_existing(\n            e.payload.data.entity_id);\n    \n    if (existing !== null) {\n        if (queues[existing.queue_name][\n                existing.index].\n                spotlight_metadata.op_type ==\n                \"make_max\" && e.\n                spotlight_metadata.op_type ==\n                \"make_min\") {\n            // Do not want min to replace max\n            node.warn(\"skip\");\n            return;        \n        }\n        \n        node.warn(\"delete\");\n        \n        // New message will be added later\n        queues[existing.queue_name].\n                splice(existing.index, 1);\n    }\n    \n    switch (e.spotlight_metadata.op_type) {\n        case \"make_max\":\n            queues.max.push(e);\n            break;\n        \n        case \"make_min\":\n            queues.min.push(e);\n            break;\n        \n        case \"make_off\":\n            queues.off.push(e);\n            break;\n    }\n});\n\n\nflow.set(\"ha_cmd_queue_max\", queues.max);\nflow.set(\"ha_cmd_queue_min\", queues.min);\nflow.set(\"ha_cmd_queue_off\", queues.off);\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1020,
+        "y": 720,
+        "wires": [
+            [
+                "788671bf.c8b0b"
+            ]
+        ]
+    },
+    {
+        "id": "e0bcc2b5.d14fc",
+        "type": "catch",
+        "z": "888dfbf1.eaaba8",
+        "name": "Avoid HA queue lockup",
+        "scope": [
+            "b7b6b82e.1a3d68",
+            "32c5db88.628ce4",
+            "bf656429.bdcd08"
+        ],
+        "uncaught": false,
+        "x": 160,
+        "y": 1060,
+        "wires": [
+            [
+                "9e3eaede.7d4ac",
+                "f94a6313.46642"
+            ]
+        ]
+    },
+    {
+        "id": "9e3eaede.7d4ac",
+        "type": "semaphore-leave",
+        "z": "888dfbf1.eaaba8",
+        "config": "48ca387f.7f63d8",
+        "name": "Release HA queue",
+        "x": 410,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f94a6313.46642",
+        "type": "debug",
+        "z": "888dfbf1.eaaba8",
+        "name": "Error msg (HA queue)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "msg.error",
+        "targetType": "jsonata",
+        "x": 420,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "7d6b9274.3873dc",
+        "type": "inject",
+        "z": "888dfbf1.eaaba8",
+        "name": "Clear HA cmd queues",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 180,
+        "y": 1200,
+        "wires": [
+            [
+                "a4fbaff.f78305"
+            ]
+        ]
+    },
+    {
+        "id": "a4fbaff.f78305",
+        "type": "semaphore-take",
+        "z": "888dfbf1.eaaba8",
+        "config": "48ca387f.7f63d8",
+        "name": "Get HA queue lock",
+        "x": 410,
+        "y": 1200,
+        "wires": [
+            [
+                "32c5db88.628ce4"
+            ]
+        ]
+    },
+    {
+        "id": "61f767fa.32c678",
+        "type": "semaphore-leave",
+        "z": "888dfbf1.eaaba8",
+        "config": "48ca387f.7f63d8",
+        "name": "Release HA queue",
+        "x": 870,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "32c5db88.628ce4",
+        "type": "function",
+        "z": "888dfbf1.eaaba8",
+        "name": "Clear HA cmd queues",
+        "func": "\nflow.set(\"ha_cmd_queue_max\");\nflow.set(\"ha_cmd_queue_min\");\nflow.set(\"ha_cmd_queue_off\");\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 640,
+        "y": 1200,
+        "wires": [
+            [
+                "61f767fa.32c678"
+            ]
+        ]
+    },
+    {
+        "id": "e8a496e8.e93478",
+        "type": "semaphore-take",
+        "z": "888dfbf1.eaaba8",
+        "config": "48ca387f.7f63d8",
+        "name": "Get HA queue lock",
+        "x": 850,
+        "y": 800,
+        "wires": [
+            [
+                "bf656429.bdcd08"
+            ]
+        ]
+    },
+    {
+        "id": "bf656429.bdcd08",
+        "type": "function",
+        "z": "888dfbf1.eaaba8",
+        "name": "Pop next HA cmd",
+        "func": "\nvar queues = {};\nqueues.max = flow.get(\"ha_cmd_queue_max\");\nif (queues.max === undefined) {\n    queues.max = [];\n}\n\nqueues.min = flow.get(\"ha_cmd_queue_min\");\nif (queues.min === undefined) {\n    queues.min = [];\n}\n\nqueues.off = flow.get(\"ha_cmd_queue_off\");\nif (queues.off === undefined) {\n    queues.off = [];\n}\n\n\nvar cmd;\nif (queues.max.length > 0) {\n    cmd = queues.max.shift();\n}\nelse if (queues.min.length > 0) {\n    cmd = queues.min.shift();\n}\nelse if (queues.off.length > 0) {\n    cmd = queues.off.shift();\n}\n\nif (cmd === undefined) {\n    return {\n        payload: \"skip\",\n    };\n}\n\nflow.set(\"ha_cmd_queue_max\", queues.max);\nflow.set(\"ha_cmd_queue_min\", queues.min);\nflow.set(\"ha_cmd_queue_off\", queues.off);\n\nmsg = {\n    payload: cmd.payload,\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1070,
+        "y": 800,
+        "wires": [
+            [
+                "9bd3c398.88616"
+            ]
+        ]
+    },
+    {
+        "id": "9bd3c398.88616",
+        "type": "semaphore-leave",
+        "z": "888dfbf1.eaaba8",
+        "config": "48ca387f.7f63d8",
+        "name": "Release HA queue",
+        "x": 1290,
+        "y": 800,
+        "wires": [
+            [
+                "9b201391.b1f01",
+                "435bd08f.14ff8"
+            ]
+        ]
+    },
+    {
+        "id": "b47632e1.ac4d2",
+        "type": "semaphore-take",
+        "z": "888dfbf1.eaaba8",
+        "config": "7df2c2af.096bec",
+        "name": "Get HA dequeue loop lock",
+        "x": 570,
+        "y": 800,
+        "wires": [
+            [
+                "e8a496e8.e93478"
+            ]
+        ]
+    },
+    {
+        "id": "92ca7059.2634f",
+        "type": "semaphore-leave",
+        "z": "888dfbf1.eaaba8",
+        "config": "7df2c2af.096bec",
+        "name": "Release HA dequeue loop",
+        "x": 1390,
+        "y": 920,
+        "wires": [
+            [
+                "1c72eaf.e8d9215",
+                "43a268a8.75aab8"
+            ]
+        ]
+    },
+    {
+        "id": "7f4d5ece.e73cf",
+        "type": "function",
+        "z": "888dfbf1.eaaba8",
+        "name": "Is HA cmd queue empty?",
+        "func": "\nconst msg_reloop = {\n    payload: \"reloop\",\n}\n\nconst msg_done = {\n    payload: \"done\",\n}\n\n\n// Just reading -- do not need thread-safe access\n// If item added in meantime, another flow will\n//   re-enter -- not critical to re-loop\nvar queues = {};\nqueues.max = flow.get(\"ha_cmd_queue_max\");\nif (queues.max === undefined) {\n    queues.max = [];\n}\n\nqueues.min = flow.get(\"ha_cmd_queue_min\");\nif (queues.min === undefined) {\n    queues.min = [];\n}\n\nqueues.off = flow.get(\"ha_cmd_queue_off\");\nif (queues.off === undefined) {\n    queues.off = [];\n}\n\n\nvar is_empty = true;\n\n//Object.keys(queues).forEach((e) => {\n//});\nfor (var qn in queues) {\n    if (queues[qn].length > 0) {\n        is_empty = false;\n    }\n}\n\nif (is_empty) {\n    return [null, msg_done];\n}\n\nreturn [msg_reloop, null];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 1350,
+        "y": 860,
+        "wires": [
+            [
+                "e8a496e8.e93478"
+            ],
+            [
+                "92ca7059.2634f"
+            ]
+        ],
+        "outputLabels": [
+            "re-loop",
+            "done"
+        ]
+    },
+    {
+        "id": "3a05d85d.609108",
+        "type": "catch",
+        "z": "888dfbf1.eaaba8",
+        "name": "Avoid HA dequeue loop lockup",
+        "scope": [
+            "ea3e4690.913c68",
+            "5e0bf89c.02daf8",
+            "e8a496e8.e93478",
+            "bf656429.bdcd08",
+            "9bd3c398.88616",
+            "7f4d5ece.e73cf",
+            "9b201391.b1f01"
+        ],
+        "uncaught": false,
+        "x": 700,
+        "y": 1060,
+        "wires": [
+            [
+                "b73bbe50.2e7c",
+                "526506ae.ebf308"
+            ]
+        ]
+    },
+    {
+        "id": "b73bbe50.2e7c",
+        "type": "semaphore-leave",
+        "z": "888dfbf1.eaaba8",
+        "config": "7df2c2af.096bec",
+        "name": "Release HA dequeue loop",
+        "x": 990,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "526506ae.ebf308",
+        "type": "debug",
+        "z": "888dfbf1.eaaba8",
+        "name": "Error msg (HA dequeue loop)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "msg.error",
+        "targetType": "jsonata",
+        "x": 1000,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "9b201391.b1f01",
+        "type": "switch",
+        "z": "888dfbf1.eaaba8",
+        "name": "No cmd?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "skip",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "skip",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 580,
+        "y": 880,
+        "wires": [
+            [
+                "7f4d5ece.e73cf"
+            ],
+            [
+                "ea3e4690.913c68"
+            ]
+        ]
+    },
+    {
+        "id": "1436e5c8.e5a32a",
+        "type": "comment",
+        "z": "888dfbf1.eaaba8",
+        "name": "Why loop lock",
+        "info": "The loop lock is so that multiple parallel invocations of this flow do not start sending to the HA cmd at the same time.",
+        "x": 370,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "435bd08f.14ff8",
+        "type": "debug",
+        "z": "888dfbf1.eaaba8",
+        "name": "Next HA cmd",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1510,
+        "y": 760,
+        "wires": []
     }
 ]
