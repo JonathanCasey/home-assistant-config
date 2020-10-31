@@ -179,6 +179,13 @@
         "capacity": "1"
     },
     {
+        "id": "977b0e52.0f681",
+        "type": "semaphore-config",
+        "z": "",
+        "name": "Spotlight room state lock",
+        "capacity": "1"
+    },
+    {
         "id": "3cae343.22b5bcc",
         "type": "server-events",
         "z": "bf163cd5.f84c",
@@ -8962,15 +8969,15 @@
         "wires": [
             [
                 "c314b77b.445748",
-                "57284b45.1b0204"
+                "7817662f.e52ba8"
             ],
             [
                 "360ba06c.9da9e",
-                "fd3296c5.91fc98"
+                "c2b93d55.8081"
             ],
             [
                 "71f6b747.9beb88",
-                "373f464d.3907da"
+                "2ca14235.3908de"
             ]
         ],
         "outputLabels": [
@@ -9142,11 +9149,11 @@
         "func": "\nvar room_configs = global.get(\n            \"room_configs\", \"file\");\nvar all_room_names = Object.keys(room_configs);\n\nvar room_states = global.get(\"room_states\");\nif (room_states === undefined) {\n    room_states = {};\n}\n\nvar rooms_make_confirmed = [];\nvar rooms_make_possibly = [];\nvar rooms_make_vacant = [];\n\nmsg.rooms_to_update.forEach((e) => {\n    rooms_make_possibly.push(\n            ...room_configs[e].rooms_adjacent_without_sensors);\n});\n\nif (rooms_make_possibly.length === 0) {\n    rooms_make_confirmed.push(...msg.rooms_to_update);\n}\nelse {\n    rooms_make_possibly.push(\n            ...msg.rooms_to_update);\n}\n\nall_room_names.forEach((rn) => {\n    if (room_states[rn] === undefined) {\n        room_states[rn] = {};\n        room_states[rn].is_occupied = \"no init\";\n    }\n    \n    if (rooms_make_confirmed.includes(rn)) {\n        room_states[rn].is_occupied = \"confirmed\";\n    }\n    else if (rooms_make_possibly.includes(rn)) {\n        room_states[rn].is_occupied = \"possibly\";\n    }\n    else {\n        rooms_make_vacant.push(rn);\n        room_states[rn].is_occupied = \"vacant\";\n    }\n});\n\nglobal.set(\"room_states\", room_states);\n\n//node.warn(rooms_make_confirmed);\n//node.warn(rooms_make_possibly);\n//node.warn(rooms_make_vacant);\n//node.warn(room_states);\n\nmsg = {};\n//msg.rooms_make_max = rooms_make_possibly;\nmsg.rooms_make_off = rooms_make_vacant;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1220,
+        "x": 1440,
         "y": 340,
         "wires": [
             [
-                "745cd936.8da718"
+                "b9985d6f.041a2"
             ]
         ]
     },
@@ -9158,11 +9165,11 @@
         "func": "\nvar room_configs = global.get(\n            \"room_configs\", \"file\");\nvar all_room_names = Object.keys(room_configs);\n\nvar room_states = global.get(\"room_states\");\nif (room_states === undefined) {\n    room_states = {};\n}\n\nvar rooms_make_vacant = [];\n\nmsg.rooms_to_update.forEach((e) => {\n    rooms_make_vacant.push(e);    \n    rooms_make_vacant.push(\n            ...room_configs[e].rooms_adjacent_without_sensors);\n});\n\nall_room_names.forEach((rn) => {\n    if (room_states[rn] === undefined) {\n        room_states[rn] = {};\n        room_states[rn].is_occupied = \"no init\";\n    }\n    \n    if (rooms_make_vacant.includes(rn)) {\n        room_states[rn].is_occupied = \"vacant\";\n    }\n});\n\nglobal.set(\"room_states\", room_states);\n\n//node.warn(rooms_make_vacant);\n//node.warn(room_states);\n\nmsg = {};\nmsg.rooms_make_off = rooms_make_vacant;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1180,
+        "x": 1400,
         "y": 500,
         "wires": [
             [
-                "745cd936.8da718"
+                "b9985d6f.041a2"
             ]
         ]
     },
@@ -9199,11 +9206,11 @@
         "func": "\nvar room_configs = global.get(\n            \"room_configs\", \"file\");\nvar all_room_names = Object.keys(room_configs);\n\nvar room_states = global.get(\"room_states\");\nif (room_states === undefined) {\n    room_states = {};\n}\n\nvar rooms_make_readying_max = [];\nvar rooms_make_readying_min = [];\nvar is_only_occupied_endpoint = true;\n\nmsg.rooms_to_update.forEach((e) => {\n    if (room_states[e] === undefined ||\n            room_states[e].is_occupied == \"vacant\" ||\n            room_states[e].is_occupied == \"readying\" ||\n            !room_configs[e].is_endpoint) {\n        is_only_occupied_endpoint = false;\n    }\n    \n    rooms_make_readying_max.push(e);\n    rooms_make_readying_max.push(\n            ...room_configs[e].rooms_adjacent_without_sensors);\n    rooms_make_readying_min.push(\n            ...room_configs[e].rooms_adjacent_with_sensors);\n});\n\nif (is_only_occupied_endpoint) {\n    rooms_make_readying_max = [];\n    rooms_make_readying_min = [];\n}\nelse {\n    rooms_make_readying_min = \n            rooms_make_readying_min.filter((e) => {\n        return !(e in rooms_make_readying_max);\n    });\n    \n    all_room_names.forEach((rn) => {\n        if (room_states[rn] === undefined) {\n            room_states[rn] = {};\n            room_states[rn].is_occupied = \"no init\";\n        }\n        \n        if (rooms_make_readying_max.includes(rn) ||\n                rooms_make_readying_min.includes(rn)) {\n            room_states[rn].is_occupied = \"readying\";\n        }\n    });\n    \n    global.set(\"room_states\", room_states);\n}\n\n//node.warn(rooms_make_readying_max);\n//node.warn(rooms_make_readying_min);\n//node.warn(room_states);\n\nmsg = {};\n\nif (!is_only_occupied_endpoint) {\n    msg.rooms_make_max = rooms_make_readying_max;\n    msg.rooms_make_min = rooms_make_readying_min;\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1190,
+        "x": 1410,
         "y": 420,
         "wires": [
             [
-                "745cd936.8da718"
+                "b9985d6f.041a2"
             ]
         ]
     },
@@ -9261,8 +9268,8 @@
         "output_location_type": "msg",
         "output_location": "lights_snapshot",
         "output_results_count": 1,
-        "x": 1500,
-        "y": 500,
+        "x": 280,
+        "y": 700,
         "wires": [
             [
                 "c0524bde.553058"
@@ -9304,7 +9311,7 @@
         "output_location": "switches_snapshot",
         "output_results_count": 1,
         "x": 270,
-        "y": 720,
+        "y": 760,
         "wires": [
             [
                 "90078417.0811f8",
@@ -9671,8 +9678,8 @@
         "y": 260,
         "wires": [
             [
-                "57284b45.1b0204",
-                "79b024d8.90d69c"
+                "79b024d8.90d69c",
+                "7817662f.e52ba8"
             ]
         ]
     },
@@ -10245,6 +10252,109 @@
         "targetType": "full",
         "x": 1670,
         "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "7817662f.e52ba8",
+        "type": "semaphore-take",
+        "z": "888dfbf1.eaaba8",
+        "config": "977b0e52.0f681",
+        "name": "Get room state lock",
+        "x": 1170,
+        "y": 340,
+        "wires": [
+            [
+                "57284b45.1b0204"
+            ]
+        ]
+    },
+    {
+        "id": "b9985d6f.041a2",
+        "type": "semaphore-leave",
+        "z": "888dfbf1.eaaba8",
+        "config": "977b0e52.0f681",
+        "name": "Release room state",
+        "x": 1670,
+        "y": 500,
+        "wires": [
+            [
+                "745cd936.8da718"
+            ]
+        ]
+    },
+    {
+        "id": "c2b93d55.8081",
+        "type": "semaphore-take",
+        "z": "888dfbf1.eaaba8",
+        "config": "977b0e52.0f681",
+        "name": "Get room state lock",
+        "x": 1170,
+        "y": 420,
+        "wires": [
+            [
+                "fd3296c5.91fc98"
+            ]
+        ]
+    },
+    {
+        "id": "2ca14235.3908de",
+        "type": "semaphore-take",
+        "z": "888dfbf1.eaaba8",
+        "config": "977b0e52.0f681",
+        "name": "Get room state lock",
+        "x": 1170,
+        "y": 500,
+        "wires": [
+            [
+                "373f464d.3907da"
+            ]
+        ]
+    },
+    {
+        "id": "eee4c1b2.44929",
+        "type": "catch",
+        "z": "888dfbf1.eaaba8",
+        "name": "Avoid room state lockup",
+        "scope": [
+            "57284b45.1b0204",
+            "373f464d.3907da",
+            "fd3296c5.91fc98"
+        ],
+        "uncaught": false,
+        "x": 1320,
+        "y": 1060,
+        "wires": [
+            [
+                "bcc61231.7b768",
+                "ef9bd37d.d02eb"
+            ]
+        ]
+    },
+    {
+        "id": "bcc61231.7b768",
+        "type": "semaphore-leave",
+        "z": "888dfbf1.eaaba8",
+        "config": "977b0e52.0f681",
+        "name": "Release room state",
+        "x": 1550,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ef9bd37d.d02eb",
+        "type": "debug",
+        "z": "888dfbf1.eaaba8",
+        "name": "Error msg (room state)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "msg.error",
+        "targetType": "jsonata",
+        "x": 1560,
+        "y": 1100,
         "wires": []
     }
 ]
