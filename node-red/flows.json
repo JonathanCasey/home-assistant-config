@@ -9317,7 +9317,7 @@
         "type": "function",
         "z": "888dfbf1.eaaba8",
         "name": "Create HA commands",
-        "func": "var room_configs = global.get(\n            \"room_configs\", \"file\");\n\nvar lights_snapshot = {}\nmsg.lights_snapshot.forEach((e) => {\n    lights_snapshot[e.entity_id] = e;\n});\n\nvar switches_snapshot = {}\nmsg.switches_snapshot.forEach((e) => {\n    switches_snapshot[e.entity_id] = e;\n});\n\n// Just reading -- do not need thread-safe access\n// Only used to ensure anything already in queue\n//   is included if also in new room lists\n// Another node will resolve conflicts\nvar queues = {};\nqueues.max = flow.get(\"ha_cmd_queue_max\");\nif (queues.max === undefined) {\n    queues.max = [];\n}\n\nqueues.min = flow.get(\"ha_cmd_queue_min\");\nif (queues.min === undefined) {\n    queues.min = [];\n}\n\nqueues.off = flow.get(\"ha_cmd_queue_off\");\nif (queues.off === undefined) {\n    queues.off = [];\n}\n\nfunction is_in_queue(queue, entity_id) {\n    var found = queue.find((e) => {\n            return (e.payload.data.entity_id ==\n            entity_id);\n    });\n    \n    if (found) {\n        return true;\n    }\n    return false;\n}\n\nfunction is_in_any_queue(entity_id) {\n    var is_queued = false;\n    for (var qn in queues) {\n        is_queued |= is_in_queue(queues[qn],\n                entity_id);\n    }\n    return is_queued;\n}\n\n\n\nfunction build_cmd(\n        op_type, entity_id, state,\n        target_bright, is_min_bright) {\n    const domain = entity_id.split('.')[0];\n    var need_cmd = false;\n    var snapshot;\n    var new_brightness;\n    \n    switch(domain) {\n        case 'switch':\n            snapshot = switches_snapshot[entity_id];\n            if (snapshot.state != state) {\n                need_cmd = true;\n            }\n            break;\n        case 'light':\n            snapshot = lights_snapshot[entity_id];\n            if (state == \"on\") {\n                var existing_brightness;\n                if (snapshot.attributes.brightness !== undefined) {\n                    existing_brightness = snapshot.attributes.brightness;\n                }\n                \n                if (existing_brightness === undefined ||\n                        (target_bright > existing_brightness &&\n                            is_min_bright) ||\n                        (target_bright < existing_brightness &&\n                            !is_min_bright) ||\n                        is_in_any_queue(entity_id)) {\n                    new_brightness = target_bright;\n                    need_cmd = true;\n                }\n                \n                if (snapshot.state != \"on\") {\n                    need_cmd = true;\n                }\n            }\n            else {\n                if (snapshot.state != \"off\") {\n                    need_cmd = true;\n                }\n            }\n            break;\n    }\n    \n    if (!need_cmd &&\n            is_in_any_queue(entity_id)) {\n        need_cmd = true;\n    }\n    \n    if (need_cmd) {\n        const msg = {\n            payload: {\n                domain: domain,\n                service: `turn_${state}`,\n                data: {\n                    entity_id: entity_id,\n                },\n            },\n            spotlight_metadata: {\n                op_type: op_type,\n                create_time: new Date().toISOString(),\n            },\n        };\n        \n        if (new_brightness !== undefined) {\n            msg.payload.data.brightness = new_brightness;\n        }\n        \n        return msg;\n    }\n    return null;\n}\n\n\nvar payloads = [];\nvar payload;\nvar rn;\n\n\nif (msg.rooms_make_max !== undefined) {\n    msg.rooms_make_max.forEach((e) => {\n        for (rn in room_configs[e][\"auto-on_devices\"]) {\n            payload = build_cmd(\"make_max\",\n                    rn, \"on\", 255, true);\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n    });\n}\n\nif (msg.rooms_make_min !== undefined) {\n    msg.rooms_make_min.forEach((e) => {\n        for (rn in room_configs[e][\"auto-on_devices\"]) {\n            payload = build_cmd(\"make_min\",\n                    rn, \"on\", 2, true);\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n    });\n}\n\nif (msg.rooms_make_off !== undefined) {\n    msg.rooms_make_off.forEach((e) => {\n        for (rn in room_configs[e][\"auto-on_devices\"]) {\n            payload = build_cmd(\"make_off\",\n                    rn, \"off\");\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n        for (rn in room_configs[e][\"off-only_devices\"]) {\n            payload = build_cmd(rn, \"off\");\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n    });\n}\n\n\nmsg = { queue_data: payloads };\nreturn msg;",
+        "func": "var room_configs = global.get(\n            \"room_configs\", \"file\");\n\nvar lights_snapshot = {}\nmsg.lights_snapshot.forEach((e) => {\n    lights_snapshot[e.entity_id] = e;\n});\n\nvar switches_snapshot = {}\nmsg.switches_snapshot.forEach((e) => {\n    switches_snapshot[e.entity_id] = e;\n});\n\n// Just reading -- do not need thread-safe access\n// Only used to ensure anything already in queue\n//   is included if also in new room lists\n// Another node will resolve conflicts\nvar queues = {};\nqueues.max = flow.get(\"ha_cmd_queue_max\");\nif (queues.max === undefined) {\n    queues.max = [];\n}\n\nqueues.min = flow.get(\"ha_cmd_queue_min\");\nif (queues.min === undefined) {\n    queues.min = [];\n}\n\nqueues.off = flow.get(\"ha_cmd_queue_off\");\nif (queues.off === undefined) {\n    queues.off = [];\n}\n\nqueues.past = flow.get(\"ha_cmd_queue_past\");\nif (queues.past === undefined) {\n    queues.past = [];\n}\n\nvar past_timeout_s = flow.get(\n        \"ha_cmd_past_timeout_s\", \"file\")\n\n\nfunction is_in_pending_queue(queue, entity_id) {\n    var found = queue.find((e) => {\n            return (e.payload.data.entity_id ==\n            entity_id);\n    });\n    \n    if (found) {\n        return true;\n    }\n    return false;\n}\n\n\nfunction is_in_past_queue(queue, entity_id) {\n    var found = queue.find((e) => {\n        // Technically different \"now\" each time,\n        //   but not critical to get exactly right\n        var diff_ms = new Date() - new Date(\n                e.spotlight_metadata.update_time);\n        \n        return (diff_ms <=\n                    past_timeout_s * 1000) &&\n                (e.payload.data.entity_id ==\n                    entity_id);\n    });\n    \n    if (found) {\n        return true;\n    }\n    return false;\n}\n\n\nfunction is_in_any_queue(entity_id) {\n    var is_queued = false;\n    for (var qn in queues) {\n        if (qn == \"past\") {\n            is_queued |= is_in_past_queue(\n                queues[qn], entity_id);\n        }\n        else {\n            is_queued |= is_in_pending_queue(\n                    queues[qn], entity_id);\n        }\n    }\n    return is_queued;\n}\n\n\nfunction build_cmd(\n        op_type, entity_id, state,\n        target_bright, is_min_bright) {\n    const domain = entity_id.split('.')[0];\n    var need_cmd = false;\n    var snapshot;\n    var new_brightness;\n    \n    switch(domain) {\n        case 'switch':\n            snapshot = switches_snapshot[entity_id];\n            if (snapshot.state != state) {\n                need_cmd = true;\n            }\n            break;\n        case 'light':\n            snapshot = lights_snapshot[entity_id];\n            if (state == \"on\") {\n                var existing_brightness;\n                if (snapshot.attributes.brightness !== undefined) {\n                    existing_brightness = snapshot.attributes.brightness;\n                }\n                \n                if (existing_brightness === undefined ||\n                        (target_bright > existing_brightness &&\n                            is_min_bright) ||\n                        (target_bright < existing_brightness &&\n                            !is_min_bright) ||\n                        is_in_any_queue(entity_id)) {\n                    new_brightness = target_bright;\n                    need_cmd = true;\n                }\n                \n                if (snapshot.state != \"on\") {\n                    need_cmd = true;\n                }\n            }\n            else {\n                if (snapshot.state != \"off\") {\n                    need_cmd = true;\n                }\n            }\n            break;\n    }\n    \n    if (!need_cmd &&\n            is_in_any_queue(entity_id)) {\n        need_cmd = true;\n    }\n    \n    if (need_cmd) {\n        const msg = {\n            payload: {\n                domain: domain,\n                service: `turn_${state}`,\n                data: {\n                    entity_id: entity_id,\n                },\n            },\n            spotlight_metadata: {\n                op_type: op_type,\n                create_time: new Date().toISOString(),\n            },\n        };\n        \n        if (new_brightness !== undefined) {\n            msg.payload.data.brightness = new_brightness;\n        }\n        \n        return msg;\n    }\n    return null;\n}\n\n\nvar payloads = [];\nvar payload;\nvar rn;\n\n\nif (msg.rooms_make_max !== undefined) {\n    msg.rooms_make_max.forEach((e) => {\n        for (rn in room_configs[e][\"auto-on_devices\"]) {\n            payload = build_cmd(\"make_max\",\n                    rn, \"on\", 255, true);\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n    });\n}\n\nif (msg.rooms_make_min !== undefined) {\n    msg.rooms_make_min.forEach((e) => {\n        for (rn in room_configs[e][\"auto-on_devices\"]) {\n            payload = build_cmd(\"make_min\",\n                    rn, \"on\", 2, true);\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n    });\n}\n\nif (msg.rooms_make_off !== undefined) {\n    msg.rooms_make_off.forEach((e) => {\n        for (rn in room_configs[e][\"auto-on_devices\"]) {\n            payload = build_cmd(\"make_off\",\n                    rn, \"off\");\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n        for (rn in room_configs[e][\"off-only_devices\"]) {\n            payload = build_cmd(rn, \"off\");\n            if (payload !== null) {\n                payloads.push(payload);\n            }\n        }\n    });\n}\n\n\nmsg = { queue_data: payloads };\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 540,
@@ -9344,7 +9344,7 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 820,
+        "x": 780,
         "y": 900,
         "wires": [
             [
@@ -9369,12 +9369,11 @@
         "output_location": "payload",
         "output_location_type": "msg",
         "mustacheAltTags": false,
-        "x": 1100,
+        "x": 1040,
         "y": 900,
         "wires": [
             [
-                "7f4d5ece.e73cf",
-                "9ecb1ffe.40f25"
+                "545bc559.c789dc"
             ]
         ]
     },
@@ -9823,7 +9822,7 @@
         "type": "function",
         "z": "888dfbf1.eaaba8",
         "name": "Queue and prioritize",
-        "func": "\nvar queues = {};\nqueues.max = flow.get(\"ha_cmd_queue_max\");\nif (queues.max === undefined) {\n    queues.max = [];\n}\n\nqueues.min = flow.get(\"ha_cmd_queue_min\");\nif (queues.min === undefined) {\n    queues.min = [];\n}\n\nqueues.off = flow.get(\"ha_cmd_queue_off\");\nif (queues.off === undefined) {\n    queues.off = [];\n}\n\n\nfunction search_queue(queue_name, entity_id) {\n    var index = queues[queue_name].\n            findIndex((e) => {\n        return e.payload.data.entity_id ==\n                entity_id;\n    });\n    \n    if (index == -1) {\n        return null;\n    }\n    \n    return {\n        queue_name: queue_name,\n        index: index,\n    };\n}\n\n\nfunction find_existing(entity_id) {\n    var res;\n\n    res = search_queue(\"max\", entity_id);\n    if (res !== null) {\n        return res;\n    }\n    \n    res = search_queue(\"min\", entity_id);\n    if (res !== null) {\n        return res;\n    }\n    \n    res = search_queue(\"off\", entity_id);\n    if (res !== null) {\n        return res;\n    }\n    \n    return null;\n}\n\n\nmsg.queue_data.forEach((e) => {\n    existing = find_existing(\n            e.payload.data.entity_id);\n    \n    if (existing !== null) {\n        if (queues[existing.queue_name][\n                existing.index].\n                spotlight_metadata.op_type ==\n                \"make_max\" && e.\n                spotlight_metadata.op_type ==\n                \"make_min\") {\n            // Do not want min to replace max\n            return;        \n        }\n        \n        // New message will be added later\n        queues[existing.queue_name].\n                splice(existing.index, 1);\n    }\n    \n    switch (e.spotlight_metadata.op_type) {\n        case \"make_max\":\n            queues.max.push(e);\n            break;\n        \n        case \"make_min\":\n            queues.min.push(e);\n            break;\n        \n        case \"make_off\":\n            queues.off.push(e);\n            break;\n    }\n});\n\n\nflow.set(\"ha_cmd_queue_max\", queues.max);\nflow.set(\"ha_cmd_queue_min\", queues.min);\nflow.set(\"ha_cmd_queue_off\", queues.off);\n\n\nreturn msg;",
+        "func": "\nvar queues = {};\nqueues.max = flow.get(\"ha_cmd_queue_max\");\nif (queues.max === undefined) {\n    queues.max = [];\n}\n\nqueues.min = flow.get(\"ha_cmd_queue_min\");\nif (queues.min === undefined) {\n    queues.min = [];\n}\n\nqueues.off = flow.get(\"ha_cmd_queue_off\");\nif (queues.off === undefined) {\n    queues.off = [];\n}\n\nqueues.past = flow.get(\"ha_cmd_queue_past\");\nif (queues.past === undefined) {\n    queues.past = [];\n}\n\n\nfunction search_queue(queue_name, entity_id) {\n    var index = queues[queue_name].\n            findIndex((e) => {\n        return e.payload.data.entity_id ==\n                entity_id;\n    });\n    \n    if (index == -1) {\n        return null;\n    }\n    \n    return {\n        queue_name: queue_name,\n        index: index,\n    };\n}\n\n\nfunction find_existing(entity_id) {\n    var res;\n\n    res = search_queue(\"max\", entity_id);\n    if (res !== null) {\n        return res;\n    }\n    \n    res = search_queue(\"min\", entity_id);\n    if (res !== null) {\n        return res;\n    }\n    \n    res = search_queue(\"off\", entity_id);\n    if (res !== null) {\n        return res;\n    }\n    \n    return null;\n}\n\n\nmsg.queue_data.forEach((e) => {\n    existing = find_existing(\n            e.payload.data.entity_id);\n    \n    if (existing !== null) {\n        if (queues[existing.queue_name][\n                existing.index].\n                spotlight_metadata.op_type ==\n                \"make_max\" && e.\n                spotlight_metadata.op_type ==\n                \"make_min\") {\n            // Do not want min to replace max\n            return;        \n        }\n        \n        // New message will be added later\n        queues[existing.queue_name].\n                splice(existing.index, 1);\n    }\n    \n    switch (e.spotlight_metadata.op_type) {\n        case \"make_max\":\n            queues.max.push(e);\n            break;\n        \n        case \"make_min\":\n            queues.min.push(e);\n            break;\n        \n        case \"make_off\":\n            queues.off.push(e);\n            break;\n    }\n});\n\n// This also cleans up old history\n//   while it has the semaphore\nvar past_timeout_s = flow.get(\n        \"ha_cmd_past_timeout_s\", \"file\")\nqueues.past = queues.past.filter((e) => {\n    // Technically different \"now\" each time,\n    //   but not critical to get exactly right.\n    var diff_ms = new Date() - new Date(\n            e.spotlight_metadata.update_time);\n    \n    return diff_ms <= past_timeout_s * 1000;\n});\n\n\nflow.set(\"ha_cmd_queue_max\", queues.max);\nflow.set(\"ha_cmd_queue_min\", queues.min);\nflow.set(\"ha_cmd_queue_off\", queues.off);\nflow.set(\"ha_cmd_queue_past\", queues.past);\n\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 1020,
@@ -9842,7 +9841,8 @@
         "scope": [
             "b7b6b82e.1a3d68",
             "32c5db88.628ce4",
-            "bf656429.bdcd08"
+            "bf656429.bdcd08",
+            "d6ae9766.77b248"
         ],
         "uncaught": false,
         "x": 160,
@@ -9962,7 +9962,7 @@
         "type": "function",
         "z": "888dfbf1.eaaba8",
         "name": "Pop next HA cmd",
-        "func": "\nvar queues = {};\nqueues.max = flow.get(\"ha_cmd_queue_max\");\nif (queues.max === undefined) {\n    queues.max = [];\n}\n\nqueues.min = flow.get(\"ha_cmd_queue_min\");\nif (queues.min === undefined) {\n    queues.min = [];\n}\n\nqueues.off = flow.get(\"ha_cmd_queue_off\");\nif (queues.off === undefined) {\n    queues.off = [];\n}\n\n\nvar cmd;\nif (queues.max.length > 0) {\n    cmd = queues.max.shift();\n}\nelse if (queues.min.length > 0) {\n    cmd = queues.min.shift();\n}\nelse if (queues.off.length > 0) {\n    cmd = queues.off.shift();\n}\n\nif (cmd === undefined) {\n    return {\n        payload: \"skip\",\n    };\n}\n\nflow.set(\"ha_cmd_queue_max\", queues.max);\nflow.set(\"ha_cmd_queue_min\", queues.min);\nflow.set(\"ha_cmd_queue_off\", queues.off);\n\nmsg = {\n    payload: cmd.payload,\n    this_cmd: cmd,\n}\n\nreturn msg;\n",
+        "func": "\nvar queues = {};\nqueues.max = flow.get(\"ha_cmd_queue_max\");\nif (queues.max === undefined) {\n    queues.max = [];\n}\n\nqueues.min = flow.get(\"ha_cmd_queue_min\");\nif (queues.min === undefined) {\n    queues.min = [];\n}\n\nqueues.off = flow.get(\"ha_cmd_queue_off\");\nif (queues.off === undefined) {\n    queues.off = [];\n}\n\nqueues.past = flow.get(\"ha_cmd_queue_past\");\nif (queues.past === undefined) {\n    queues.past = [];\n}\n\n\nvar cmd;\nif (queues.max.length > 0) {\n    cmd = queues.max.shift();\n}\nelse if (queues.min.length > 0) {\n    cmd = queues.min.shift();\n}\nelse if (queues.off.length > 0) {\n    cmd = queues.off.shift();\n}\n\nif (cmd === undefined) {\n    return {\n        payload: \"skip\",\n    };\n}\nelse {\n    cmd.spotlight_metadata.update_time =\n            new Date().toISOString();\n    cmd.spotlight_metadata.is_time_confirmed = false;\n    queues.past.push(cmd);\n}\n\nflow.set(\"ha_cmd_queue_max\", queues.max);\nflow.set(\"ha_cmd_queue_min\", queues.min);\nflow.set(\"ha_cmd_queue_off\", queues.off);\nflow.set(\"ha_cmd_queue_past\", queues.past);\n\nmsg = {\n    payload: cmd.payload,\n    this_cmd: cmd,\n}\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "x": 1070,
@@ -10052,7 +10052,10 @@
             "bf656429.bdcd08",
             "9bd3c398.88616",
             "7f4d5ece.e73cf",
-            "9b201391.b1f01"
+            "9b201391.b1f01",
+            "545bc559.c789dc",
+            "d6ae9766.77b248",
+            "383972de.ddc76e"
         ],
         "uncaught": false,
         "x": 700,
@@ -10113,7 +10116,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 580,
+        "x": 540,
         "y": 880,
         "wires": [
             [
@@ -10150,18 +10153,98 @@
         "wires": []
     },
     {
-        "id": "9ecb1ffe.40f25",
+        "id": "545bc559.c789dc",
+        "type": "semaphore-take",
+        "z": "888dfbf1.eaaba8",
+        "config": "48ca387f.7f63d8",
+        "name": "Get HA queue lock",
+        "x": 710,
+        "y": 960,
+        "wires": [
+            [
+                "d6ae9766.77b248"
+            ]
+        ]
+    },
+    {
+        "id": "d6ae9766.77b248",
+        "type": "function",
+        "z": "888dfbf1.eaaba8",
+        "name": "Confirm time",
+        "func": "\nvar queues = {};\nqueues.past = flow.get(\"ha_cmd_queue_past\");\nif (queues.past === undefined) {\n    queues.past = [];\n}\n\n\nfunction is_cmd_probably_equal(cmd1, cmd2) {\n    try {\n        var p1 = cmd1.payload;\n        var p2 = cmd2.payload;\n        var sm1 = cmd1.spotlight_metadata;\n        var sm2 = cmd2.spotlight_metadata;\n        \n        if (p1.service != p2.service) {\n            return false;\n        }\n        \n        if (p1.data.entity_id != p2.data.entity_id) {\n            return false;\n        }\n        \n        if (sm1.op_type != sm2.op_type) {\n            return false;\n        }\n        \n        if (sm1.create_time != sm2.create_time) {\n            return false;\n        }\n        \n        if (sm1.update_time != sm2.update_time) {\n            return false;\n        }\n        \n        if (sm1.is_time_confirmed ||\n                sm2.is_time_confirmed) {\n            return false;\n        }\n        \n        // Presume rest matches -- diff improbable\n        return true;\n    }\n    catch (err) {\n        return false;\n    }\n}\n\nvar q_cmd;\nfor (var i = queues.past.length - 1; i >= 0; i--) {\n    if (is_cmd_probably_equal(\n                queues.past[i], msg.this_cmd)) {\n        q_cmd = queues.past[i];\n        break;\n    }\n}\n\nif (q_cmd !== undefined) {\n    q_cmd.spotlight_metadata.update_time =\n            new Date().toISOString();\n    q_cmd.spotlight_metadata.is_time_confirmed =\n            true;\n    flow.set(\"ha_cmd_queue_past\", queues.past);\n}\n// Else, no match for some reason...\n// Ignore -- there are failsafes\n\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 910,
+        "y": 960,
+        "wires": [
+            [
+                "383972de.ddc76e"
+            ]
+        ]
+    },
+    {
+        "id": "383972de.ddc76e",
+        "type": "semaphore-leave",
+        "z": "888dfbf1.eaaba8",
+        "config": "48ca387f.7f63d8",
+        "name": "Release HA queue",
+        "x": 1110,
+        "y": 960,
+        "wires": [
+            [
+                "7f4d5ece.e73cf"
+            ]
+        ]
+    },
+    {
+        "id": "8b841822.3226c8",
+        "type": "inject",
+        "z": "888dfbf1.eaaba8",
+        "name": "Set HA cmd past timeout (s)",
+        "topic": "ha_cmd_past_timeout_s",
+        "payload": "5",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 1200,
+        "y": 1200,
+        "wires": [
+            [
+                "a7498c74.c6b72"
+            ]
+        ]
+    },
+    {
+        "id": "a7498c74.c6b72",
+        "type": "function",
+        "z": "888dfbf1.eaaba8",
+        "name": "Save config to file",
+        "func": "var key = msg.topic;\nvar new_val = msg.payload;\n\nflow.set(key, new_val, \"file\");\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1470,
+        "y": 1200,
+        "wires": [
+            [
+                "d9c8e51d.d187d8"
+            ]
+        ]
+    },
+    {
+        "id": "d9c8e51d.d187d8",
         "type": "debug",
         "z": "888dfbf1.eaaba8",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 1280,
-        "y": 1000,
+        "x": 1670,
+        "y": 1200,
         "wires": []
     }
 ]
