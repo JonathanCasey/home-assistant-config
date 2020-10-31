@@ -9373,7 +9373,8 @@
         "y": 900,
         "wires": [
             [
-                "7f4d5ece.e73cf"
+                "7f4d5ece.e73cf",
+                "9ecb1ffe.40f25"
             ]
         ]
     },
@@ -9961,7 +9962,7 @@
         "type": "function",
         "z": "888dfbf1.eaaba8",
         "name": "Pop next HA cmd",
-        "func": "\nvar queues = {};\nqueues.max = flow.get(\"ha_cmd_queue_max\");\nif (queues.max === undefined) {\n    queues.max = [];\n}\n\nqueues.min = flow.get(\"ha_cmd_queue_min\");\nif (queues.min === undefined) {\n    queues.min = [];\n}\n\nqueues.off = flow.get(\"ha_cmd_queue_off\");\nif (queues.off === undefined) {\n    queues.off = [];\n}\n\n\nvar cmd;\nif (queues.max.length > 0) {\n    cmd = queues.max.shift();\n}\nelse if (queues.min.length > 0) {\n    cmd = queues.min.shift();\n}\nelse if (queues.off.length > 0) {\n    cmd = queues.off.shift();\n}\n\nif (cmd === undefined) {\n    return {\n        payload: \"skip\",\n    };\n}\n\nflow.set(\"ha_cmd_queue_max\", queues.max);\nflow.set(\"ha_cmd_queue_min\", queues.min);\nflow.set(\"ha_cmd_queue_off\", queues.off);\n\nmsg = {\n    payload: cmd.payload,\n}\n\nreturn msg;\n",
+        "func": "\nvar queues = {};\nqueues.max = flow.get(\"ha_cmd_queue_max\");\nif (queues.max === undefined) {\n    queues.max = [];\n}\n\nqueues.min = flow.get(\"ha_cmd_queue_min\");\nif (queues.min === undefined) {\n    queues.min = [];\n}\n\nqueues.off = flow.get(\"ha_cmd_queue_off\");\nif (queues.off === undefined) {\n    queues.off = [];\n}\n\n\nvar cmd;\nif (queues.max.length > 0) {\n    cmd = queues.max.shift();\n}\nelse if (queues.min.length > 0) {\n    cmd = queues.min.shift();\n}\nelse if (queues.off.length > 0) {\n    cmd = queues.off.shift();\n}\n\nif (cmd === undefined) {\n    return {\n        payload: \"skip\",\n    };\n}\n\nflow.set(\"ha_cmd_queue_max\", queues.max);\nflow.set(\"ha_cmd_queue_min\", queues.min);\nflow.set(\"ha_cmd_queue_off\", queues.off);\n\nmsg = {\n    payload: cmd.payload,\n    this_cmd: cmd,\n}\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "x": 1070,
@@ -10146,6 +10147,21 @@
         "targetType": "full",
         "x": 1510,
         "y": 760,
+        "wires": []
+    },
+    {
+        "id": "9ecb1ffe.40f25",
+        "type": "debug",
+        "z": "888dfbf1.eaaba8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1280,
+        "y": 1000,
         "wires": []
     }
 ]
