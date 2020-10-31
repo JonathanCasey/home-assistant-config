@@ -2,5 +2,6 @@
     "reconciliation_check_retry_s": 2,
     "reconciliation_quiet_wait_s": 10,
     "reconciliation_abandon_s": 30,
-    "reconciliation_max_retries": 1
+    "reconciliation_max_retries": 1,
+    "reconciliation_brightness_tol": 1
 }
