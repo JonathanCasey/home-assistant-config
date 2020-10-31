@@ -186,6 +186,13 @@
         "capacity": "1"
     },
     {
+        "id": "c4f7cda5.2695f",
+        "type": "semaphore-config",
+        "z": "",
+        "name": "Reconciliation last cmd",
+        "capacity": "1"
+    },
+    {
         "id": "3cae343.22b5bcc",
         "type": "server-events",
         "z": "bf163cd5.f84c",
@@ -9853,7 +9860,7 @@
         ],
         "uncaught": false,
         "x": 160,
-        "y": 1060,
+        "y": 1080,
         "wires": [
             [
                 "9e3eaede.7d4ac",
@@ -9868,7 +9875,7 @@
         "config": "48ca387f.7f63d8",
         "name": "Release HA queue",
         "x": 410,
-        "y": 1060,
+        "y": 1080,
         "wires": [
             []
         ]
@@ -9885,7 +9892,7 @@
         "complete": "msg.error",
         "targetType": "jsonata",
         "x": 420,
-        "y": 1100,
+        "y": 1120,
         "wires": []
     },
     {
@@ -10062,11 +10069,14 @@
             "9b201391.b1f01",
             "545bc559.c789dc",
             "d6ae9766.77b248",
-            "383972de.ddc76e"
+            "383972de.ddc76e",
+            "a7c8f2c8.e5215",
+            "98d71bb6.3eb908",
+            "a834a91f.3dc2f8"
         ],
         "uncaught": false,
         "x": 700,
-        "y": 1060,
+        "y": 1080,
         "wires": [
             [
                 "b73bbe50.2e7c",
@@ -10081,7 +10091,7 @@
         "config": "7df2c2af.096bec",
         "name": "Release HA dequeue loop",
         "x": 990,
-        "y": 1060,
+        "y": 1080,
         "wires": [
             []
         ]
@@ -10098,7 +10108,7 @@
         "complete": "msg.error",
         "targetType": "jsonata",
         "x": 1000,
-        "y": 1100,
+        "y": 1120,
         "wires": []
     },
     {
@@ -10199,7 +10209,7 @@
         "y": 960,
         "wires": [
             [
-                "7f4d5ece.e73cf"
+                "a7c8f2c8.e5215"
             ]
         ]
     },
@@ -10215,8 +10225,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 1200,
-        "y": 1200,
+        "x": 200,
+        "y": 1260,
         "wires": [
             [
                 "a7498c74.c6b72"
@@ -10231,8 +10241,8 @@
         "func": "var key = msg.topic;\nvar new_val = msg.payload;\n\nflow.set(key, new_val, \"file\");\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1470,
-        "y": 1200,
+        "x": 470,
+        "y": 1260,
         "wires": [
             [
                 "d9c8e51d.d187d8"
@@ -10250,8 +10260,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 1670,
-        "y": 1200,
+        "x": 670,
+        "y": 1260,
         "wires": []
     },
     {
@@ -10322,7 +10332,7 @@
         ],
         "uncaught": false,
         "x": 1320,
-        "y": 1060,
+        "y": 1080,
         "wires": [
             [
                 "bcc61231.7b768",
@@ -10337,7 +10347,7 @@
         "config": "977b0e52.0f681",
         "name": "Release room state",
         "x": 1550,
-        "y": 1060,
+        "y": 1080,
         "wires": [
             []
         ]
@@ -10354,7 +10364,96 @@
         "complete": "msg.error",
         "targetType": "jsonata",
         "x": 1560,
-        "y": 1100,
+        "y": 1120,
         "wires": []
+    },
+    {
+        "id": "a7c8f2c8.e5215",
+        "type": "semaphore-take",
+        "z": "888dfbf1.eaaba8",
+        "config": "c4f7cda5.2695f",
+        "name": "Get reconciliation last cmd lock",
+        "x": 650,
+        "y": 1020,
+        "wires": [
+            [
+                "98d71bb6.3eb908"
+            ]
+        ]
+    },
+    {
+        "id": "98d71bb6.3eb908",
+        "type": "function",
+        "z": "888dfbf1.eaaba8",
+        "name": "Update last cmd",
+        "func": "\nvar last_cmds;\nlast_cmds = global.get(\"ha_last_cmd_per_entity\");\nif (last_cmds === undefined) {\n    last_cmds = {};\n}\n\n// Whether there is already something or not,\n//   want to use this latest data\nlast_cmds[msg.this_cmd.payload.data.entity_id] =\n        msg.this_cmd;\n\nglobal.set(\"ha_last_cmd_per_entity\", last_cmds);\n\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 900,
+        "y": 1020,
+        "wires": [
+            [
+                "a834a91f.3dc2f8"
+            ]
+        ]
+    },
+    {
+        "id": "a834a91f.3dc2f8",
+        "type": "semaphore-leave",
+        "z": "888dfbf1.eaaba8",
+        "config": "c4f7cda5.2695f",
+        "name": "Release reconciliation last cmd",
+        "x": 1150,
+        "y": 1020,
+        "wires": [
+            [
+                "7f4d5ece.e73cf"
+            ]
+        ]
+    },
+    {
+        "id": "60fa4abb.8166e4",
+        "type": "catch",
+        "z": "888dfbf1.eaaba8",
+        "name": "Avoid reconciliation last cmd lockup",
+        "scope": [
+            "98d71bb6.3eb908"
+        ],
+        "uncaught": false,
+        "x": 1280,
+        "y": 1200,
+        "wires": [
+            [
+                "fff1501a.f577",
+                "398dedd.2d46c12"
+            ]
+        ]
+    },
+    {
+        "id": "fff1501a.f577",
+        "type": "debug",
+        "z": "888dfbf1.eaaba8",
+        "name": "Error msg (room state)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "msg.error",
+        "targetType": "jsonata",
+        "x": 1560,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "398dedd.2d46c12",
+        "type": "semaphore-leave",
+        "z": "888dfbf1.eaaba8",
+        "config": "c4f7cda5.2695f",
+        "name": "Release reconciliation last cmd",
+        "x": 1590,
+        "y": 1200,
+        "wires": [
+            []
+        ]
     }
 ]
