@@ -154,6 +154,13 @@
         "info": ""
     },
     {
+        "id": "12fa1fa6.22a6e",
+        "type": "tab",
+        "label": "Reconciliation",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -190,6 +197,13 @@
         "type": "semaphore-config",
         "z": "",
         "name": "Reconciliation last cmd",
+        "capacity": "1"
+    },
+    {
+        "id": "8f718bb8.e27f08",
+        "type": "semaphore-config",
+        "z": "",
+        "name": "Reconciliation HA dequeue loop",
         "capacity": "1"
     },
     {
@@ -10027,7 +10041,8 @@
         "wires": [
             [
                 "1c72eaf.e8d9215",
-                "43a268a8.75aab8"
+                "43a268a8.75aab8",
+                "815d5e59.a75d9"
             ]
         ]
     },
@@ -10386,7 +10401,7 @@
         "type": "function",
         "z": "888dfbf1.eaaba8",
         "name": "Update last cmd",
-        "func": "\nvar last_cmds;\nlast_cmds = global.get(\"ha_last_cmd_per_entity\");\nif (last_cmds === undefined) {\n    last_cmds = {};\n}\n\n// Whether there is already something or not,\n//   want to use this latest data\nlast_cmds[msg.this_cmd.payload.data.entity_id] =\n        msg.this_cmd;\n\nglobal.set(\"ha_last_cmd_per_entity\", last_cmds);\n\n\nreturn msg;\n",
+        "func": "\nvar last_cmds;\nlast_cmds = global.get(\"ha_last_cmd_per_entity\");\nif (last_cmds === undefined) {\n    last_cmds = {};\n}\n\n\nmsg.this_cmd.spotlight_metadata.num_retries = 0;\n\n// Whether there is already something or not,\n//   want to use this latest data\nlast_cmds[msg.this_cmd.payload.data.entity_id] =\n        msg.this_cmd;\n\nglobal.set(\"ha_last_cmd_per_entity\", last_cmds);\n\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "x": 900,
@@ -10452,6 +10467,581 @@
         "name": "Release reconciliation last cmd",
         "x": 1590,
         "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b93f5b8b.423958",
+        "type": "inject",
+        "z": "12fa1fa6.22a6e",
+        "name": "Set reconciliation quiet/wait (s)",
+        "topic": "reconciliation_quiet_wait_s",
+        "payload": "10",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 180,
+        "y": 620,
+        "wires": [
+            [
+                "19f13516.48e31b"
+            ]
+        ]
+    },
+    {
+        "id": "19f13516.48e31b",
+        "type": "function",
+        "z": "12fa1fa6.22a6e",
+        "name": "Save config to file",
+        "func": "var key = msg.topic;\nvar new_val = msg.payload;\n\nflow.set(key, new_val, \"file\");\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 580,
+        "wires": [
+            [
+                "69697193.e5356"
+            ]
+        ]
+    },
+    {
+        "id": "69697193.e5356",
+        "type": "debug",
+        "z": "12fa1fa6.22a6e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 650,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "a58f0803.97c148",
+        "type": "inject",
+        "z": "12fa1fa6.22a6e",
+        "name": "Set reconciliation check/retry (s)",
+        "topic": "reconciliation_check_retry_s",
+        "payload": "2",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 580,
+        "wires": [
+            [
+                "19f13516.48e31b"
+            ]
+        ]
+    },
+    {
+        "id": "815d5e59.a75d9",
+        "type": "link out",
+        "z": "888dfbf1.eaaba8",
+        "name": "Out: Reconiliation start",
+        "links": [
+            "cd22c1d.c7c294"
+        ],
+        "x": 1575,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "cd22c1d.c7c294",
+        "type": "link in",
+        "z": "12fa1fa6.22a6e",
+        "name": "In: Reconciliation start",
+        "links": [
+            "815d5e59.a75d9"
+        ],
+        "x": 215,
+        "y": 140,
+        "wires": [
+            [
+                "98d83864.947538"
+            ]
+        ]
+    },
+    {
+        "id": "736f8859.8fb428",
+        "type": "function",
+        "z": "12fa1fa6.22a6e",
+        "name": "Find unconfirmed cmds",
+        "func": "\nvar quiet_wait_ms = flow.get(\n        \"reconciliation_quiet_wait_s\", \"file\") * 1000;\nvar abandon_ms = flow.get(\n        \"reconciliation_quiet_wait_s\", \"file\") * 1000;\nvar max_retries = flow.get(\n        \"reconciliation_max_retries\", \"file\");\n\nvar last_cmds;\nlast_cmds = global.get(\"ha_last_cmd_per_entity\");\nif (last_cmds === undefined) {\n    last_cmds = {};\n}\n\nvar lights_snapshot = {}\nmsg.lights_snapshot.forEach((e) => {\n    lights_snapshot[e.entity_id] = e;\n});\n\nvar switches_snapshot = {}\nmsg.switches_snapshot.forEach((e) => {\n    switches_snapshot[e.entity_id] = e;\n});\n\n\nfunction is_state_matched(last_cmd) {\n    const entity_id = last_cmd.payload.\n            data.entity_id;\n    const domain = entity_id.split('.')[0];\n    const last_cmd_state = last_cmd.payload.\n            service.substring(5);\n    var snapshot;\n    \n    switch(domain) {\n        case 'switch':\n            snapshot = switches_snapshot[entity_id];\n            if (snapshot.state == last_cmd_state) {\n                return true;\n            }\n            break;\n        \n        case 'light':\n            snapshot = lights_snapshot[entity_id];\n            if (snapshot.state == \"on\" &&\n                    snapshot.state == last_cmd_state) {\n                var existing_brightness;\n                if (snapshot.attributes.brightness !==\n                        undefined &&\n                        snapshot.attributes.brightness ==\n                        last_cmd.payload.data.brightness) {\n                    return true;\n                }\n            }\n            else if (snapshot.state == last_cmd_state) {\n                return true;\n            }\n            break;\n    }\n    \n    return false;\n}\n\n\nvar unconf_payloads = [];\nfor (var e in last_cmds) {\n    var sm = last_cmds[e].spotlight_metadata;\n    \n    if (sm.is_confirmed) {\n        continue;\n    }\n    \n    if (sm.num_retries !== undefined &&\n            sm.num_retries >= max_retries) {\n        continue;\n    }\n    \n    var update_time = new Date(sm.update_time);\n    var time_now = new Date();\n    \n    if (time_now < update_time + quiet_wait_ms) {\n        continue;\n    }\n    \n    if (time_now > update_time + abandon_ms) {\n        continue;\n    }\n    \n    if (is_state_matched(last_cmds[e])) {\n        sm.is_confirmed = true;\n        continue;\n    }\n    \n    last_cmds[e].spotlight_metadata.\n            num_retries += 1;\n    unconf_payloads.push(last_cmds[e].payload); \n}\n\nglobal.set(\"ha_last_cmd_per_entity\", last_cmds);\n\n\nvar msgs;\nif (unconf_payloads.length > 0) {\n    msg = {\n        payload: unconf_payloads,\n    };\n    \n    msgs = [\n        msg,\n        null,\n    ];\n}\nelse {\n    msg = {\n        payload: \"done\",\n    };\n    \n    msgs = [\n        null,\n        msg,\n    ];\n}\n\nreturn msgs;",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 1010,
+        "y": 240,
+        "wires": [
+            [
+                "c6a93e9d.4844d"
+            ],
+            [
+                "7bff487f.c21e08"
+            ]
+        ],
+        "outputLabels": [
+            "unconf cmds",
+            "done"
+        ]
+    },
+    {
+        "id": "17b8b3ed.90bd0c",
+        "type": "delay",
+        "z": "12fa1fa6.22a6e",
+        "name": "Delay before check",
+        "pauseType": "delayv",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 650,
+        "y": 140,
+        "wires": [
+            [
+                "e3dbba5a.e80b58"
+            ]
+        ]
+    },
+    {
+        "id": "98d83864.947538",
+        "type": "function",
+        "z": "12fa1fa6.22a6e",
+        "name": "Compose check/retry delay",
+        "func": "var check_retry_ms = flow.get(\n        \"reconciliation_check_retry_s\", \"file\") * 1000;\n\nmsg = {}\nmsg.delay = check_retry_ms;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 400,
+        "y": 140,
+        "wires": [
+            [
+                "17b8b3ed.90bd0c"
+            ]
+        ]
+    },
+    {
+        "id": "37c002fb.384c6e",
+        "type": "inject",
+        "z": "12fa1fa6.22a6e",
+        "name": "Set reconciliation abandon (s)",
+        "topic": "reconciliation_abandon_s",
+        "payload": "30",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 180,
+        "y": 660,
+        "wires": [
+            [
+                "19f13516.48e31b"
+            ]
+        ]
+    },
+    {
+        "id": "d693fea0.db2e1",
+        "type": "inject",
+        "z": "12fa1fa6.22a6e",
+        "name": "Set reconciliation max retries (s)",
+        "topic": "reconciliation_max_retries",
+        "payload": "1",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 700,
+        "wires": [
+            [
+                "19f13516.48e31b"
+            ]
+        ]
+    },
+    {
+        "id": "8ca2829d.b4d16",
+        "type": "ha-get-entities",
+        "z": "12fa1fa6.22a6e",
+        "server": "2f5bd1e0.67e40e",
+        "name": "Get light states",
+        "rules": [
+            {
+                "property": "entity_id",
+                "logic": "starts_with",
+                "value": "light.",
+                "valueType": "str"
+            }
+        ],
+        "output_type": "array",
+        "output_empty_results": false,
+        "output_location_type": "msg",
+        "output_location": "lights_snapshot",
+        "output_results_count": 1,
+        "x": 1080,
+        "y": 60,
+        "wires": [
+            [
+                "5b51cf6b.a4cd6"
+            ]
+        ]
+    },
+    {
+        "id": "5b51cf6b.a4cd6",
+        "type": "ha-get-entities",
+        "z": "12fa1fa6.22a6e",
+        "server": "2f5bd1e0.67e40e",
+        "name": "Get switch states",
+        "rules": [
+            {
+                "property": "entity_id",
+                "logic": "starts_with",
+                "value": "switch.",
+                "valueType": "str"
+            }
+        ],
+        "output_type": "array",
+        "output_empty_results": false,
+        "output_location_type": "msg",
+        "output_location": "switches_snapshot",
+        "output_results_count": 1,
+        "x": 1110,
+        "y": 140,
+        "wires": [
+            [
+                "a3f39930.7da5f8"
+            ]
+        ]
+    },
+    {
+        "id": "f9d4574f.91ffe8",
+        "type": "semaphore-take",
+        "z": "12fa1fa6.22a6e",
+        "config": "c4f7cda5.2695f",
+        "name": "Get reconciliation last cmd lock",
+        "x": 710,
+        "y": 260,
+        "wires": [
+            [
+                "736f8859.8fb428"
+            ]
+        ]
+    },
+    {
+        "id": "c6a93e9d.4844d",
+        "type": "semaphore-leave",
+        "z": "12fa1fa6.22a6e",
+        "config": "c4f7cda5.2695f",
+        "name": "Release reconciliation last cmd",
+        "x": 1290,
+        "y": 220,
+        "wires": [
+            [
+                "8177811b.c1848"
+            ]
+        ]
+    },
+    {
+        "id": "25b75c78.df3434",
+        "type": "catch",
+        "z": "12fa1fa6.22a6e",
+        "name": "Avoid reconciliation last cmd lockup",
+        "scope": [
+            "736f8859.8fb428"
+        ],
+        "uncaught": false,
+        "x": 980,
+        "y": 580,
+        "wires": [
+            [
+                "e3047033.7b913",
+                "98ffb4bd.00f768"
+            ]
+        ]
+    },
+    {
+        "id": "e3047033.7b913",
+        "type": "debug",
+        "z": "12fa1fa6.22a6e",
+        "name": "Error msg (reconciliation last cmd)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "msg.error",
+        "targetType": "jsonata",
+        "x": 1300,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "98ffb4bd.00f768",
+        "type": "semaphore-leave",
+        "z": "12fa1fa6.22a6e",
+        "config": "c4f7cda5.2695f",
+        "name": "Release reconciliation last cmd",
+        "x": 1290,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e3dbba5a.e80b58",
+        "type": "function",
+        "z": "12fa1fa6.22a6e",
+        "name": "Time to check any?",
+        "func": "\nvar quiet_wait_ms = flow.get(\n        \"reconciliation_quiet_wait_s\", \"file\") * 1000;\nvar abandon_ms = flow.get(\n        \"reconciliation_quiet_wait_s\", \"file\") * 1000;\n\nvar last_cmds;\nlast_cmds = global.get(\"ha_last_cmd_per_entity\");\nif (last_cmds === undefined) {\n    last_cmds = {};\n}\n\n\n\nvar is_time_to_check = false;\nfor (var e in last_cmds) {\n    var sm = last_cmds[e].spotlight_metadata;\n    \n    var update_time = new Date(sm.update_time);\n    var time_now = new Date();\n    \n    if (time_now < update_time + quiet_wait_ms) {\n        continue;\n    }\n    \n    is_time_to_check = true;\n    break;\n}\n\n\nvar msgs;\nif (is_time_to_check) {\n    msgs = [\n        msg,\n        null,\n        null,\n    ];\n}\nelse if (last_cmds.length > 0) {\n    msgs = [\n        null,\n        msg,\n        null\n    ];\n}\nelse {\n    msgs = [\n        null,\n        null,\n        msg,\n    ];\n}\n\nreturn msgs;",
+        "outputs": 3,
+        "noerr": 0,
+        "x": 850,
+        "y": 80,
+        "wires": [
+            [
+                "8ca2829d.b4d16"
+            ],
+            [
+                "17b8b3ed.90bd0c"
+            ],
+            [
+                "2bd4cbdf.a99304"
+            ]
+        ],
+        "outputLabels": [
+            "yes",
+            "no",
+            "none"
+        ]
+    },
+    {
+        "id": "7bff487f.c21e08",
+        "type": "semaphore-leave",
+        "z": "12fa1fa6.22a6e",
+        "config": "c4f7cda5.2695f",
+        "name": "Release reconciliation last cmd",
+        "x": 1290,
+        "y": 300,
+        "wires": [
+            [
+                "5b317c01.058694"
+            ]
+        ]
+    },
+    {
+        "id": "db53a4df.c0e328",
+        "type": "delay",
+        "z": "12fa1fa6.22a6e",
+        "name": "Limit msg rate to not overload Hue",
+        "pauseType": "rate",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "2",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 920,
+        "y": 340,
+        "wires": [
+            [
+                "a9f288a6.910ed8"
+            ]
+        ]
+    },
+    {
+        "id": "a9f288a6.910ed8",
+        "type": "api-call-service",
+        "z": "12fa1fa6.22a6e",
+        "name": "Send HA cmd",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "",
+        "service": "",
+        "entityId": "",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 700,
+        "y": 400,
+        "wires": [
+            [
+                "481bce75.0f786"
+            ]
+        ]
+    },
+    {
+        "id": "a3f39930.7da5f8",
+        "type": "semaphore-take",
+        "z": "12fa1fa6.22a6e",
+        "config": "8f718bb8.e27f08",
+        "name": "Get reconciliation HA dequeue loop lock",
+        "x": 680,
+        "y": 200,
+        "wires": [
+            [
+                "f9d4574f.91ffe8"
+            ]
+        ]
+    },
+    {
+        "id": "edcd08e6.97bb48",
+        "type": "semaphore-leave",
+        "z": "12fa1fa6.22a6e",
+        "config": "8f718bb8.e27f08",
+        "name": "Release reconciliation dequeue loop lock",
+        "x": 360,
+        "y": 480,
+        "wires": [
+            [
+                "98d83864.947538"
+            ]
+        ]
+    },
+    {
+        "id": "2bd4cbdf.a99304",
+        "type": "api-call-service",
+        "z": "12fa1fa6.22a6e",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Reconciliation flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1600,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d78e4f4a.1ca7b",
+        "type": "catch",
+        "z": "12fa1fa6.22a6e",
+        "name": "Avoid reconciliation HA dequeue loop lockup",
+        "scope": [
+            "736f8859.8fb428",
+            "f9d4574f.91ffe8",
+            "c6a93e9d.4844d",
+            "7bff487f.c21e08",
+            "db53a4df.c0e328",
+            "a9f288a6.910ed8"
+        ],
+        "uncaught": false,
+        "x": 950,
+        "y": 720,
+        "wires": [
+            [
+                "333edccb.d7a8d4",
+                "fb9968d8.2e3ba8"
+            ]
+        ]
+    },
+    {
+        "id": "333edccb.d7a8d4",
+        "type": "debug",
+        "z": "12fa1fa6.22a6e",
+        "name": "Error msg (reconciliation HA dequeue loop)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "msg.error",
+        "targetType": "jsonata",
+        "x": 1330,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "8177811b.c1848",
+        "type": "split",
+        "z": "12fa1fa6.22a6e",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 670,
+        "y": 340,
+        "wires": [
+            [
+                "db53a4df.c0e328"
+            ]
+        ]
+    },
+    {
+        "id": "481bce75.0f786",
+        "type": "join",
+        "z": "12fa1fa6.22a6e",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": 900,
+        "y": 400,
+        "wires": [
+            [
+                "edcd08e6.97bb48"
+            ]
+        ]
+    },
+    {
+        "id": "5b317c01.058694",
+        "type": "semaphore-leave",
+        "z": "12fa1fa6.22a6e",
+        "config": "8f718bb8.e27f08",
+        "name": "Release reconciliation dequeue loop lock",
+        "x": 1320,
+        "y": 360,
+        "wires": [
+            [
+                "2bd4cbdf.a99304"
+            ]
+        ]
+    },
+    {
+        "id": "fb9968d8.2e3ba8",
+        "type": "semaphore-leave",
+        "z": "12fa1fa6.22a6e",
+        "config": "8f718bb8.e27f08",
+        "name": "Release reconciliation dequeue loop lock",
+        "x": 1320,
+        "y": 720,
         "wires": [
             []
         ]
