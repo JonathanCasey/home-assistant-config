@@ -9337,7 +9337,7 @@
         "pauseType": "rate",
         "timeout": "2",
         "timeoutUnits": "seconds",
-        "rate": "3",
+        "rate": "2",
         "nbRateUnits": "1",
         "rateUnits": "second",
         "randomFirst": "1",
