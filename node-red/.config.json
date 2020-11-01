@@ -604,7 +604,7 @@
   "node-red-contrib-semaphore": {
    "name": "node-red-contrib-semaphore",
    "version": "1.0.1",
-   "local": false,
+   "local": true,
    "nodes": {
     "semaphore": {
      "name": "semaphore",
