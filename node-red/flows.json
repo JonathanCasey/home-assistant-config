@@ -11100,18 +11100,6 @@
         "wires": []
     },
     {
-        "id": "af896999.060c68",
-        "type": "semaphore-take",
-        "z": "888dfbf1.eaaba8",
-        "config": "c4f7cda5.2695f",
-        "name": "Get reconciliation last cmd lock",
-        "x": 990,
-        "y": 620,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "bd2e1dde.2d1d5",
         "type": "semaphore-take",
         "z": "888dfbf1.eaaba8",
