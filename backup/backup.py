@@ -166,11 +166,19 @@ def zip_and_save(zip_filepath):
             full_filepath = os.path.join(current_dir, file)
             rel_filepath = os.path.join(cur_rel_dir, file)
             if not is_excluded(rel_filepath):
-                zip_file.write(full_filepath, rel_filepath)
+                try:
+                    zip_file.write(full_filepath, rel_filepath)
+                except FileNotFoundError as ex:
+                    # File may have disappeared -- ignore
+                    continue
 
         if not files and not sub_dirs:
             if not is_excluded(cur_rel_dir):
-                zip_file.write(current_dir, cur_rel_dir)
+                try:
+                    zip_file.write(current_dir, cur_rel_dir)
+                except FileNotFoundError as ex:
+                    # Dir may have disappeared -- ignore
+                    continue
 
     zip_file.close()
 
