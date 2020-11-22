@@ -11360,7 +11360,7 @@
         "y": 340,
         "wires": [
             [
-                "11b07c3e.840ed4"
+                "5aca8321.59ee4c"
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
@@ -11522,7 +11522,7 @@
         "y": 940,
         "wires": [
             [
-                "c5232e23.8cfbf"
+                "731b6df7.dd1c04"
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
@@ -11818,6 +11818,56 @@
         "reg": false,
         "x": 1720,
         "y": 740,
+        "wires": [
+            [
+                "22ec9c7a.9d3104"
+            ]
+        ]
+    },
+    {
+        "id": "5aca8321.59ee4c",
+        "type": "api-call-service",
+        "z": "1e7298d6.94a3d7",
+        "name": "Turn on guest bedroom lights max",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.guest_bedroom",
+        "data": "{\"brightness_pct\":100}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1500,
+        "y": 340,
+        "wires": [
+            [
+                "22ec9c7a.9d3104"
+            ]
+        ]
+    },
+    {
+        "id": "731b6df7.dd1c04",
+        "type": "api-call-service",
+        "z": "1e7298d6.94a3d7",
+        "name": "Turn on guest bedroom lights min",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.guest_bedroom",
+        "data": "{\"brightness_pct\":1}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1480,
+        "y": 940,
         "wires": [
             [
                 "22ec9c7a.9d3104"
