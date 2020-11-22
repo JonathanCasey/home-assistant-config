@@ -255,11 +255,13 @@
         "wires": [
             [
                 "3e59fa2.e73b206",
-                "8815138d.39ffb"
+                "8815138d.39ffb",
+                "c9cd8efc.d3b35"
             ],
             [
                 "3e59fa2.e73b206",
-                "8815138d.39ffb"
+                "8815138d.39ffb",
+                "c9cd8efc.d3b35"
             ]
         ]
     },
@@ -12145,6 +12147,214 @@
         "reg": false,
         "x": 1280,
         "y": 420,
+        "wires": [
+            [
+                "ac86b665.134f48"
+            ]
+        ]
+    },
+    {
+        "id": "c9cd8efc.d3b35",
+        "type": "switch",
+        "z": "bf163cd5.f84c",
+        "name": "Is double press?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1004",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 460,
+        "y": 620,
+        "wires": [
+            [
+                "c455e19b.e7c32"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "c455e19b.e7c32",
+        "type": "api-current-state",
+        "z": "bf163cd5.f84c",
+        "name": "Light already on?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.office",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 690,
+        "y": 620,
+        "wires": [
+            [
+                "6e82096a.edb6d8"
+            ],
+            [
+                "ea88a210.c4a3c"
+            ]
+        ]
+    },
+    {
+        "id": "6e82096a.edb6d8",
+        "type": "ha-get-entities",
+        "z": "bf163cd5.f84c",
+        "server": "2f5bd1e0.67e40e",
+        "name": "Get individual light states",
+        "rules": [
+            {
+                "property": "",
+                "logic": "jsonata",
+                "value": "$exists($entity().attributes.is_hue_group) = false",
+                "valueType": "jsonata"
+            },
+            {
+                "property": "entity_id",
+                "logic": "starts_with",
+                "value": "light.",
+                "valueType": "str"
+            },
+            {
+                "property": "entity_id",
+                "logic": "in_group",
+                "value": "light.office_individual",
+                "valueType": "str"
+            }
+        ],
+        "output_type": "array",
+        "output_empty_results": false,
+        "output_location_type": "msg",
+        "output_location": "payload",
+        "output_results_count": 1,
+        "x": 710,
+        "y": 700,
+        "wires": [
+            [
+                "63425e3f.8ce22"
+            ]
+        ],
+        "info": "This filters out hue groups since lights within a group may have different settings (which it looks like Hue just \"averages\" the settings to report a single number set for all of the lights)."
+    },
+    {
+        "id": "63425e3f.8ce22",
+        "type": "function",
+        "z": "bf163cd5.f84c",
+        "name": "Flag for warm or cool",
+        "func": "const warm_ct_kelvin = 3200;\nconst cool_ct_kelvin = 6400;\n\nconst threshold_ct_kelvin = (warm_ct_kelvin +\n        cool_ct_kelvin)/2;\n\nvar existing_ct_run_sum_kelvin = 0;\nvar existing_ct_count_kelvin = 0;\n\n\nmsg.payload.forEach(function(value, index) {\n    if (!(value.attributes.color_temp)) {\n        return;\n    }\n    \n    var existing_ct_mirek = value.attributes.color_temp;\n    var existing_ct_kelvin = 1e6 / existing_ct_mirek;\n    \n    existing_ct_run_sum_kelvin += existing_ct_kelvin;\n    existing_ct_count_kelvin++;\n})\n\n\nvar new_ct_kelvin = null;\n\nif (existing_ct_count_kelvin > 0) {\n    const existing_ct_avg_kelvin = existing_ct_run_sum_kelvin /\n            existing_ct_count_kelvin;\n    \n    if (existing_ct_avg_kelvin >= threshold_ct_kelvin) {\n        new_ct_kelvin = warm_ct_kelvin;\n    } else {\n        new_ct_kelvin = cool_ct_kelvin;\n    }\n}\n// Else leave new_ct_kelvin as null\n\nif (new_ct_kelvin===null) {\n    return null;\n}\n\nmsg.config = {};\nmsg.config.new_ct_kelvin = new_ct_kelvin;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 720,
+        "y": 760,
+        "wires": [
+            [
+                "bf41deda.320fc"
+            ]
+        ]
+    },
+    {
+        "id": "bf41deda.320fc",
+        "type": "function",
+        "z": "bf163cd5.f84c",
+        "name": "All or individual lights?",
+        "func": "var new_msgs = [];\n\nmsg.payload.forEach((e) => {\n    if (e.state == 'off') {\n        return;\n    }\n    \n    const payload = {};\n    payload.domain = 'light';\n    payload.service = 'turn_on';\n    payload.data = {\n        entity_id: e.entity_id,\n        kelvin: msg.config.new_ct_kelvin,\n    }\n    \n    new_msgs.push({ payload: payload });\n});\n\nif (msg.payload.length == new_msgs.length) {\n    return [msg, null];\n}\n\nreturn [null, new_msgs];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 760,
+        "y": 820,
+        "wires": [
+            [
+                "3802ddc8.ca6322"
+            ],
+            [
+                "24b82f48.d227c"
+            ]
+        ]
+    },
+    {
+        "id": "3802ddc8.ca6322",
+        "type": "api-call-service",
+        "z": "bf163cd5.f84c",
+        "name": "Set temperature for all lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.office",
+        "data": "{\t    \"kelvin\": msg.config.new_ct_kelvin\t}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1040,
+        "y": 780,
+        "wires": [
+            [
+                "ac86b665.134f48"
+            ]
+        ]
+    },
+    {
+        "id": "24b82f48.d227c",
+        "type": "api-call-service",
+        "z": "bf163cd5.f84c",
+        "name": "Set temperature for some lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "",
+        "service": "",
+        "entityId": "",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 1050,
+        "y": 860,
+        "wires": [
+            [
+                "8dcc9323.5f136"
+            ]
+        ]
+    },
+    {
+        "id": "8dcc9323.5f136",
+        "type": "change",
+        "z": "bf163cd5.f84c",
+        "name": "Clear payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 920,
         "wires": [
             [
                 "ac86b665.134f48"
