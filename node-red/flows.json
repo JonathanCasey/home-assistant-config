@@ -161,6 +161,13 @@
         "info": ""
     },
     {
+        "id": "1e7298d6.94a3d7",
+        "type": "tab",
+        "label": "Guest Bedroom Switch",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -11140,6 +11147,680 @@
         "wires": [
             [
                 "a647690d.d29958"
+            ]
+        ]
+    },
+    {
+        "id": "525e1860.dd2d78",
+        "type": "server-events",
+        "z": "1e7298d6.94a3d7",
+        "name": " Deconz Event (any)",
+        "server": "2f5bd1e0.67e40e",
+        "event_type": "deconz_event",
+        "x": 190,
+        "y": 600,
+        "wires": [
+            [
+                "6f69c52e.7d40bc"
+            ]
+        ]
+    },
+    {
+        "id": "6f69c52e.7d40bc",
+        "type": "switch",
+        "z": "1e7298d6.94a3d7",
+        "name": "Is Guest Bedroom Switch?",
+        "property": "payload.event.id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "switch_hue_guest_bedroom",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 240,
+        "y": 680,
+        "wires": [
+            [
+                "71655899.33d148",
+                "18e1d0b9.e23c1f",
+                "d0c2115c.d57b7",
+                "14eb87ba.7b5968"
+            ]
+        ]
+    },
+    {
+        "id": "71655899.33d148",
+        "type": "switch",
+        "z": "1e7298d6.94a3d7",
+        "name": "Is on button?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "1\\d+",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 380,
+        "wires": [
+            [
+                "7880588.3c5ada8",
+                "d72cbb88.c73348"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "22ec9c7a.9d3104",
+        "type": "api-call-service",
+        "z": "1e7298d6.94a3d7",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Guest Bedroom Switch flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 2020,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6670e06c.8ba9a",
+        "type": "comment",
+        "z": "1e7298d6.94a3d7",
+        "name": "Samsung switch event codes",
+        "info": "## Samsung switch events\n\n### Which button\n - 1xxx: On\n - 2xxx: Brighter\n - 3xxx: Darker\n - 4xxx: Off\n\n### Which event\n - xxx0: Button down-press\n - xxx1: Periodic hold report (1 per sec)\n - xxx2: Button up-release (not held)\n - xxx3: Button up-release (after held)",
+        "x": 240,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "18e1d0b9.e23c1f",
+        "type": "switch",
+        "z": "1e7298d6.94a3d7",
+        "name": "Is brighter button?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "2\\d+",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 580,
+        "wires": [
+            [
+                "e94f5a73.edc8d8",
+                "f376d59a.36dff8"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "d0c2115c.d57b7",
+        "type": "switch",
+        "z": "1e7298d6.94a3d7",
+        "name": "Is darker button?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "3\\d+",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 780,
+        "wires": [
+            [
+                "a3ea8d74.0234e",
+                "4190e622.d79c68"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "14eb87ba.7b5968",
+        "type": "switch",
+        "z": "1e7298d6.94a3d7",
+        "name": "Is off button?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "4\\d+",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 980,
+        "wires": [
+            [
+                "af7e009a.58b7c",
+                "a004a49e.346648"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "7880588.3c5ada8",
+        "type": "switch",
+        "z": "1e7298d6.94a3d7",
+        "name": "Is held?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "\\d+1",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 720,
+        "y": 340,
+        "wires": [
+            [
+                "11b07c3e.840ed4"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "d72cbb88.c73348",
+        "type": "switch",
+        "z": "1e7298d6.94a3d7",
+        "name": "Was tapped?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "\\d+2",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 730,
+        "y": 420,
+        "wires": [
+            [
+                "11b07c3e.840ed4"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "e94f5a73.edc8d8",
+        "type": "switch",
+        "z": "1e7298d6.94a3d7",
+        "name": "Is held?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "\\d+1",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 720,
+        "y": 540,
+        "wires": [
+            [
+                "e39a03b4.810ec"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "f376d59a.36dff8",
+        "type": "switch",
+        "z": "1e7298d6.94a3d7",
+        "name": "Was tapped?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "\\d+2",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 730,
+        "y": 620,
+        "wires": [
+            [
+                "e39a03b4.810ec"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "a3ea8d74.0234e",
+        "type": "switch",
+        "z": "1e7298d6.94a3d7",
+        "name": "Is held?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "\\d+1",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 720,
+        "y": 740,
+        "wires": [
+            [
+                "8cccb91f.05d898"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "4190e622.d79c68",
+        "type": "switch",
+        "z": "1e7298d6.94a3d7",
+        "name": "Was tapped?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "\\d+2",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 730,
+        "y": 820,
+        "wires": [
+            [
+                "8cccb91f.05d898"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "af7e009a.58b7c",
+        "type": "switch",
+        "z": "1e7298d6.94a3d7",
+        "name": "Is held?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "\\d+1",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 720,
+        "y": 940,
+        "wires": [
+            [
+                "c5232e23.8cfbf"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "a004a49e.346648",
+        "type": "switch",
+        "z": "1e7298d6.94a3d7",
+        "name": "Was tapped?",
+        "property": "payload.event.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "\\d+2",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 730,
+        "y": 1020,
+        "wires": [
+            [
+                "c5232e23.8cfbf"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "11b07c3e.840ed4",
+        "type": "api-call-service",
+        "z": "1e7298d6.94a3d7",
+        "name": "Turn on guest bedroom lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.guest_bedroom",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1520,
+        "y": 420,
+        "wires": [
+            [
+                "22ec9c7a.9d3104"
+            ]
+        ]
+    },
+    {
+        "id": "c5232e23.8cfbf",
+        "type": "api-call-service",
+        "z": "1e7298d6.94a3d7",
+        "name": "Turn off living room lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.guest_bedroom",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1510,
+        "y": 1020,
+        "wires": [
+            [
+                "22ec9c7a.9d3104"
+            ]
+        ]
+    },
+    {
+        "id": "d9b7a2c6.c536",
+        "type": "ha-get-entities",
+        "z": "1e7298d6.94a3d7",
+        "server": "2f5bd1e0.67e40e",
+        "name": "Get individual light states",
+        "rules": [
+            {
+                "property": "",
+                "logic": "jsonata",
+                "value": "$exists($entity().attributes.is_hue_group) = false",
+                "valueType": "jsonata"
+            },
+            {
+                "property": "entity_id",
+                "logic": "starts_with",
+                "value": "light.",
+                "valueType": "str"
+            },
+            {
+                "property": "entity_id",
+                "logic": "in_group",
+                "value": "light.guest_bedroom_individual",
+                "valueType": "str"
+            }
+        ],
+        "output_type": "array",
+        "output_empty_results": false,
+        "output_location_type": "msg",
+        "output_location": "payload",
+        "output_results_count": 1,
+        "x": 1170,
+        "y": 600,
+        "wires": [
+            [
+                "e01fe9f9.36b6d8"
+            ]
+        ],
+        "info": "This filters out hue groups since lights within a group may have different settings (which it looks like Hue just \"averages\" the settings to report a single number set for all of the lights)."
+    },
+    {
+        "id": "e01fe9f9.36b6d8",
+        "type": "function",
+        "z": "1e7298d6.94a3d7",
+        "name": "Inc or dec brightness by 10%",
+        "func": "var min_bright = null;\nvar max_bright = null;\nvar new_bright = null;\n\nvar inc_dec_pct = 0.1;\n\nfunction inc_bright(old_bright) {\n    if (!old_bright) {\n        return null;\n    }\n    \n    // Add 1 in case off from last conversion\n    var old_bright_pct = (old_bright+1)/255;\n    var new_bright_pct = old_bright_pct + inc_dec_pct;\n    // Want to round to nearest 10%\n    new_bright_pct = Math.round(new_bright_pct*10)/10;\n    \n    var new_inc_bright = Math.round(new_bright_pct * 255);\n    new_inc_bright = Math.min(new_inc_bright, 255);\n    return new_inc_bright;\n}\n\n\nfunction dec_bright(old_bright) {\n    if (!old_bright) {\n        return null;\n    }\n    \n    // Subtract 1 in case off from last conversion\n    var old_bright_pct = (old_bright-1)/255;\n    var new_bright_pct = old_bright_pct - inc_dec_pct;\n    // Want to round to nearest 10%\n    new_bright_pct = Math.round(new_bright_pct*10)/10;\n    \n    var new_dec_bright = Math.round(new_bright_pct * 255);\n    new_dec_bright = Math.max(new_dec_bright, 1);\n    return new_dec_bright;\n}\n\n\nmsg.payload.forEach(function(value, index) {\n    if (!(value.attributes.brightness)) {\n        return;\n    }\n    \n    if (min_bright===null ||\n            value.attributes.brightness < min_bright) {\n        min_bright = value.attributes.brightness;\n    }\n    \n    if (max_bright===null ||\n            value.attributes.brightness > max_bright) {\n        max_bright = value.attributes.brightness;\n    }\n})\n\n\nif (msg.config.inc_or_dec == 'increase') {\n    new_bright = inc_bright(min_bright)\n} else if (msg.config.inc_or_dec == 'decrease') {\n    new_bright = dec_bright(max_bright)\n}\n// Else leave new_bright as null\n\nif (new_bright===null) {\n    return null;\n}\n\nmsg.config.new_brightness = new_bright;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1220,
+        "y": 680,
+        "wires": [
+            [
+                "58919470.35a0fc"
+            ]
+        ]
+    },
+    {
+        "id": "e39a03b4.810ec",
+        "type": "change",
+        "z": "1e7298d6.94a3d7",
+        "name": "Flag to increase",
+        "rules": [
+            {
+                "t": "set",
+                "p": "config",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "config.inc_or_dec",
+                "pt": "msg",
+                "to": "increase",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 540,
+        "wires": [
+            [
+                "d9b7a2c6.c536"
+            ]
+        ]
+    },
+    {
+        "id": "8cccb91f.05d898",
+        "type": "change",
+        "z": "1e7298d6.94a3d7",
+        "name": "Flag to decrease",
+        "rules": [
+            {
+                "t": "set",
+                "p": "config",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "config.inc_or_dec",
+                "pt": "msg",
+                "to": "decrease",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 930,
+        "y": 740,
+        "wires": [
+            [
+                "d9b7a2c6.c536"
+            ]
+        ]
+    },
+    {
+        "id": "58919470.35a0fc",
+        "type": "function",
+        "z": "1e7298d6.94a3d7",
+        "name": "All or individual lights?",
+        "func": "var new_msgs = [];\n\nmsg.payload.forEach((e) => {\n    if (e.state == 'off') {\n        return;\n    }\n    \n    if (msg.config.inc_or_dec == 'increase') {\n        if (e.attributes.brightness >=\n                msg.config.new_brightness) {\n            return;\n        }\n    } else if (msg.config.inc_or_dec == 'decrease') {\n        if (e.attributes.brightness <=\n                msg.config.new_brightness) {\n            return;\n        }\n    } else {\n        return;\n    }\n    \n    const payload = {};\n    payload.domain = 'light';\n    payload.service = 'turn_on';\n    payload.data = {\n        entity_id: e.entity_id,\n        brightness: msg.config.new_brightness,\n    }\n    \n    new_msgs.push({ payload: payload });\n});\n\nif (msg.payload.length == new_msgs.length) {\n    return [msg, null];\n}\n\nreturn [null, new_msgs];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 1240,
+        "y": 740,
+        "wires": [
+            [
+                "f77dec46.49d82"
+            ],
+            [
+                "fb1dd8a9.e8d0b8"
+            ]
+        ]
+    },
+    {
+        "id": "f77dec46.49d82",
+        "type": "api-call-service",
+        "z": "1e7298d6.94a3d7",
+        "name": "Set brightness for all lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.guest_bedroom",
+        "data": "{\t    \"brightness\": msg.config.new_brightness\t}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1520,
+        "y": 700,
+        "wires": [
+            [
+                "22ec9c7a.9d3104"
+            ]
+        ]
+    },
+    {
+        "id": "fb1dd8a9.e8d0b8",
+        "type": "api-call-service",
+        "z": "1e7298d6.94a3d7",
+        "name": "Set brightness for some lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "",
+        "service": "",
+        "entityId": "",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 1530,
+        "y": 780,
+        "wires": [
+            [
+                "fbc8adef.55756"
+            ]
+        ]
+    },
+    {
+        "id": "fbc8adef.55756",
+        "type": "change",
+        "z": "1e7298d6.94a3d7",
+        "name": "Clear payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1720,
+        "y": 740,
+        "wires": [
+            [
+                "22ec9c7a.9d3104"
             ]
         ]
     }
