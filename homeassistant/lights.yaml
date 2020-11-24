@@ -197,7 +197,7 @@
 
 
 - platform: group
-  name: Dining, Kitchen
+  name: Kitchen, Dining
   entities:
     - light.dining_room
     - light.kitchen
