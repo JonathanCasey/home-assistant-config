@@ -168,6 +168,13 @@
         "info": ""
     },
     {
+        "id": "e7792035.7e5bc",
+        "type": "tab",
+        "label": "Christmas Trees",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -12359,6 +12366,119 @@
             [
                 "ac86b665.134f48"
             ]
+        ]
+    },
+    {
+        "id": "bf6ab1c3.ff541",
+        "type": "api-call-service",
+        "z": "e7792035.7e5bc",
+        "name": "Turn on Christmas Trees",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "group.christmas_trees",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 390,
+        "y": 440,
+        "wires": [
+            [
+                "d06fb1d3.d3c97"
+            ]
+        ]
+    },
+    {
+        "id": "2402d811.edc588",
+        "type": "api-call-service",
+        "z": "e7792035.7e5bc",
+        "name": "Turn off Christmas Trees",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "group.christmas_trees",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 390,
+        "y": 520,
+        "wires": [
+            [
+                "d06fb1d3.d3c97"
+            ]
+        ]
+    },
+    {
+        "id": "aafe031.99353",
+        "type": "inject",
+        "z": "e7792035.7e5bc",
+        "name": "Enter evening",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 16 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 160,
+        "y": 440,
+        "wires": [
+            [
+                "bf6ab1c3.ff541"
+            ]
+        ]
+    },
+    {
+        "id": "9066deb4.ad17f",
+        "type": "inject",
+        "z": "e7792035.7e5bc",
+        "name": "Exit evening",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 22 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 160,
+        "y": 520,
+        "wires": [
+            [
+                "2402d811.edc588"
+            ]
+        ]
+    },
+    {
+        "id": "d06fb1d3.d3c97",
+        "type": "api-call-service",
+        "z": "e7792035.7e5bc",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Christmas Trees flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 660,
+        "y": 480,
+        "wires": [
+            []
         ]
     }
 ]
