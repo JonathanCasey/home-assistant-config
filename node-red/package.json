@@ -4,6 +4,7 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
+        "@node-red-contrib-themes/midnight-red": "^1.4.6",
         "node-red-contrib-bigtimer": "~2.3.1",
         "node-red-contrib-home-assistant-websocket": "~0.22.2",
         "node-red-contrib-semaphore": "~1.0.1",
