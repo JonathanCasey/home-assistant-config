@@ -21,6 +21,7 @@ dining_room_entire:
   entities:
     - light.dining_room
     - switch.dining_room_hutch
+    - switch.christmas_tree_upstairs
 
 
 # Grouping just for lovelace -- See lights.yaml for one to use
@@ -141,6 +142,7 @@ living_room_entire:
   entities:
     - light.living_room
     - switch.bar_bridge
+    - switch.christmas_tree_downstairs
 
 
 # Grouping just for lovelace -- See lights.yaml for one to use
@@ -268,6 +270,8 @@ house_entire:
     - light.house_lights
     - switch.bar_bridge
     - switch.dining_room_hutch
+    - switch.christmas_tree_upstairs
+    - switch.christmas_tree_downstairs
 
 
 # -- See lights.yaml
@@ -276,6 +280,13 @@ house_entire:
 #   entities:
 #     - group.dining_room
 #     - group.kitchen
+
+
+christmas_trees:
+  name: Christmas Trees
+  entities:
+    - switch.christmas_tree_upstairs
+    - switch.christmas_tree_downstairs
 
 
 
