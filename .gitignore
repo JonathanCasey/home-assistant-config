@@ -55,5 +55,7 @@ node-red/*.backup
 organizr/keys/
 organizr/log/
 organizr/organizr/loginLog.json
+organizr/www/db/organizrLog.json
+organizr/www/db/organizrLoginLog.json
 
 # portainer
