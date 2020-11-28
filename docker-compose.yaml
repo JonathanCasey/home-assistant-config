@@ -95,7 +95,7 @@ services:
 
   organizr:
     container_name: organizr
-    image: linuxserver/organizr
+    image: organizr/organizr
     ports:
       - 10080:80
       - 10443:443
