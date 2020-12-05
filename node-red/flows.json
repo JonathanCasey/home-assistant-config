@@ -8687,55 +8687,7 @@
         "y": 500,
         "wires": [
             [
-                "b0d7d07c.34c0b"
-            ]
-        ]
-    },
-    {
-        "id": "b0d7d07c.34c0b",
-        "type": "api-call-service",
-        "z": "a28e9600.dc1528",
-        "name": "Change source back to Shield",
-        "server": "2f5bd1e0.67e40e",
-        "version": 1,
-        "debugenabled": false,
-        "service_domain": "media_player",
-        "service": "select_source",
-        "entityId": "media_player.yamaha_receiver",
-        "data": "{\"source\":\"Nvidia Shield\"}",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": false,
-        "x": 470,
-        "y": 600,
-        "wires": [
-            [
-                "bb963c0d.8362"
-            ]
-        ]
-    },
-    {
-        "id": "bb963c0d.8362",
-        "type": "delay",
-        "z": "a28e9600.dc1528",
-        "name": "Allow 1s to change source",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 770,
-        "y": 600,
-        "wires": [
-            [
-                "f6a7909b.d74c8"
+                "e4df0ccb.23ae9"
             ]
         ]
     },
@@ -8786,77 +8738,6 @@
         ]
     },
     {
-        "id": "f6a7909b.d74c8",
-        "type": "delay",
-        "z": "a28e9600.dc1528",
-        "name": "Allow 15s for TV to turn on from Shield CEC",
-        "pauseType": "delay",
-        "timeout": "15",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 630,
-        "y": 680,
-        "wires": [
-            [
-                "f38c1a14.d41eb8"
-            ]
-        ]
-    },
-    {
-        "id": "f38c1a14.d41eb8",
-        "type": "api-call-service",
-        "z": "a28e9600.dc1528",
-        "name": "Turn off Shield (and TV)",
-        "server": "2f5bd1e0.67e40e",
-        "version": 1,
-        "debugenabled": false,
-        "service_domain": "media_player",
-        "service": "turn_off",
-        "entityId": "media_player.living_room_nvidia_shield",
-        "data": "",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": false,
-        "x": 450,
-        "y": 760,
-        "wires": [
-            [
-                "a1562502.e40fe8"
-            ]
-        ]
-    },
-    {
-        "id": "a1562502.e40fe8",
-        "type": "delay",
-        "z": "a28e9600.dc1528",
-        "name": "Allow 1s for CEC to go thru",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 800,
-        "y": 760,
-        "wires": [
-            [
-                "e4df0ccb.23ae9"
-            ]
-        ]
-    },
-    {
         "id": "e4df0ccb.23ae9",
         "type": "api-call-service",
         "z": "a28e9600.dc1528",
@@ -8873,8 +8754,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 420,
-        "y": 840,
+        "x": 640,
+        "y": 600,
         "wires": [
             []
         ]
