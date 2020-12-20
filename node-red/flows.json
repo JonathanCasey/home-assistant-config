@@ -221,6 +221,16 @@
         "capacity": "1"
     },
     {
+        "id": "c9f3aa98.cd67b8",
+        "type": "hue-bridge",
+        "z": "",
+        "name": "JC Hue Hub",
+        "bridge": "192.168.1.65",
+        "key": "no-api-key-disabled-for-now",
+        "interval": "3000",
+        "disableupdates": false
+    },
+    {
         "id": "3cae343.22b5bcc",
         "type": "server-events",
         "z": "bf163cd5.f84c",
