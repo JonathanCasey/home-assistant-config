@@ -11679,8 +11679,8 @@
         "y": 700,
         "wires": [
             [
-                "22ec9c7a.9d3104",
-                "da640434.c2a828"
+                "da640434.c2a828",
+                "731eed8c.a3c2b4"
             ]
         ]
     },
@@ -12403,8 +12403,8 @@
         "y": 740,
         "wires": [
             [
-                "22ec9c7a.9d3104",
-                "da640434.c2a828"
+                "da640434.c2a828",
+                "731eed8c.a3c2b4"
             ]
         ]
     },
@@ -12461,7 +12461,7 @@
         "type": "function",
         "z": "1e7298d6.94a3d7",
         "name": "Inject new cache data",
-        "func": "\nmsg.cache_data_new = {\n    all: {\n        state: 'on'\n    }\n};\n\nreturn msg;",
+        "func": "\nvar cache_data_new = {\n    all: {\n        state: \"on\"\n    }\n};\n\ncached_state = flow.get(\"cached_state\")\n// Force on, use cache for brightness if exists\nif (cached_state && (\"all\" in cached_state)) {\n    cache_data_new = cached_state;\n    cache_data_new.all.state = \"on\";\n} else if (cached_state && (\"individual\" in cached_state)) {\n    cache_data_new = cached_state;\n    cache_data_new.individual.forEach((e) => {\n        e.state = \"on\"\n    });\n}\n\nmsg.cache_data_new = cache_data_new\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 1200,
@@ -12512,7 +12512,7 @@
         "type": "function",
         "z": "1e7298d6.94a3d7",
         "name": "Invalidate cache",
-        "func": "\nflow.set(\"cached_state\");\n\nreturn msg;",
+        "func": "\nflow.set(\"cached_state\", undefined);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 2080,
