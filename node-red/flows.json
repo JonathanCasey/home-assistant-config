@@ -11148,8 +11148,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 2020,
-        "y": 680,
+        "x": 2060,
+        "y": 600,
         "wires": [
             []
         ]
@@ -11270,7 +11270,7 @@
         "y": 340,
         "wires": [
             [
-                "5aca8321.59ee4c"
+                "5fca319c.ef0cd"
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
@@ -11297,7 +11297,7 @@
         "y": 420,
         "wires": [
             [
-                "11b07c3e.840ed4"
+                "7be4a30e.657b1c"
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
@@ -11432,7 +11432,7 @@
         "y": 940,
         "wires": [
             [
-                "731b6df7.dd1c04"
+                "6d36954b.d913cc"
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
@@ -11459,7 +11459,7 @@
         "y": 1020,
         "wires": [
             [
-                "c5232e23.8cfbf"
+                "f9afecf4.db4f7"
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
@@ -11485,8 +11485,8 @@
         "y": 420,
         "wires": [
             [
-                "22ec9c7a.9d3104",
-                "da640434.c2a828"
+                "da640434.c2a828",
+                "731eed8c.a3c2b4"
             ]
         ]
     },
@@ -11511,7 +11511,6 @@
         "y": 1020,
         "wires": [
             [
-                "22ec9c7a.9d3104",
                 "da640434.c2a828"
             ]
         ]
@@ -11645,7 +11644,7 @@
         "type": "function",
         "z": "1e7298d6.94a3d7",
         "name": "All or individual lights?",
-        "func": "var new_payloads = [];\n\nmsg.payload.forEach((e) => {\n    if (e.state == 'off') {\n        return;\n    }\n    \n    if (msg.config.inc_or_dec == 'increase') {\n        if (e.attributes.brightness >=\n                msg.config.new_brightness) {\n            return;\n        }\n    } else if (msg.config.inc_or_dec == 'decrease') {\n        if (e.attributes.brightness <=\n                msg.config.new_brightness) {\n            return;\n        }\n    } else {\n        return;\n    }\n    \n    const payload = {};\n    payload.domain = 'light';\n    payload.service = 'turn_on';\n    payload.data = {\n        entity_id: e.entity_id,\n        brightness: msg.config.new_brightness,\n    }\n    \n    new_payloads.push(payload);\n});\n\nif (msg.payload.length == new_payloads.length) {\n    return [msg, null];\n}\n\nnew_msg = { payload: new_payloads };\n\nreturn [null, new_msg];",
+        "func": "var new_payloads = [];\nvar new_cache_data = [];\n\nmsg.payload.forEach((e) => {\n    var change_brightness = true;\n    if (e.state == 'off') {\n        change_brightness = false;\n    } else if (msg.config.inc_or_dec == 'increase') {\n        if (e.attributes.brightness >=\n                msg.config.new_brightness) {\n            change_brightness = false;\n        }\n    } else if (msg.config.inc_or_dec == 'decrease') {\n        if (e.attributes.brightness <=\n                msg.config.new_brightness) {\n            change_brightness = false;\n        }\n    } else {\n        change_brightness = false;\n    }\n    \n    var cache_data;\n    if (change_brightness) {\n        const payload = {};\n        payload.domain = 'light';\n        payload.service = 'turn_on';\n        payload.data = {\n            entity_id: e.entity_id,\n            brightness: msg.config.new_brightness,\n        }\n        \n        cache_data = {\n            entity_id: e.entity_id,\n            state: 'on',\n            brightness: msg.config.new_brightness\n        };\n        \n        new_payloads.push(payload);\n    } else {\n        if (e.state == 'off') {\n            cache_data = {\n                entity_id: e.entity_id,\n                state: 'off'\n            };\n        } else {\n            cache_data = {\n                entity_id: e.entity_id,\n                state: 'on',\n                brightness: e.attributes.brightness\n            };\n        }\n    }\n    \n    new_cache_data.push(cache_data);\n});\n\nif (msg.payload.length == new_payloads.length) {\n    msg.cache_data_new = {\n        all: {\n            state: 'on',\n            brightness: msg.config.new_brightness\n        }\n    };\n    return [msg, null];\n}\n\nnew_msg = {\n    payload: new_payloads,\n    cache_data_new: {\n        individual: new_cache_data\n    }\n};\n\nreturn [null, new_msg];",
         "outputs": 2,
         "noerr": 0,
         "x": 1240,
@@ -11731,8 +11730,8 @@
         "y": 340,
         "wires": [
             [
-                "22ec9c7a.9d3104",
-                "da640434.c2a828"
+                "da640434.c2a828",
+                "731eed8c.a3c2b4"
             ]
         ]
     },
@@ -11757,8 +11756,8 @@
         "y": 940,
         "wires": [
             [
-                "22ec9c7a.9d3104",
-                "da640434.c2a828"
+                "da640434.c2a828",
+                "731eed8c.a3c2b4"
             ]
         ]
     },
@@ -12407,6 +12406,119 @@
                 "22ec9c7a.9d3104",
                 "da640434.c2a828"
             ]
+        ]
+    },
+    {
+        "id": "6d36954b.d913cc",
+        "type": "function",
+        "z": "1e7298d6.94a3d7",
+        "name": "Inject new cache data",
+        "func": "\nmsg.cache_data_new = {\n    all: {\n        state: 'on',\n        brightness_pct: 1\n    }\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1200,
+        "y": 940,
+        "wires": [
+            [
+                "731b6df7.dd1c04"
+            ]
+        ]
+    },
+    {
+        "id": "f9afecf4.db4f7",
+        "type": "function",
+        "z": "1e7298d6.94a3d7",
+        "name": "Inject new cache data",
+        "func": "\nmsg.cache_data_new = {\n    all: {\n        state: 'off'\n    }\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1200,
+        "y": 1020,
+        "wires": [
+            [
+                "c5232e23.8cfbf"
+            ]
+        ]
+    },
+    {
+        "id": "5fca319c.ef0cd",
+        "type": "function",
+        "z": "1e7298d6.94a3d7",
+        "name": "Inject new cache data",
+        "func": "\nmsg.cache_data_new = {\n    all: {\n        state: 'on',\n        brightness_pct: 100\n    }\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1200,
+        "y": 340,
+        "wires": [
+            [
+                "5aca8321.59ee4c"
+            ]
+        ]
+    },
+    {
+        "id": "7be4a30e.657b1c",
+        "type": "function",
+        "z": "1e7298d6.94a3d7",
+        "name": "Inject new cache data",
+        "func": "\nmsg.cache_data_new = {\n    all: {\n        state: 'on'\n    }\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1200,
+        "y": 420,
+        "wires": [
+            [
+                "11b07c3e.840ed4"
+            ]
+        ]
+    },
+    {
+        "id": "731eed8c.a3c2b4",
+        "type": "function",
+        "z": "1e7298d6.94a3d7",
+        "name": "Store cache data",
+        "func": "\nflow.set(\"cached_state\", msg.cache_data_new);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1990,
+        "y": 680,
+        "wires": [
+            [
+                "22ec9c7a.9d3104",
+                "68081d84.9b4ca4"
+            ]
+        ]
+    },
+    {
+        "id": "68081d84.9b4ca4",
+        "type": "stoptimer",
+        "z": "1e7298d6.94a3d7",
+        "duration": "5",
+        "units": "Second",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "",
+        "x": 2020,
+        "y": 740,
+        "wires": [
+            [
+                "474f6660.94e3d8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "474f6660.94e3d8",
+        "type": "function",
+        "z": "1e7298d6.94a3d7",
+        "name": "Invalidate cache",
+        "func": "\nflow.set(\"cached_state\");\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2080,
+        "y": 800,
+        "wires": [
+            []
         ]
     }
 ]
