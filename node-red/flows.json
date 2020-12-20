@@ -12514,5 +12514,15 @@
                 "e01fe9f9.36b6d8"
             ]
         ]
+    },
+    {
+        "id": "a5ac2476.69a9f8",
+        "type": "comment",
+        "z": "1e7298d6.94a3d7",
+        "name": "Assumes no external activity",
+        "info": "This caching works by assuming there is no simultaneous external activity.\n\nIf there is simultaneous external activity between when the cache is stored and the next switch activation (before cache timeout), the cached data will be used, effectively nullifying the external activity effects.\n\nExternal activity can be factored into the caching, but it adds complexity...",
+        "x": 2020,
+        "y": 860,
+        "wires": []
     }
 ]
