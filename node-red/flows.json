@@ -11485,7 +11485,8 @@
         "y": 420,
         "wires": [
             [
-                "22ec9c7a.9d3104"
+                "22ec9c7a.9d3104",
+                "da640434.c2a828"
             ]
         ]
     },
@@ -11510,7 +11511,8 @@
         "y": 1020,
         "wires": [
             [
-                "22ec9c7a.9d3104"
+                "22ec9c7a.9d3104",
+                "da640434.c2a828"
             ]
         ]
     },
@@ -11643,7 +11645,7 @@
         "type": "function",
         "z": "1e7298d6.94a3d7",
         "name": "All or individual lights?",
-        "func": "var new_msgs = [];\n\nmsg.payload.forEach((e) => {\n    if (e.state == 'off') {\n        return;\n    }\n    \n    if (msg.config.inc_or_dec == 'increase') {\n        if (e.attributes.brightness >=\n                msg.config.new_brightness) {\n            return;\n        }\n    } else if (msg.config.inc_or_dec == 'decrease') {\n        if (e.attributes.brightness <=\n                msg.config.new_brightness) {\n            return;\n        }\n    } else {\n        return;\n    }\n    \n    const payload = {};\n    payload.domain = 'light';\n    payload.service = 'turn_on';\n    payload.data = {\n        entity_id: e.entity_id,\n        brightness: msg.config.new_brightness,\n    }\n    \n    new_msgs.push({ payload: payload });\n});\n\nif (msg.payload.length == new_msgs.length) {\n    return [msg, null];\n}\n\nreturn [null, new_msgs];",
+        "func": "var new_payloads = [];\n\nmsg.payload.forEach((e) => {\n    if (e.state == 'off') {\n        return;\n    }\n    \n    if (msg.config.inc_or_dec == 'increase') {\n        if (e.attributes.brightness >=\n                msg.config.new_brightness) {\n            return;\n        }\n    } else if (msg.config.inc_or_dec == 'decrease') {\n        if (e.attributes.brightness <=\n                msg.config.new_brightness) {\n            return;\n        }\n    } else {\n        return;\n    }\n    \n    const payload = {};\n    payload.domain = 'light';\n    payload.service = 'turn_on';\n    payload.data = {\n        entity_id: e.entity_id,\n        brightness: msg.config.new_brightness,\n    }\n    \n    new_payloads.push(payload);\n});\n\nif (msg.payload.length == new_payloads.length) {\n    return [msg, null];\n}\n\nnew_msg = { payload: new_payloads };\n\nreturn [null, new_msg];",
         "outputs": 2,
         "noerr": 0,
         "x": 1240,
@@ -11653,7 +11655,7 @@
                 "f77dec46.49d82"
             ],
             [
-                "fb1dd8a9.e8d0b8"
+                "98944920.ef65b8"
             ]
         ]
     },
@@ -11678,7 +11680,8 @@
         "y": 700,
         "wires": [
             [
-                "22ec9c7a.9d3104"
+                "22ec9c7a.9d3104",
+                "da640434.c2a828"
             ]
         ]
     },
@@ -11703,34 +11706,7 @@
         "y": 780,
         "wires": [
             [
-                "fbc8adef.55756"
-            ]
-        ]
-    },
-    {
-        "id": "fbc8adef.55756",
-        "type": "change",
-        "z": "1e7298d6.94a3d7",
-        "name": "Clear payload",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{}",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1720,
-        "y": 740,
-        "wires": [
-            [
-                "22ec9c7a.9d3104"
+                "acbadb2.82e2728"
             ]
         ]
     },
@@ -11755,7 +11731,8 @@
         "y": 340,
         "wires": [
             [
-                "22ec9c7a.9d3104"
+                "22ec9c7a.9d3104",
+                "da640434.c2a828"
             ]
         ]
     },
@@ -11780,7 +11757,8 @@
         "y": 940,
         "wires": [
             [
-                "22ec9c7a.9d3104"
+                "22ec9c7a.9d3104",
+                "da640434.c2a828"
             ]
         ]
     },
@@ -12370,6 +12348,65 @@
         "y": 480,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "da640434.c2a828",
+        "type": "debug",
+        "z": "1e7298d6.94a3d7",
+        "name": "All outputs",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1790,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "98944920.ef65b8",
+        "type": "split",
+        "z": "1e7298d6.94a3d7",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 1310,
+        "y": 800,
+        "wires": [
+            [
+                "fb1dd8a9.e8d0b8"
+            ]
+        ]
+    },
+    {
+        "id": "acbadb2.82e2728",
+        "type": "join",
+        "z": "1e7298d6.94a3d7",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": 1730,
+        "y": 740,
+        "wires": [
+            [
+                "22ec9c7a.9d3104",
+                "da640434.c2a828"
+            ]
         ]
     }
 ]
