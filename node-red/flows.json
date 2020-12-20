@@ -11485,7 +11485,6 @@
         "y": 420,
         "wires": [
             [
-                "da640434.c2a828",
                 "731eed8c.a3c2b4"
             ]
         ]
@@ -11510,9 +11509,7 @@
         "x": 1510,
         "y": 1020,
         "wires": [
-            [
-                "da640434.c2a828"
-            ]
+            []
         ]
     },
     {
@@ -11679,7 +11676,6 @@
         "y": 700,
         "wires": [
             [
-                "da640434.c2a828",
                 "731eed8c.a3c2b4"
             ]
         ]
@@ -11730,7 +11726,6 @@
         "y": 340,
         "wires": [
             [
-                "da640434.c2a828",
                 "731eed8c.a3c2b4"
             ]
         ]
@@ -11756,7 +11751,6 @@
         "y": 940,
         "wires": [
             [
-                "da640434.c2a828",
                 "731eed8c.a3c2b4"
             ]
         ]
@@ -12350,21 +12344,6 @@
         ]
     },
     {
-        "id": "da640434.c2a828",
-        "type": "debug",
-        "z": "1e7298d6.94a3d7",
-        "name": "All outputs",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 1790,
-        "y": 280,
-        "wires": []
-    },
-    {
         "id": "98944920.ef65b8",
         "type": "split",
         "z": "1e7298d6.94a3d7",
@@ -12403,7 +12382,6 @@
         "y": 740,
         "wires": [
             [
-                "da640434.c2a828",
                 "731eed8c.a3c2b4"
             ]
         ]
@@ -12533,24 +12511,8 @@
         "y": 600,
         "wires": [
             [
-                "c7dbd437.7fa2a8",
                 "e01fe9f9.36b6d8"
             ]
         ]
-    },
-    {
-        "id": "c7dbd437.7fa2a8",
-        "type": "debug",
-        "z": "1e7298d6.94a3d7",
-        "name": "Merged",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 1530,
-        "y": 500,
-        "wires": []
     }
 ]
