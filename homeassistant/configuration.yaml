@@ -134,6 +134,8 @@ influxdb:
   password: !secret influxdb_password
   database: homeassistant
   default_measurement: state
+  ssl: true
+  verify_ssl: false
 # exclude stuff that is pointless to log
   # exclude:
   #   domains:
