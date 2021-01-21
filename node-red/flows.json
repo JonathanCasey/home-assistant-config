@@ -946,7 +946,7 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "binary_sensor.motion_sensor_eco_upstairs_hallway",
+        "entityidfilter": "binary_sensor.motion_aqara_upstairs_hallway_occupancy",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
@@ -2203,7 +2203,7 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "binary_sensor.motion_sensor_eco_downstairs_hallway",
+        "entityidfilter": "binary_sensor.motion_aqara_downstairs_hallway_occupancy",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
