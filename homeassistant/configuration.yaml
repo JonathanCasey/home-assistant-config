@@ -60,6 +60,7 @@ alexa:
         - media_Player.alexa_music_room
         - media_player.alexa_note_10_jc
         - media_Player.alexa_office
+        - media_Player.alexa_upstairs_bathroom
         - sensor.alexa_dining_room_next_alarm
         - sensor.alexa_dining_room_next_reminder
         - sensor.alexa_dining_room_next_timer
@@ -81,6 +82,9 @@ alexa:
         - sensor.alexa_office_next_alarm
         - sensor.alexa_office_next_reminder
         - sensor.alexa_office_next_timer
+        - sensor.alexa_upstairs_bathroom_next_alarm
+        - sensor.alexa_upstairs_bathroom_next_reminder
+        - sensor.alexa_upstairs_bathroom_next_timer
         - switch.alexa_apps_jc_dnd
         - switch.alexa_dining_room_dnd
         - switch.alexa_dining_room_repeat
@@ -104,6 +108,9 @@ alexa:
         - switch.alexa_office_dnd
         - switch.alexa_office_repeat
         - switch.alexa_office_shuffle
+        - switch.alexa_upstairs_bathroom_dnd
+        - switch.alexa_upstairs_bathroom_repeat
+        - switch.alexa_upstairs_bathroom_shuffle
 
 api:
 
