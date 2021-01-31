@@ -113,8 +113,21 @@ See full docs from mosquitto
 
 ### `zigbee2mqtt/secret.yaml`
 After creating a user/pass with mosquitto, that will need to be added into this
-secret file:
+secret file, along with the network key if `GENERATE` is not used:
 ```
 user: <mosquitto-username>
 password: <mosquitto-password>
+network_key: <network-key>
 ```
+
+A network key can be generated using `GENERATE`, though it will not be shown.
+This will generate a new key on next start, which will require re-pairing all
+devices!
+
+Could also generate via:
+```
+dd if=/dev/urandom bs=1 count=16 2>/dev/null | od -A n -t x1 | awk '{printf "["} {for(i = 1; i< NF; i++) {printf "0x%s, ", $i}} {printf "0x%s]\n", $NF}'
+```
+
+Again, any time the network key is changed, all devices will need to be
+re-paired.
