@@ -42,6 +42,8 @@ backup/backup.conf
 # Home Assistant
 homeassistant/OZW_Log.txt
 homeassistant/zwcfg_0xe1bc9a5c.xml
+homeassistant/custom_components/alexa_media
+homeassistant/custom_components/hacs
 
 # mosquitto
 
