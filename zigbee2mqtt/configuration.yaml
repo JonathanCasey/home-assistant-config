@@ -31,6 +31,9 @@ serial:
 
 
 advanced:
+  # Optional: ZigBee channel, changing requires re-pairing of all devices. (Note: use a ZLL channel: 11, 15, 20, or 25 to avoid Problems)
+  # (default: 11)
+  channel: 25
   # Optional: Home Assistant discovery topic (default: shown below)
   homeassistant_discovery_topic: 'homeassistant'
   # Optional: Home Assistant status topic (default: shown below)

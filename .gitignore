@@ -64,5 +64,6 @@ organizr/www/db/organizrLoginLog.json
 
 # zigbee2mqtt
 zigbee2mqtt/coordinator_backup.json
+zigbee2mqtt/database.db.backup
 zigbee2mqtt/log
 zigbee2mqtt/state.json
