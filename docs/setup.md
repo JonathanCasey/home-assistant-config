@@ -90,3 +90,31 @@ The `token` can be obtained as the `X-Plex-Token` as documented
 ```
 DECONZ_VNC_PASSWORD=
 ```
+
+### Mosquitto `.passwd`
+A password file is recommended for mosquitto.  First, get into the shell of the
+container:
+```
+docker exec -it mosquitto /bin/sh
+```
+
+Then change to the config and make/append to the password file:
+```
+$ cd mosquitto/config/
+# Create a password file and add the user with password to be specified after
+$ mosquitto_passwd -c .passwd user1
+# Add another user to the same password file
+$ mosquitto_passwd .passwd user2
+```
+
+See full docs from mosquitto
+[here](https://mosquitto.org/man/mosquitto_passwd-1.html).
+
+
+### `zigbee2mqtt/secret.yaml`
+After creating a user/pass with mosquitto, that will need to be added into this
+secret file:
+```
+user: <mosquitto-username>
+password: <mosquitto-password>
+```

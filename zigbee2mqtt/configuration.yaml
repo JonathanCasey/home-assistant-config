@@ -19,8 +19,8 @@ mqtt:
   server: 'mqtt://localhost'
 
   # MQTT server authentication, uncomment if required:
-  user: zigbee2mqtt
-  password: password1
+  user: '!secret user'
+  password: '!secret password'
 
 
 # Required: serial settings
