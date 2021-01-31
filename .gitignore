@@ -46,8 +46,7 @@ homeassistant/custom_components/alexa_media
 homeassistant/custom_components/hacs
 
 # mosquitto
-
-# mqtt-bridge
+mosquitto/.passwd
 
 # Node-RED
 node-red/node_modules/
@@ -61,3 +60,8 @@ organizr/www/db/organizrLog.json
 organizr/www/db/organizrLoginLog.json
 
 # portainer
+
+# zigbee2mqtt
+zigbee2mqtt/coordinator_backup.json
+zigbee2mqtt/log
+zigbee2mqtt/state.json

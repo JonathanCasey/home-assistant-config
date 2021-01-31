@@ -60,28 +60,34 @@ services:
       timeout: 10s
       retries: 5
 
-  # mosquitto:
-  #   container_name: mosquitto
-  #   image: eclipse-mosquitto
-  #   user: "1000:1000"
-  #   ports:
-  #     - 1883:1883
-  #   volumes:
-  #     - /etc/localtime:/etc/localtime:ro
-  #     - /opt/home-assistant/mosquitto:/mosquitto/config:ro
-  #     - /opt/home-assistant/mosquitto:/mosquitto/data
-  #   restart: on-failure
-  #
-  # mqtt-bridge:
-  #   container_name: mqtt-bridge
-  #   image: stjohnjohnson/smartthings-mqtt-bridge
-  #   ports:
-  #     - 8080:8080
-  #   volumes:
-  #     - /opt/home-assistant/mqtt-bridge:/config
-  #   restart: on-failure
-  #   depends_on:
-  #     - homeassistant
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    image: koenkk/zigbee2mqtt
+    user: "1000:1000"
+    volumes:
+      - /opt/home-assistant/zigbee2mqtt:/app/data
+      # - /run/udev:/run/udev:ro
+    devices:
+      - /dev/zigbee2:/dev/ttyACM0
+    restart: on-failure
+    network_mode: host
+    # privileged: true
+    environment:
+      - TZ=America/New_York
+    depends_on:
+      - mosquitto
+
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    user: "1000:1000"
+    ports:
+      - 1883:1883
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /opt/home-assistant/mosquitto:/mosquitto/config
+      - /opt/home-assistant/mosquitto:/mosquitto/data
+    restart: on-failure
 
   portainer:
     container_name: portainer
@@ -121,21 +127,3 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /opt/home-assistant/dockermon:/config
     restart: on-failure
-
-  # sonarr:
-  #   container_name: sonarr
-  #   image: linuxserver/sonarr
-  #   network_mode: host
-  #   ports:
-  #     - 28989:8989
-  #   volumes:
-  #     - /opt/home-assistant/sonarr:/config
-  #     - /etc/localtime:/etc/localtime:ro
-  #     - /media/bulk/hd-latest/shared/Sonarr/downloads:/downloads
-  #     - /media/bulk/hd-latest/shared/Sonarr/tvshows:/tv
-  #     - /media/bulk/hd-latest/shared/Sonarr/shared:/shared
-  #   environment:
-  #     - PUID=1000
-  #     - PGID=1000
-  #     - TZ=America/New_York
-  #   restart: always
