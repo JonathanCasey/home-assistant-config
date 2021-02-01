@@ -6,3 +6,8 @@
 '0x286d970001135af8':
   friendly_name: button_st_floater
   legacy: false
+
+
+'0x286d9700010adbf7':
+  friendly_name: button_st_office
+  legacy: false
