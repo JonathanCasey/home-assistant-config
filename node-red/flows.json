@@ -231,6 +231,28 @@
         "disableupdates": false
     },
     {
+        "id": "2ac9b613.9a48fa",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "mosquitto",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "node-red",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
         "id": "3cae343.22b5bcc",
         "type": "server-events",
         "z": "bf163cd5.f84c",
@@ -312,13 +334,13 @@
         "type": "switch",
         "z": "bf163cd5.f84c",
         "name": "Is press?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "eq",
-                "v": "1002",
-                "vt": "num"
+                "v": "single",
+                "vt": "str"
             }
         ],
         "checkall": "true",
@@ -1334,9 +1356,9 @@
         "id": "bacb1514.190848",
         "type": "comment",
         "z": "bf163cd5.f84c",
-        "name": "Samsung button event codes",
-        "info": "### Samsung button events\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press",
-        "x": 360,
+        "name": "Samsung button event codes / MQTT payloads",
+        "info": "### Samsung button events / MQTT payloads\n - 1001 / hold:   Long press\n - 1002 / single: Single press\n - 1004 / double: Double press",
+        "x": 420,
         "y": 280,
         "wires": []
     },
@@ -11681,13 +11703,13 @@
         "type": "switch",
         "z": "bf163cd5.f84c",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "eq",
-                "v": "1001",
-                "vt": "num"
+                "v": "hold",
+                "vt": "str"
             }
         ],
         "checkall": "true",
@@ -11948,13 +11970,13 @@
         "type": "switch",
         "z": "bf163cd5.f84c",
         "name": "Is double press?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "eq",
-                "v": "1004",
-                "vt": "num"
+                "v": "double",
+                "vt": "str"
             }
         ],
         "checkall": "true",
@@ -12927,5 +12949,40 @@
                 "49c40833.49f1c8"
             ]
         ]
+    },
+    {
+        "id": "15358b17.cde3f5",
+        "type": "mqtt in",
+        "z": "bf163cd5.f84c",
+        "name": "Floater button MQTT action",
+        "topic": "zigbee2mqtt/button_st_floater/action",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2ac9b613.9a48fa",
+        "x": 160,
+        "y": 340,
+        "wires": [
+            [
+                "290a8d27.f07e42",
+                "8815138d.39ffb",
+                "3e59fa2.e73b206",
+                "c9cd8efc.d3b35"
+            ]
+        ]
+    },
+    {
+        "id": "290a8d27.f07e42",
+        "type": "debug",
+        "z": "bf163cd5.f84c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 480,
+        "y": 180,
+        "wires": []
     }
 ]

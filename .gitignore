@@ -50,6 +50,7 @@ homeassistant/custom_components/hacs
 mosquitto/.passwd
 
 # Node-RED
+node-red/flows_cred.json
 node-red/node_modules/
 node-red/*.backup
 
