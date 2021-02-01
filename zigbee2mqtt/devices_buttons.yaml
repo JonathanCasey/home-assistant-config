@@ -1,0 +1,8 @@
+# Supported device list: https://www.zigbee2mqtt.io/information/supported_devices.html
+
+# __ Devices in this file __
+# SmartThings button: https://www.zigbee2mqtt.io/devices/IM6001-BTP01.html
+
+'0x286d970001135af8':
+  friendly_name: button_st_floater
+  legacy: false
