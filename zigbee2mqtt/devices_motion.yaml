@@ -1,0 +1,11 @@
+# Supported device list: https://www.zigbee2mqtt.io/information/supported_devices.html
+
+# __ Devices in this file __
+# Aqara motion: https://www.zigbee2mqtt.io/devices/RTCGQ11LM.html
+
+'0x00158d00054a7623':
+  friendly_name: 'motion_aqara_liquor_room'
+  occupancy_timeout: 5
+  debounce: 0.1
+  debounce_ignore:
+    - occupancy

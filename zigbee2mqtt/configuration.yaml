@@ -8,6 +8,7 @@ permit_join: false
 devices:
   - devices_new.yaml  # This MUST stay at top of list so new are added here
   - devices_buttons.yaml
+  - devices_motion.yaml
 
 
 # Required: Home Assistant integration (MQTT discovery) (default: false)
