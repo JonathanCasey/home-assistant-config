@@ -5745,59 +5745,16 @@
         ]
     },
     {
-        "id": "ab77e461.9a9958",
-        "type": "server-events",
-        "z": "bc4cdd27.07d12",
-        "name": " Deconz Event (any)",
-        "server": "2f5bd1e0.67e40e",
-        "event_type": "deconz_event",
-        "x": 210,
-        "y": 620,
-        "wires": [
-            [
-                "d5dd9b80.eed018"
-            ]
-        ]
-    },
-    {
-        "id": "d5dd9b80.eed018",
-        "type": "switch",
-        "z": "bc4cdd27.07d12",
-        "name": "Is Living Room Switch?",
-        "property": "payload.event.id",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "switch_hue_upstairs_bathroom",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 250,
-        "y": 700,
-        "wires": [
-            [
-                "820c4df9.ca0ea",
-                "ba7c746d.57ff28",
-                "b1066a75.36a8b8",
-                "5e54deaa.ff356"
-            ]
-        ]
-    },
-    {
         "id": "820c4df9.ca0ea",
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Is on button?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "1\\d+",
+                "v": "^on-[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -5842,9 +5799,9 @@
         "id": "31098c1e.c1b234",
         "type": "comment",
         "z": "bc4cdd27.07d12",
-        "name": "Samsung switch event codes",
-        "info": "## Samsung switch events\n\n### Which button\n - 1xxx: On\n - 2xxx: Brighter\n - 3xxx: Darker\n - 4xxx: Off\n\n### Which event\n - xxx0: Button down-press\n - xxx1: Periodic hold report (1 per sec)\n - xxx2: Button up-release (not held)\n - xxx3: Button up-release (after held)",
-        "x": 260,
+        "name": "Philips Hue dimmer event codes / MQTT payloads",
+        "info": "## Samsung switch events\n\n### Which button\n - 1xxx / on-<event>: On\n - 2xxx / up-<event>: Brighter\n - 3xxx / down/<event>: Darker\n - 4xxx / off-<event>: Off\n\n### Which event (deconz)\n - xxx0: Button down-press\n - xxx1: Periodic hold report (1 per sec)\n - xxx2: Button up-release (not held)\n - xxx3: Button up-release (after held)\n\n### Which event (zigbee2mqtt)\n - <btn>-press: Button single press and release\n - <btn>-hold: Button hold (1 per sec)\n - <btn>-hold-release: Button up-release (after held)",
+        "x": 330,
         "y": 320,
         "wires": []
     },
@@ -5853,12 +5810,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Is brighter button?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "2\\d+",
+                "v": "^up-[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -5881,12 +5838,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Is darker button?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "3\\d+",
+                "v": "^down-[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -5909,12 +5866,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Is off button?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "4\\d+",
+                "v": "^off-[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -5937,12 +5894,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+1",
+                "v": "^[a-zA-Z]+-hold$",
                 "vt": "str",
                 "case": false
             }
@@ -5964,12 +5921,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Was tapped?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+2",
+                "v": "^[a-zA-Z]+-press$",
                 "vt": "str",
                 "case": false
             }
@@ -5991,12 +5948,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+1",
+                "v": "^[a-zA-Z]+-hold$",
                 "vt": "str",
                 "case": false
             }
@@ -6018,12 +5975,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Was tapped?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+2",
+                "v": "^[a-zA-Z]+-press$",
                 "vt": "str",
                 "case": false
             }
@@ -6045,12 +6002,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+1",
+                "v": "^[a-zA-Z]+-hold$",
                 "vt": "str",
                 "case": false
             }
@@ -6072,12 +6029,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Was tapped?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+2",
+                "v": "^[a-zA-Z]+-press$",
                 "vt": "str",
                 "case": false
             }
@@ -6099,12 +6056,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+1",
+                "v": "^[a-zA-Z]+-hold$",
                 "vt": "str",
                 "case": false
             }
@@ -6126,12 +6083,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Was tapped?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+2",
+                "v": "^[a-zA-Z]+-press$",
                 "vt": "str",
                 "case": false
             }
@@ -12797,6 +12754,26 @@
         "wires": [
             [
                 "732b3b8.714e7c4"
+            ]
+        ]
+    },
+    {
+        "id": "9263f749.a4b948",
+        "type": "mqtt in",
+        "z": "bc4cdd27.07d12",
+        "name": "Upstairs bathroom dimmer MQTT action",
+        "topic": "zigbee2mqtt/button_hue_dim_upstairs_bathroom/action",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2ac9b613.9a48fa",
+        "x": 210,
+        "y": 700,
+        "wires": [
+            [
+                "820c4df9.ca0ea",
+                "ba7c746d.57ff28",
+                "b1066a75.36a8b8",
+                "5e54deaa.ff356"
             ]
         ]
     }
