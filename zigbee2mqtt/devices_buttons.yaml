@@ -10,6 +10,14 @@
   legacy: false
 
 
+'0x0017880102d707db':   # Philips Hue Dimmer #03
+  friendly_name: button_hue_dim_floater_bad   # On button hard to press
+
+
+'0x0017880103cb7d8a':   # Philips Hue Dimmer #04
+  friendly_name: button_hue_dim_guest_bedroom
+
+
 '0x286d9700010604f8':   # SmartThings Button #01
   friendly_name: button_st_kitchen
   legacy: false
@@ -23,6 +31,10 @@
 '0x286d9700010bc174':   # SmartThings Button #04
   friendly_name: button_st_laundry_room
   legacy: false
+
+
+'0x0017880108067607':   # Philips Hue Dimmer #02
+  friendly_name: button_hue_dim_living_room
 
 
 '0x286d970001099de3':   # SmartThings Button #03
