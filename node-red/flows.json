@@ -12862,13 +12862,13 @@
         "id": "c705d787.43b708",
         "type": "mqtt in",
         "z": "62ce34cf.a7671c",
-        "name": "Liquor room motion MQTT (**TEMP**)",
-        "topic": "zigbee2mqtt/motion_aqara_liquor_room",
+        "name": "Upstairs hallway motion MQTT",
+        "topic": "zigbee2mqtt/motion_aqara_upstairs_hallway",
         "qos": "2",
         "datatype": "json",
         "broker": "2ac9b613.9a48fa",
-        "x": 170,
-        "y": 420,
+        "x": 150,
+        "y": 440,
         "wires": [
             [
                 "9e728add.a96578"
@@ -12879,12 +12879,12 @@
         "id": "523dead1.6b10f4",
         "type": "mqtt in",
         "z": "35ab222c.a6eb9e",
-        "name": "Downstairs hallway motion MQTT (**TEMP using upstairs**)",
-        "topic": "zigbee2mqtt/motion_aqara_upstairs_hallway",
+        "name": "Downstairs hallway motion MQTT",
+        "topic": "zigbee2mqtt/motion_aqara_downstairs_hallway",
         "qos": "2",
         "datatype": "json",
         "broker": "2ac9b613.9a48fa",
-        "x": 240,
+        "x": 150,
         "y": 500,
         "wires": [
             [
