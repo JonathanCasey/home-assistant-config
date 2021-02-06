@@ -9,3 +9,10 @@
   debounce: 0.1
   debounce_ignore:
     - occupancy
+
+'0x00158d00054a7cd3':
+  friendly_name: 'motion_aqara_upstairs_hallway'
+  occupancy_timeout: 5
+  debounce: 0.1
+  debounce_ignore:
+    - occupancy

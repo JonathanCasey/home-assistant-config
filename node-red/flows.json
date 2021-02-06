@@ -2117,57 +2117,18 @@
         ]
     },
     {
-        "id": "91df9e5d.73c7c",
-        "type": "server-state-changed",
-        "z": "35ab222c.a6eb9e",
-        "name": "Foyer Motion Event",
-        "server": "2f5bd1e0.67e40e",
-        "version": 1,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "binary_sensor.motion_aqara_downstairs_hallway_occupancy",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "jsonata",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "x": 130,
-        "y": 500,
-        "wires": [
-            [
-                "19863ef.06735c1"
-            ]
-        ]
-    },
-    {
         "id": "19a3e8f6.8fed97",
         "type": "switch",
         "z": "35ab222c.a6eb9e",
         "name": "Motion On or Off?",
-        "property": "payload",
+        "property": "payload.occupancy",
         "propertyType": "msg",
         "rules": [
             {
-                "t": "eq",
-                "v": "on",
-                "vt": "str"
+                "t": "true"
             },
             {
-                "t": "eq",
-                "v": "off",
-                "vt": "str"
+                "t": "false"
             }
         ],
         "checkall": "true",
@@ -12911,6 +12872,23 @@
         "wires": [
             [
                 "9e728add.a96578"
+            ]
+        ]
+    },
+    {
+        "id": "523dead1.6b10f4",
+        "type": "mqtt in",
+        "z": "35ab222c.a6eb9e",
+        "name": "Downstairs hallway motion MQTT (**TEMP using upstairs**)",
+        "topic": "zigbee2mqtt/motion_aqara_upstairs_hallway",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "2ac9b613.9a48fa",
+        "x": 240,
+        "y": 500,
+        "wires": [
+            [
+                "19863ef.06735c1"
             ]
         ]
     }
