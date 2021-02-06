@@ -1,0 +1,8 @@
+# Supported device list: https://www.zigbee2mqtt.io/information/supported_devices.html
+
+# __ Devices in this file __
+# SmartThings multi-purpose: https://www.zigbee2mqtt.io/devices/IM6001-MPP01.html
+
+
+'0x286d9700010c71e2':   # SmartThings Multi-purpose #01
+  friendly_name: doorwin_st_front_door

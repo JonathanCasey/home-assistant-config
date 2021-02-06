@@ -1212,63 +1212,24 @@
         "wires": []
     },
     {
-        "id": "71b10af6.310b44",
-        "type": "server-state-changed",
-        "z": "e9868773.797078",
-        "name": "Foyer Motion Event",
-        "server": "2f5bd1e0.67e40e",
-        "version": 1,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "binary_sensor.multi_sensor_st_front_door_openclose",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "jsonata",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "x": 90,
-        "y": 560,
-        "wires": [
-            [
-                "ed05a9af.2d13e8"
-            ]
-        ]
-    },
-    {
         "id": "ed05a9af.2d13e8",
         "type": "switch",
         "z": "e9868773.797078",
-        "name": "Motion On or Off?",
-        "property": "payload",
+        "name": "Open or close?",
+        "property": "payload.contact",
         "propertyType": "msg",
         "rules": [
             {
-                "t": "eq",
-                "v": "on",
-                "vt": "str"
+                "t": "false"
             },
             {
-                "t": "eq",
-                "v": "off",
-                "vt": "str"
+                "t": "true"
             }
         ],
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 130,
+        "x": 120,
         "y": 740,
         "wires": [
             [
@@ -12728,6 +12689,23 @@
                 "18e1d0b9.e23c1f",
                 "d0c2115c.d57b7",
                 "14eb87ba.7b5968"
+            ]
+        ]
+    },
+    {
+        "id": "ad0c72ce.071f7",
+        "type": "mqtt in",
+        "z": "e9868773.797078",
+        "name": "Front Door entry/exit MQTT",
+        "topic": "zigbee2mqtt/doorwin_st_front_door",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "2ac9b613.9a48fa",
+        "x": 160,
+        "y": 540,
+        "wires": [
+            [
+                "ed05a9af.2d13e8"
             ]
         ]
     }
