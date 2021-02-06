@@ -3,11 +3,31 @@
 # __ Devices in this file __
 # SmartThings button: https://www.zigbee2mqtt.io/devices/IM6001-BTP01.html
 
-'0x286d970001135af8':
+'0x286d970001135af8':   # SmartThings Button #06
   friendly_name: button_st_floater
   legacy: false
 
 
-'0x286d9700010adbf7':
+'0x286d9700010604f8':   # SmartThings Button #01
+  friendly_name: button_st_kitchen
+  legacy: false
+
+
+'0x286d9700010ce622':   # SmartThings Button #05
+  friendly_name: button_st_kitchen_sink
+  legacy: false
+
+
+'0x286d9700010bc174':   # SmartThings Button #04
+  friendly_name: button_st_laundry_room
+  legacy: false
+
+
+'0x286d970001099de3':   # SmartThings Button #03
+  friendly_name: button_st_master_bedroom
+  legacy: false
+
+
+'0x286d9700010adbf7':   # SmartThings Button #02
   friendly_name: button_st_office
   legacy: false
