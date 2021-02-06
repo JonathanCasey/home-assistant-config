@@ -6,3 +6,7 @@
 
 '0x286d9700010c71e2':   # SmartThings Multi-purpose #01
   friendly_name: doorwin_st_front_door
+
+
+'0x286d9700010995cd':   # SmartThings Multi-purpose #02
+  friendly_name: doorwin_st_kitchen_door

@@ -1530,57 +1530,18 @@
         ]
     },
     {
-        "id": "972b9388.f671a",
-        "type": "server-state-changed",
-        "z": "884319a9.e92148",
-        "name": "Foyer Motion Event",
-        "server": "2f5bd1e0.67e40e",
-        "version": 1,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "binary_sensor.multi_sensor_st_kitchen_door_openclose",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "jsonata",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "x": 90,
-        "y": 600,
-        "wires": [
-            [
-                "210c5d3b.b91672"
-            ]
-        ]
-    },
-    {
         "id": "210c5d3b.b91672",
         "type": "switch",
         "z": "884319a9.e92148",
         "name": "Motion On or Off?",
-        "property": "payload",
+        "property": "payload.contact",
         "propertyType": "msg",
         "rules": [
             {
-                "t": "eq",
-                "v": "on",
-                "vt": "str"
+                "t": "false"
             },
             {
-                "t": "eq",
-                "v": "off",
-                "vt": "str"
+                "t": "true"
             }
         ],
         "checkall": "true",
@@ -12696,16 +12657,33 @@
         "id": "ad0c72ce.071f7",
         "type": "mqtt in",
         "z": "e9868773.797078",
-        "name": "Front Door entry/exit MQTT",
+        "name": "Front door entry/exit MQTT",
         "topic": "zigbee2mqtt/doorwin_st_front_door",
         "qos": "2",
         "datatype": "json",
         "broker": "2ac9b613.9a48fa",
-        "x": 160,
-        "y": 540,
+        "x": 150,
+        "y": 560,
         "wires": [
             [
                 "ed05a9af.2d13e8"
+            ]
+        ]
+    },
+    {
+        "id": "26ef5d84.8244a2",
+        "type": "mqtt in",
+        "z": "884319a9.e92148",
+        "name": "Kitchen door entry/exit MQTT",
+        "topic": "zigbee2mqtt/doorwin_st_kitchen_door",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "2ac9b613.9a48fa",
+        "x": 140,
+        "y": 600,
+        "wires": [
+            [
+                "210c5d3b.b91672"
             ]
         ]
     }
