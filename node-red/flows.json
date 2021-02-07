@@ -1555,7 +1555,7 @@
                 "596d5487.fcaf4c"
             ],
             [
-                "7ec47fa6.5f3d9"
+                "16446335.cbdf7d"
             ]
         ]
     },
@@ -1724,11 +1724,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 260,
-        "y": 840,
+        "x": 440,
+        "y": 900,
         "wires": [
             [
-                "16446335.cbdf7d"
+                "45061cb8.b1e6c4"
             ]
         ]
     },
@@ -1886,18 +1886,18 @@
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": false,
-        "entity_id": "binary_sensor.multi_sensor_st_front_door_openclose",
+        "entity_id": "binary_sensor.doorwin_st_front_door_contact",
         "state_type": "str",
         "state_location": "payload",
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 400,
-        "y": 900,
+        "x": 180,
+        "y": 840,
         "wires": [
             [
-                "db2d66d0.bc1d68"
+                "7ec47fa6.5f3d9"
             ],
             []
         ]
@@ -1914,18 +1914,18 @@
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": false,
-        "entity_id": "binary_sensor.multi_sensor_st_kitchen_door_openclose",
+        "entity_id": "binary_sensor.doorwin_st_kitchen_door_contact",
         "state_type": "str",
         "state_location": "payload",
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 440,
-        "y": 960,
+        "x": 180,
+        "y": 900,
         "wires": [
             [
-                "45061cb8.b1e6c4"
+                "7ec47fa6.5f3d9"
             ],
             []
         ]
@@ -1950,11 +1950,11 @@
         "links": [
             "330b6021.6dbe9"
         ],
-        "x": 115,
-        "y": 940,
+        "x": 135,
+        "y": 980,
         "wires": [
             [
-                "7ec47fa6.5f3d9"
+                "db2d66d0.bc1d68"
             ]
         ]
     },
