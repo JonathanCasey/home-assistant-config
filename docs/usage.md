@@ -20,9 +20,18 @@ should be undone immediately after completion to avoid the security risk of
 other, outside devices gaining access.
 
 The device will be added to `devices_new.yaml` since it is the first in the
-list.  From there, it can be moved into another file and configured.
+list.  From there, it can be moved into another file and configured.  It will
+also add all other existing devices, too, so these will need to be deleted; but
+the bottom most should be the newest paired device.
 
-It might be best to turn off "enable newly discovered entities" in Home
-Assistant until after the device is paired and its settings set, or at least its
-name.  Home Assistant will need to be restarted for the device to show up
-(probably).
+It might be best to "configure" the mqtt integration in Home Assistant to
+re-configure and, on the second step, uncheck "enable discovery" before
+pairing and configuring in zigbee2mqtt, at least until the device is named.
+Home Assistant will need to be restarted for the device to show up (probably).
+
+
+### Remove Zigbee devices
+See [this section](https://www.zigbee2mqtt.io/information/mqtt_topics_and_message_structure.html#zigbee2mqttbridgerequestdeviceremove)
+of the zigbee2mqtt docs.  The easy way to do this is to drop an inject node
+into node-red and add the json data as the payload, then connect this to an
+mqtt out node that uses the topic `zigbee2mqtt/bridge/request/device/remove`.
