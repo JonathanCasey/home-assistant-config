@@ -231,56 +231,26 @@
         "disableupdates": false
     },
     {
-        "id": "3cae343.22b5bcc",
-        "type": "server-events",
-        "z": "bf163cd5.f84c",
-        "name": " Deconz Event (any)",
-        "server": "2f5bd1e0.67e40e",
-        "event_type": "deconz_event",
-        "x": 130,
-        "y": 400,
-        "wires": [
-            [
-                "d23b825e.b2605"
-            ]
-        ]
-    },
-    {
-        "id": "d23b825e.b2605",
-        "type": "switch",
-        "z": "bf163cd5.f84c",
-        "name": "Is Office Button? Or Floater?",
-        "property": "payload.event.id",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "button_st_office",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "button_st_floater",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 160,
-        "y": 520,
-        "wires": [
-            [
-                "3e59fa2.e73b206",
-                "8815138d.39ffb",
-                "c9cd8efc.d3b35"
-            ],
-            [
-                "3e59fa2.e73b206",
-                "8815138d.39ffb",
-                "c9cd8efc.d3b35"
-            ]
-        ]
+        "id": "2ac9b613.9a48fa",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "mosquitto",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "node-red",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
     },
     {
         "id": "3b8bc8cf.939ae8",
@@ -312,13 +282,13 @@
         "type": "switch",
         "z": "bf163cd5.f84c",
         "name": "Is press?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "eq",
-                "v": "1002",
-                "vt": "num"
+                "v": "single",
+                "vt": "str"
             }
         ],
         "checkall": "true",
@@ -357,46 +327,6 @@
         ]
     },
     {
-        "id": "a30fb6e1.491408",
-        "type": "server-events",
-        "z": "4c3e78a1.ebb138",
-        "name": " Deconz Event (any)",
-        "server": "2f5bd1e0.67e40e",
-        "event_type": "deconz_event",
-        "x": 90,
-        "y": 460,
-        "wires": [
-            [
-                "aad4aa21.577a98"
-            ]
-        ]
-    },
-    {
-        "id": "aad4aa21.577a98",
-        "type": "switch",
-        "z": "4c3e78a1.ebb138",
-        "name": "Is Master Bedroom Button?",
-        "property": "payload.event.id",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "button_st_master_bedroom",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 120,
-        "y": 580,
-        "wires": [
-            [
-                "b3772296.72252"
-            ]
-        ]
-    },
-    {
         "id": "52b13ab7.819424",
         "type": "api-call-service",
         "z": "4c3e78a1.ebb138",
@@ -413,7 +343,7 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 570,
+        "x": 650,
         "y": 580,
         "wires": [
             [
@@ -426,19 +356,19 @@
         "type": "switch",
         "z": "4c3e78a1.ebb138",
         "name": "Is press?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "eq",
-                "v": "1002",
-                "vt": "num"
+                "v": "single",
+                "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 340,
+        "x": 420,
         "y": 580,
         "wires": [
             [
@@ -464,50 +394,10 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 880,
+        "x": 940,
         "y": 580,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "b5afe504.c99e68",
-        "type": "server-events",
-        "z": "7b5378f9.154968",
-        "name": " Deconz Event (any)",
-        "server": "2f5bd1e0.67e40e",
-        "event_type": "deconz_event",
-        "x": 90,
-        "y": 440,
-        "wires": [
-            [
-                "50780152.d8fb8"
-            ]
-        ]
-    },
-    {
-        "id": "50780152.d8fb8",
-        "type": "switch",
-        "z": "7b5378f9.154968",
-        "name": "Is Kitchen Button?",
-        "property": "payload.event.id",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "button_st_kitchen",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 90,
-        "y": 560,
-        "wires": [
-            [
-                "57754fcc.df72e"
-            ]
         ]
     },
     {
@@ -527,7 +417,7 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 520,
+        "x": 580,
         "y": 560,
         "wires": [
             [
@@ -540,19 +430,19 @@
         "type": "switch",
         "z": "7b5378f9.154968",
         "name": "Is press?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "eq",
-                "v": "1002",
-                "vt": "num"
+                "v": "single",
+                "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 300,
+        "x": 380,
         "y": 560,
         "wires": [
             [
@@ -578,34 +468,10 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 800,
+        "x": 840,
         "y": 560,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "948486bf.0ffe48",
-        "type": "server-state-changed",
-        "z": "1d296556.09592b",
-        "name": "Foyer Motion Event",
-        "server": "2f5bd1e0.67e40e",
-        "version": 1,
-        "entityidfilter": "binary_sensor.motion_sensor_hue_foyer",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "jsonata",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "x": 130,
-        "y": 360,
-        "wires": [
-            [
-                "c6a17f72.67465"
-            ]
         ]
     },
     {
@@ -613,18 +479,14 @@
         "type": "switch",
         "z": "1d296556.09592b",
         "name": "Motion On or Off?",
-        "property": "payload",
+        "property": "payload.occupancy",
         "propertyType": "msg",
         "rules": [
             {
-                "t": "eq",
-                "v": "on",
-                "vt": "str"
+                "t": "true"
             },
             {
-                "t": "eq",
-                "v": "off",
-                "vt": "str"
+                "t": "false"
             }
         ],
         "checkall": "true",
@@ -929,57 +791,18 @@
         ]
     },
     {
-        "id": "8197cbd2.35fcd8",
-        "type": "server-state-changed",
-        "z": "62ce34cf.a7671c",
-        "name": "Foyer Motion Event",
-        "server": "2f5bd1e0.67e40e",
-        "version": 1,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "binary_sensor.motion_aqara_upstairs_hallway_occupancy",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "jsonata",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "x": 130,
-        "y": 440,
-        "wires": [
-            [
-                "9e728add.a96578"
-            ]
-        ]
-    },
-    {
         "id": "fb3e86e1.e68a28",
         "type": "switch",
         "z": "62ce34cf.a7671c",
         "name": "Motion On or Off?",
-        "property": "payload",
+        "property": "payload.occupancy",
         "propertyType": "msg",
         "rules": [
             {
-                "t": "eq",
-                "v": "on",
-                "vt": "str"
+                "t": "true"
             },
             {
-                "t": "eq",
-                "v": "off",
-                "vt": "str"
+                "t": "false"
             }
         ],
         "checkall": "true",
@@ -1334,90 +1157,51 @@
         "id": "bacb1514.190848",
         "type": "comment",
         "z": "bf163cd5.f84c",
-        "name": "Samsung button event codes",
-        "info": "### Samsung button events\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press",
-        "x": 360,
-        "y": 280,
+        "name": "Samsung button event codes / MQTT payloads",
+        "info": "### Samsung button events / MQTT payloads\n - 1001 / hold:   Long press\n - 1002 / single: Single press\n - 1004 / double: Double press",
+        "x": 220,
+        "y": 340,
         "wires": []
     },
     {
         "id": "685a42b7.cb068c",
         "type": "comment",
         "z": "4c3e78a1.ebb138",
-        "name": "Samsung button event codes",
-        "info": "### Samsung button events\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press",
-        "x": 340,
-        "y": 320,
+        "name": "Samsung button event codes / MQTT payloads",
+        "info": "### Samsung button events / MQTT payloads\n - 1001 / hold:   Long press\n - 1002 / single: Single press\n - 1004 / double: Double press",
+        "x": 220,
+        "y": 480,
         "wires": []
     },
     {
         "id": "f42dda3.af91b28",
         "type": "comment",
         "z": "7b5378f9.154968",
-        "name": "Samsung button event codes",
-        "info": "### Samsung button events\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press",
-        "x": 340,
-        "y": 300,
+        "name": "Samsung button event codes / MQTT payloads",
+        "info": "### Samsung button events / MQTT payloads\n - 1001 / hold:   Long press\n - 1002 / single: Single press\n - 1004 / double: Double press",
+        "x": 220,
+        "y": 460,
         "wires": []
-    },
-    {
-        "id": "71b10af6.310b44",
-        "type": "server-state-changed",
-        "z": "e9868773.797078",
-        "name": "Foyer Motion Event",
-        "server": "2f5bd1e0.67e40e",
-        "version": 1,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "binary_sensor.multi_sensor_st_front_door_openclose",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "jsonata",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "x": 90,
-        "y": 560,
-        "wires": [
-            [
-                "ed05a9af.2d13e8"
-            ]
-        ]
     },
     {
         "id": "ed05a9af.2d13e8",
         "type": "switch",
         "z": "e9868773.797078",
-        "name": "Motion On or Off?",
-        "property": "payload",
+        "name": "Open or close?",
+        "property": "payload.contact",
         "propertyType": "msg",
         "rules": [
             {
-                "t": "eq",
-                "v": "on",
-                "vt": "str"
+                "t": "false"
             },
             {
-                "t": "eq",
-                "v": "off",
-                "vt": "str"
+                "t": "true"
             }
         ],
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 130,
+        "x": 120,
         "y": 740,
         "wires": [
             [
@@ -1718,57 +1502,18 @@
         ]
     },
     {
-        "id": "972b9388.f671a",
-        "type": "server-state-changed",
-        "z": "884319a9.e92148",
-        "name": "Foyer Motion Event",
-        "server": "2f5bd1e0.67e40e",
-        "version": 1,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "binary_sensor.multi_sensor_st_kitchen_door_openclose",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "jsonata",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "x": 90,
-        "y": 600,
-        "wires": [
-            [
-                "210c5d3b.b91672"
-            ]
-        ]
-    },
-    {
         "id": "210c5d3b.b91672",
         "type": "switch",
         "z": "884319a9.e92148",
         "name": "Motion On or Off?",
-        "property": "payload",
+        "property": "payload.contact",
         "propertyType": "msg",
         "rules": [
             {
-                "t": "eq",
-                "v": "on",
-                "vt": "str"
+                "t": "false"
             },
             {
-                "t": "eq",
-                "v": "off",
-                "vt": "str"
+                "t": "true"
             }
         ],
         "checkall": "true",
@@ -1782,7 +1527,7 @@
                 "596d5487.fcaf4c"
             ],
             [
-                "7ec47fa6.5f3d9"
+                "16446335.cbdf7d"
             ]
         ]
     },
@@ -1951,11 +1696,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 260,
-        "y": 840,
+        "x": 440,
+        "y": 900,
         "wires": [
             [
-                "16446335.cbdf7d"
+                "45061cb8.b1e6c4"
             ]
         ]
     },
@@ -2113,18 +1858,18 @@
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": false,
-        "entity_id": "binary_sensor.multi_sensor_st_front_door_openclose",
+        "entity_id": "binary_sensor.doorwin_st_front_door_contact",
         "state_type": "str",
         "state_location": "payload",
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 400,
-        "y": 900,
+        "x": 180,
+        "y": 840,
         "wires": [
             [
-                "db2d66d0.bc1d68"
+                "7ec47fa6.5f3d9"
             ],
             []
         ]
@@ -2141,18 +1886,18 @@
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "override_topic": false,
-        "entity_id": "binary_sensor.multi_sensor_st_kitchen_door_openclose",
+        "entity_id": "binary_sensor.doorwin_st_kitchen_door_contact",
         "state_type": "str",
         "state_location": "payload",
         "override_payload": "msg",
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 440,
-        "y": 960,
+        "x": 180,
+        "y": 900,
         "wires": [
             [
-                "45061cb8.b1e6c4"
+                "7ec47fa6.5f3d9"
             ],
             []
         ]
@@ -2177,46 +1922,11 @@
         "links": [
             "330b6021.6dbe9"
         ],
-        "x": 115,
-        "y": 940,
+        "x": 135,
+        "y": 980,
         "wires": [
             [
-                "7ec47fa6.5f3d9"
-            ]
-        ]
-    },
-    {
-        "id": "91df9e5d.73c7c",
-        "type": "server-state-changed",
-        "z": "35ab222c.a6eb9e",
-        "name": "Foyer Motion Event",
-        "server": "2f5bd1e0.67e40e",
-        "version": 1,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "binary_sensor.motion_aqara_downstairs_hallway_occupancy",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "jsonata",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "x": 130,
-        "y": 500,
-        "wires": [
-            [
-                "19863ef.06735c1"
+                "db2d66d0.bc1d68"
             ]
         ]
     },
@@ -2225,18 +1935,14 @@
         "type": "switch",
         "z": "35ab222c.a6eb9e",
         "name": "Motion On or Off?",
-        "property": "payload",
+        "property": "payload.occupancy",
         "propertyType": "msg",
         "rules": [
             {
-                "t": "eq",
-                "v": "on",
-                "vt": "str"
+                "t": "true"
             },
             {
-                "t": "eq",
-                "v": "off",
-                "vt": "str"
+                "t": "false"
             }
         ],
         "checkall": "true",
@@ -5066,47 +4772,6 @@
         ]
     },
     {
-        "id": "6ad8e0bc.b325a",
-        "type": "server-events",
-        "z": "e6c80f9f.2d85a",
-        "name": " Deconz Event (any)",
-        "server": "2f5bd1e0.67e40e",
-        "event_type": "deconz_event",
-        "x": 210,
-        "y": 580,
-        "wires": [
-            [
-                "35ca298f.104e16"
-            ]
-        ]
-    },
-    {
-        "id": "35ca298f.104e16",
-        "type": "switch",
-        "z": "e6c80f9f.2d85a",
-        "name": "Is Laundry Room Button?",
-        "property": "payload.event.id",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "button_st_laundry_room",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 210,
-        "y": 780,
-        "wires": [
-            [
-                "40b3d527.341c6c",
-                "9e3194ff.7878b8"
-            ]
-        ]
-    },
-    {
         "id": "e643fd72.bbf38",
         "type": "api-call-service",
         "z": "e6c80f9f.2d85a",
@@ -5136,13 +4801,13 @@
         "type": "switch",
         "z": "e6c80f9f.2d85a",
         "name": "Is press?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "eq",
-                "v": "1002",
-                "vt": "num"
+                "v": "single",
+                "vt": "str"
             }
         ],
         "checkall": "true",
@@ -5184,10 +4849,10 @@
         "id": "971adfa8.e711c",
         "type": "comment",
         "z": "e6c80f9f.2d85a",
-        "name": "Samsung button event codes",
-        "info": "### Samsung button events\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press",
-        "x": 440,
-        "y": 460,
+        "name": "Samsung button event codes / MQTT payloads",
+        "info": "### Samsung button events / MQTT payloads\n - 1001 / hold:   Long press\n - 1002 / single: Single press\n - 1004 / double: Double press",
+        "x": 220,
+        "y": 600,
         "wires": []
     },
     {
@@ -5225,13 +4890,13 @@
         "type": "switch",
         "z": "e6c80f9f.2d85a",
         "name": "Is double press?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "eq",
-                "v": "1004",
-                "vt": "num"
+                "v": "double",
+                "vt": "str"
             }
         ],
         "checkall": "true",
@@ -5327,59 +4992,16 @@
         ]
     },
     {
-        "id": "39cd40b7.f1b2e",
-        "type": "server-events",
-        "z": "7a29c613.b063d8",
-        "name": " Deconz Event (any)",
-        "server": "2f5bd1e0.67e40e",
-        "event_type": "deconz_event",
-        "x": 150,
-        "y": 720,
-        "wires": [
-            [
-                "b55ef9de.458e68"
-            ]
-        ]
-    },
-    {
-        "id": "b55ef9de.458e68",
-        "type": "switch",
-        "z": "7a29c613.b063d8",
-        "name": "Is Living Room Switch?",
-        "property": "payload.event.id",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "switch_hue_living_room",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 190,
-        "y": 800,
-        "wires": [
-            [
-                "e019762.dd47f88",
-                "cbd66a92.d0b1c8",
-                "8692e443.9a2b48",
-                "f75dd00c.e4817"
-            ]
-        ]
-    },
-    {
         "id": "e019762.dd47f88",
         "type": "switch",
         "z": "7a29c613.b063d8",
         "name": "Is on button?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "1\\d+",
+                "v": "^on-[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -5424,9 +5046,9 @@
         "id": "dae74b5b.f30368",
         "type": "comment",
         "z": "7a29c613.b063d8",
-        "name": "Samsung switch event codes",
-        "info": "## Samsung switch events\n\n### Which button\n - 1xxx: On\n - 2xxx: Brighter\n - 3xxx: Darker\n - 4xxx: Off\n\n### Which event\n - xxx0: Button down-press\n - xxx1: Periodic hold report (1 per sec)\n - xxx2: Button up-release (not held)\n - xxx3: Button up-release (after held)",
-        "x": 200,
+        "name": "Philips Hue dimmer event codes / MQTT payloads",
+        "info": "## Samsung switch events\n\n### Which button\n - 1xxx / on-<event>: On\n - 2xxx / up-<event>: Brighter\n - 3xxx / down/<event>: Darker\n - 4xxx / off-<event>: Off\n\n### Which event (deconz)\n - xxx0: Button down-press\n - xxx1: Periodic hold report (1 per sec)\n - xxx2: Button up-release (not held)\n - xxx3: Button up-release (after held)\n\n### Which event (zigbee2mqtt)\n - <btn>-press: Button single press and release\n - <btn>-hold: Button hold (1 per sec)\n - <btn>-hold-release: Button up-release (after held)",
+        "x": 270,
         "y": 420,
         "wires": []
     },
@@ -5435,12 +5057,12 @@
         "type": "switch",
         "z": "7a29c613.b063d8",
         "name": "Is brighter button?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "2\\d+",
+                "v": "^up-[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -5463,12 +5085,12 @@
         "type": "switch",
         "z": "7a29c613.b063d8",
         "name": "Is darker button?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "3\\d+",
+                "v": "^down-[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -5491,12 +5113,12 @@
         "type": "switch",
         "z": "7a29c613.b063d8",
         "name": "Is off button?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "4\\d+",
+                "v": "^off-[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -5519,12 +5141,12 @@
         "type": "switch",
         "z": "7a29c613.b063d8",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+1",
+                "v": "^[a-zA-Z]+-hold$",
                 "vt": "str",
                 "case": false
             }
@@ -5546,12 +5168,12 @@
         "type": "switch",
         "z": "7a29c613.b063d8",
         "name": "Was tapped?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+2",
+                "v": "^[a-zA-Z]+-press$",
                 "vt": "str",
                 "case": false
             }
@@ -5573,12 +5195,12 @@
         "type": "switch",
         "z": "7a29c613.b063d8",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+1",
+                "v": "^[a-zA-Z]+-hold$",
                 "vt": "str",
                 "case": false
             }
@@ -5600,12 +5222,12 @@
         "type": "switch",
         "z": "7a29c613.b063d8",
         "name": "Was tapped?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+2",
+                "v": "^[a-zA-Z]+-press$",
                 "vt": "str",
                 "case": false
             }
@@ -5627,12 +5249,12 @@
         "type": "switch",
         "z": "7a29c613.b063d8",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+1",
+                "v": "^[a-zA-Z]+-hold$",
                 "vt": "str",
                 "case": false
             }
@@ -5654,12 +5276,12 @@
         "type": "switch",
         "z": "7a29c613.b063d8",
         "name": "Was tapped?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+2",
+                "v": "^[a-zA-Z]+-press$",
                 "vt": "str",
                 "case": false
             }
@@ -5681,12 +5303,12 @@
         "type": "switch",
         "z": "7a29c613.b063d8",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+1",
+                "v": "^[a-zA-Z]+-hold$",
                 "vt": "str",
                 "case": false
             }
@@ -5708,12 +5330,12 @@
         "type": "switch",
         "z": "7a29c613.b063d8",
         "name": "Was tapped?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+2",
+                "v": "^[a-zA-Z]+-press$",
                 "vt": "str",
                 "case": false
             }
@@ -5974,59 +5596,16 @@
         ]
     },
     {
-        "id": "ab77e461.9a9958",
-        "type": "server-events",
-        "z": "bc4cdd27.07d12",
-        "name": " Deconz Event (any)",
-        "server": "2f5bd1e0.67e40e",
-        "event_type": "deconz_event",
-        "x": 210,
-        "y": 620,
-        "wires": [
-            [
-                "d5dd9b80.eed018"
-            ]
-        ]
-    },
-    {
-        "id": "d5dd9b80.eed018",
-        "type": "switch",
-        "z": "bc4cdd27.07d12",
-        "name": "Is Living Room Switch?",
-        "property": "payload.event.id",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "switch_hue_upstairs_bathroom",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 250,
-        "y": 700,
-        "wires": [
-            [
-                "820c4df9.ca0ea",
-                "ba7c746d.57ff28",
-                "b1066a75.36a8b8",
-                "5e54deaa.ff356"
-            ]
-        ]
-    },
-    {
         "id": "820c4df9.ca0ea",
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Is on button?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "1\\d+",
+                "v": "^on-[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -6071,9 +5650,9 @@
         "id": "31098c1e.c1b234",
         "type": "comment",
         "z": "bc4cdd27.07d12",
-        "name": "Samsung switch event codes",
-        "info": "## Samsung switch events\n\n### Which button\n - 1xxx: On\n - 2xxx: Brighter\n - 3xxx: Darker\n - 4xxx: Off\n\n### Which event\n - xxx0: Button down-press\n - xxx1: Periodic hold report (1 per sec)\n - xxx2: Button up-release (not held)\n - xxx3: Button up-release (after held)",
-        "x": 260,
+        "name": "Philips Hue dimmer event codes / MQTT payloads",
+        "info": "## Samsung switch events\n\n### Which button\n - 1xxx / on-<event>: On\n - 2xxx / up-<event>: Brighter\n - 3xxx / down/<event>: Darker\n - 4xxx / off-<event>: Off\n\n### Which event (deconz)\n - xxx0: Button down-press\n - xxx1: Periodic hold report (1 per sec)\n - xxx2: Button up-release (not held)\n - xxx3: Button up-release (after held)\n\n### Which event (zigbee2mqtt)\n - <btn>-press: Button single press and release\n - <btn>-hold: Button hold (1 per sec)\n - <btn>-hold-release: Button up-release (after held)",
+        "x": 330,
         "y": 320,
         "wires": []
     },
@@ -6082,12 +5661,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Is brighter button?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "2\\d+",
+                "v": "^up-[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -6110,12 +5689,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Is darker button?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "3\\d+",
+                "v": "^down-[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -6138,12 +5717,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Is off button?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "4\\d+",
+                "v": "^off-[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -6166,12 +5745,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+1",
+                "v": "^[a-zA-Z]+-hold$",
                 "vt": "str",
                 "case": false
             }
@@ -6193,12 +5772,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Was tapped?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+2",
+                "v": "^[a-zA-Z]+-press$",
                 "vt": "str",
                 "case": false
             }
@@ -6220,12 +5799,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+1",
+                "v": "^[a-zA-Z]+-hold$",
                 "vt": "str",
                 "case": false
             }
@@ -6247,12 +5826,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Was tapped?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+2",
+                "v": "^[a-zA-Z]+-press$",
                 "vt": "str",
                 "case": false
             }
@@ -6274,12 +5853,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+1",
+                "v": "^[a-zA-Z]+-hold$",
                 "vt": "str",
                 "case": false
             }
@@ -6301,12 +5880,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Was tapped?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+2",
+                "v": "^[a-zA-Z]+-press$",
                 "vt": "str",
                 "case": false
             }
@@ -6328,12 +5907,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+1",
+                "v": "^[a-zA-Z]+-hold$",
                 "vt": "str",
                 "case": false
             }
@@ -6355,12 +5934,12 @@
         "type": "switch",
         "z": "bc4cdd27.07d12",
         "name": "Was tapped?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+2",
+                "v": "^[a-zA-Z]+-press$",
                 "vt": "str",
                 "case": false
             }
@@ -8690,46 +8269,6 @@
         ]
     },
     {
-        "id": "bf59f5b0.25c748",
-        "type": "server-events",
-        "z": "ae1f782f.839ce8",
-        "name": " Deconz Event (any)",
-        "server": "2f5bd1e0.67e40e",
-        "event_type": "deconz_event",
-        "x": 170,
-        "y": 460,
-        "wires": [
-            [
-                "2d752b92.91c494"
-            ]
-        ]
-    },
-    {
-        "id": "2d752b92.91c494",
-        "type": "switch",
-        "z": "ae1f782f.839ce8",
-        "name": "Is Kitchen Sink Button?",
-        "property": "payload.event.id",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "button_st_kitchen_sink",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 190,
-        "y": 580,
-        "wires": [
-            [
-                "732b3b8.714e7c4"
-            ]
-        ]
-    },
-    {
         "id": "f1fbb6c7.bc4808",
         "type": "api-call-service",
         "z": "ae1f782f.839ce8",
@@ -8759,13 +8298,13 @@
         "type": "switch",
         "z": "ae1f782f.839ce8",
         "name": "Is press?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "eq",
-                "v": "1002",
-                "vt": "num"
+                "v": "single",
+                "vt": "str"
             }
         ],
         "checkall": "true",
@@ -8807,10 +8346,10 @@
         "id": "3d5a7bee.9f6904",
         "type": "comment",
         "z": "ae1f782f.839ce8",
-        "name": "Samsung button event codes",
-        "info": "### Samsung button events\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press",
-        "x": 420,
-        "y": 320,
+        "name": "Samsung button event codes / MQTT payloads",
+        "info": "### Samsung button events / MQTT payloads\n - 1001 / hold:   Long press\n - 1002 / single: Single press\n - 1004 / double: Double press",
+        "x": 220,
+        "y": 480,
         "wires": []
     },
     {
@@ -10980,59 +10519,16 @@
         ]
     },
     {
-        "id": "525e1860.dd2d78",
-        "type": "server-events",
-        "z": "1e7298d6.94a3d7",
-        "name": " Deconz Event (any)",
-        "server": "2f5bd1e0.67e40e",
-        "event_type": "deconz_event",
-        "x": 190,
-        "y": 600,
-        "wires": [
-            [
-                "6f69c52e.7d40bc"
-            ]
-        ]
-    },
-    {
-        "id": "6f69c52e.7d40bc",
-        "type": "switch",
-        "z": "1e7298d6.94a3d7",
-        "name": "Is Guest Bedroom Switch?",
-        "property": "payload.event.id",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "switch_hue_guest_bedroom",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 240,
-        "y": 680,
-        "wires": [
-            [
-                "71655899.33d148",
-                "18e1d0b9.e23c1f",
-                "d0c2115c.d57b7",
-                "14eb87ba.7b5968"
-            ]
-        ]
-    },
-    {
         "id": "71655899.33d148",
         "type": "switch",
         "z": "1e7298d6.94a3d7",
         "name": "Is on button?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "1\\d+",
+                "v": "^on-[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -11077,9 +10573,9 @@
         "id": "6670e06c.8ba9a",
         "type": "comment",
         "z": "1e7298d6.94a3d7",
-        "name": "Samsung switch event codes",
-        "info": "## Samsung switch events\n\n### Which button\n - 1xxx: On\n - 2xxx: Brighter\n - 3xxx: Darker\n - 4xxx: Off\n\n### Which event\n - xxx0: Button down-press\n - xxx1: Periodic hold report (1 per sec)\n - xxx2: Button up-release (not held)\n - xxx3: Button up-release (after held)",
-        "x": 240,
+        "name": "Philips Hue dimmer event codes / MQTT payloads",
+        "info": "## Samsung switch events\n\n### Which button\n - 1xxx / on-<event>: On\n - 2xxx / up-<event>: Brighter\n - 3xxx / down/<event>: Darker\n - 4xxx / off-<event>: Off\n\n### Which event (deconz)\n - xxx0: Button down-press\n - xxx1: Periodic hold report (1 per sec)\n - xxx2: Button up-release (not held)\n - xxx3: Button up-release (after held)\n\n### Which event (zigbee2mqtt)\n - <btn>-press: Button single press and release\n - <btn>-hold: Button hold (1 per sec)\n - <btn>-hold-release: Button up-release (after held)",
+        "x": 310,
         "y": 300,
         "wires": []
     },
@@ -11088,12 +10584,12 @@
         "type": "switch",
         "z": "1e7298d6.94a3d7",
         "name": "Is brighter button?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "2\\d+",
+                "v": "^up-[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -11116,12 +10612,12 @@
         "type": "switch",
         "z": "1e7298d6.94a3d7",
         "name": "Is darker button?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "3\\d+",
+                "v": "^down-[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -11144,12 +10640,12 @@
         "type": "switch",
         "z": "1e7298d6.94a3d7",
         "name": "Is off button?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "4\\d+",
+                "v": "^off-[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -11172,12 +10668,12 @@
         "type": "switch",
         "z": "1e7298d6.94a3d7",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+1",
+                "v": "^[a-zA-Z]+-hold$",
                 "vt": "str",
                 "case": false
             }
@@ -11199,12 +10695,12 @@
         "type": "switch",
         "z": "1e7298d6.94a3d7",
         "name": "Was tapped?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+2",
+                "v": "^[a-zA-Z]+-press$",
                 "vt": "str",
                 "case": false
             }
@@ -11226,12 +10722,12 @@
         "type": "switch",
         "z": "1e7298d6.94a3d7",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+1",
+                "v": "^[a-zA-Z]+-hold$",
                 "vt": "str",
                 "case": false
             }
@@ -11253,12 +10749,12 @@
         "type": "switch",
         "z": "1e7298d6.94a3d7",
         "name": "Was tapped?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+2",
+                "v": "^[a-zA-Z]+-press$",
                 "vt": "str",
                 "case": false
             }
@@ -11280,12 +10776,12 @@
         "type": "switch",
         "z": "1e7298d6.94a3d7",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+1",
+                "v": "^[a-zA-Z]+-hold$",
                 "vt": "str",
                 "case": false
             }
@@ -11307,12 +10803,12 @@
         "type": "switch",
         "z": "1e7298d6.94a3d7",
         "name": "Was tapped?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+2",
+                "v": "^[a-zA-Z]+-press$",
                 "vt": "str",
                 "case": false
             }
@@ -11334,12 +10830,12 @@
         "type": "switch",
         "z": "1e7298d6.94a3d7",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+1",
+                "v": "^[a-zA-Z]+-hold$",
                 "vt": "str",
                 "case": false
             }
@@ -11361,12 +10857,12 @@
         "type": "switch",
         "z": "1e7298d6.94a3d7",
         "name": "Was tapped?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "regex",
-                "v": "\\d+2",
+                "v": "^[a-zA-Z]+-press$",
                 "vt": "str",
                 "case": false
             }
@@ -11681,13 +11177,13 @@
         "type": "switch",
         "z": "bf163cd5.f84c",
         "name": "Is held?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "eq",
-                "v": "1001",
-                "vt": "num"
+                "v": "hold",
+                "vt": "str"
             }
         ],
         "checkall": "true",
@@ -11948,13 +11444,13 @@
         "type": "switch",
         "z": "bf163cd5.f84c",
         "name": "Is double press?",
-        "property": "payload.event.event",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "eq",
-                "v": "1004",
-                "vt": "num"
+                "v": "double",
+                "vt": "str"
             }
         ],
         "checkall": "true",
@@ -12925,6 +12421,258 @@
         "wires": [
             [
                 "49c40833.49f1c8"
+            ]
+        ]
+    },
+    {
+        "id": "15358b17.cde3f5",
+        "type": "mqtt in",
+        "z": "bf163cd5.f84c",
+        "name": "Floater button MQTT action",
+        "topic": "zigbee2mqtt/button_st_floater/action",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2ac9b613.9a48fa",
+        "x": 160,
+        "y": 560,
+        "wires": [
+            [
+                "8815138d.39ffb",
+                "3e59fa2.e73b206",
+                "c9cd8efc.d3b35"
+            ]
+        ]
+    },
+    {
+        "id": "a23403f.31dcb",
+        "type": "mqtt in",
+        "z": "bf163cd5.f84c",
+        "name": "Office button MQTT action",
+        "topic": "zigbee2mqtt/button_st_office/action",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2ac9b613.9a48fa",
+        "x": 150,
+        "y": 500,
+        "wires": [
+            [
+                "8815138d.39ffb",
+                "3e59fa2.e73b206",
+                "c9cd8efc.d3b35"
+            ]
+        ]
+    },
+    {
+        "id": "c705d787.43b708",
+        "type": "mqtt in",
+        "z": "62ce34cf.a7671c",
+        "name": "Upstairs hallway motion MQTT",
+        "topic": "zigbee2mqtt/motion_aqara_upstairs_hallway",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "2ac9b613.9a48fa",
+        "x": 150,
+        "y": 440,
+        "wires": [
+            [
+                "9e728add.a96578"
+            ]
+        ]
+    },
+    {
+        "id": "523dead1.6b10f4",
+        "type": "mqtt in",
+        "z": "35ab222c.a6eb9e",
+        "name": "Downstairs hallway motion MQTT",
+        "topic": "zigbee2mqtt/motion_aqara_downstairs_hallway",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "2ac9b613.9a48fa",
+        "x": 150,
+        "y": 500,
+        "wires": [
+            [
+                "19863ef.06735c1"
+            ]
+        ]
+    },
+    {
+        "id": "612c811.036518",
+        "type": "mqtt in",
+        "z": "e6c80f9f.2d85a",
+        "name": "Laundry room button MQTT action",
+        "topic": "zigbee2mqtt/button_st_laundry_room/action",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2ac9b613.9a48fa",
+        "x": 160,
+        "y": 780,
+        "wires": [
+            [
+                "40b3d527.341c6c",
+                "9e3194ff.7878b8"
+            ]
+        ]
+    },
+    {
+        "id": "ed942cc3.81af3",
+        "type": "mqtt in",
+        "z": "4c3e78a1.ebb138",
+        "name": "Master bedroom button MQTT action",
+        "topic": "zigbee2mqtt/button_st_master_bedroom/action",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2ac9b613.9a48fa",
+        "x": 180,
+        "y": 580,
+        "wires": [
+            [
+                "b3772296.72252"
+            ]
+        ]
+    },
+    {
+        "id": "86c70aba.4412f8",
+        "type": "mqtt in",
+        "z": "7b5378f9.154968",
+        "name": "Kitchen button MQTT action",
+        "topic": "zigbee2mqtt/button_st_kitchen/action",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2ac9b613.9a48fa",
+        "x": 160,
+        "y": 560,
+        "wires": [
+            [
+                "57754fcc.df72e"
+            ]
+        ]
+    },
+    {
+        "id": "61147ac4.90c1b4",
+        "type": "mqtt in",
+        "z": "ae1f782f.839ce8",
+        "name": "Kitchen sink button MQTT action",
+        "topic": "zigbee2mqtt/button_st_kitchen_sink/action",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2ac9b613.9a48fa",
+        "x": 170,
+        "y": 580,
+        "wires": [
+            [
+                "732b3b8.714e7c4"
+            ]
+        ]
+    },
+    {
+        "id": "9263f749.a4b948",
+        "type": "mqtt in",
+        "z": "bc4cdd27.07d12",
+        "name": "Upstairs bathroom dimmer MQTT action",
+        "topic": "zigbee2mqtt/button_hue_dim_upstairs_bathroom/action",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2ac9b613.9a48fa",
+        "x": 210,
+        "y": 700,
+        "wires": [
+            [
+                "820c4df9.ca0ea",
+                "ba7c746d.57ff28",
+                "b1066a75.36a8b8",
+                "5e54deaa.ff356"
+            ]
+        ]
+    },
+    {
+        "id": "5ac10ec6.d8f1c",
+        "type": "mqtt in",
+        "z": "7a29c613.b063d8",
+        "name": "Living room dimmer MQTT action",
+        "topic": "zigbee2mqtt/button_hue_dim_living_room/action",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2ac9b613.9a48fa",
+        "x": 170,
+        "y": 800,
+        "wires": [
+            [
+                "e019762.dd47f88",
+                "cbd66a92.d0b1c8",
+                "8692e443.9a2b48",
+                "f75dd00c.e4817"
+            ]
+        ]
+    },
+    {
+        "id": "1f0b55ce.8cc65a",
+        "type": "mqtt in",
+        "z": "1e7298d6.94a3d7",
+        "name": "Guest bedroom dimmer MQTT action",
+        "topic": "zigbee2mqtt/button_hue_dim_guest_bedroom/action",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2ac9b613.9a48fa",
+        "x": 190,
+        "y": 680,
+        "wires": [
+            [
+                "71655899.33d148",
+                "18e1d0b9.e23c1f",
+                "d0c2115c.d57b7",
+                "14eb87ba.7b5968"
+            ]
+        ]
+    },
+    {
+        "id": "ad0c72ce.071f7",
+        "type": "mqtt in",
+        "z": "e9868773.797078",
+        "name": "Front door entry/exit MQTT",
+        "topic": "zigbee2mqtt/doorwin_st_front_door",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "2ac9b613.9a48fa",
+        "x": 150,
+        "y": 560,
+        "wires": [
+            [
+                "ed05a9af.2d13e8"
+            ]
+        ]
+    },
+    {
+        "id": "26ef5d84.8244a2",
+        "type": "mqtt in",
+        "z": "884319a9.e92148",
+        "name": "Kitchen door entry/exit MQTT",
+        "topic": "zigbee2mqtt/doorwin_st_kitchen_door",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "2ac9b613.9a48fa",
+        "x": 140,
+        "y": 600,
+        "wires": [
+            [
+                "210c5d3b.b91672"
+            ]
+        ]
+    },
+    {
+        "id": "cc5d273a.4bf2d8",
+        "type": "mqtt in",
+        "z": "1d296556.09592b",
+        "name": "Foyer motion MQTT",
+        "topic": "zigbee2mqtt/motion_hue_foyer",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "2ac9b613.9a48fa",
+        "x": 130,
+        "y": 360,
+        "wires": [
+            [
+                "c6a17f72.67465"
             ]
         ]
     }

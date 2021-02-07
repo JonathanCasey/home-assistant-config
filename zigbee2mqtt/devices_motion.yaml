@@ -1,0 +1,29 @@
+# Supported device list: https://www.zigbee2mqtt.io/information/supported_devices.html
+
+# __ Devices in this file __
+# Aqara motion: https://www.zigbee2mqtt.io/devices/RTCGQ11LM.html
+# Philips Hue motion: https://www.zigbee2mqtt.io/devices/9290012607.html
+
+
+'0x00158d00054a7623':   # Aqara Motion #02
+  friendly_name: motion_aqara_downstairs_hallway  # TEMP: Should be liquor room
+  occupancy_timeout: 5
+  debounce: 0.1
+  debounce_ignore:
+    - occupancy
+
+
+'0x00178801032ada8b':   # Philips Hue Motion #01
+  friendly_name: motion_hue_foyer
+  occupancy_timeout: 10
+  debounce: 0.1
+  debounce_ignore:
+    - occupancy
+
+
+'0x00158d00054a7cd3':   # Aqara Motion #01
+  friendly_name: motion_aqara_upstairs_hallway
+  occupancy_timeout: 5
+  debounce: 0.1
+  debounce_ignore:
+    - occupancy
