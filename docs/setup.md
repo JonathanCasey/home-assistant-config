@@ -85,12 +85,6 @@ The `token` can be obtained as the `X-Plex-Token` as documented
 [here](https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/).
 
 
-### `.secrets.env`
-
-```
-DECONZ_VNC_PASSWORD=
-```
-
 ### Mosquitto `.passwd`
 A password file is recommended for mosquitto.  First, get into the shell of the
 container:
