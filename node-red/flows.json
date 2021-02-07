@@ -475,46 +475,18 @@
         ]
     },
     {
-        "id": "948486bf.0ffe48",
-        "type": "server-state-changed",
-        "z": "1d296556.09592b",
-        "name": "Foyer Motion Event",
-        "server": "2f5bd1e0.67e40e",
-        "version": 1,
-        "entityidfilter": "binary_sensor.motion_sensor_hue_foyer",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "str",
-        "haltifstate": "",
-        "halt_if_type": "jsonata",
-        "halt_if_compare": "is",
-        "outputs": 1,
-        "output_only_on_state_change": true,
-        "x": 130,
-        "y": 360,
-        "wires": [
-            [
-                "c6a17f72.67465"
-            ]
-        ]
-    },
-    {
         "id": "cd526cf1.d6312",
         "type": "switch",
         "z": "1d296556.09592b",
         "name": "Motion On or Off?",
-        "property": "payload",
+        "property": "payload.occupancy",
         "propertyType": "msg",
         "rules": [
             {
-                "t": "eq",
-                "v": "on",
-                "vt": "str"
+                "t": "true"
             },
             {
-                "t": "eq",
-                "v": "off",
-                "vt": "str"
+                "t": "false"
             }
         ],
         "checkall": "true",
@@ -12684,6 +12656,23 @@
         "wires": [
             [
                 "210c5d3b.b91672"
+            ]
+        ]
+    },
+    {
+        "id": "cc5d273a.4bf2d8",
+        "type": "mqtt in",
+        "z": "1d296556.09592b",
+        "name": "Foyer motion MQTT",
+        "topic": "zigbee2mqtt/motion_hue_foyer",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "2ac9b613.9a48fa",
+        "x": 130,
+        "y": 360,
+        "wires": [
+            [
+                "c6a17f72.67465"
             ]
         ]
     }
