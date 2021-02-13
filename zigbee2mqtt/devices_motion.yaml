@@ -13,6 +13,14 @@
     - occupancy
 
 
+'0x00158d00054ca86b':   # Aqara Motion #04
+  friendly_name: motion_aqara_foyer
+  occupancy_timeout: 5
+  debounce: 0.1
+  debounce_ignore:
+    - occupancy
+
+
 '0x00178801032ada8b':   # Philips Hue Motion #01
   friendly_name: motion_hue_foyer
   occupancy_timeout: 10
