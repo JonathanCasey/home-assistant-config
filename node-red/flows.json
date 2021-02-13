@@ -12672,7 +12672,7 @@
         "type": "mqtt in",
         "z": "1d296556.09592b",
         "name": "Foyer motion MQTT",
-        "topic": "zigbee2mqtt/motion_hue_foyer",
+        "topic": "zigbee2mqtt/motion_aqara_foyer",
         "qos": "2",
         "datatype": "json",
         "broker": "2ac9b613.9a48fa",
