@@ -175,6 +175,13 @@
         "info": ""
     },
     {
+        "id": "61cd3ec7.a4b89",
+        "type": "tab",
+        "label": "Liquor Room Motion",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -2785,7 +2792,8 @@
             "353a3d0e.03da72",
             "973aca54.e38288",
             "864ed584.5c4428",
-            "f09dd37f.d3265"
+            "f09dd37f.d3265",
+            "7fa5d1aa.2548"
         ],
         "x": 475,
         "y": 220,
@@ -12674,6 +12682,507 @@
             [
                 "c6a17f72.67465"
             ]
+        ]
+    },
+    {
+        "id": "eb3e13ce.7e39b",
+        "type": "switch",
+        "z": "61cd3ec7.a4b89",
+        "name": "Motion On or Off?",
+        "property": "payload.occupancy",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 150,
+        "y": 480,
+        "wires": [
+            [
+                "9f02fec0.7b71c",
+                "c3bf1639.e8ca08",
+                "9673ac59.b3eb9"
+            ],
+            [
+                "9c8f4edc.ec6f5"
+            ]
+        ]
+    },
+    {
+        "id": "7daaf610.f1ea58",
+        "type": "api-current-state",
+        "z": "61cd3ec7.a4b89",
+        "name": "Light not on yet?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "override_topic": false,
+        "entity_id": "light.liquor_room",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 630,
+        "y": 400,
+        "wires": [
+            [
+                "6380f5d9.c38a6c",
+                "3aefbd37.697d32"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "73fce3cb.5c9d9c",
+        "type": "api-call-service",
+        "z": "61cd3ec7.a4b89",
+        "name": "Turn on light (max)",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.liquor_room",
+        "data": "{\"brightness_pct\":100}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1090,
+        "y": 500,
+        "wires": [
+            [
+                "fee642b2.48119"
+            ]
+        ]
+    },
+    {
+        "id": "1915322f.6d2c4e",
+        "type": "change",
+        "z": "61cd3ec7.a4b89",
+        "name": "Stop timer msg",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "stop",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 520,
+        "wires": [
+            [
+                "1e588aea.448465"
+            ]
+        ]
+    },
+    {
+        "id": "1e588aea.448465",
+        "type": "stoptimer",
+        "z": "61cd3ec7.a4b89",
+        "duration": "30",
+        "units": "Second",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "",
+        "x": 690,
+        "y": 600,
+        "wires": [
+            [
+                "914bbd2c.7ac0d",
+                "38c79477.5b837c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "914bbd2c.7ac0d",
+        "type": "api-call-service",
+        "z": "61cd3ec7.a4b89",
+        "name": "Turn off light",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.liquor_room",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1050,
+        "y": 620,
+        "wires": [
+            [
+                "fee642b2.48119"
+            ]
+        ]
+    },
+    {
+        "id": "6380f5d9.c38a6c",
+        "type": "change",
+        "z": "61cd3ec7.a4b89",
+        "name": "Mark light on by motion",
+        "rules": [
+            {
+                "t": "set",
+                "p": "did_turn_light_on",
+                "pt": "flow",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 950,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9c8f4edc.ec6f5",
+        "type": "switch",
+        "z": "61cd3ec7.a4b89",
+        "name": "Is on from motion?",
+        "property": "did_turn_light_on",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 390,
+        "y": 600,
+        "wires": [
+            [
+                "1e588aea.448465"
+            ]
+        ]
+    },
+    {
+        "id": "9f02fec0.7b71c",
+        "type": "api-current-state",
+        "z": "61cd3ec7.a4b89",
+        "name": "(N/A; All day)",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "invalid_value",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "override_topic": false,
+        "entity_id": "sun.sun",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 350,
+        "y": 420,
+        "wires": [
+            [
+                "7daaf610.f1ea58",
+                "1915322f.6d2c4e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "38c79477.5b837c",
+        "type": "change",
+        "z": "61cd3ec7.a4b89",
+        "name": "Clear light on by motion or user",
+        "rules": [
+            {
+                "t": "set",
+                "p": "did_turn_light_on",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 990,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fee642b2.48119",
+        "type": "api-call-service",
+        "z": "61cd3ec7.a4b89",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Liquor Room Motion flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1400,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5f5b9933.94fe18",
+        "type": "server-state-changed",
+        "z": "61cd3ec7.a4b89",
+        "name": "Was light turned off by this or user?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "light.liquor_room",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 640,
+        "y": 720,
+        "wires": [
+            [
+                "38c79477.5b837c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3aefbd37.697d32",
+        "type": "time-range-switch",
+        "z": "61cd3ec7.a4b89",
+        "name": "Is night-light time?",
+        "lat": "",
+        "lon": "",
+        "startTime": "21:00",
+        "endTime": "05:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 870,
+        "y": 460,
+        "wires": [
+            [
+                "91984fe8.c71a2"
+            ],
+            [
+                "73fce3cb.5c9d9c"
+            ]
+        ]
+    },
+    {
+        "id": "91984fe8.c71a2",
+        "type": "api-call-service",
+        "z": "61cd3ec7.a4b89",
+        "name": "Turn on light (half dim)",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.liquor_room",
+        "data": "{\"brightness_pct\":50}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1100,
+        "y": 420,
+        "wires": [
+            [
+                "fee642b2.48119"
+            ]
+        ]
+    },
+    {
+        "id": "7fa5d1aa.2548",
+        "type": "link in",
+        "z": "61cd3ec7.a4b89",
+        "name": "In: Relinquish to Motion Triggered",
+        "links": [
+            "2d335beb.472f24"
+        ],
+        "x": 475,
+        "y": 320,
+        "wires": [
+            [
+                "a0ccec9e.413ec"
+            ]
+        ]
+    },
+    {
+        "id": "a0ccec9e.413ec",
+        "type": "api-current-state",
+        "z": "61cd3ec7.a4b89",
+        "name": "Light already on?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.liquor_room",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 630,
+        "y": 320,
+        "wires": [
+            [
+                "6380f5d9.c38a6c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c3bf1639.e8ca08",
+        "type": "switch",
+        "z": "61cd3ec7.a4b89",
+        "name": "Is on from motion?",
+        "property": "did_turn_light_on",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 370,
+        "y": 380,
+        "wires": [
+            [
+                "1915322f.6d2c4e",
+                "7daaf610.f1ea58"
+            ]
+        ]
+    },
+    {
+        "id": "8c32bbf0.914058",
+        "type": "api-current-state",
+        "z": "61cd3ec7.a4b89",
+        "name": "Is spotlight disabled?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.spotlight_mode",
+        "state_type": "habool",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "blockInputOverrides": false,
+        "x": 160,
+        "y": 320,
+        "wires": [
+            [
+                "eb3e13ce.7e39b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "25f7a15c.4320ee",
+        "type": "mqtt in",
+        "z": "61cd3ec7.a4b89",
+        "name": "Liquor room motion MQTT",
+        "topic": "zigbee2mqtt/motion_aqara_liquor_room",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "2ac9b613.9a48fa",
+        "x": 150,
+        "y": 240,
+        "wires": [
+            [
+                "8c32bbf0.914058"
+            ]
+        ]
+    },
+    {
+        "id": "9673ac59.b3eb9",
+        "type": "api-call-service",
+        "z": "61cd3ec7.a4b89",
+        "d": true,
+        "name": "Notify phone of motion on",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_sm_n970u",
+        "entityId": "",
+        "data": "{\"title\":\"Liquor Room Motion Triggered\",\"message\":\"Was this correct, or ghosting?\",\"data\":{\"tag\":\"liquor_room_motion_triggered_alert\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 470,
+        "y": 240,
+        "wires": [
+            []
         ]
     }
 ]

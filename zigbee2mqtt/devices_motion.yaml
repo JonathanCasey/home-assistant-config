@@ -21,6 +21,14 @@
     - occupancy
 
 
+'0x00158d00054ced65':   # Aqara Motion #03
+  friendly_name: motion_aqara_liquor_room
+  occupancy_timeout: 5
+  debounce: 0.1
+  debounce_ignore:
+    - occupancy
+
+
 '0x00158d00054a7cd3':   # Aqara Motion #01
   friendly_name: motion_aqara_upstairs_hallway
   occupancy_timeout: 5
