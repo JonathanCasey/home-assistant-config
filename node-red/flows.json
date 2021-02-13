@@ -589,7 +589,7 @@
         "id": "c6f41175.b52d8",
         "type": "stoptimer",
         "z": "1d296556.09592b",
-        "duration": "5",
+        "duration": "4",
         "units": "Minute",
         "payloadtype": "num",
         "payloadval": "0",
