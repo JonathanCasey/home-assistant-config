@@ -12707,7 +12707,8 @@
         "wires": [
             [
                 "9f02fec0.7b71c",
-                "c3bf1639.e8ca08"
+                "c3bf1639.e8ca08",
+                "9673ac59.b3eb9"
             ],
             [
                 "9c8f4edc.ec6f5"
@@ -13158,6 +13159,30 @@
             [
                 "8c32bbf0.914058"
             ]
+        ]
+    },
+    {
+        "id": "9673ac59.b3eb9",
+        "type": "api-call-service",
+        "z": "61cd3ec7.a4b89",
+        "d": true,
+        "name": "Notify phone of motion on",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_sm_n970u",
+        "entityId": "",
+        "data": "{\"title\":\"Liquor Room Motion Triggered\",\"message\":\"Was this correct, or ghosting?\",\"data\":{\"tag\":\"liquor_room_motion_triggered_alert\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 470,
+        "y": 240,
+        "wires": [
+            []
         ]
     }
 ]
