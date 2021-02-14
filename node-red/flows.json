@@ -30,7 +30,7 @@
     {
         "id": "62ce34cf.a7671c",
         "type": "tab",
-        "label": "Upstairs Hallway Motion",
+        "label": "Upstairs Hallway Sensors",
         "disabled": false,
         "info": ""
     },
@@ -820,11 +820,10 @@
         "wires": [
             [
                 "ad0c1937.a3d408",
-                "e2377e7b.8d444"
+                "e2377e7b.8d444",
+                "8ca5b256.32671"
             ],
-            [
-                "eb2fd5d5.268818"
-            ]
+            []
         ]
     },
     {
@@ -846,7 +845,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 610,
+        "x": 770,
         "y": 600,
         "wires": [
             [
@@ -873,7 +872,7 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 1070,
+        "x": 1230,
         "y": 700,
         "wires": [
             [
@@ -900,7 +899,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 500,
+        "x": 660,
         "y": 720,
         "wires": [
             [
@@ -917,7 +916,7 @@
         "payloadtype": "num",
         "payloadval": "0",
         "name": "",
-        "x": 660,
+        "x": 860,
         "y": 800,
         "wires": [
             [
@@ -944,7 +943,7 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 1030,
+        "x": 1190,
         "y": 820,
         "wires": [
             [
@@ -956,7 +955,7 @@
         "id": "dd8ba79c.bea668",
         "type": "change",
         "z": "62ce34cf.a7671c",
-        "name": "Mark light on by motion",
+        "name": "Mark light on by sensor",
         "rules": [
             {
                 "t": "set",
@@ -971,7 +970,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 930,
+        "x": 1090,
         "y": 560,
         "wires": [
             []
@@ -981,7 +980,7 @@
         "id": "eb2fd5d5.268818",
         "type": "switch",
         "z": "62ce34cf.a7671c",
-        "name": "Is on from motion?",
+        "name": "Is on from sensor?",
         "property": "did_turn_light_on",
         "propertyType": "flow",
         "rules": [
@@ -992,7 +991,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 370,
+        "x": 630,
         "y": 800,
         "wires": [
             [
@@ -1019,7 +1018,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 360,
+        "x": 380,
         "y": 640,
         "wires": [
             [
@@ -1033,7 +1032,7 @@
         "id": "d36ab12a.bf533",
         "type": "change",
         "z": "62ce34cf.a7671c",
-        "name": "Clear light on by motion or user",
+        "name": "Clear light on by sensor or user",
         "rules": [
             {
                 "t": "set",
@@ -1048,7 +1047,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 970,
+        "x": 1130,
         "y": 880,
         "wires": [
             []
@@ -1065,13 +1064,13 @@
         "service_domain": "logbook",
         "service": "log",
         "entityId": "",
-        "data": "{\"name\":\"node-red\",\"message\":\"Upstairs Hallway Motion flow executed successfully.\",\"domain\":\"automation\"}",
+        "data": "{\"name\":\"node-red\",\"message\":\"Upstairs Hallway Sensors flow executed successfully.\",\"domain\":\"automation\"}",
         "dataType": "json",
         "mergecontext": "",
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 1380,
+        "x": 1540,
         "y": 740,
         "wires": [
             []
@@ -1104,7 +1103,7 @@
         "halt_if_compare": "is",
         "outputs": 2,
         "output_only_on_state_change": true,
-        "x": 620,
+        "x": 800,
         "y": 920,
         "wires": [
             [
@@ -1124,7 +1123,7 @@
         "endTime": "05:00",
         "startOffset": 0,
         "endOffset": 0,
-        "x": 850,
+        "x": 1010,
         "y": 660,
         "wires": [
             [
@@ -1152,7 +1151,7 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 1070,
+        "x": 1230,
         "y": 620,
         "wires": [
             [
@@ -2851,7 +2850,7 @@
         "links": [
             "2d335beb.472f24"
         ],
-        "x": 455,
+        "x": 615,
         "y": 520,
         "wires": [
             [
@@ -2878,7 +2877,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 610,
+        "x": 770,
         "y": 520,
         "wires": [
             [
@@ -3047,7 +3046,7 @@
         "id": "e2377e7b.8d444",
         "type": "switch",
         "z": "62ce34cf.a7671c",
-        "name": "Is on from motion?",
+        "name": "Is on from sensor?",
         "property": "did_turn_light_on",
         "propertyType": "flow",
         "rules": [
@@ -13182,6 +13181,123 @@
         "x": 470,
         "y": 240,
         "wires": [
+            []
+        ]
+    },
+    {
+        "id": "252366ce.771bca",
+        "type": "mqtt in",
+        "z": "62ce34cf.a7671c",
+        "name": "Pantry door doorwin MQTT",
+        "topic": "zigbee2mqtt/doorwin_aqara_pantry_door",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "2ac9b613.9a48fa",
+        "x": 130,
+        "y": 880,
+        "wires": [
+            [
+                "f7ab0b99.042e68"
+            ]
+        ]
+    },
+    {
+        "id": "79970d8d.ff80c4",
+        "type": "comment",
+        "z": "62ce34cf.a7671c",
+        "name": "TODO: Pantry better integration with spotlight",
+        "info": "For now, will bypass spotlight (because should work independent of spotlight), but may cause contention issues when spotlight is enabled in the future.",
+        "x": 190,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "f7ab0b99.042e68",
+        "type": "switch",
+        "z": "62ce34cf.a7671c",
+        "name": "Open or closed?",
+        "property": "payload.contact",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            },
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 140,
+        "y": 760,
+        "wires": [
+            [
+                "7a861800.e44a98",
+                "ba91b17f.0c531"
+            ],
+            [
+                "d4db5027.93ab9"
+            ]
+        ],
+        "outputLabels": [
+            "Open",
+            "Closed"
+        ]
+    },
+    {
+        "id": "d4db5027.93ab9",
+        "type": "api-current-state",
+        "z": "62ce34cf.a7671c",
+        "name": "Is motion clear?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "binary_sensor.motion_aqara_upstairs_hallway_occupancy",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 400,
+        "y": 840,
+        "wires": [
+            [
+                "eb2fd5d5.268818"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8ca5b256.32671",
+        "type": "api-current-state",
+        "z": "62ce34cf.a7671c",
+        "name": "Is pantry closed?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "binary_sensor.doorwin_aqara_pantry_door_contact",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 390,
+        "y": 780,
+        "wires": [
+            [
+                "eb2fd5d5.268818"
+            ],
             []
         ]
     }
