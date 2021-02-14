@@ -6,7 +6,7 @@
 
 
 '0x00158d00054a7623':   # Aqara Motion #02
-  friendly_name: motion_aqara_downstairs_hallway  # TEMP: Should be liquor room
+  friendly_name: motion_aqara_downstairs_hallway
   occupancy_timeout: 5
   debounce: 0.1
   debounce_ignore:
