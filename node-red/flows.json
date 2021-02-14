@@ -30,7 +30,7 @@
     {
         "id": "62ce34cf.a7671c",
         "type": "tab",
-        "label": "Upstairs Hallway Motion",
+        "label": "Upstairs Hallway Sensors",
         "disabled": false,
         "info": ""
     },
@@ -956,7 +956,7 @@
         "id": "dd8ba79c.bea668",
         "type": "change",
         "z": "62ce34cf.a7671c",
-        "name": "Mark light on by motion",
+        "name": "Mark light on by sensor",
         "rules": [
             {
                 "t": "set",
@@ -981,7 +981,7 @@
         "id": "eb2fd5d5.268818",
         "type": "switch",
         "z": "62ce34cf.a7671c",
-        "name": "Is on from motion?",
+        "name": "Is on from sensor?",
         "property": "did_turn_light_on",
         "propertyType": "flow",
         "rules": [
@@ -1033,7 +1033,7 @@
         "id": "d36ab12a.bf533",
         "type": "change",
         "z": "62ce34cf.a7671c",
-        "name": "Clear light on by motion or user",
+        "name": "Clear light on by sensor or user",
         "rules": [
             {
                 "t": "set",
@@ -1065,7 +1065,7 @@
         "service_domain": "logbook",
         "service": "log",
         "entityId": "",
-        "data": "{\"name\":\"node-red\",\"message\":\"Upstairs Hallway Motion flow executed successfully.\",\"domain\":\"automation\"}",
+        "data": "{\"name\":\"node-red\",\"message\":\"Upstairs Hallway Sensors flow executed successfully.\",\"domain\":\"automation\"}",
         "dataType": "json",
         "mergecontext": "",
         "output_location": "",
@@ -3047,7 +3047,7 @@
         "id": "e2377e7b.8d444",
         "type": "switch",
         "z": "62ce34cf.a7671c",
-        "name": "Is on from motion?",
+        "name": "Is on from sensor?",
         "property": "did_turn_light_on",
         "propertyType": "flow",
         "rules": [
@@ -13183,6 +13183,67 @@
         "y": 240,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "252366ce.771bca",
+        "type": "mqtt in",
+        "z": "62ce34cf.a7671c",
+        "name": "Pantry door doorwin MQTT",
+        "topic": "zigbee2mqtt/doorwin_aqara_pantry_door",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "2ac9b613.9a48fa",
+        "x": 130,
+        "y": 880,
+        "wires": [
+            [
+                "f7ab0b99.042e68"
+            ]
+        ]
+    },
+    {
+        "id": "79970d8d.ff80c4",
+        "type": "comment",
+        "z": "62ce34cf.a7671c",
+        "name": "TODO: Pantry better integration with spotlight",
+        "info": "For now, will bypass spotlight (because should work independent of spotlight), but may cause contention issues when spotlight is enabled in the future.",
+        "x": 190,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "f7ab0b99.042e68",
+        "type": "switch",
+        "z": "62ce34cf.a7671c",
+        "name": "Open or closed?",
+        "property": "payload.contact",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            },
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 140,
+        "y": 740,
+        "wires": [
+            [
+                "7a861800.e44a98",
+                "ba91b17f.0c531"
+            ],
+            [
+                "eb2fd5d5.268818"
+            ]
+        ],
+        "outputLabels": [
+            "Open",
+            "Closed"
         ]
     }
 ]
