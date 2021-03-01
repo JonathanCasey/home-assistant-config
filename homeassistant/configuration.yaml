@@ -223,6 +223,11 @@ media_player:
     apps:
       tv.mrmc.mrmc: "Mr MC"
 
+  - platform: androidtv
+    name: Office OL Toshiba Fire TV
+    device_class: firetv
+    host: 192.168.1.73
+
   - platform: yamaha
     host: 192.168.1.64
     source_ignore:
@@ -256,19 +261,28 @@ rest_command:
     url: !secret autoremote_msg_mercedes_start
 
 
-roku:
-  - host: 192.168.1.72  # Master bedroom TV
-
-
 script: !include_dir_merge_named scripts
 
 sensor: !include sensors.yaml
+
+
+switch:
+  - platform: wake_on_lan
+    mac: 8c:dc:d4:29:71:74
+    host: 192.168.1.79
+    name: Office IR TVPC
+
+  - platform: wake_on_lan
+    mac: 64:51:06:5e:c7:e6
+    host: 192.168.1.75
+    name: Office OL TVPC
 
 
 system_health:
 sun:
 updater:
 variable:
+wake_on_lan:
 
 zwave:
   usb_path: /dev/zwave0
