@@ -271,11 +271,19 @@ switch:
     mac: 8c:dc:d4:29:71:74
     host: 192.168.1.79
     name: Office IR TVPC
+    turn_off:
+      service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/tvpc-office-ir/commands/suspend"
 
   - platform: wake_on_lan
     mac: 64:51:06:5e:c7:e6
     host: 192.168.1.75
     name: Office OL TVPC
+    turn_off:
+      service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/tvpc-office-ol/commands/suspend"
 
 
 system_health:

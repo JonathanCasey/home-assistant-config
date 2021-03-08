@@ -46,6 +46,14 @@ but it will also allow git to be used on the dev machine.
 
 
 
+## Other add-ons
+
+### IOT Link
+To control Windows PCs via MQTT, the IOT Link software is installed.  See the
+[landing page for IOT Link](https://iotlink.gitlab.io/) for more details.
+
+
+
 ## Secrets
 These are in the root dir unless specified with a subpath in the heading.
 
