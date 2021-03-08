@@ -182,6 +182,20 @@
         "info": ""
     },
     {
+        "id": "43688995.637a68",
+        "type": "tab",
+        "label": "TVPC Office OL",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "92466ad4.665248",
+        "type": "tab",
+        "label": "TVPC Office IR",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -13300,6 +13314,368 @@
                 "eb2fd5d5.268818"
             ],
             []
+        ]
+    },
+    {
+        "id": "46358a8d.028d04",
+        "type": "api-call-service",
+        "z": "43688995.637a68",
+        "name": "Turn on TV",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "turn_on",
+        "entityId": "media_player.office_ol_toshiba_fire_tv",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 410,
+        "y": 360,
+        "wires": [
+            [
+                "ce6e5d99.bef4b"
+            ]
+        ]
+    },
+    {
+        "id": "375e0898.ca0bf8",
+        "type": "server-state-changed",
+        "z": "43688995.637a68",
+        "name": "Flagged to turn on and select?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.pending_power_select_tvpc_office_ol",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 180,
+        "y": 360,
+        "wires": [
+            [
+                "46358a8d.028d04",
+                "3ee84e6.068e0b2"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3ee84e6.068e0b2",
+        "type": "api-call-service",
+        "z": "43688995.637a68",
+        "name": "Clear flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.pending_power_select_tvpc_office_ol",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 400,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "785f449a.67462c",
+        "type": "api-call-service",
+        "z": "43688995.637a68",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"TVPC Office OL flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 680,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ce6e5d99.bef4b",
+        "type": "api-call-service",
+        "z": "43688995.637a68",
+        "name": "Turn on PC",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "switch.office_ol_tvpc",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 590,
+        "y": 360,
+        "wires": [
+            [
+                "4ab7caa3.02e354"
+            ]
+        ]
+    },
+    {
+        "id": "4ab7caa3.02e354",
+        "type": "delay",
+        "z": "43688995.637a68",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 180,
+        "y": 460,
+        "wires": [
+            [
+                "3842e3a3.dd2cbc"
+            ]
+        ]
+    },
+    {
+        "id": "3842e3a3.dd2cbc",
+        "type": "api-call-service",
+        "z": "43688995.637a68",
+        "name": "Select TV source for PC",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "androidtv",
+        "service": "adb_command",
+        "entityId": "media_player.office_ol_toshiba_fire_tv",
+        "data": "{\"command\":\"HDMI2\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 390,
+        "y": 460,
+        "wires": [
+            [
+                "785f449a.67462c"
+            ]
+        ]
+    },
+    {
+        "id": "39543b9f.a84934",
+        "type": "api-call-service",
+        "z": "92466ad4.665248",
+        "name": "Turn on TV",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "turn_on",
+        "entityId": "media_player.office_ir_toshiba_fire_tv",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 410,
+        "y": 360,
+        "wires": [
+            [
+                "8411145a.df0ca8"
+            ]
+        ]
+    },
+    {
+        "id": "9255fe9.73458",
+        "type": "server-state-changed",
+        "z": "92466ad4.665248",
+        "name": "Flagged to turn on and select?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.pending_power_select_tvpc_office_ir",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 180,
+        "y": 360,
+        "wires": [
+            [
+                "39543b9f.a84934",
+                "82137f65.41f2d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "82137f65.41f2d",
+        "type": "api-call-service",
+        "z": "92466ad4.665248",
+        "name": "Clear flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.pending_power_select_tvpc_office_ir",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 400,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2b33b140.e0752e",
+        "type": "api-call-service",
+        "z": "92466ad4.665248",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"TVPC Office IR flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 680,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8411145a.df0ca8",
+        "type": "api-call-service",
+        "z": "92466ad4.665248",
+        "name": "Turn on PC",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "switch.office_ir_tvpc",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 590,
+        "y": 360,
+        "wires": [
+            [
+                "b4aee037.63765"
+            ]
+        ]
+    },
+    {
+        "id": "b4aee037.63765",
+        "type": "delay",
+        "z": "92466ad4.665248",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 180,
+        "y": 460,
+        "wires": [
+            [
+                "f45cab89.d23278"
+            ]
+        ]
+    },
+    {
+        "id": "f45cab89.d23278",
+        "type": "api-call-service",
+        "z": "92466ad4.665248",
+        "name": "Select TV source for PC",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "remote",
+        "service": "send_command",
+        "entityId": "remote.office_ir_hisense_roku_tv",
+        "data": "{\"command\":\"input_hdmi2\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 390,
+        "y": 460,
+        "wires": [
+            [
+                "2b33b140.e0752e"
+            ]
         ]
     }
 ]

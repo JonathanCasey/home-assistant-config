@@ -152,6 +152,7 @@ influxdb:
 
 
 input_boolean:
+  # Icons from https://materialdesignicons.com/
   car_alarm_triggered:
     name: Car Alarm Triggered
     icon: mdi:shield-car
@@ -169,6 +170,14 @@ input_boolean:
     name: Flag relinquish to motion
     initial: false
     icon: mdi:motion-sensor
+  pending_power_select_tvpc_office_ir:
+    name: "Flag power on and select source for TV+PC Office Inside/Right"
+    initial: false
+    icon: mdi:arrow-expand-right
+  pending_power_select_tvpc_office_ol:
+    name: "Flag power on and select source for TV+PC Office Outside/Left"
+    initial: false
+    icon: mdi:arrow-expand-left
   pending_workout_finish:
     name: Flag workout finish
     initial: false
