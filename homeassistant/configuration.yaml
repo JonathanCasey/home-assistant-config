@@ -178,6 +178,10 @@ input_boolean:
     name: "Flag power on and select source for TV+PC Office Outside/Left"
     initial: false
     icon: mdi:arrow-expand-left
+  pending_power_select_tvpc_office_all:
+    name: "Flag power on and select source for TV+PC Office All"
+    initial: false
+    icon: mdi:arrow-split-vertical
   pending_workout_finish:
     name: Flag workout finish
     initial: false

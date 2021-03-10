@@ -196,6 +196,13 @@
         "info": ""
     },
     {
+        "id": "ce74c24b.9d04f",
+        "type": "tab",
+        "label": "TVPC Office All",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -13675,6 +13682,220 @@
         "wires": [
             [
                 "2b33b140.e0752e"
+            ]
+        ]
+    },
+    {
+        "id": "be7ed8e3.56c2d8",
+        "type": "server-state-changed",
+        "z": "ce74c24b.9d04f",
+        "name": "Flagged to turn on and select?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.pending_power_select_tvpc_office_all",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 180,
+        "y": 360,
+        "wires": [
+            [
+                "166857d1.995ac8",
+                "e17d8ae.74bb278",
+                "3da8833a.f6ca6c",
+                "197f2200.65a98e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "166857d1.995ac8",
+        "type": "api-call-service",
+        "z": "ce74c24b.9d04f",
+        "name": "Clear flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.pending_power_select_tvpc_office_all",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 420,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4494dfd9.bf74e",
+        "type": "api-call-service",
+        "z": "ce74c24b.9d04f",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"TVPC Office All flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 540,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e17d8ae.74bb278",
+        "type": "api-call-service",
+        "z": "ce74c24b.9d04f",
+        "name": "Turn on office OL",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.pending_power_select_tvpc_office_ol",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 450,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3da8833a.f6ca6c",
+        "type": "api-call-service",
+        "z": "ce74c24b.9d04f",
+        "name": "Turn on office IR",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.pending_power_select_tvpc_office_ir",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 440,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f7be2578.2a1fe8",
+        "type": "comment",
+        "z": "ce74c24b.9d04f",
+        "name": "TODO: Save/restore state?",
+        "info": "",
+        "x": 170,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "197f2200.65a98e",
+        "type": "api-call-service",
+        "z": "ce74c24b.9d04f",
+        "name": "Flash office lights red",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.office",
+        "data": "{\"brightness_pct\":100,\"color_name\":\"red\",\"flash\":\"long\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 460,
+        "y": 360,
+        "wires": [
+            [
+                "c1dc90d7.92d6b"
+            ]
+        ]
+    },
+    {
+        "id": "c1dc90d7.92d6b",
+        "type": "delay",
+        "z": "ce74c24b.9d04f",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2.5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 190,
+        "y": 440,
+        "wires": [
+            [
+                "f91e36ac.b9f438"
+            ]
+        ]
+    },
+    {
+        "id": "f91e36ac.b9f438",
+        "type": "api-call-service",
+        "z": "ce74c24b.9d04f",
+        "name": "Set office lights on and cool",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.office",
+        "data": "{\t    \"kelvin\": 6400\t}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 420,
+        "y": 440,
+        "wires": [
+            [
+                "4494dfd9.bf74e"
             ]
         ]
     }
