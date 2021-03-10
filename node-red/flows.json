@@ -13507,7 +13507,7 @@
         "debugenabled": false,
         "service_domain": "media_player",
         "service": "turn_on",
-        "entityId": "media_player.office_ir_toshiba_fire_tv",
+        "entityId": "media_player.office_ir_hisense_roku_tv",
         "data": "",
         "dataType": "json",
         "mergecontext": "",
