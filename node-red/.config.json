@@ -623,7 +623,7 @@
   "node-red-contrib-huemagic": {
    "name": "node-red-contrib-huemagic",
    "version": "3.0.0",
-   "local": false,
+   "local": true,
    "nodes": {
     "hue-bridge": {
      "name": "hue-bridge",

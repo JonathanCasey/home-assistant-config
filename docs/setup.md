@@ -46,6 +46,48 @@ but it will also allow git to be used on the dev machine.
 
 
 
+## Other add-ons
+
+### IOT Link
+To control Windows PCs via MQTT, the IOT Link software is installed.  See the
+[landing page for IOT Link](https://iotlink.gitlab.io/) for more details.
+
+##### Making IOT Link actually work if you want to sleep
+Until [this PR](https://gitlab.com/iotlink/iotlink/-/merge_requests/28) or
+[this issue](https://gitlab.com/iotlink/iotlink/-/issues/118) or the like are
+merged and recompiled, IOT Link does not always fare well when the Windows PC is
+put to sleep.  As a workaround, Task Scheduler can be used.  This does use
+[nircmd](http://www.nirsoft.net/utils/nircmd.html) to keep things hidden, but it
+can optionally be omitted if you're ok with a cmd prompt always being open
+:smirk:.
+
+Thanks to stephack in
+[this home assistant community thread](https://community.home-assistant.io/t/iot-link-windows-management-using-mqtt/120856/303),
+the trick is to create a task with the following configuration:
+- `General` tab > "Run whether user is logged on or not"
+  - "Run only when user is logged on" seems to also work w/o password.
+- `General` tab > "Run with highest privileges" checked.
+- `General` tab > "Configure for" set to "Windows 10" (assuming this OS)
+- `Triggers` tab > "New..." >
+  - "Begin the task" set to "On workstation unlock".
+  - Rest of default settings ok.
+- `Actions` tab > "New..." >
+  - Program/script set to `nircmd exec hide "C:\path\to\script.bat"`
+    - `script.bat` needs to contain
+          `net stop iotlink && net start iotlink`
+    - When hitting "OK", ok to accept or reject Windows suggestion to move to
+          Add Arguments.
+    - Start in (optional) set to anything, but probably directory of batch file.
+- `Conditions` tab > `Wake the computer to run this task` checked.
+- ...that's it.  A lot of other settings at user discretion.
+
+Since it's a hidden task, optionally in Task Scheduler hit "Enable All Tasks
+History" on the right actions pane to monitor when this runs.  May also want to
+use some of the `Settings` tab for the task to have this stop / rerun on failure
+after some time.
+
+
+
 ## Secrets
 These are in the root dir unless specified with a subpath in the heading.
 
