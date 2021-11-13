@@ -279,6 +279,18 @@ script: !include_dir_merge_named scripts
 sensor: !include sensors.yaml
 
 
+sonoff:
+  username: !secret sonoff_username
+  password: !secret sonoff_password
+  reload: always
+  debug: True  # you will get HA notification with a link to the logs page
+  default_class: motion
+  rfbridge:
+    Digoo Test:
+      device_class: motion
+      timeout: 6
+
+
 switch:
   - platform: wake_on_lan
     mac: 8c:dc:d4:29:71:74
