@@ -5,9 +5,14 @@
         entity_id:
           - media_player.alexa_apps_jc
           - media_player.alexa_dining_room
+          - media_Player.alexa_downstairs_bathroom
+          - media_Player.alexa_kitchen
+          - media_Player.alexa_laundry_room
           - media_player.alexa_living_room
           - media_player.alexa_master_bedroom
+          - media_Player.alexa_music_room
           - media_player.alexa_note_10_jc
-          - media_player.alexa_office
+          - media_Player.alexa_office
+          - media_Player.alexa_upstairs_bathroom
         value_template: >
           {{ states.media_player | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}

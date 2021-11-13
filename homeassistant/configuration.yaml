@@ -53,8 +53,10 @@ alexa:
         # Exclude all the other Alexa items
         - media_player.alexa_apps_jc
         - media_player.alexa_dining_room
+        - media_Player.alexa_downstairs_bathroom
         - media_player.alexa_everywhere
         - media_Player.alexa_kitchen
+        - media_Player.alexa_laundry_room
         - media_player.alexa_living_room
         - media_player.alexa_master_bedroom
         - media_Player.alexa_music_room
@@ -64,9 +66,15 @@ alexa:
         - sensor.alexa_dining_room_next_alarm
         - sensor.alexa_dining_room_next_reminder
         - sensor.alexa_dining_room_next_timer
+        - sensor.alexa_downstairs_bathroom_next_alarm
+        - sensor.alexa_downstairs_bathroom_next_reminder
+        - sensor.alexa_downstairs_bathroom_next_timer
         - sensor.alexa_kitchen_next_alarm
         - sensor.alexa_kitchen_next_reminder
         - sensor.alexa_kitchen_next_timer
+        - sensor.alexa_laundry_room_next_alarm
+        - sensor.alexa_laundry_room_next_reminder
+        - sensor.alexa_laundry_room_next_timer
         - sensor.alexa_living_room_next_alarm
         - sensor.alexa_living_room_next_reminder
         - sensor.alexa_living_room_next_timer
@@ -89,12 +97,18 @@ alexa:
         - switch.alexa_dining_room_dnd
         - switch.alexa_dining_room_repeat
         - switch.alexa_dining_room_shuffle
+        - switch.alexa_downstairs_bathroom_dnd
+        - switch.alexa_downstairs_bathroom_repeat
+        - switch.alexa_downstairs_bathroom_shuffle
         - switch.alexa_everywhere_dnd
         - switch.alexa_everywhere_repeat
         - switch.alexa_everywhere_shuffle
         - switch.alexa_kitchen_dnd
         - switch.alexa_kitchen_repeat
         - switch.alexa_kitchen_shuffle
+        - switch.alexa_laundry_room_dnd
+        - switch.alexa_laundry_room_repeat
+        - switch.alexa_laundry_room_shuffle
         - switch.alexa_living_room_dnd
         - switch.alexa_living_room_repeat
         - switch.alexa_living_room_shuffle

@@ -7862,8 +7862,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 840,
-        "y": 400,
+        "x": 860,
+        "y": 500,
         "wires": [
             []
         ]
@@ -7910,8 +7910,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 500,
-        "y": 340,
+        "x": 520,
+        "y": 420,
         "wires": [
             [
                 "e41ac9ce.5953e8"
@@ -7928,12 +7928,17 @@
         "rules": [
             {
                 "t": "eq",
-                "v": "media_player.alexa_master_bedroom",
+                "v": "media_player.alexa_dining_room",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "media_player.alexa_dining_room",
+                "v": "media_player.alexa_kitchen",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "media_player.alexa_master_bedroom",
                 "vt": "str"
             },
             {
@@ -7943,7 +7948,32 @@
             },
             {
                 "t": "eq",
+                "v": "media_player.alexa_upstairs_bathroom",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "media_player.alexa_downstairs_bathroom",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
                 "v": "media_player.alexa_living_room",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "media_player.alexa_yamaha_receiver",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "media_player.alexa_music_room",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "media_player.alexa_laundry_room",
                 "vt": "str"
             },
             {
@@ -7962,9 +7992,9 @@
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 7,
-        "x": 200,
-        "y": 400,
+        "outputs": 13,
+        "x": 220,
+        "y": 500,
         "wires": [
             [
                 "84412271.2da62"
@@ -7976,7 +8006,25 @@
                 "84412271.2da62"
             ],
             [
+                "84412271.2da62"
+            ],
+            [
+                "84412271.2da62"
+            ],
+            [
                 "6bd63b6e.190684"
+            ],
+            [
+                "6bd63b6e.190684"
+            ],
+            [
+                "6bd63b6e.190684"
+            ],
+            [
+                "6bd63b6e.190684"
+            ],
+            [
+                "26bd32ae.b9ed4e"
             ],
             [
                 "3c5232b6.6bf90e"
@@ -8033,8 +8081,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 510,
-        "y": 400,
+        "x": 530,
+        "y": 480,
         "wires": [
             [
                 "e41ac9ce.5953e8"
@@ -8058,8 +8106,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 490,
-        "y": 460,
+        "x": 510,
+        "y": 600,
         "wires": [
             [
                 "e41ac9ce.5953e8"
@@ -13896,6 +13944,31 @@
         "wires": [
             [
                 "4494dfd9.bf74e"
+            ]
+        ]
+    },
+    {
+        "id": "26bd32ae.b9ed4e",
+        "type": "api-call-service",
+        "z": "392db80.c724a48",
+        "name": "Give directions from fridge",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "debugenabled": true,
+        "service_domain": "notify",
+        "service": "alexa_media",
+        "entityId": "",
+        "data": "{\"target\":[\"{{ payload }}\"],\"message\":\"Would you like me to schedule your eye exam?\",\"data\":{\"type\":\"announce\",\"method\":\"all\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 510,
+        "y": 540,
+        "wires": [
+            [
+                "e41ac9ce.5953e8"
             ]
         ]
     }
