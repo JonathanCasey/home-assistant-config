@@ -302,7 +302,7 @@ switch:
 system_health:
 sun:
 updater:
-variable:
+# variable:
 wake_on_lan:
 
 zwave:
