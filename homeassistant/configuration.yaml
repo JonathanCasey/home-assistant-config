@@ -200,6 +200,12 @@ input_boolean:
     name: Flag workout finish
     initial: false
     icon: mdi:music-rest-whole
+  pending_yamaha_alexa_input:
+    name: Flag yamaha alexa input select
+    initial: False
+  pending_yamaha_vinyl_input:
+    name: Flag yamaha vinyl input select
+    initial: False
   pending_yamaha_skip_next:
     name: Flag skip next on yamaha
     initial: false
@@ -265,7 +271,6 @@ media_player:
       - "AV3"
       - "AV4"
       - "AV5"
-      - "AV6"
       - "Deezer"
       - "HDMI3"
       - "HDMI4"
@@ -277,6 +282,7 @@ media_player:
       HDMI1: "Nvidia Shield"
       HDMI2: "Xbox 360"
       PHONO: "Turntable / Vinyl"
+      AV6: "Alexa Echo"
 
 mobile_app:
 
