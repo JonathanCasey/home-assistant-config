@@ -3,3 +3,13 @@
 #  - 1001: Long press
 #  - 1002: Single press
 #  - 1004: Double press
+
+
+- id: update_networkmap
+  alias: 'Zigbee Map aktualisieren'
+  hide_entity: true
+  trigger:
+    platform: time
+    at: '2:00:00'
+  action:
+    service: zigbee2mqtt_networkmap.update

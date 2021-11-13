@@ -265,6 +265,15 @@ media_player:
       PHONO: "Turntable / Vinyl"
 
 mobile_app:
+
+
+panel_iframe:
+  networkmap:
+    title: 'Zigbee Map'
+    url: '/local/community/zigbee2mqtt_networkmap/map.html?engine=fdp'
+    icon: 'mdi:graphql'
+
+
 python_script:
 recorder:
 
@@ -304,6 +313,12 @@ sun:
 updater:
 # variable:
 wake_on_lan:
+webhook:
+
+
+zigbee2mqtt_networkmap:
+  #topic: your topic (optional, default zigbee2mqtt)
+
 
 zwave:
   usb_path: /dev/zwave0
