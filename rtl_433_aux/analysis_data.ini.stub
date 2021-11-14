@@ -1,0 +1,21 @@
+
+# This file should be renamed to drop the `.stub` extension and edited.
+
+# The section below can be duplicated for each data set captured to be analyzed.
+# Most fields are generic string fields that only matter that they are
+#  consistent within this file so filtering can work.
+# The only ones with critical types are:
+#  - data_len: Must be an integer number
+#  - hex_data: Must be the hex data decoded from a single receive message
+
+[<data set friendly name>]
+filename : # <path to .cu8 file for reference only>
+sensor_type : # <pir/contact/remote>
+sensor_num : # <int/str to identify which physical sensor>
+brand : # <as appropriate>
+family : # <if applicable>
+batch : # <int/str if want to correlate which purchase/test batch>
+jumper_hex_id : # <hex number; can be na>
+event : # <opened/closed/motion/etc>
+data_len : # <number of bits of data that is valid>
+hex_data : # <hex of all decoded bits in one set of data>

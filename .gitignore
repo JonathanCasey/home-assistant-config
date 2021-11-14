@@ -1,5 +1,7 @@
 # Example .gitignore file for your config dir.
 
+.vscode
+
 # Ignore folders.
 .storage
 .cloud
@@ -60,8 +62,13 @@ organizr/log/
 organizr/organizr/loginLog.json
 organizr/www/db/organizrLog.json
 organizr/www/db/organizrLoginLog.json
+organizr/www/db/backups/
 
 # portainer
+
+# rtl_433
+rtl_433_aux/analysis_data.ini
+rtl_433_data/
 
 # zigbee2mqtt
 zigbee2mqtt/coordinator_backup.json
