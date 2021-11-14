@@ -1,4 +1,24 @@
 
+# Digoo Remote FOBs not really a "sensor", but convenient to debounce and name
+
+# Digoo Remote Key FOB #01
+- platform: mqtt
+  state_topic: rtl_433/Digoo-Security__648488
+  name: Remote FOB Digoo Floater 1
+  value_template: "{{ value_json.button }}"
+  qos: 1
+  expire_after: 1
+
+
+# Digoo Remote Key FOB #02
+- platform: mqtt
+  state_topic: rtl_433/Digoo-Security__380008
+  name: Remote FOB Digoo Floater 2
+  value_template: "{{ value_json.button }}"
+  qos: 1
+  expire_after: 1
+
+
 - platform: template
   sensors:
       last_alexa:

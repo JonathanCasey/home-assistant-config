@@ -129,6 +129,9 @@ alexa:
 api:
 
 automation: !include automations.yaml
+
+binary_sensor: !include binary_sensors.yaml
+
 # Absolutely freaking required, even if empty -- otherwise refused on 8123
 config:
 conversation:
