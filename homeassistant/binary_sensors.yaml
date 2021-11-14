@@ -1,4 +1,92 @@
 
+# Digoo Door and Window (open only) #01
+- platform: mqtt
+  state_topic: rtl_433/Digoo-Security__201099
+  name: Doorwin Digoo Floater 1
+  device_class: door # could also change to window, etc
+  value_template: "{{ value_json.opened }}"
+  payload_on: 1
+  qos: 1
+  off_delay: 60
+
+
+# Digoo Door and Window (open only) #02
+- platform: mqtt
+  state_topic: rtl_433/Digoo-Security__199445
+  name: Doorwin Digoo Floater 2
+  device_class: door # could also change to window, etc
+  value_template: "{{ value_json.opened }}"
+  payload_on: 1
+  qos: 1
+  off_delay: 60
+
+
+# Digoo Door and Window (open only) #03
+- platform: mqtt
+  state_topic: rtl_433/Digoo-Security__187865
+  name: Doorwin Digoo Floater 3
+  device_class: door # could also change to window, etc
+  value_template: "{{ value_json.opened }}"
+  payload_on: 1
+  qos: 1
+  off_delay: 60
+
+
+# Digoo Door and Window #04
+- platform: mqtt
+  state_topic: rtl_433/Digoo-Security__157068
+  name: Doorwin Digoo Floater 4
+  device_class: door # could also change to window, etc
+  value_template: "{{ value_json.opened }}"
+  payload_off: 0
+  payload_on: 1
+  qos: 1
+
+
+# Digoo Door and Window #05
+- platform: mqtt
+  state_topic: rtl_433/Digoo-Security__143959
+  name: Doorwin Digoo Floater 5
+  device_class: door # could also change to window, etc
+  value_template: "{{ value_json.opened }}"
+  payload_off: 0
+  payload_on: 1
+  qos: 1
+
+
+# Digoo Door and Window #06
+- platform: mqtt
+  state_topic: rtl_433/Digoo-Security__160766
+  name: Doorwin Digoo Floater 6
+  device_class: door # could also change to window, etc
+  value_template: "{{ value_json.opened }}"
+  payload_off: 0
+  payload_on: 1
+  qos: 1
+
+
+# Digoo Door and Window (open only) #07
+- platform: mqtt
+  state_topic: rtl_433/Digoo-Security__298934
+  name: Doorwin Digoo Floater 7
+  device_class: door # could also change to window, etc
+  value_template: "{{ value_json.opened }}"
+  payload_on: 1
+  qos: 1
+  off_delay: 60
+
+
+# Digoo Door and Window (open only) #08
+- platform: mqtt
+  state_topic: rtl_433/Digoo-Security__282279
+  name: Doorwin Digoo Floater 8
+  device_class: door # could also change to window, etc
+  value_template: "{{ value_json.opened }}"
+  payload_on: 1
+  qos: 1
+  off_delay: 60
+
+
 # Digoo Motion #01
 - platform: mqtt
   state_topic: rtl_433/Digoo-Security__654569
