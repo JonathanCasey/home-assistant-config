@@ -35,8 +35,8 @@
 # Digoo Door and Window #04
 - platform: mqtt
   state_topic: rtl_433/Digoo-Security__157068
-  name: Doorwin Digoo Floater 4
-  device_class: door # could also change to window, etc
+  name: Doorwin Digoo Under Stairs Door
+  device_class: door
   value_template: "{{ value_json.opened }}"
   payload_off: 0
   payload_on: 1
