@@ -90,7 +90,7 @@
 # Digoo Motion #01
 - platform: mqtt
   state_topic: rtl_433/Digoo-Security__654569
-  name: Motion Digoo Floater 1
+  name: Motion Digoo Upstairs Hallway
   device_class: motion
   value_template: "{{ value_json.motion }}"
   payload_on: 1

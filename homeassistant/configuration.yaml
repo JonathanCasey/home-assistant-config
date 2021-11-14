@@ -176,6 +176,9 @@ input_boolean:
   house_alarm_triggered:
     name: House Alarm Triggered
     icon: mdi:shield-home
+  ignore_time_of_day:
+    name: Ignore time of day, light/dark
+    icon: mdi:timer-off
   single_occupant:
     name: Single occupant mode
     icon: mdi:account-check
@@ -220,6 +223,9 @@ input_boolean:
   spotlight_mode:
     name: Spotlight mode (single occ)
     icon: mdi:spotlight
+  use_digoo_over_aqara:
+    name: Use Digoo isntead of Aqara
+    icon: mdi:test-tube
 
 
 input_select:
