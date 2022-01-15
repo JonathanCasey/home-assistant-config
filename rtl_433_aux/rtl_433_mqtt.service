@@ -1,0 +1,33 @@
+# Some items taken from borpin on https://github.com/merbanan/rtl_433/issues/1651
+
+[Unit]
+Description=RTL_433 to MQTT
+After=network-pre.target
+StartLimitIntervalSec=5
+# Ensure it will always retry
+# StartLimitBurst=0
+
+[Service]
+WorkingDirectory=/opt/home-assistant/rtl_433_aux
+# EnvironmentFile=/etc/home-assistant/rtl_433_aux/.secrets.env
+ExecStart=/opt/home-assistant/rtl_433_aux/rtl_433_mqtt.sh
+
+# Restart >2 seconds to avoid StartLimitInterval failure
+# RestartSec=30
+# Restart=always
+
+# Tag things in the log
+# View with: sudo journalctl -f -u rtl_433 -o cat
+SyslogIdentifier=rtl_433_mqtt
+
+# modify via a dropin to use a dedicated log file for StdOut and StdErr.
+# NOTE: only works in systemd v236+
+#       Debain "stretch" includes v232, "buster" includes v239
+# Note also the user must be able to create the file and logrotate must be amended to rote the log.
+#StandardOutput=file:/var/log/rtl_433.log
+
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target

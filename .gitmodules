@@ -8,3 +8,6 @@
 	path = homeassistant/submods/keatontaylor__alexa-actions
 	url = git@github.com:keatontaylor/alexa-actions.git
 	branch = master
+[submodule "rtl_433"]
+	path = rtl_433
+	url = git@github.com:JonathanCasey/rtl_433.git

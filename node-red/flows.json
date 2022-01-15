@@ -37,7 +37,7 @@
     {
         "id": "35ab222c.a6eb9e",
         "type": "tab",
-        "label": "Downstairs Hallway Motion",
+        "label": "Downstairs Hallway Sensors",
         "disabled": false,
         "info": ""
     },
@@ -1062,7 +1062,9 @@
                 "7a861800.e44a98",
                 "ba91b17f.0c531"
             ],
-            []
+            [
+                "926a5ad6.a68318"
+            ]
         ]
     },
     {
@@ -1999,7 +2001,7 @@
                 "6108431a.4459bc"
             ],
             [
-                "1ae52074.bfe95"
+                "f5a2fd42.d486e"
             ]
         ]
     },
@@ -2022,7 +2024,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 610,
+        "x": 770,
         "y": 660,
         "wires": [
             [
@@ -2049,7 +2051,7 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 1070,
+        "x": 1230,
         "y": 760,
         "wires": [
             [
@@ -2076,7 +2078,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 500,
+        "x": 720,
         "y": 780,
         "wires": [
             [
@@ -2093,7 +2095,7 @@
         "payloadtype": "num",
         "payloadval": "0",
         "name": "",
-        "x": 660,
+        "x": 860,
         "y": 860,
         "wires": [
             [
@@ -2120,7 +2122,7 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 1030,
+        "x": 1190,
         "y": 880,
         "wires": [
             [
@@ -2132,7 +2134,7 @@
         "id": "349190a0.746a8",
         "type": "change",
         "z": "35ab222c.a6eb9e",
-        "name": "Mark light on by motion",
+        "name": "Mark light on by sensor",
         "rules": [
             {
                 "t": "set",
@@ -2147,7 +2149,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 930,
+        "x": 1090,
         "y": 620,
         "wires": [
             []
@@ -2157,7 +2159,7 @@
         "id": "1ae52074.bfe95",
         "type": "switch",
         "z": "35ab222c.a6eb9e",
-        "name": "Is on from motion?",
+        "name": "Is on from sensor?",
         "property": "did_turn_light_on",
         "propertyType": "flow",
         "rules": [
@@ -2168,7 +2170,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 370,
+        "x": 630,
         "y": 860,
         "wires": [
             [
@@ -2209,7 +2211,7 @@
         "id": "3ff24a8.bc04db6",
         "type": "change",
         "z": "35ab222c.a6eb9e",
-        "name": "Clear light on by motion or user",
+        "name": "Clear light on by sensor or user",
         "rules": [
             {
                 "t": "set",
@@ -2224,7 +2226,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 970,
+        "x": 1130,
         "y": 940,
         "wires": [
             []
@@ -2247,7 +2249,7 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 1380,
+        "x": 1540,
         "y": 800,
         "wires": [
             []
@@ -2280,7 +2282,7 @@
         "halt_if_compare": "is",
         "outputs": 2,
         "output_only_on_state_change": true,
-        "x": 620,
+        "x": 780,
         "y": 980,
         "wires": [
             [
@@ -2300,7 +2302,7 @@
         "endTime": "05:00",
         "startOffset": 0,
         "endOffset": 0,
-        "x": 850,
+        "x": 1010,
         "y": 720,
         "wires": [
             [
@@ -2328,7 +2330,7 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 1070,
+        "x": 1230,
         "y": 680,
         "wires": [
             [
@@ -2931,7 +2933,7 @@
         "links": [
             "2d335beb.472f24"
         ],
-        "x": 455,
+        "x": 615,
         "y": 580,
         "wires": [
             [
@@ -2958,7 +2960,7 @@
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 610,
+        "x": 770,
         "y": 580,
         "wires": [
             [
@@ -3107,7 +3109,7 @@
         "id": "6108431a.4459bc",
         "type": "switch",
         "z": "35ab222c.a6eb9e",
-        "name": "Is on from motion?",
+        "name": "Is on from sensor?",
         "property": "did_turn_light_on",
         "propertyType": "flow",
         "rules": [
@@ -12567,7 +12569,7 @@
         "y": 440,
         "wires": [
             [
-                "9e728add.a96578"
+                "7542545.11ba9ac"
             ]
         ]
     },
@@ -14357,6 +14359,327 @@
             [
                 "e41ac9ce.5953e8"
             ]
+        ]
+    },
+    {
+        "id": "bcc6b060.ee5ef",
+        "type": "comment",
+        "z": "35ab222c.a6eb9e",
+        "name": "TODO: Under Stairs better integration with spotlight",
+        "info": "For now, will bypass spotlight (because should work independent of spotlight), but may cause contention issues when spotlight is enabled in the future.",
+        "x": 210,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "6123106a.710b7",
+        "type": "server-state-changed",
+        "z": "35ab222c.a6eb9e",
+        "name": "Under stairs door doorwin changed",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "binary_sensor.doorwin_digoo_under_stairs_door",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "x": 160,
+        "y": 980,
+        "wires": [
+            [
+                "cdf1eb17.0de948"
+            ]
+        ]
+    },
+    {
+        "id": "cdf1eb17.0de948",
+        "type": "switch",
+        "z": "35ab222c.a6eb9e",
+        "name": "Open or closed?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 140,
+        "y": 820,
+        "wires": [
+            [
+                "ec7a30c8.1f8a8",
+                "54f9b66e.05ccf8"
+            ],
+            [
+                "61a56673.387ad8"
+            ]
+        ],
+        "outputLabels": [
+            "Open",
+            "Closed"
+        ]
+    },
+    {
+        "id": "f5a2fd42.d486e",
+        "type": "api-current-state",
+        "z": "35ab222c.a6eb9e",
+        "name": "Is under stairs closed?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "binary_sensor.doorwin_digoo_under_stairs_door",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 400,
+        "y": 840,
+        "wires": [
+            [
+                "1ae52074.bfe95"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "61a56673.387ad8",
+        "type": "api-current-state",
+        "z": "35ab222c.a6eb9e",
+        "name": "Is motion clear?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "binary_sensor.motion_aqara_downstairs_hallway_occupancy",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 400,
+        "y": 900,
+        "wires": [
+            [
+                "1ae52074.bfe95"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "96546fd3.f8ee6",
+        "type": "switch",
+        "z": "62ce34cf.a7671c",
+        "name": "Motion On or Off?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 130,
+        "y": 640,
+        "wires": [
+            [
+                "e2377e7b.8d444",
+                "ad0c1937.a3d408"
+            ],
+            [
+                "8ca5b256.32671"
+            ]
+        ]
+    },
+    {
+        "id": "58f2146c.abbd5c",
+        "type": "server-state-changed",
+        "z": "62ce34cf.a7671c",
+        "name": "Upstairs hallway motion",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "binary_sensor.motion_digoo_upstairs_hallway",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "x": 130,
+        "y": 320,
+        "wires": [
+            [
+                "5620bfa5.20cbe"
+            ]
+        ]
+    },
+    {
+        "id": "5620bfa5.20cbe",
+        "type": "api-current-state",
+        "z": "62ce34cf.a7671c",
+        "name": "Is digoo enabled?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.use_digoo_over_aqara",
+        "state_type": "habool",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "blockInputOverrides": false,
+        "x": 370,
+        "y": 320,
+        "wires": [
+            [
+                "41eeffde.e5efb"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7542545.11ba9ac",
+        "type": "api-current-state",
+        "z": "62ce34cf.a7671c",
+        "name": "Is aqara enabled?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.use_digoo_over_aqara",
+        "state_type": "habool",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "blockInputOverrides": false,
+        "x": 410,
+        "y": 440,
+        "wires": [
+            [
+                "9e728add.a96578"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "926a5ad6.a68318",
+        "type": "api-current-state",
+        "z": "62ce34cf.a7671c",
+        "name": "Ignore day/time?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.ignore_time_of_day",
+        "state_type": "habool",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "blockInputOverrides": false,
+        "x": 630,
+        "y": 660,
+        "wires": [
+            [
+                "7a861800.e44a98",
+                "ba91b17f.0c531"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "41eeffde.e5efb",
+        "type": "api-current-state",
+        "z": "62ce34cf.a7671c",
+        "name": "Is spotlight disabled?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.spotlight_mode",
+        "state_type": "habool",
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "blockInputOverrides": false,
+        "x": 600,
+        "y": 380,
+        "wires": [
+            [
+                "96546fd3.f8ee6"
+            ],
+            []
         ]
     }
 ]
