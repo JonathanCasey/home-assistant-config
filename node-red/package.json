@@ -5,11 +5,13 @@
     "private": true,
     "dependencies": {
         "@node-red-contrib-themes/midnight-red": "^1.4.6",
-        "node-red-contrib-bigtimer": "~2.3.1",
-        "node-red-contrib-home-assistant-websocket": "~0.22.2",
-        "node-red-contrib-huemagic": "~3.0.0",
+        "node-red-contrib-bigtimer": "~2.8.1",
+        "node-red-contrib-home-assistant-websocket": "~0.41.3",
+        "node-red-contrib-huemagic": "~4.0.4",
         "node-red-contrib-semaphore": "~1.0.1",
         "node-red-contrib-stoptimer": "0.0.7",
-        "node-red-contrib-time-range-switch": "~1.0.0"
+        "node-red-contrib-time-range-switch": "~1.1.2",
+        "node-red-node-rbe": "~0.5.0",
+        "node-red-node-tail": "~0.3.1"
     }
 }

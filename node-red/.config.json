@@ -361,8 +361,8 @@
   },
   "node-red-node-rbe": {
    "name": "node-red-node-rbe",
-   "version": "0.2.5",
-   "local": false,
+   "version": "0.5.0",
+   "local": true,
    "nodes": {
     "rbe": {
      "name": "rbe",
@@ -370,16 +370,16 @@
       "rbe"
      ],
      "enabled": true,
-     "local": false,
+     "local": true,
      "module": "node-red-node-rbe",
-     "file": "/usr/src/node-red/node_modules/node-red-node-rbe/rbe.js"
+     "file": "/data/node_modules/node-red-node-rbe/rbe.js"
     }
    }
   },
   "node-red-node-tail": {
    "name": "node-red-node-tail",
-   "version": "0.0.3",
-   "local": false,
+   "version": "0.3.1",
+   "local": true,
    "nodes": {
     "tail": {
      "name": "tail",
@@ -387,166 +387,46 @@
       "tail"
      ],
      "enabled": true,
-     "local": false,
+     "local": true,
      "module": "node-red-node-tail",
-     "file": "/usr/src/node-red/node_modules/node-red-node-tail/28-tail.js"
+     "file": "/data/node_modules/node-red-node-tail/28-tail.js"
     }
    }
   },
   "node-red-contrib-home-assistant-websocket": {
    "name": "node-red-contrib-home-assistant-websocket",
-   "version": "0.22.2",
+   "version": "0.41.3",
    "local": true,
    "nodes": {
-    "server": {
-     "name": "server",
+    "all": {
+     "name": "all",
      "types": [
-      "server"
+      "ha-api",
+      "ha-button",
+      "api-call-service",
+      "server",
+      "api-current-state",
+      "ha-device",
+      "ha-entity-config",
+      "ha-entity",
+      "server-events",
+      "server-state-changed",
+      "ha-fire-event",
+      "ha-get-entities",
+      "api-get-history",
+      "poll-state",
+      "api-render-template",
+      "ha-tag",
+      "ha-time",
+      "trigger-state",
+      "ha-wait-until",
+      "ha-webhook",
+      "ha-zone"
      ],
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-home-assistant-websocket",
-     "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/nodes/config-server/config-server.js"
-    },
-    "server-events": {
-     "name": "server-events",
-     "types": [
-      "server-events"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-home-assistant-websocket",
-     "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/nodes/events-all/events-all.js"
-    },
-    "server-state-changed": {
-     "name": "server-state-changed",
-     "types": [
-      "server-state-changed"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-home-assistant-websocket",
-     "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/nodes/events-state-changed/events-state-changed.js"
-    },
-    "trigger-state": {
-     "name": "trigger-state",
-     "types": [
-      "trigger-state"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-home-assistant-websocket",
-     "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/nodes/trigger-state/trigger-state.js"
-    },
-    "poll-state": {
-     "name": "poll-state",
-     "types": [
-      "poll-state"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-home-assistant-websocket",
-     "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/nodes/poll-state/poll-state.js"
-    },
-    "ha-webhook": {
-     "name": "ha-webhook",
-     "types": [
-      "ha-webhook"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-home-assistant-websocket",
-     "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/nodes/webhook/webhook.js"
-    },
-    "api-call-service": {
-     "name": "api-call-service",
-     "types": [
-      "api-call-service"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-home-assistant-websocket",
-     "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/nodes/call-service/call-service.js"
-    },
-    "ha-entity": {
-     "name": "ha-entity",
-     "types": [
-      "ha-entity"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-home-assistant-websocket",
-     "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/nodes/entity/entity.js"
-    },
-    "ha-fire-event": {
-     "name": "ha-fire-event",
-     "types": [
-      "ha-fire-event"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-home-assistant-websocket",
-     "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/nodes/fire-event/fire-event.js"
-    },
-    "api-current-state": {
-     "name": "api-current-state",
-     "types": [
-      "api-current-state"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-home-assistant-websocket",
-     "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/nodes/current-state/current-state.js"
-    },
-    "ha-get-entities": {
-     "name": "ha-get-entities",
-     "types": [
-      "ha-get-entities"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-home-assistant-websocket",
-     "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/nodes/get-entities/get-entities.js"
-    },
-    "api-get-history": {
-     "name": "api-get-history",
-     "types": [
-      "api-get-history"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-home-assistant-websocket",
-     "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/nodes/get-history/get-history.js"
-    },
-    "api-render-template": {
-     "name": "api-render-template",
-     "types": [
-      "api-render-template"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-home-assistant-websocket",
-     "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/nodes/render-template/render-template.js"
-    },
-    "ha-wait-until": {
-     "name": "ha-wait-until",
-     "types": [
-      "ha-wait-until"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-home-assistant-websocket",
-     "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/nodes/wait-until/wait-until.js"
-    },
-    "ha-api": {
-     "name": "ha-api",
-     "types": [
-      "ha-api"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-home-assistant-websocket",
-     "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/nodes/api/api.js"
+     "file": "/data/node_modules/node-red-contrib-home-assistant-websocket/dist/index.js"
     }
    }
   },
@@ -569,7 +449,7 @@
   },
   "node-red-contrib-time-range-switch": {
    "name": "node-red-contrib-time-range-switch",
-   "version": "1.0.0",
+   "version": "1.1.2",
    "local": true,
    "nodes": {
     "time-range-switch": {
@@ -586,7 +466,7 @@
   },
   "node-red-contrib-bigtimer": {
    "name": "node-red-contrib-bigtimer",
-   "version": "2.3.1",
+   "version": "2.8.1",
    "local": true,
    "nodes": {
     "bigtimer": {
@@ -622,7 +502,7 @@
   },
   "node-red-contrib-huemagic": {
    "name": "node-red-contrib-huemagic",
-   "version": "3.0.0",
+   "version": "4.0.4",
    "local": true,
    "nodes": {
     "hue-bridge": {
@@ -685,35 +565,15 @@
      "module": "node-red-contrib-huemagic",
      "file": "/data/node_modules/node-red-contrib-huemagic/huemagic/hue-scene.js"
     },
-    "hue-tap": {
-     "name": "hue-tap",
+    "hue-buttons": {
+     "name": "hue-buttons",
      "types": [
-      "hue-tap"
+      "hue-buttons"
      ],
      "enabled": true,
      "local": true,
      "module": "node-red-contrib-huemagic",
-     "file": "/data/node_modules/node-red-contrib-huemagic/huemagic/hue-tap.js"
-    },
-    "hue-switch": {
-     "name": "hue-switch",
-     "types": [
-      "hue-switch"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-huemagic",
-     "file": "/data/node_modules/node-red-contrib-huemagic/huemagic/hue-switch.js"
-    },
-    "hue-button": {
-     "name": "hue-button",
-     "types": [
-      "hue-button"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-huemagic",
-     "file": "/data/node_modules/node-red-contrib-huemagic/huemagic/hue-button.js"
+     "file": "/data/node_modules/node-red-contrib-huemagic/huemagic/hue-buttons.js"
     },
     "hue-motion": {
      "name": "hue-motion",
