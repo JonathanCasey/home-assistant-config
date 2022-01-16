@@ -1,0 +1,22 @@
+# Supported device list: https://www.zigbee2mqtt.io/information/supported_devices.html
+
+# NOTE: Many of these are also routers!
+# When adding routers, some devices need extra steps to start using.  It is best
+#  to perform these steps in the physical location where device will be
+#  installed/used:
+# - Aqara: Re-pair (unconfirmed)
+# - Ikea Tradfri: ? (unexplored)
+# - Philips Hue: Re-pair?  (had trouble...)
+# - SmartThings: Remove and reinstall battery
+
+# __ Devices in this file __
+# Ikea Tradfri outlet + router: https://www.zigbee2mqtt.io/devices/E1603_E1702_E1708.html
+# Securifi Peanut outlet + router: https://www.zigbee2mqtt.io/devices/PP-WHT-US.html (see pairing instructions!)
+
+
+'0x90fd9ffffe2ac05e':   # Ikea Tradfri outlet + router #01
+  friendly_name: 'outlet_router_ikea_tradfri_guest_bedroom'
+
+
+'0x000d6f0005499bfb':   # Securifi Peanut outlet + router #01
+  friendly_name: outlet_router_securifi_peanut_foyer

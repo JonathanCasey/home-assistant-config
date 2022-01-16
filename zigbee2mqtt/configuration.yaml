@@ -10,6 +10,7 @@ devices:
   - devices_buttons.yaml
   - devices_doorwins.yaml
   - devices_motion.yaml
+  - devices_outlets.yaml
 
 
 # Required: Home Assistant integration (MQTT discovery) (default: false)
