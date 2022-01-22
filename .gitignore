@@ -18,6 +18,7 @@ known_devices.yaml
 .HA_VERSION
 plex.conf
 *.log
+*.log.*
 *.db
 *.db-shm
 *.db-wal
