@@ -257,6 +257,7 @@ logbook:
 logger:
   default: warning
   # logs:
+    # custom_components.mbapi2020: debug
     # homeassistant.components.alexa: debug
     #homeassistant.components.python_script: debug
 
