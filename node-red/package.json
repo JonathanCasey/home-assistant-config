@@ -6,6 +6,7 @@
     "dependencies": {
         "@node-red-contrib-themes/midnight-red": "^1.4.6",
         "node-red-contrib-bigtimer": "~2.8.1",
+        "node-red-contrib-credentials": "~0.2.1",
         "node-red-contrib-home-assistant-websocket": "~0.41.3",
         "node-red-contrib-huemagic": "~4.0.4",
         "node-red-contrib-semaphore": "~1.0.1",

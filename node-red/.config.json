@@ -616,6 +616,23 @@
      "file": "/data/node_modules/node-red-contrib-huemagic/huemagic/hue-rules.js"
     }
    }
+  },
+  "node-red-contrib-credentials": {
+   "name": "node-red-contrib-credentials",
+   "version": "0.2.1",
+   "local": false,
+   "nodes": {
+    "credent": {
+     "name": "credent",
+     "types": [
+      "credentials"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-credentials",
+     "file": "/data/node_modules/node-red-contrib-credentials/credentials/credentials.js"
+    }
+   }
   }
  },
  "_credentialSecret": "9613f9c304db2ed505dff47a454142f66264ec296dae54ab600c5965a6bf2340",

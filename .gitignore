@@ -18,6 +18,7 @@ known_devices.yaml
 .HA_VERSION
 plex.conf
 *.log
+*.log.*
 *.db
 *.db-shm
 *.db-wal
@@ -43,10 +44,12 @@ backup/backup.conf
 # dockermon
 
 # Home Assistant
+homeassistant/.mercedesme-token-cache
 homeassistant/OZW_Log.txt
 homeassistant/zwcfg_0xe1bc9a5c.xml
-homeassistant/custom_components/alexa_media
-homeassistant/custom_components/hacs
+homeassistant/custom_components/**
+!homeassistant/custom_components/variable/**
+homeassistant/themes/**
 homeassistant/www/community/zigbee2mqtt_networkmap/settings.js
 homeassistant/www/community/zigbee2mqtt_networkmap/source.js
 
