@@ -1,0 +1,819 @@
+title: Home
+views:
+  - path: default_view
+    title: Home
+    cards:
+      - type: grid
+        square: false
+        columns: 1
+        cards:
+          - type: entities
+            entities:
+              - entity: remote.master_bedroom_rca_roku_tv
+                name: RCA Roku TV Remote
+            title: Master bedroom
+          - type: media-control
+            entity: media_player.master_bedroom_rca_roku_tv
+      - type: grid
+        square: false
+        columns: 1
+        cards:
+          - type: entities
+            entities:
+              - entity: remote.office_ir_hisense_roku_tv
+                name: Inside/Right Hisense Roku TV Remote
+            title: Office
+          - type: media-control
+            entity: media_player.office_ir_hisense_roku_tv
+      - type: entities
+        entities:
+          - light.dining_room
+          - light.dining_table_light
+        title: Dining Room
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - light.dining_room
+          - switch.dining_room_hutch
+          - switch.christmas_tree_upstairs
+        title: (Entire) Dining Room
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - light.downstairs_hallway
+          - light.downstairs_hall_south
+        title: Downstairs Hallway
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - light.foyer
+          - entity: light.foyer_overhead
+            name: Front
+        title: Foyer
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - light.guest_bedroom
+          - entity: light.guest_bedroom_individual
+            name: (Individual)
+          - entity: light.guest_bedroom_entry
+            name: Entry
+          - entity: light.guest_bedroom_closet
+            name: Closet
+          - entity: light.guest_bedroom_window
+            name: Window
+          - entity: light.guest_bedroom_inside_corner
+            name: Inside corner
+        title: Guest Bedroom
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - light.kitchen
+          - entity: light.kitchen_sink
+            name: Sink
+          - entity: light.kitchen_individual
+            name: (Individual)
+          - entity: light.kitchen_main_overhead
+            name: Main overhead
+          - entity: light.kitchen_sink_overhead
+            name: Sink overhead
+          - entity: light.kitchen_main_north
+            name: Main north
+          - entity: light.kitchen_main_south
+            name: Main south
+          - entity: light.kitchen_sink_north
+            name: Sink north
+          - entity: light.kitchen_sink_south
+            name: Sink south
+        title: Kitchen
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - light.kitchen_2
+        title: (Entire) Kitchen
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - light.laundry_room
+          - light.washer_and_fridge
+          - entity: light.laundry_room_individual
+            name: (Individual)
+          - light.laundry_electrical_box
+          - light.laundry_fridge
+          - light.laundry_washer
+        title: Laundry Room
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - light.living_room
+          - entity: light.living_room_individual
+            name: (Individual)
+          - entity: light.living_room_slider
+            name: Slider
+          - entity: light.living_room_tv
+            name: Tv
+        title: Living Room
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - light.living_room
+          - switch.bar_bridge
+          - switch.christmas_tree_downstairs
+        title: (Entire) Living Room
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - light.master_bedroom
+          - entity: light.master_bedroom_individual
+            name: (Individual)
+          - entity: light.master_bedroom_north
+            name: Bed north
+          - entity: light.master_bedroom_south
+            name: Bed south
+          - entity: light.master_bedroom_entry_north
+            name: Entry north
+          - entity: light.master_bedroom_entry_south
+            name: Entry south
+        title: Master Bedroom
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - light.office
+          - entity: light.office_individual
+            name: (Individual)
+          - entity: light.office_closet_switch
+            name: Closet
+          - entity: light.office_entry
+            name: Entry
+          - entity: light.office_window
+            name: Window
+        title: Office
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - light.outside
+          - entity: light.outside_individual
+            name: (Individual)
+          - entity: light.outside_front
+            name: Front
+          - entity: light.outside_kitchen
+            name: Kitchen
+        title: Outside
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - light.upstairs_bathroom
+          - entity: light.upstairs_bathroom_individual
+            name: (Individual)
+          - entity: light.upstairs_bathroom_left
+            name: Left
+          - entity: light.upstairs_bathroom_middle
+            name: Middle
+          - entity: light.upstairs_bathroom_right
+            name: Right
+        title: Upstairs Bathroom
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - light.upstairs_hallway
+          - entity: light.upstairs_hallway_individual
+            name: (Individual)
+          - light.upstairs_hall_north
+          - light.upstairs_hall_south
+        title: Upstairs Hallway
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - light.house_lights
+          - switch.bar_bridge
+          - switch.dining_room_hutch
+          - switch.christmas_tree_upstairs
+          - switch.christmas_tree_downstairs
+        title: (Entire) House
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - switch.christmas_tree_upstairs
+          - switch.christmas_tree_downstairs
+        title: Christmas Trees
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - input_boolean.car_alarm_triggered
+          - input_boolean.house_alarm_triggered
+        title: Triggered Alarms
+        show_header_toggle: true
+      - type: entities
+        entities:
+          - binary_sensor.55swf6eb2lu333634_engine_state
+          - binary_sensor.55swf6eb2lu333634_low_brake_fluid_warning
+          - binary_sensor.55swf6eb2lu333634_low_coolant_level_warning
+          - binary_sensor.55swf6eb2lu333634_low_wash_water_warning
+          - binary_sensor.55swf6eb2lu333634_park_brake_status
+          - binary_sensor.55swf6eb2lu333634_remote_start_active
+          - binary_sensor.55swf6eb2lu333634_tire_warning
+          - binary_sensor.55swf6eb2lu333634_windows_closed
+          - binary_sensor.doorwin_digoo_floater_1
+          - binary_sensor.doorwin_digoo_floater_2
+          - binary_sensor.doorwin_digoo_floater_3
+          - binary_sensor.doorwin_digoo_floater_5
+          - binary_sensor.doorwin_digoo_floater_6
+          - binary_sensor.doorwin_digoo_floater_7
+          - binary_sensor.doorwin_digoo_floater_8
+          - binary_sensor.doorwin_digoo_under_stairs_door
+          - binary_sensor.entertainment_area_1_entertainment_configuration
+          - binary_sensor.entertainment_area_2_entertainment_configuration
+          - binary_sensor.motion_digoo_floater_2
+          - binary_sensor.motion_digoo_floater_3
+          - binary_sensor.motion_digoo_floater_4
+          - binary_sensor.motion_digoo_floater_5
+          - binary_sensor.motion_digoo_floater_6
+          - binary_sensor.motion_digoo_floater_7
+          - binary_sensor.motion_digoo_floater_8
+          - binary_sensor.motion_digoo_upstairs_hallway
+          - binary_sensor.tvpc_office_ir_battery_status
+          - binary_sensor.tvpc_office_ir_network_0_wired
+          - binary_sensor.tvpc_office_ir_network_1_wired
+          - binary_sensor.tvpc_office_ir_power_status
+          - binary_sensor.tvpc_office_ol_battery_status
+          - binary_sensor.tvpc_office_ol_network_0_wired
+          - binary_sensor.tvpc_office_ol_network_1_wired
+          - binary_sensor.tvpc_office_ol_power_status
+          - binary_sensor.updater
+          - binary_sensor.button_hue_dim_floater_bad_update_available
+          - binary_sensor.button_hue_dim_guest_bedroom_update_available
+          - binary_sensor.button_hue_dim_living_room_update_available
+          - binary_sensor.button_hue_dim_upstairs_bathroom_update_available
+          - binary_sensor.0x000d6ffffea6c3bf_update_available
+          - binary_sensor.doorwin_aqara_pantry_door_contact
+          - binary_sensor.doorwin_st_front_door_battery_low
+          - binary_sensor.doorwin_st_front_door_contact
+          - binary_sensor.doorwin_st_front_door_tamper
+          - binary_sensor.doorwin_st_kitchen_door_battery_low
+          - binary_sensor.doorwin_st_kitchen_door_contact
+          - binary_sensor.doorwin_st_kitchen_door_tamper
+          - binary_sensor.motion_aqara_downstairs_hallway_occupancy
+          - binary_sensor.motion_aqara_foyer_occupancy
+          - binary_sensor.motion_aqara_liquor_room_occupancy
+          - binary_sensor.motion_aqara_upstairs_hallway_occupancy
+          - binary_sensor.motion_hue_foyer_occupancy
+          - binary_sensor.motion_hue_foyer_update_available
+          - binary_sensor.0x90fd9ffffe2ac05e_update_available
+          - binary_sensor.0x000d6f0005499bfb_update_available
+        title: Binary sensor
+      - type: grid
+        square: false
+        columns: 1
+        cards:
+          - type: picture-entity
+            entity: camera.tvpc_office_ir_screen_0
+          - type: picture-entity
+            entity: camera.tvpc_office_ol_screen_0
+      - type: entities
+        entities:
+          - input_boolean.pending_mercedes_start
+          - input_boolean.pending_power_select_tvpc_office_all
+          - input_boolean.pending_power_select_tvpc_office_ir
+          - input_boolean.pending_power_select_tvpc_office_ol
+          - input_boolean.pending_relinquish_to_motion
+          - input_boolean.pending_yamaha_skip_next
+          - input_boolean.pending_workout_finish
+          - input_boolean.pending_yamaha_alexa_input
+          - input_boolean.pending_yamaha_vinyl_input
+          - input_boolean.ignore_time_of_day
+          - input_boolean.request_alexa_wheres_the_beer
+          - input_boolean.single_occupant
+          - input_boolean.spotlight_mode
+          - input_boolean.use_digoo_over_aqara
+        title: Input boolean
+      - type: entities
+        entities:
+          - input_select.alarm_alert
+        title: Input select
+      - type: entities
+        entities:
+          - input_text.alexa_actionable_notification
+        title: Input text
+      - type: entities
+        entities:
+          - light.all_lights_except_living_room_and_bathrooms
+          - light.all_except_living_room
+          - light.all_except_living_room_bathroom
+          - light.hue_white_lamp_1
+          - light.hue_white_lamp_2
+          - light.house
+          - light.kitchen_dining
+          - light.liquor_room
+          - light.hue_color_downlight_1
+        title: Light
+      - type: entities
+        entities:
+          - lock.55swf6eb2lu333634_lock
+        title: Lock
+      - type: grid
+        square: false
+        columns: 1
+        cards:
+          - type: media-control
+            entity: media_player.alexa_everywhere
+          - type: media-control
+            entity: media_player.alexa_dining_room
+          - type: media-control
+            entity: media_player.alexa_downstairs_bathroom
+          - type: media-control
+            entity: media_player.jonathan_s_2nd_tv
+          - type: media-control
+            entity: media_player.jonathan_s_guest_bedroom_echo_dot
+          - type: media-control
+            entity: media_player.jonathan_s_7th_echo_dot
+          - type: media-control
+            entity: media_player.jonathan_s_3rd_echo_flex
+          - type: media-control
+            entity: media_player.alexa_kitchen
+          - type: media-control
+            entity: media_player.alexa_laundry_room
+          - type: media-control
+            entity: media_player.alexa_living_room
+          - type: media-control
+            entity: media_player.living_room_nvidia_shield
+          - type: media-control
+            entity: media_player.alexa_master_bedroom
+          - type: media-control
+            entity: media_player.alexa_office
+          - type: media-control
+            entity: media_player.office_ol_toshiba_fire_tv
+          - type: media-control
+            entity: media_player.plex_chinchy3960_plex_web_chrome_windows
+          - type: media-control
+            entity: media_player.plex_chinchy3960_plex_web_microsoft_edge_windows
+          - type: media-control
+            entity: media_player.plex_mrmc_localhost
+          - type: media-control
+            entity: media_player.plex_plex_web_safari
+          - type: media-control
+            entity: media_player.plex_plex_for_android_tv_aftdct31
+          - type: media-control
+            entity: media_player.plex_plex_for_android_tv_aftdct31_2
+          - type: media-control
+            entity: media_player.plex_plex_for_android_tv_aftdct31_3
+          - type: media-control
+            entity: media_player.plex_plex_for_android_tv_aftdct31_4
+          - type: media-control
+            entity: media_player.plex_plex_for_android_tv_konka_4k_android_tv
+          - type: media-control
+            entity: media_player.plex_plex_for_roku_43_hisense_roku_tv
+          - type: media-control
+            entity: media_player.plex_plex_for_ios_gauss
+          - type: media-control
+            entity: >-
+              media_player.plex_cmarino10964_plex_for_android_mobile_galaxy_tab_s2_9_7
+          - type: media-control
+            entity: media_player.plex_cmarino10964_plex_for_roku_roku_ultra
+          - type: media-control
+            entity: media_player.plex_galaxy_tab_a
+          - type: media-control
+            entity: >-
+              media_player.plex_davidcasey_diegos_gmail_com_plex_for_android_tv_hismarttv_a4
+          - type: media-control
+            entity: >-
+              media_player.plex_davidcasey_diegos_gmail_com_plex_for_apple_tv_bedroom
+          - type: media-control
+            entity: >-
+              media_player.plex_davidcasey_diegos_gmail_com_plex_for_lg_lg_75nano90una
+          - type: media-control
+            entity: >-
+              media_player.plex_davidcasey_diegos_gmail_com_plex_for_playstation_4_ps4_696
+          - type: media-control
+            entity: media_player.plex_iphone
+          - type: media-control
+            entity: media_player.plex_rdhsree_gmail_com_plex_web_safari_osx
+          - type: media-control
+            entity: media_player.plex_rdhsree_gmail_com_plex_for_lg_lg_55up8000pua
+          - type: media-control
+            entity: media_player.plex_radhas_macbook_pro_local
+          - type: media-control
+            entity: media_player.plex_andrea_tv_roku
+          - type: media-control
+            entity: media_player.plex_david_apple_tv
+          - type: media-control
+            entity: media_player.plex_david_ps4_pro
+          - type: media-control
+            entity: media_player.plex_david_ps4
+          - type: media-control
+            entity: media_player.plex_dylan_galois
+          - type: media-control
+            entity: media_player.plex_jc_note_10
+          - type: media-control
+            entity: media_player.plex_jc_p52s_chrome
+          - type: media-control
+            entity: media_player.plex_jc_rca_roku_plex
+          - type: media-control
+            entity: media_player.plex_jc_sb2_chrome
+          - type: media-control
+            entity: media_player.plex_jc_sb2_win_store_app
+          - type: media-control
+            entity: media_player.plex_jc_shield_mrmc
+          - type: media-control
+            entity: media_player.plex_jc_shield_plex
+          - type: media-control
+            entity: media_player.plex_mom_desktop_chrome
+          - type: media-control
+            entity: media_player.plex_radha_mbp_pmp
+          - type: media-control
+            entity: media_player.alexa_upstairs_bathroom
+          - type: media-control
+            entity: media_player.yamaha_receiver
+          - type: media-control
+            entity: media_player.yamaha_receiver_zone_2
+          - type: media-control
+            entity: media_player.plex_chrome
+          - type: media-control
+            entity: media_player.plex_galaxy_note8
+          - type: media-control
+            entity: media_player.plex_kfkawi
+          - type: media-control
+            entity: media_player.plex_safari
+          - type: media-control
+            entity: media_player.plex_sris_iphone
+          - type: media-control
+            entity: media_player.plex_tv_un55f7100
+      - type: entities
+        entities:
+          - remote.sonoff_10010091e4
+        title: Remote
+      - type: entities
+        entities:
+          - scene.all_except_living_room_arctic_aurora
+          - scene.all_except_living_room_bright
+          - scene.all_except_living_room_concentrate
+          - scene.all_except_living_room_dimmed
+          - scene.all_except_living_room_energize
+          - scene.all_except_living_room_nightlight
+          - scene.all_except_living_room_read
+          - scene.all_except_living_room_relax
+          - scene.all_except_living_room_savanna_sunset
+          - scene.all_except_living_room_spring_blossom
+          - scene.all_except_living_room_tropical_twilight
+          - scene.all_except_living_room_bathroom_arctic_aurora
+          - scene.all_except_living_room_bathroom_bright
+          - scene.all_except_living_room_bathroom_concentrate
+          - scene.all_except_living_room_bathroom_dimmed
+          - scene.all_except_living_room_bathroom_energize
+          - scene.all_except_living_room_bathroom_nightlight
+          - scene.all_except_living_room_bathroom_read
+          - scene.all_except_living_room_bathroom_relax
+          - scene.all_except_living_room_bathroom_savanna_sunset
+          - scene.all_except_living_room_bathroom_spring_blossom
+          - scene.all_except_living_room_bathroom_tropical_twilight
+          - scene.downstairs_hallway_bright
+          - scene.downstairs_hallway_dimmed
+          - scene.downstairs_hallway_nightlight
+          - scene.foyer_bright
+          - scene.foyer_dimmed
+          - scene.foyer_mid_dim
+          - scene.foyer_nightlight
+          - scene.guest_bedroom_bright
+          - scene.guest_bedroom_dimmed
+          - scene.guest_bedroom_nightlight
+          - scene.house_arctic_aurora
+          - scene.house_bright
+          - scene.house_concentrate
+          - scene.house_dimmed
+          - scene.house_energize
+          - scene.house_nightlight
+          - scene.house_read
+          - scene.house_relax
+          - scene.house_savanna_sunset
+          - scene.house_spring_blossom
+          - scene.house_tropical_twilight
+          - scene.kitchen_arctic_aurora
+          - scene.kitchen_bright
+          - scene.kitchen_concentrate
+          - scene.kitchen_dimmed
+          - scene.kitchen_energize
+          - scene.kitchen_halloween
+          - scene.kitchen_nightlight
+          - scene.kitchen_read
+          - scene.kitchen_relax
+          - scene.kitchen_savanna_sunset
+          - scene.kitchen_spring_blossom
+          - scene.kitchen_tropical_twilight
+          - scene.kitchen_main_overhead_arctic_aurora
+          - scene.kitchen_main_overhead_bright
+          - scene.kitchen_main_overhead_concentrate
+          - scene.kitchen_main_overhead_dimmed
+          - scene.kitchen_main_overhead_energize
+          - scene.kitchen_main_overhead_halloween
+          - scene.kitchen_main_overhead_nightlight
+          - scene.kitchen_main_overhead_read
+          - scene.kitchen_main_overhead_relax
+          - scene.kitchen_main_overhead_savanna_sunset
+          - scene.kitchen_main_overhead_spring_blossom
+          - scene.kitchen_main_overhead_tropical_twilight
+          - scene.kitchen_sink_overhead_bright
+          - scene.kitchen_sink_overhead_dimmed
+          - scene.kitchen_sink_overhead_nightlight
+          - scene.laundry_room_bright
+          - scene.laundry_room_dimmed
+          - scene.laundry_room_nightlight
+          - scene.liquor_room_arctic_aurora
+          - scene.liquor_room_blacklight
+          - scene.liquor_room_bright
+          - scene.liquor_room_concentrate
+          - scene.liquor_room_dimmed
+          - scene.liquor_room_energize
+          - scene.liquor_room_halloween_orange
+          - scene.liquor_room_halloween_purple
+          - scene.liquor_room_light_blue_haze
+          - scene.liquor_room_nightlight
+          - scene.liquor_room_read
+          - scene.liquor_room_relax
+          - scene.liquor_room_savanna_sunset
+          - scene.liquor_room_spring_blossom
+          - scene.liquor_room_tropical_twilight
+          - scene.living_room_25_concentrate
+          - scene.living_room_50_concentrate
+          - scene.living_room_arctic_aurora
+          - scene.living_room_bright
+          - scene.living_room_concentrate
+          - scene.living_room_dimmed
+          - scene.living_room_energize
+          - scene.living_room_halloween
+          - scene.living_room_nightlight
+          - scene.living_room_read
+          - scene.living_room_relax
+          - scene.living_room_savanna_sunset
+          - scene.living_room_spring_blossom
+          - scene.living_room_tropical_twilight
+          - scene.master_bedroom_33_mixed_sunlight
+          - scene.master_bedroom_75_mixed_sunlight
+          - scene.master_bedroom_arctic_aurora
+          - scene.master_bedroom_bright
+          - scene.master_bedroom_concentrate
+          - scene.master_bedroom_dimmed
+          - scene.master_bedroom_energize
+          - scene.master_bedroom_mixed_sunlight
+          - scene.master_bedroom_nightlight
+          - scene.master_bedroom_read
+          - scene.master_bedroom_relax
+          - scene.master_bedroom_savanna_sunset
+          - scene.master_bedroom_spring_blossom
+          - scene.master_bedroom_tropical_twilight
+          - scene.office_arctic_aurora
+          - scene.office_bright
+          - scene.office_concentrate
+          - scene.office_dimmed
+          - scene.office_energize
+          - scene.office_nightlight
+          - scene.office_read
+          - scene.office_relax
+          - scene.office_savanna_sunset
+          - scene.office_spring_blossom
+          - scene.office_tropical_twilight
+          - scene.outside_bright
+          - scene.outside_dimmed
+          - scene.outside_nightlight
+          - scene.upstairs_bathroom_80_bright
+          - scene.upstairs_bathroom_arctic_aurora
+          - scene.upstairs_bathroom_bright
+          - scene.upstairs_bathroom_concentrate
+          - scene.upstairs_bathroom_dimmed
+          - scene.upstairs_bathroom_energize
+          - scene.upstairs_bathroom_nightlight
+          - scene.upstairs_bathroom_read
+          - scene.upstairs_bathroom_relax
+          - scene.upstairs_bathroom_savanna_sunset
+          - scene.upstairs_bathroom_spring_blossom
+          - scene.upstairs_bathroom_tropical_twilight
+          - scene.upstairs_hallway_bright
+          - scene.upstairs_hallway_dimmed
+          - scene.upstairs_hallway_nightlight
+        title: Scene
+      - type: entities
+        entities:
+          - sensor.55swf6eb2lu333634_fuel_level
+          - sensor.55swf6eb2lu333634_ignition_state
+          - sensor.55swf6eb2lu333634_lock
+          - sensor.55swf6eb2lu333634_odometer
+          - sensor.55swf6eb2lu333634_starter_battery_state
+          - sensor.alexa_dining_room_next_alarm
+          - sensor.alexa_dining_room_next_reminder
+          - sensor.alexa_dining_room_next_timer
+          - sensor.alexa_downstairs_bathroom_next_alarm
+          - sensor.alexa_downstairs_bathroom_next_reminder
+          - sensor.alexa_downstairs_bathroom_next_timer
+          - sensor.jonathan_s_2nd_tv_next_alarm
+          - sensor.jonathan_s_2nd_tv_next_reminder
+          - sensor.jonathan_s_2nd_tv_next_timer
+          - sensor.jonathan_s_guest_bedroom_echo_dot_next_alarm
+          - sensor.jonathan_s_guest_bedroom_echo_dot_next_reminder
+          - sensor.jonathan_s_guest_bedroom_echo_dot_next_timer
+          - sensor.jonathan_s_music_room_echo_dot_next_alarm
+          - sensor.jonathan_s_music_room_echo_dot_next_reminder
+          - sensor.jonathan_s_music_room_echo_dot_next_timer
+          - sensor.jonathan_s_3rd_echo_flex_next_alarm
+          - sensor.jonathan_s_3rd_echo_flex_next_reminder
+          - sensor.jonathan_s_3rd_echo_flex_next_timer
+          - sensor.alexa_kitchen_next_alarm
+          - sensor.alexa_kitchen_next_reminder
+          - sensor.alexa_kitchen_next_timer
+          - sensor.alexa_laundry_room_next_alarm
+          - sensor.alexa_laundry_room_next_reminder
+          - sensor.alexa_laundry_room_next_timer
+          - sensor.alexa_living_room_next_alarm
+          - sensor.alexa_living_room_next_reminder
+          - sensor.alexa_living_room_next_timer
+          - sensor.alexa_master_bedroom_next_alarm
+          - sensor.alexa_master_bedroom_next_reminder
+          - sensor.alexa_master_bedroom_next_timer
+          - sensor.alexa_office_next_alarm
+          - sensor.alexa_office_next_reminder
+          - sensor.alexa_office_next_timer
+          - sensor.plex_rassilon
+          - sensor.remote_fob_digoo_floater_1
+          - sensor.remote_fob_digoo_floater_2
+          - sensor.tvpc_office_ir_battery_full_lifetime
+          - sensor.tvpc_office_ir_battery_remaining_time
+          - sensor.tvpc_office_ir_cpu_usage
+          - sensor.tvpc_office_ir_current_username
+          - sensor.tvpc_office_ir_memory_available
+          - sensor.tvpc_office_ir_memory_total
+          - sensor.tvpc_office_ir_memory_usage
+          - sensor.tvpc_office_ir_memory_used
+          - sensor.tvpc_office_ir_network_0_bps_received
+          - sensor.tvpc_office_ir_network_0_bps_sent
+          - sensor.tvpc_office_ir_network_0_bytes_received
+          - sensor.tvpc_office_ir_network_0_bytes_sent
+          - sensor.tvpc_office_ir_network_0_ipv4
+          - sensor.tvpc_office_ir_network_0_ipv6
+          - sensor.tvpc_office_ir_network_0_speed
+          - sensor.tvpc_office_ir_network_1_bps_received
+          - sensor.tvpc_office_ir_network_1_bps_sent
+          - sensor.tvpc_office_ir_network_1_bytes_received
+          - sensor.tvpc_office_ir_network_1_bytes_sent
+          - sensor.tvpc_office_ir_network_1_ipv4
+          - sensor.tvpc_office_ir_network_1_ipv6
+          - sensor.tvpc_office_ir_network_1_speed
+          - sensor.tvpc_office_ir_screen_0_height
+          - sensor.tvpc_office_ir_screen_0_width
+          - sensor.tvpc_office_ir_storage_c_available_free_space
+          - sensor.tvpc_office_ir_storage_c_format
+          - sensor.tvpc_office_ir_storage_c_label
+          - sensor.tvpc_office_ir_storage_c_total_free_space
+          - sensor.tvpc_office_ir_storage_c_total_storage
+          - sensor.tvpc_office_ir_storage_c_usage
+          - sensor.tvpc_office_ir_storage_c_used_space
+          - sensor.tvpc_office_ir_system_boot_time
+          - sensor.tvpc_office_ir_system_idle_time
+          - sensor.tvpc_office_ir_system_uptime
+          - sensor.tvpc_office_ol_battery_full_lifetime
+          - sensor.tvpc_office_ol_battery_remaining_time
+          - sensor.tvpc_office_ol_cpu_usage
+          - sensor.tvpc_office_ol_current_username
+          - sensor.tvpc_office_ol_memory_available
+          - sensor.tvpc_office_ol_memory_total
+          - sensor.tvpc_office_ol_memory_usage
+          - sensor.tvpc_office_ol_memory_used
+          - sensor.tvpc_office_ol_network_0_bps_received
+          - sensor.tvpc_office_ol_network_0_bps_sent
+          - sensor.tvpc_office_ol_network_0_bytes_received
+          - sensor.tvpc_office_ol_network_0_bytes_sent
+          - sensor.tvpc_office_ol_network_0_ipv4
+          - sensor.tvpc_office_ol_network_0_ipv6
+          - sensor.tvpc_office_ol_network_0_speed
+          - sensor.tvpc_office_ol_network_1_bps_received
+          - sensor.tvpc_office_ol_network_1_bps_sent
+          - sensor.tvpc_office_ol_network_1_bytes_received
+          - sensor.tvpc_office_ol_network_1_bytes_sent
+          - sensor.tvpc_office_ol_network_1_ipv4
+          - sensor.tvpc_office_ol_network_1_ipv6
+          - sensor.tvpc_office_ol_network_1_speed
+          - sensor.tvpc_office_ol_screen_0_height
+          - sensor.tvpc_office_ol_screen_0_width
+          - sensor.tvpc_office_ol_storage_c_available_free_space
+          - sensor.tvpc_office_ol_storage_c_format
+          - sensor.tvpc_office_ol_storage_c_label
+          - sensor.tvpc_office_ol_storage_c_total_free_space
+          - sensor.tvpc_office_ol_storage_c_total_storage
+          - sensor.tvpc_office_ol_storage_c_usage
+          - sensor.tvpc_office_ol_storage_c_used_space
+          - sensor.tvpc_office_ol_system_boot_time
+          - sensor.tvpc_office_ol_system_idle_time
+          - sensor.tvpc_office_ol_system_uptime
+          - sensor.alexa_upstairs_bathroom_next_alarm
+          - sensor.alexa_upstairs_bathroom_next_reminder
+          - sensor.alexa_upstairs_bathroom_next_timer
+          - sensor.button_hue_dim_guest_bedroom_linkquality
+          - sensor.button_hue_dim_guest_bedroom_update_state
+          - sensor.button_hue_dim_living_room_linkquality
+          - sensor.button_hue_dim_living_room_update_state
+          - sensor.button_hue_dim_upstairs_bathroom_linkquality
+          - sensor.button_hue_dim_upstairs_bathroom_update_state
+          - sensor.0x000d6ffffea6c3bf_linkquality
+          - sensor.0x000d6ffffea6c3bf_update_state
+          - sensor.button_st_floater_linkquality
+          - sensor.button_st_floater_temperature
+          - sensor.button_st_kitchen_linkquality
+          - sensor.button_st_kitchen_sink_linkquality
+          - sensor.button_st_kitchen_sink_temperature_2
+          - sensor.button_st_kitchen_temperature_2
+          - sensor.button_st_laundry_room_linkquality
+          - sensor.button_st_laundry_room_temperature_2
+          - sensor.button_st_master_bedroom_linkquality
+          - sensor.button_st_master_bedroom_temperature_2
+          - sensor.button_st_office_linkquality
+          - sensor.button_st_office_temperature
+          - sensor.doorwin_aqara_pantry_door_linkquality
+          - sensor.doorwin_st_front_door_linkquality
+          - sensor.doorwin_st_front_door_temperature
+          - sensor.doorwin_st_kitchen_door_linkquality
+          - sensor.doorwin_st_kitchen_door_temperature
+          - sensor.hacs
+          - sensor.last_alexa
+          - sensor.motion_aqara_downstairs_hallway_illuminance
+          - sensor.motion_aqara_downstairs_hallway_illuminance_lux
+          - sensor.motion_aqara_downstairs_hallway_linkquality
+          - sensor.motion_aqara_foyer_illuminance
+          - sensor.motion_aqara_foyer_illuminance_lux
+          - sensor.motion_aqara_foyer_linkquality
+          - sensor.motion_aqara_liquor_room_illuminance
+          - sensor.motion_aqara_liquor_room_illuminance_lux
+          - sensor.motion_aqara_liquor_room_linkquality
+          - sensor.motion_aqara_upstairs_hallway_illuminance
+          - sensor.motion_aqara_upstairs_hallway_illuminance_lux
+          - sensor.motion_aqara_upstairs_hallway_linkquality
+          - sensor.motion_hue_foyer_illuminance
+          - sensor.motion_hue_foyer_illuminance_lux
+          - sensor.motion_hue_foyer_linkquality
+          - sensor.motion_hue_foyer_motion_sensitivity
+          - sensor.motion_hue_foyer_occupancy_timeout
+          - sensor.motion_hue_foyer_temperature
+          - sensor.motion_hue_foyer_update_state
+          - sensor.0x90fd9ffffe2ac05e_linkquality
+          - sensor.0x90fd9ffffe2ac05e_power_on_behavior
+          - sensor.0x90fd9ffffe2ac05e_update_state
+          - sensor.0x000d6f0005499bfb_current
+          - sensor.0x000d6f0005499bfb_linkquality
+          - sensor.0x000d6f0005499bfb_power
+          - sensor.0x000d6f0005499bfb_update_state
+          - sensor.0x000d6f0005499bfb_voltage
+        title: Sensor
+      - type: entities
+        entities:
+          - switch.55swf6eb2lu333634_auxheat
+          - switch.alexa_everywhere_dnd
+          - switch.alexa_everywhere_repeat
+          - switch.alexa_everywhere_shuffle
+          - switch.alexa_dining_room_dnd
+          - switch.alexa_dining_room_repeat
+          - switch.alexa_dining_room_shuffle
+          - switch.alexa_downstairs_bathroom_dnd
+          - switch.alexa_downstairs_bathroom_repeat
+          - switch.alexa_downstairs_bathroom_shuffle
+          - switch.jonathan_s_2nd_tv_do_not_disturb_switch
+          - switch.jonathan_s_2nd_tv_repeat_switch
+          - switch.jonathan_s_2nd_tv_shuffle_switch
+          - switch.jonathan_s_guest_bedroom_echo_dot_do_not_disturb_switch
+          - switch.jonathan_s_guest_bedroom_echo_dot_repeat_switch
+          - switch.jonathan_s_guest_bedroom_echo_dot_shuffle_switch
+          - switch.jonathan_s_music_room_echo_dot_do_not_disturb_switch
+          - switch.jonathan_s_music_room_echo_dot_repeat_switch
+          - switch.jonathan_s_music_room_echo_dot_shuffle_switch
+          - switch.jonathan_s_3rd_echo_flex_do_not_disturb_switch
+          - switch.jonathan_s_3rd_echo_flex_repeat_switch
+          - switch.jonathan_s_3rd_echo_flex_shuffle_switch
+          - switch.alexa_kitchen_dnd
+          - switch.alexa_kitchen_repeat
+          - switch.alexa_kitchen_shuffle
+          - switch.alexa_laundry_room_dnd
+          - switch.alexa_laundry_room_repeat
+          - switch.alexa_laundry_room_shuffle
+          - switch.alexa_living_room_dnd
+          - switch.alexa_living_room_repeat
+          - switch.alexa_living_room_shuffle
+          - switch.alexa_master_bedroom_dnd
+          - switch.alexa_master_bedroom_repeat
+          - switch.alexa_master_bedroom_shuffle
+          - switch.alexa_office_dnd
+          - switch.alexa_office_repeat
+          - switch.alexa_office_shuffle
+          - switch.office_ir_tvpc
+          - switch.office_ol_tvpc
+          - switch.office_ol_tv
+          - switch.alexa_upstairs_bathroom_dnd
+          - switch.alexa_upstairs_bathroom_repeat
+          - switch.alexa_upstairs_bathroom_shuffle
+          - switch.0x90fd9ffffe2ac05e
+          - switch.0x000d6f0005499bfb
+        title: Switch
+      - type: weather-forecast
+        entity: weather.home
+        show_forecast: false
+      - type: entities
+        entities:
+          - zigbee2mqtt_networkmap.map_last_update
+        title: zigbee2mqtt Networkmap
+      - type: entities
+        entities:
+          - zwave.aeon_labs_zw090_z_stick_gen5_us
+        title: Z-Wave (deprecated)

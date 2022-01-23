@@ -261,6 +261,11 @@ logger:
     # homeassistant.components.alexa: debug
     #homeassistant.components.python_script: debug
 
+
+lovelace:
+  mode: yaml
+
+
 media_player:
   - platform: androidtv
     name: Living Room NVIDIA Shield
