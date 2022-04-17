@@ -283,17 +283,6 @@ lovelace:
 
 
 media_player:
-  - platform: androidtv
-    name: Living Room NVIDIA Shield
-    host: 192.168.1.63
-    apps:
-      tv.mrmc.mrmc: "Mr MC"
-
-  - platform: androidtv
-    name: Office OL Toshiba Fire TV
-    device_class: firetv
-    host: 192.168.1.73
-
   - platform: yamaha
     host: 192.168.1.64
     source_ignore:
@@ -371,7 +360,3 @@ webhook:
 
 zigbee2mqtt_networkmap:
   #topic: your topic (optional, default zigbee2mqtt)
-
-
-zwave:
-  usb_path: /dev/zwave0
