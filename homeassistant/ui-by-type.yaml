@@ -1,0 +1,975 @@
+title: By Type
+views:
+  - title: Overview
+    path: type-overview
+    cards:
+      # TODO: Change to alerts (see ui-lovelace for outline)
+
+
+
+  - title: Alarms
+    path: alarms
+    cards:
+      - type: entities
+        title: Alert
+        entities:
+          - input_select.alarm_alert
+      - type: entities
+        title: Cars
+        entities:
+          - input_boolean.car_alarm_triggered
+      - type: entities
+        title: House
+        entities:
+          - input_boolean.house_alarm_triggered
+
+
+  - title: Alexa
+    path: alexa
+    cards:
+      - type: entities
+        title: Do Not Disturb
+        entities:
+          - switch.alexa_everywhere_dnd
+          - switch.alexa_dining_room_dnd
+          - switch.alexa_downstairs_bathroom_dnd
+          - switch.jonathan_s_guest_bedroom_echo_dot_do_not_disturb_switch
+          - switch.alexa_kitchen_dnd
+          - switch.alexa_laundry_room_dnd
+          - switch.alexa_living_room_dnd
+          - switch.jonathan_s_3rd_echo_flex_do_not_disturb_switch
+          - switch.alexa_master_bedroom_dnd
+          - switch.jonathan_s_music_room_echo_dot_do_not_disturb_switch
+          - switch.alexa_office_dnd
+          - switch.jonathan_s_2nd_tv_do_not_disturb_switch
+          - switch.alexa_upstairs_bathroom_dnd
+      - type: grid
+        title: Media Players
+        square: false
+        columns: 1
+        cards:
+          - type: media-control
+            entity: media_player.alexa_everywhere
+          - type: media-control
+            entity: media_player.alexa_dining_room
+          - type: media-control
+            entity: media_player.alexa_downstairs_bathroom
+          - type: media-control
+            entity: media_player.jonathan_s_guest_bedroom_echo_dot
+          - type: media-control
+            entity: media_player.alexa_kitchen
+          - type: media-control
+            entity: media_player.alexa_laundry_room
+          - type: media-control
+            entity: media_player.alexa_living_room
+          - type: media-control
+            entity: media_player.jonathan_s_3rd_echo_flex
+          - type: media-control
+            entity: media_player.alexa_master_bedroom
+          - type: media-control
+            entity: media_player.jonathan_s_7th_echo_dot
+          - type: media-control
+            entity: media_player.alexa_office
+          - type: media-control
+            entity: media_player.jonathan_s_2nd_tv
+          - type: media-control
+            entity: media_player.alexa_upstairs_bathroom
+      - type: entities
+        title: Next Alarm
+        entities:
+          - sensor.alexa_dining_room_next_alarm
+          - sensor.alexa_downstairs_bathroom_next_alarm
+          - sensor.jonathan_s_guest_bedroom_echo_dot_next_alarm
+          - sensor.alexa_kitchen_next_alarm
+          - sensor.alexa_laundry_room_next_alarm
+          - sensor.alexa_living_room_next_alarm
+          - sensor.jonathan_s_3rd_echo_flex_next_alarm
+          - sensor.alexa_master_bedroom_next_alarm
+          - sensor.jonathan_s_music_room_echo_dot_next_alarm
+          - sensor.alexa_office_next_alarm
+          - sensor.jonathan_s_2nd_tv_next_alarm
+          - sensor.alexa_upstairs_bathroom_next_alarm
+      - type: entities
+        title: Next Reminder
+        entities:
+          - sensor.alexa_dining_room_next_reminder
+          - sensor.alexa_downstairs_bathroom_next_reminder
+          - sensor.jonathan_s_guest_bedroom_echo_dot_next_reminder
+          - sensor.alexa_kitchen_next_reminder
+          - sensor.alexa_laundry_room_next_reminder
+          - sensor.alexa_living_room_next_reminder
+          - sensor.jonathan_s_3rd_echo_flex_next_reminder
+          - sensor.alexa_master_bedroom_next_reminder
+          - sensor.jonathan_s_music_room_echo_dot_next_reminder
+          - sensor.alexa_office_next_reminder
+          - sensor.jonathan_s_2nd_tv_next_reminder
+          - sensor.alexa_upstairs_bathroom_next_reminder
+      - type: entities
+        title: Next Timer
+        entities:
+          - sensor.alexa_dining_room_next_timer
+          - sensor.alexa_downstairs_bathroom_next_timer
+          - sensor.jonathan_s_guest_bedroom_echo_dot_next_timer
+          - sensor.alexa_kitchen_next_timer
+          - sensor.alexa_laundry_room_next_timer
+          - sensor.alexa_living_room_next_timer
+          - sensor.jonathan_s_3rd_echo_flex_next_timer
+          - sensor.alexa_master_bedroom_next_timer
+          - sensor.jonathan_s_music_room_echo_dot_next_timer
+          - sensor.alexa_office_next_timer
+          - sensor.jonathan_s_2nd_tv_next_timer
+          - sensor.alexa_upstairs_bathroom_next_timer
+      - type: entities
+        title: Repeat
+        entities:
+          - switch.alexa_everywhere_repeat
+          - switch.alexa_dining_room_repeat
+          - switch.alexa_downstairs_bathroom_repeat
+          - switch.jonathan_s_guest_bedroom_echo_dot_repeat_switch
+          - switch.alexa_kitchen_repeat
+          - switch.alexa_laundry_room_repeat
+          - switch.alexa_living_room_repeat
+          - switch.jonathan_s_3rd_echo_flex_repeat_switch
+          - switch.alexa_master_bedroom_repeat
+          - switch.jonathan_s_music_room_echo_dot_repeat_switch
+          - switch.alexa_office_repeat
+          - switch.jonathan_s_2nd_tv_repeat_switch
+          - switch.alexa_upstairs_bathroom_repeat
+      - type: entities
+        title: Shuffle
+        entities:
+          - switch.alexa_everywhere_shuffle
+          - switch.alexa_dining_room_shuffle
+          - switch.alexa_downstairs_bathroom_shuffle
+          - switch.jonathan_s_guest_bedroom_echo_dot_shuffle_switch
+          - switch.alexa_kitchen_shuffle
+          - switch.alexa_laundry_room_shuffle
+          - switch.alexa_living_room_shuffle
+          - switch.jonathan_s_3rd_echo_flex_shuffle_switch
+          - switch.alexa_master_bedroom_shuffle
+          - switch.jonathan_s_music_room_echo_dot_shuffle_switch
+          - switch.alexa_office_shuffle
+          - switch.jonathan_s_2nd_tv_shuffle_switch
+          - switch.alexa_upstairs_bathroom_shuffle
+
+
+
+  - title: Buttons / Switches
+    path: buttons-switches
+    cards:
+      - type: entities
+        title: Alexa
+        show_header_toggle: true
+        entities:
+          - switch.alexa_everywhere_dnd
+          - switch.alexa_everywhere_repeat
+          - switch.alexa_everywhere_shuffle
+          - switch.alexa_dining_room_dnd
+          - switch.alexa_dining_room_repeat
+          - switch.alexa_dining_room_shuffle
+          - switch.jonathan_s_guest_bedroom_echo_dot_do_not_disturb_switch
+          - switch.jonathan_s_guest_bedroom_echo_dot_repeat_switch
+          - switch.jonathan_s_guest_bedroom_echo_dot_shuffle_switch
+          - switch.alexa_kitchen_dnd
+          - switch.alexa_kitchen_repeat
+          - switch.alexa_kitchen_shuffle
+          - switch.alexa_laundry_room_dnd
+          - switch.alexa_laundry_room_repeat
+          - switch.alexa_laundry_room_shuffle
+          - switch.alexa_living_room_dnd
+          - switch.alexa_living_room_repeat
+          - switch.alexa_living_room_shuffle
+          - switch.jonathan_s_3rd_echo_flex_do_not_disturb_switch
+          - switch.jonathan_s_3rd_echo_flex_repeat_switch
+          - switch.jonathan_s_3rd_echo_flex_shuffle_switch
+          - switch.alexa_master_bedroom_dnd
+          - switch.alexa_master_bedroom_repeat
+          - switch.alexa_master_bedroom_shuffle
+          - switch.alexa_office_dnd
+          - switch.alexa_office_repeat
+          - switch.alexa_office_shuffle
+          - switch.jonathan_s_2nd_tv_do_not_disturb_switch
+          - switch.jonathan_s_2nd_tv_repeat_switch
+          - switch.jonathan_s_2nd_tv_shuffle_switch
+          - switch.alexa_upstairs_bathroom_dnd
+          - switch.alexa_upstairs_bathroom_repeat
+          - switch.alexa_upstairs_bathroom_shuffle
+      - type: entities
+        title: Buttons / Dimmers
+        entities:
+          - sensor.button_hue_dim_guest_bedroom_linkquality
+          - binary_sensor.button_hue_dim_guest_bedroom_update_available
+          - sensor.button_hue_dim_guest_bedroom_update_state
+          - sensor.button_st_kitchen_linkquality
+          - sensor.button_st_kitchen_sink_linkquality
+          - sensor.button_st_kitchen_temperature_2
+          - sensor.button_st_kitchen_sink_temperature_2
+          - sensor.button_st_laundry_room_linkquality
+          - sensor.button_st_laundry_room_temperature_2
+          - sensor.button_hue_dim_living_room_linkquality
+          - binary_sensor.button_hue_dim_living_room_update_available
+          - sensor.button_hue_dim_living_room_update_state
+          - binary_sensor.button_hue_dim_floater_bad_update_available
+      - type: entities
+        title: Computers
+        show_header_toggle: true
+        entities:
+          - switch.office_ir_tvpc
+          - switch.office_ol_tvpc
+          - switch.office_ol_tv
+      - type: entities
+        title: Outlets
+        show_header_toggle: true
+        entities:
+          - switch.bar_bridge
+          - switch.dining_room_hutch
+          - switch.christmas_tree_upstairs
+          - switch.christmas_tree_downstairs
+          - switch.0x90fd9ffffe2ac05e
+          - sensor.0x90fd9ffffe2ac05e_linkquality
+          - sensor.0x90fd9ffffe2ac05e_power_on_behavior
+          - sensor.0x90fd9ffffe2ac05e_update_state
+          - binary_sensor.0x90fd9ffffe2ac05e_update_available
+          - switch.0x000d6f0005499bfb
+          - sensor.0x000d6f0005499bfb_current
+          - sensor.0x000d6f0005499bfb_linkquality
+          - sensor.0x000d6f0005499bfb_power
+          - sensor.0x000d6f0005499bfb_update_state
+          - binary_sensor.0x000d6f0005499bfb_update_available
+          - sensor.0x000d6f0005499bfb_voltage
+          - sensor.0x000d6ffffea6c3bf_battery
+          - sensor.0x000d6ffffea6c3bf_linkquality
+          - sensor.0x000d6ffffea6c3bf_update_state
+          - binary_sensor.0x000d6ffffea6c3bf_update_available
+      - type: entities
+        title: Remotes / FOBs
+        entities:
+          - sensor.remote_fob_digoo_floater_1
+          - sensor.remote_fob_digoo_floater_2
+
+
+
+  - title: Cars
+    path: type-cars
+    cards:
+      - type: entities
+        title: Alarms
+        entities:
+          - input_boolean.car_alarm_triggered
+      - type: entities
+        title: Controls
+        entities:
+          - switch.55swf6eb2lu333634_auxheat
+      - type: entities
+        title: Engine State
+        entities:
+          - input_boolean.pending_mercedes_start
+          - binary_sensor.55swf6eb2lu333634_engine_state
+          - sensor.55swf6eb2lu333634_ignition_state
+          - binary_sensor.55swf6eb2lu333634_remote_start_active
+      - type: entities
+        title: Fuel
+        entities:
+          - sensor.55swf6eb2lu333634_fuel_level
+      - type: entities
+        title: Odometer
+        entities:
+          - sensor.55swf6eb2lu333634_odometer
+      - type: entities
+        title: Location
+        entities:
+          - device_tracker.55swf6eb2lu333634_device_tracker
+      - type: entities
+        title: Locks
+        entities:
+          - sensor.55swf6eb2lu333634_lock
+          - lock.55swf6eb2lu333634_lock
+      - type: entities
+        title: Battery
+        entities:
+          - sensor.55swf6eb2lu333634_starter_battery_state
+      - type: entities
+        title: Windows
+        entities:
+          - binary_sensor.55swf6eb2lu333634_windows_closed
+      - type: entities
+        title: Other Status
+        entities:
+          - binary_sensor.55swf6eb2lu333634_park_brake_status
+      - type: entities
+        title: Warnings
+        entities:
+          - binary_sensor.55swf6eb2lu333634_low_brake_fluid_warning
+          - binary_sensor.55swf6eb2lu333634_low_coolant_level_warning
+          - binary_sensor.55swf6eb2lu333634_low_wash_water_warning
+          - binary_sensor.55swf6eb2lu333634_tire_warning
+
+
+
+  - title: Computers
+    path: computers
+    cards:
+      - type: grid
+        title: Rassilon (Server)
+        square: false
+        columns: 1
+        cards:
+          - type: entities
+            entities:
+              - sensor.plex_rassilon
+      - type: grid
+        title: TVPC Inside/Right
+        square: false
+        columns: 1
+        cards:
+          - type: entities
+            entities:
+              - binary_sensor.tvpc_office_ir_power_status
+              - switch.office_ir_tvpc
+              - entity: remote.office_ir_hisense_roku_tv
+                name: Inside/Right Hisense Roku TV Remote
+          - type: media-control
+            entity: media_player.office_ir_hisense_roku_tv
+          - type: media-control
+            entity: media_player.plex_plex_for_roku_43_hisense_roku_tv
+          - type: picture-entity
+            entity: camera.tvpc_office_ir_screen_0
+          - type: entities
+            entities:
+              - sensor.tvpc_office_ir_cpu_usage
+              - sensor.tvpc_office_ir_current_username
+              - sensor.tvpc_office_ir_memory_available
+              - sensor.tvpc_office_ir_memory_total
+              - sensor.tvpc_office_ir_memory_usage
+              - sensor.tvpc_office_ir_memory_used
+              - sensor.tvpc_office_ir_network_0_bps_received
+              - sensor.tvpc_office_ir_network_0_bps_sent
+              - sensor.tvpc_office_ir_network_0_bytes_received
+              - sensor.tvpc_office_ir_network_0_bytes_sent
+              - sensor.tvpc_office_ir_network_0_ipv4
+              - sensor.tvpc_office_ir_network_0_ipv6
+              - sensor.tvpc_office_ir_network_0_speed
+              - binary_sensor.tvpc_office_ir_network_0_wired
+              - sensor.tvpc_office_ir_network_1_bps_received
+              - sensor.tvpc_office_ir_network_1_bps_sent
+              - sensor.tvpc_office_ir_network_1_bytes_received
+              - sensor.tvpc_office_ir_network_1_bytes_sent
+              - sensor.tvpc_office_ir_network_1_ipv4
+              - sensor.tvpc_office_ir_network_1_ipv6
+              - sensor.tvpc_office_ir_network_1_speed
+              - binary_sensor.tvpc_office_ir_network_1_wired
+              - sensor.tvpc_office_ir_screen_0_height
+              - sensor.tvpc_office_ir_screen_0_width
+              - sensor.tvpc_office_ir_storage_c_available_free_space
+              - sensor.tvpc_office_ir_storage_c_format
+              - sensor.tvpc_office_ir_storage_c_label
+              - sensor.tvpc_office_ir_storage_c_total_free_space
+              - sensor.tvpc_office_ir_storage_c_total_storage
+              - sensor.tvpc_office_ir_storage_c_usage
+              - sensor.tvpc_office_ir_storage_c_used_space
+              - sensor.tvpc_office_ir_system_boot_time
+              - sensor.tvpc_office_ir_system_idle_time
+              - sensor.tvpc_office_ir_system_uptime
+      - type: grid
+        title: TVPC Outside/Left
+        square: false
+        columns: 1
+        cards:
+          - type: entities
+            entities:
+              - binary_sensor.tvpc_office_ol_power_status
+              - switch.office_ol_tvpc
+          - type: media-control
+            entity: media_player.jonathan_s_2nd_tv
+          - type: media-control
+            entity: media_player.office_ol_toshiba_fire_tv
+          - type: media-control
+            entity: media_player.plex_plex_for_android_tv_aftdct31
+          - type: media-control
+            entity: media_player.plex_plex_for_android_tv_aftdct31_2
+          - type: media-control
+            entity: media_player.plex_plex_for_android_tv_aftdct31_3
+          - type: media-control
+            entity: media_player.plex_plex_for_android_tv_aftdct31_4
+          - type: picture-entity
+            entity: camera.tvpc_office_ol_screen_0
+          - type: entities
+            entities:
+              - sensor.tvpc_office_ol_cpu_usage
+              - sensor.tvpc_office_ol_current_username
+              - sensor.tvpc_office_ol_memory_available
+              - sensor.tvpc_office_ol_memory_total
+              - sensor.tvpc_office_ol_memory_usage
+              - sensor.tvpc_office_ol_memory_used
+              - sensor.tvpc_office_ol_network_0_bps_received
+              - sensor.tvpc_office_ol_network_0_bps_sent
+              - sensor.tvpc_office_ol_network_0_bytes_received
+              - sensor.tvpc_office_ol_network_0_bytes_sent
+              - sensor.tvpc_office_ol_network_0_ipv4
+              - sensor.tvpc_office_ol_network_0_ipv6
+              - sensor.tvpc_office_ol_network_0_speed
+              - binary_sensor.tvpc_office_ol_network_0_wired
+              - sensor.tvpc_office_ol_network_1_bps_received
+              - sensor.tvpc_office_ol_network_1_bps_sent
+              - sensor.tvpc_office_ol_network_1_bytes_received
+              - sensor.tvpc_office_ol_network_1_bytes_sent
+              - sensor.tvpc_office_ol_network_1_ipv4
+              - sensor.tvpc_office_ol_network_1_ipv6
+              - sensor.tvpc_office_ol_network_1_speed
+              - binary_sensor.tvpc_office_ol_network_1_wired
+              - sensor.tvpc_office_ol_screen_0_height
+              - sensor.tvpc_office_ol_screen_0_width
+              - sensor.tvpc_office_ol_storage_c_available_free_space
+              - sensor.tvpc_office_ol_storage_c_format
+              - sensor.tvpc_office_ol_storage_c_label
+              - sensor.tvpc_office_ol_storage_c_total_free_space
+              - sensor.tvpc_office_ol_storage_c_total_storage
+              - sensor.tvpc_office_ol_storage_c_usage
+              - sensor.tvpc_office_ol_storage_c_used_space
+              - sensor.tvpc_office_ol_system_boot_time
+              - sensor.tvpc_office_ol_system_idle_time
+              - sensor.tvpc_office_ol_system_uptime
+
+
+
+  - title: Door/Window/Contact
+    path: doorwin
+    cards:
+      - type: entities
+        title: Doors
+        entities:
+          - binary_sensor.doorwin_st_front_door_contact
+          - binary_sensor.doorwin_st_front_door_tamper
+          - binary_sensor.doorwin_st_front_door_battery_low
+          - binary_sensor.doorwin_st_kitchen_door_contact
+          - binary_sensor.doorwin_st_kitchen_door_tamper
+          - binary_sensor.doorwin_st_kitchen_door_battery_low
+          - binary_sensor.doorwin_digoo_under_stairs_door
+          - binary_sensor.doorwin_digoo_floater_1
+          - binary_sensor.doorwin_digoo_floater_2
+          - binary_sensor.doorwin_digoo_floater_3
+          - binary_sensor.doorwin_digoo_floater_5
+          - binary_sensor.doorwin_digoo_floater_6
+          - binary_sensor.doorwin_digoo_floater_7
+          - binary_sensor.doorwin_digoo_floater_8
+
+
+
+  - title: Automation Flags
+    path: automation-flags
+    cards:
+      - type: entities
+        title: Yamaha Receiver
+        entities:
+          - input_boolean.pending_yamaha_skip_next
+          - input_boolean.pending_yamaha_alexa_input
+          - input_boolean.pending_yamaha_vinyl_input
+      - type: entities
+        title: Computer Control
+        entities:
+          - input_boolean.pending_power_select_tvpc_office_all
+          - input_boolean.pending_power_select_tvpc_office_ir
+          - input_boolean.pending_power_select_tvpc_office_ol
+
+
+  - title: Lights
+    path: lights
+    cards:
+      - type: entities
+        title: Groups / Multi-Room
+        show_header_toggle: false
+        entities:
+          - light.house
+          - light.all_lights_except_living_room_and_bathrooms
+          - light.all_except_living_room
+          - light.all_except_living_room_bathroom
+          - light.kitchen_dining
+          - binary_sensor.entertainment_area_1_entertainment_configuration
+          - binary_sensor.entertainment_area_2_entertainment_configuration
+      - type: entities
+        title: Dining Room
+        show_header_toggle: true
+        entities:
+          - light.dining_room
+          - light.dining_table_light
+          - switch.dining_room_hutch
+          - switch.christmas_tree_upstairs
+      - type: entities
+        title: Downstairs Hallway
+        show_header_toggle: true
+        entities:
+          - light.downstairs_hallway
+          - light.downstairs_hall_south
+      - type: entities
+        title: Foyer
+        show_header_toggle: true
+        entities:
+          - light.foyer
+          - entity: light.foyer_overhead
+            name: Front
+      - type: entities
+        title: Guest Bedroom
+        show_header_toggle: true
+        entities:
+          - light.guest_bedroom
+          - entity: light.guest_bedroom_individual
+            name: (Individual)
+          - entity: light.guest_bedroom_entry
+            name: Entry
+          - entity: light.guest_bedroom_closet
+            name: Closet
+          - entity: light.guest_bedroom_window
+            name: Window
+          - entity: light.guest_bedroom_inside_corner
+            name: Inside corner
+      - type: entities
+        title: Kitchen
+        show_header_toggle: true
+        entities:
+          - light.kitchen
+          - light.kitchen_2
+          - entity: light.kitchen_sink
+            name: Sink
+          - entity: light.kitchen_individual
+            name: (Individual)
+          - entity: light.kitchen_main_overhead
+            name: Main overhead
+          - entity: light.kitchen_sink_overhead
+            name: Sink overhead
+          - entity: light.kitchen_main_north
+            name: Main north
+          - entity: light.kitchen_main_south
+            name: Main south
+          - entity: light.kitchen_sink_north
+            name: Sink north
+          - entity: light.kitchen_sink_south
+            name: Sink south
+      - type: entities
+        title: Laundry Room
+        show_header_toggle: true
+        entities:
+          - light.laundry_room
+          - light.washer_and_fridge
+          - entity: light.laundry_room_individual
+            name: (Individual)
+          - light.laundry_electrical_box
+          - light.laundry_fridge
+          - light.laundry_washer
+      - type: entities
+        title: Liquor Room
+        show_header_toggle: true
+        entities:
+          - light.liquor_room
+      - type: entities
+        title: Living Room
+        show_header_toggle: true
+        entities:
+          - light.living_room
+          - entity: light.living_room_individual
+            name: (Individual)
+          - entity: light.living_room_slider
+            name: Slider
+          - entity: light.living_room_tv
+            name: Tv
+          - switch.bar_bridge
+          - switch.christmas_tree_downstairs
+      - type: entities
+        title: Master Bedroom
+        show_header_toggle: true
+        entities:
+          - light.master_bedroom
+          - entity: light.master_bedroom_individual
+            name: (Individual)
+          - entity: light.master_bedroom_north
+            name: Bed north
+          - entity: light.master_bedroom_south
+            name: Bed south
+          - entity: light.master_bedroom_entry_north
+            name: Entry north
+          - entity: light.master_bedroom_entry_south
+            name: Entry south
+      - type: entities
+        title: Office
+        show_header_toggle: true
+        entities:
+          - light.office
+          - entity: light.office_individual
+            name: (Individual)
+          - entity: light.office_closet_switch
+            name: Closet
+          - entity: light.office_entry
+            name: Entry
+          - entity: light.office_window
+            name: Window
+      - type: entities
+        title: Outside
+        show_header_toggle: true
+        entities:
+          - light.outside
+          - entity: light.outside_individual
+            name: (Individual)
+          - entity: light.outside_front
+            name: Front
+          - entity: light.outside_kitchen
+            name: Kitchen
+      - type: entities
+        title: Upstairs Bathroom
+        show_header_toggle: true
+        entities:
+          - light.upstairs_bathroom
+          - entity: light.upstairs_bathroom_individual
+            name: (Individual)
+          - entity: light.upstairs_bathroom_left
+            name: Left
+          - entity: light.upstairs_bathroom_middle
+            name: Middle
+          - entity: light.upstairs_bathroom_right
+            name: Right
+      - type: entities
+        title: Upstairs Bathroom
+        show_header_toggle: true
+        entities:
+          - light.upstairs_hallway
+          - entity: light.upstairs_hallway_individual
+            name: (Individual)
+          - light.upstairs_hall_north
+          - light.upstairs_hall_south
+
+
+
+  - title: Media Players
+    path: media-players
+    cards:
+      - type: grid
+        title: Alexa
+        square: false
+        columns: 1
+        cards:
+          - type: media-control
+            entity: media_player.alexa_everywhere
+          - type: media-control
+            entity: media_player.alexa_dining_room
+          - type: media-control
+            entity: media_player.jonathan_s_guest_bedroom_echo_dot
+          - type: media-control
+            entity: media_player.alexa_kitchen
+          - type: media-control
+            entity: media_player.alexa_laundry_room
+          - type: media-control
+            entity: media_player.alexa_living_room
+          - type: media-control
+            entity: media_player.jonathan_s_3rd_echo_flex
+          - type: media-control
+            entity: media_player.alexa_master_bedroom
+          - type: media-control
+            entity: media_player.alexa_office
+          - type: media-control
+            entity: media_player.jonathan_s_2nd_tv
+      - type: grid
+        title: Audio Equipment (Receivers, etc.)
+        square: false
+        columns: 1
+        cards:
+          - type: media-control
+            entity: media_player.yamaha_receiver
+          - type: media-control
+            entity: media_player.yamaha_receiver_zone_2
+      - type: grid
+        title: Plex (JC)
+        square: false
+        columns: 1
+        cards:
+          - type: media-control
+            entity: media_player.plex_jc_shield_mrmc
+          - type: media-control
+            entity: media_player.plex_jc_shield_plex
+          - type: media-control
+            entity: media_player.plex_jc_rca_roku_plex
+          - type: media-control
+            entity: media_player.plex_plex_for_roku_43_hisense_roku_tv
+          - type: media-control
+            entity: media_player.plex_plex_for_android_tv_aftdct31
+          - type: media-control
+            entity: media_player.plex_plex_for_android_tv_aftdct31_2
+          - type: media-control
+            entity: media_player.plex_plex_for_android_tv_aftdct31_3
+          - type: media-control
+            entity: media_player.plex_plex_for_android_tv_aftdct31_4
+      - type: grid
+        title: TVs
+        square: false
+        columns: 1
+        cards:
+          - type: entities
+            entities:
+              - entity: remote.master_bedroom_rca_roku_tv
+                name: RCA Roku TV Remote
+              - entity: remote.office_ir_hisense_roku_tv
+                name: Inside/Right Hisense Roku TV Remote
+          - type: media-control
+            entity: media_player.living_room_nvidia_shield
+          - type: media-control
+            entity: media_player.master_bedroom_rca_roku_tv
+          - type: media-control
+            entity: media_player.office_ir_hisense_roku_tv
+          - type: media-control
+            entity: media_player.jonathan_s_2nd_tv
+          - type: media-control
+            entity: media_player.office_ol_toshiba_fire_tv
+
+
+
+
+  - title: Motion
+    path: motion
+    cards:
+      - type: entities
+        title: Illuminance
+        entities:
+          - sensor.motion_aqara_downstairs_hallway_illuminance
+          - sensor.motion_aqara_downstairs_hallway_illuminance_lux
+          - sensor.motion_aqara_foyer_illuminance
+          - sensor.motion_aqara_foyer_illuminance_lux
+          - sensor.motion_hue_foyer_illuminance
+          - sensor.motion_hue_foyer_illuminance_lux
+          - sensor.motion_aqara_liquor_room_illuminance
+          - sensor.motion_aqara_liquor_room_illuminance_lux
+          - sensor.motion_aqara_upstairs_hallway_illuminance
+          - sensor.motion_aqara_upstairs_hallway_illuminance_lux
+      - type: entities
+        title: Link Quality
+        entities:
+          - sensor.motion_aqara_downstairs_hallway_linkquality
+          - sensor.doorwin_st_front_door_linkquality
+          - sensor.motion_aqara_foyer_linkquality
+          - sensor.motion_hue_foyer_linkquality
+          - sensor.motion_aqara_liquor_room_linkquality
+          - sensor.motion_aqara_upstairs_hallway_linkquality
+      - type: entities
+        title: Motion Sensitivity
+        entities:
+          - sensor.motion_hue_foyer_motion_sensitivity
+      - type: entities
+        title: Occupancy
+        entities:
+          - binary_sensor.motion_aqara_downstairs_hallway_occupancy
+          - binary_sensor.motion_aqara_foyer_occupancy
+          - binary_sensor.motion_hue_foyer_occupancy
+          - binary_sensor.motion_aqara_liquor_room_occupancy
+          - binary_sensor.motion_aqara_upstairs_hallway_occupancy
+          - binary_sensor.motion_digoo_upstairs_hallway
+          - binary_sensor.motion_digoo_floater_2
+          - binary_sensor.motion_digoo_floater_3
+          - binary_sensor.motion_digoo_floater_4
+          - binary_sensor.motion_digoo_floater_5
+          - binary_sensor.motion_digoo_floater_6
+          - binary_sensor.motion_digoo_floater_7
+          - binary_sensor.motion_digoo_floater_8
+      - type: entities
+        title: Occupancy Timeout
+        entities:
+          - sensor.motion_hue_foyer_occupancy_timeout
+      - type: entities
+        title: Temperature
+        entities:
+          - sensor.doorwin_st_front_door_temperature
+          - sensor.motion_hue_foyer_temperature
+      - type: entities
+        title: Updates
+        entities:
+          - binary_sensor.motion_hue_foyer_update_available
+          - sensor.motion_hue_foyer_update_state
+
+
+
+  - title: Sensors
+    path: sensors
+    cards:
+      - type: entities
+        title: Alexa
+        entities:
+          - sensor.alexa_dining_room_next_alarm
+          - sensor.alexa_dining_room_next_reminder
+          - sensor.alexa_dining_room_next_timer
+          - sensor.jonathan_s_guest_bedroom_echo_dot_next_alarm
+          - sensor.jonathan_s_guest_bedroom_echo_dot_next_reminder
+          - sensor.jonathan_s_guest_bedroom_echo_dot_next_timer
+          - sensor.alexa_kitchen_next_alarm
+          - sensor.alexa_kitchen_next_reminder
+          - sensor.alexa_kitchen_next_timer
+          - sensor.alexa_laundry_room_next_alarm
+          - sensor.alexa_laundry_room_next_reminder
+          - sensor.alexa_laundry_room_next_timer
+          - sensor.alexa_living_room_next_alarm
+          - sensor.alexa_living_room_next_reminder
+          - sensor.alexa_living_room_next_timer
+          - sensor.jonathan_s_3rd_echo_flex_next_alarm
+          - sensor.jonathan_s_3rd_echo_flex_next_reminder
+          - sensor.jonathan_s_3rd_echo_flex_next_timer
+          - sensor.alexa_master_bedroom_next_alarm
+          - sensor.alexa_master_bedroom_next_reminder
+          - sensor.alexa_master_bedroom_next_timer
+          - sensor.alexa_office_next_alarm
+          - sensor.alexa_office_next_reminder
+          - sensor.alexa_office_next_timer
+          - sensor.jonathan_s_2nd_tv_next_alarm
+          - sensor.jonathan_s_2nd_tv_next_reminder
+          - sensor.jonathan_s_2nd_tv_next_timer
+          - sensor.alexa_upstairs_bathroom_next_alarm
+          - sensor.alexa_upstairs_bathroom_next_reminder
+          - sensor.alexa_upstairs_bathroom_next_timer
+      - type: entities
+        title: Batteries
+        entities:
+          - type: section
+            label: Buttons / Switches
+          - sensor.button_hue_dim_guest_bedroom_battery
+          - sensor.button_hue_dim_living_room_battery
+          - sensor.button_hue_dim_upstairs_bathroom_battery
+          - sensor.0x000d6ffffea6c3bf_battery # Tradfri button
+          - sensor.button_st_floater_battery
+          - sensor.button_st_kitchen_battery
+          - sensor.button_st_kitchen_sink_battery
+          - sensor.button_st_laundry_room_battery
+          - sensor.button_st_master_bedroom_battery
+          - sensor.button_st_office_battery
+          - type: section
+            label: Computers
+          - sensor.tvpc_office_ir_battery_full_lifetime
+          - sensor.tvpc_office_ir_battery_level
+          - sensor.tvpc_office_ir_battery_remaining
+          - sensor.tvpc_office_ir_battery_remaining_time
+          - binary_sensor.tvpc_office_ir_battery_status
+          - sensor.tvpc_office_ol_battery_full_lifetime
+          - sensor.tvpc_office_ol_battery_level
+          - sensor.tvpc_office_ol_battery_remaining
+          - sensor.tvpc_office_ol_battery_remaining_time
+          - binary_sensor.tvpc_office_ol_battery_status
+          - type: section
+            label: Door / Window / Contact
+          - sensor.doorwin_aqara_pantry_door_battery
+          - sensor.doorwin_st_front_door_battery
+          - binary_sensor.doorwin_st_front_door_battery_low
+          - sensor.doorwin_st_kitchen_door_battery
+          - binary_sensor.doorwin_st_kitchen_door_battery_low
+          - type: section
+            label: Motion
+          - sensor.motion_aqara_downstairs_hallway_battery
+          - sensor.motion_aqara_foyer_battery
+          - sensor.motion_aqara_liquor_room_battery
+          - sensor.motion_aqara_upstairs_hallway_battery
+          - sensor.motion_hue_foyer_battery
+          - type: section
+            label: Phone
+          - sensor.sm_n970u_battery_health
+          - sensor.sm_n970u_battery_level
+          - sensor.sm_n970u_battery_temperature
+      - type: entities
+        title: Cars
+        entities:
+          - input_boolean.car_alarm_triggered
+          - input_select.alarm_alert
+          - binary_sensor.55swf6eb2lu333634_engine_state
+          - binary_sensor.55swf6eb2lu333634_low_brake_fluid_warning
+          - binary_sensor.55swf6eb2lu333634_low_coolant_level_warning
+          - binary_sensor.55swf6eb2lu333634_low_wash_water_warning
+          - binary_sensor.55swf6eb2lu333634_park_brake_status
+          - binary_sensor.55swf6eb2lu333634_remote_start_active
+          - binary_sensor.55swf6eb2lu333634_tire_warning
+          - binary_sensor.55swf6eb2lu333634_windows_closed
+          - sensor.55swf6eb2lu333634_fuel_level
+          - sensor.55swf6eb2lu333634_ignition_state
+          - sensor.55swf6eb2lu333634_lock
+          - sensor.55swf6eb2lu333634_odometer
+          - sensor.55swf6eb2lu333634_starter_battery_state
+      - type: entities
+        title: Computers
+        entities:
+          - binary_sensor.tvpc_office_ir_power_status
+          - binary_sensor.tvpc_office_ol_power_status
+          - sensor.plex_rassilon
+      - type: entities
+        title: Doors / Windows / Contact
+        entities:
+          - binary_sensor.doorwin_st_front_door_contact
+          - binary_sensor.doorwin_st_kitchen_door_contact
+          - binary_sensor.doorwin_digoo_under_stairs_door
+          - binary_sensor.doorwin_aqara_pantry_door_contact
+      - type: entities
+        title: Illuminance
+        entities:
+          - sensor.motion_aqara_downstairs_hallway_illuminance
+          - sensor.motion_aqara_downstairs_hallway_illuminance_lux
+          - sensor.motion_aqara_foyer_illuminance
+          - sensor.motion_aqara_foyer_illuminance_lux
+          - sensor.motion_hue_foyer_illuminance
+          - sensor.motion_hue_foyer_illuminance_lux
+          - sensor.motion_aqara_liquor_room_illuminance
+          - sensor.motion_aqara_liquor_room_illuminance_lux
+          - sensor.motion_aqara_upstairs_hallway_illuminance
+          - sensor.motion_aqara_upstairs_hallway_illuminance_lux
+      - type: entities
+        title: Link Quality
+        entities:
+          - sensor.motion_aqara_downstairs_hallway_linkquality
+          - sensor.motion_aqara_foyer_linkquality
+          - sensor.motion_hue_foyer_linkquality
+          - sensor.doorwin_st_front_door_linkquality
+          - sensor.button_hue_dim_guest_bedroom_linkquality
+          - sensor.button_st_kitchen_linkquality
+          - sensor.button_st_kitchen_sink_linkquality
+          - sensor.doorwin_st_kitchen_door_linkquality
+          - sensor.button_st_laundry_room_linkquality
+          - sensor.motion_aqara_liquor_room_linkquality
+          - sensor.button_hue_dim_living_room_linkquality
+          - sensor.button_st_master_bedroom_linkquality
+          - sensor.button_st_office_linkquality
+          - sensor.button_hue_dim_upstairs_bathroom_linkquality
+          - sensor.motion_aqara_upstairs_hallway_linkquality
+          - sensor.doorwin_aqara_pantry_door_linkquality
+      - type: entities
+        title: Motion
+        entities:
+          - binary_sensor.motion_aqara_downstairs_hallway_occupancy
+          - binary_sensor.motion_aqara_foyer_occupancy
+          - binary_sensor.motion_hue_foyer_occupancy
+          - binary_sensor.motion_aqara_liquor_room_occupancy
+          - binary_sensor.motion_aqara_upstairs_hallway_occupancy
+          - binary_sensor.motion_digoo_upstairs_hallway
+      - type: entities
+        title: Motion Sensitivity
+        entities:
+          - sensor.motion_hue_foyer_motion_sensitivity
+      - type: entities
+        title: Occupancy Timeout
+        entities:
+          - sensor.motion_hue_foyer_occupancy_timeout
+      - type: entities
+        title: Tamper
+        entities:
+          - binary_sensor.doorwin_st_front_door_tamper
+          - binary_sensor.doorwin_st_kitchen_door_tamper
+      - type: entities
+        title: Temperature
+        entities:
+          - sensor.motion_hue_foyer_temperature
+          - sensor.doorwin_st_front_door_temperature
+          - sensor.button_st_kitchen_temperature_2
+          - sensor.button_st_kitchen_sink_temperature_2
+          - sensor.doorwin_st_kitchen_door_temperature
+          - sensor.button_st_laundry_room_temperature_2
+          - sensor.button_st_master_bedroom_temperature_2
+          - sensor.button_st_office_temperature
+      - type: entities
+        title: Updates
+        entities:
+          - binary_sensor.updater
+          - binary_sensor.motion_hue_foyer_update_available
+          - sensor.motion_hue_foyer_update_state
+          - binary_sensor.button_hue_dim_guest_bedroom_update_available
+          - sensor.button_hue_dim_guest_bedroom_update_state
+          - binary_sensor.button_hue_dim_living_room_update_available
+          - sensor.button_hue_dim_living_room_update_state
+          - binary_sensor.button_hue_dim_upstairs_bathroom_update_available
+          - sensor.button_hue_dim_upstairs_bathroom_update_state
+          - binary_sensor.button_hue_dim_floater_bad_update_available

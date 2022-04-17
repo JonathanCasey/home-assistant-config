@@ -1,0 +1,270 @@
+title: By Location
+views:
+  - title: Overview
+    path: location-overview
+    cards:
+      # TODO: Change to alerts (see ui-lovelace for outline)
+
+
+
+  - title: Floaters/Extras
+    path: floaters-extras
+    cards:
+      - type: entities
+        title: Buttons / Switches
+        entities:
+          - sensor.button_st_floater_battery
+          - sensor.button_st_floater_linkquality
+          - sensor.button_st_floater_temperature
+          - sensor.remote_fob_digoo_floater_1
+          - sensor.remote_fob_digoo_floater_2
+          - sensor.0x000d6ffffea6c3bf_battery
+          - sensor.0x000d6ffffea6c3bf_linkquality
+          - sensor.0x000d6ffffea6c3bf_update_state
+          - binary_sensor.0x000d6ffffea6c3bf_update_available
+          - binary_sensor.button_hue_dim_floater_bad_update_available
+      - type: entities
+        title: Contact
+        entities:
+          - binary_sensor.doorwin_digoo_floater_1
+          - binary_sensor.doorwin_digoo_floater_2
+          - binary_sensor.doorwin_digoo_floater_3
+          - binary_sensor.doorwin_digoo_floater_5
+          - binary_sensor.doorwin_digoo_floater_6
+          - binary_sensor.doorwin_digoo_floater_7
+          - binary_sensor.doorwin_digoo_floater_8
+      - type: entities
+        title: Motion
+        entities:
+          - binary_sensor.motion_digoo_floater_2
+          - binary_sensor.motion_digoo_floater_3
+          - binary_sensor.motion_digoo_floater_4
+          - binary_sensor.motion_digoo_floater_5
+          - binary_sensor.motion_digoo_floater_6
+          - binary_sensor.motion_digoo_floater_7
+          - binary_sensor.motion_digoo_floater_8
+      - type: entities
+        title: Remotes / FOBs
+        entities:
+          - sensor.remote_fob_digoo_floater_1
+          - sensor.remote_fob_digoo_floater_2
+
+
+
+  - title: House
+    path: house
+    cards:
+      - type: entities
+        title: Alarms
+        entities:
+          - input_boolean.house_alarm_triggered
+          - input_select.alarm_alert
+      - type: grid
+        title: Alexa
+        square: false
+        columns: 1
+        cards:
+          - type: entities
+            entities:
+              - switch.alexa_everywhere_dnd
+              - switch.alexa_everywhere_repeat
+              - switch.alexa_everywhere_shuffle
+          - type: media-control
+            entity: media_player.alexa_everywhere
+          - type: entities
+            entities:
+             - sensor.last_alexa
+      - type: entities
+        title: Lights
+        entities:
+          - light.house_lights
+
+
+  - title: HA / No Location
+    path: ha-no-location
+    cards:
+      - type: entities
+        title: Alarms
+        entities:
+          - input_select.alarm_alert
+          - input_boolean.car_alarm_triggered
+          - input_boolean.house_alarm_triggered
+      - type: entities
+        title: Automation Trigger
+        entities:
+          - input_boolean.pending_workout_finish
+          - input_boolean.request_alexa_wheres_the_beer
+          - sensor.last_alexa
+          - input_text.alexa_actionable_notification
+      - type: entities
+        title: Device Control
+        entities:
+          - input_boolean.pending_mercedes_start
+          - input_boolean.pending_power_select_tvpc_office_all
+          - input_boolean.pending_power_select_tvpc_office_ir
+          - input_boolean.pending_power_select_tvpc_office_ol
+          - input_boolean.pending_yamaha_skip_next
+          - input_boolean.pending_yamaha_alexa_input
+          - input_boolean.pending_yamaha_vinyl_input
+      - type: entities
+        title: HA Config
+        entities:
+          - input_boolean.single_occupant
+          - input_boolean.spotlight_mode
+          - input_boolean.ignore_time_of_day
+          - input_boolean.use_digoo_over_aqara
+          - input_boolean.pending_relinquish_to_motion
+          - sensor.hacs
+      - type: entities
+        title: HA Status
+        entities:
+          - binary_sensor.updater
+          - sensor.hacs
+          - zigbee2mqtt_networkmap.map_last_update
+          - zwave.aeon_labs_zw090_z_stick_gen5_us
+      - type: grid
+        title: Other Status
+        square: false
+        columns: 1
+        cards:
+          - type: weather-forecast
+            entity: weather.home
+            show_forecast: false
+
+
+
+  - title: Kitchen/Dining
+    path: kitchen-dining
+    cards:
+      - type: grid
+        title: Alexa (Dining)
+        square: false
+        columns: 1
+        cards:
+          - type: entities
+            entities:
+              - sensor.alexa_dining_room_next_alarm
+              - sensor.alexa_dining_room_next_reminder
+              - sensor.alexa_dining_room_next_timer
+              - switch.alexa_dining_room_dnd
+              - switch.alexa_dining_room_repeat
+              - switch.alexa_dining_room_shuffle
+          - type: media-control
+            entity: media_player.alexa_dining_room
+      - type: grid
+        title: Alexa (Kitchen)
+        square: false
+        columns: 1
+        cards:
+          - type: entities
+            entities:
+              - sensor.alexa_kitchen_next_alarm
+              - sensor.alexa_kitchen_next_reminder
+              - sensor.alexa_kitchen_next_timer
+              - switch.alexa_kitchen_dnd
+              - switch.alexa_kitchen_repeat
+              - switch.alexa_kitchen_shuffle
+          - type: media-control
+            entity: media_player.alexa_kitchen
+      - type: entities
+        title: Doors / Windows / Contact
+        entities:
+          - binary_sensor.doorwin_st_kitchen_door_contact
+          - binary_sensor.doorwin_st_kitchen_door_tamper
+          - binary_sensor.doorwin_st_kitchen_door_battery_low
+      - type: entities
+        title: Lights
+        show_header_toggle: true
+        entities:
+          - light.kitchen_dining
+          - light.dining_room
+          - light.dining_table_light
+          - switch.dining_room_hutch
+          - switch.christmas_tree_upstairs
+          - light.kitchen
+          - light.kitchen_2
+          - entity: light.kitchen_sink
+            name: Sink
+          - entity: light.kitchen_individual
+            name: (Individual)
+          - entity: light.kitchen_main_overhead
+            name: Main overhead
+          - entity: light.kitchen_sink_overhead
+            name: Sink overhead
+          - entity: light.kitchen_main_north
+            name: Main north
+          - entity: light.kitchen_main_south
+            name: Main south
+          - entity: light.kitchen_sink_north
+            name: Sink north
+          - entity: light.kitchen_sink_south
+            name: Sink south
+      - type: entities
+        title: Sensors
+        entities:
+          - sensor.button_st_kitchen_battery
+          - sensor.button_st_kitchen_linkquality
+          - sensor.button_st_kitchen_temperature_2
+          - sensor.button_st_kitchen_sink_battery
+          - sensor.button_st_kitchen_sink_linkquality
+          - sensor.button_st_kitchen_sink_temperature_2
+          - sensor.doorwin_st_kitchen_door_battery
+          - binary_sensor.doorwin_st_kitchen_door_battery_low
+          - sensor.doorwin_st_kitchen_door_linkquality
+          - sensor.doorwin_st_kitchen_door_temperature
+
+
+  - title: Misc Groups
+    path: misc-groups
+    cards:
+      - type: entities
+        title: Christmas Trees
+        entities:
+          - switch.christmas_tree_upstairs
+          - switch.christmas_tree_downstairs
+      - type: entities
+        title: Lights
+        entities:
+          - light.all_lights_except_living_room_and_bathrooms
+          - light.all_except_living_room
+          - light.all_except_living_room_bathroom
+
+
+
+  - title: Roamers
+    path: roamers
+    cards:
+      - type: grid
+        title: Laptop (Personal)
+        square: false
+        columns: 1
+        cards:
+          - type: media-control
+            entity: media_player.plex_jc_sb2_chrome
+          - type: media-control
+            entity: media_player.plex_jc_sb2_win_store_app
+      - type: grid
+        title: Laptop (Work)
+        square: false
+        columns: 1
+        cards:
+          - type: media-control
+            entity: media_player.plex_jc_p52s_chrome
+      - type: grid
+        title: Phone (Note 10)
+        square: false
+        columns: 1
+        cards:
+          - type: media-control
+            entity: media_player.plex_jc_note_10
+          - type: entities
+            entities:
+              - device_tracker.sm_n970u
+              - sensor.sm_n970u_geocoded_location
+              - binary_sensor.sm_n970u_high_accuracy_mode
+              - binary_sensor.sm_n970u_is_charging
+              - sensor.sm_n970u_battery_health
+              - sensor.sm_n970u_battery_level
+              - sensor.sm_n970u_battery_temperature
+              - sensor.sm_n970u_phone_state
+              - sensor.sm_n970u_wifi_connection

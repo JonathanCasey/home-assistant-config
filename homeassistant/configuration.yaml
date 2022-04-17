@@ -261,6 +261,27 @@ logger:
     # homeassistant.components.alexa: debug
     #homeassistant.components.python_script: debug
 
+
+lovelace:
+  mode: yaml
+  dashboards:
+    lovelace-by-location:
+      mode: yaml
+      filename: ui-by-location.yaml
+      title: By Location
+      icon: mdi:map-marker-multiple
+    lovelace-by-group-location:
+      mode: yaml
+      filename: ui-by-group-location.yaml
+      title: By Group Location
+      icon: mdi:map-marker-radius
+    lovelace-by-type:
+      mode: yaml
+      filename: ui-by-type.yaml
+      title: By Type
+      icon: mdi:billiards-rack
+
+
 media_player:
   - platform: androidtv
     name: Living Room NVIDIA Shield

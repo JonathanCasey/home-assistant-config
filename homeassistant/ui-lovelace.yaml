@@ -1,0 +1,20 @@
+title: Home
+views:
+  - path: default_view
+    title: Home
+    cards:
+      # TODO: Change to alerts
+      #   Alerts include:
+      #   - low battery sensors, batteries below 50%
+      #   - lights on
+      #   - car/phone not home
+      #   - car unlocked
+      #   - alarm going off
+      #   - unavailable sensor
+      #   - sensor open/active that shouldn't normally be
+      #   - computer on
+      #   - TV on
+      #   - plex playing
+      #   - poor link quality?
+      #   - updates pending
+      #   - tamper
