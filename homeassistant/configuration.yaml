@@ -206,6 +206,10 @@ input_boolean:
     name: Flag workout finish
     initial: false
     icon: mdi:music-rest-whole
+  pending_yamaha_airplay_input:
+    name: Flag yamaha airplay input select
+    initial: False
+    icon: mdi:cast-audio-variant
   pending_yamaha_alexa_input:
     name: Flag yamaha alexa input select
     initial: False

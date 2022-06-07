@@ -205,14 +205,7 @@
     {
         "id": "1dde2bca.3de4d4",
         "type": "tab",
-        "label": "Yamaha Alexa Input Select",
-        "disabled": false,
-        "info": ""
-    },
-    {
-        "id": "ac34afc0.5bb5d",
-        "type": "tab",
-        "label": "Yamaha Vinyl Input",
+        "label": "Yamaha Input Select",
         "disabled": false,
         "info": ""
     },
@@ -15200,12 +15193,12 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 190,
-        "y": 440,
+        "x": 170,
+        "y": 300,
         "wires": [
             [
-                "8a08bb78.cd59d8",
-                "4c19b353.f0526c"
+                "4c19b353.f0526c",
+                "7c04824a.c496cc"
             ],
             []
         ]
@@ -15241,8 +15234,8 @@
         "for": 0,
         "forType": "num",
         "forUnits": "minutes",
-        "x": 480,
-        "y": 480,
+        "x": 820,
+        "y": 340,
         "wires": [
             [
                 "bb1adc64.4214a"
@@ -15288,14 +15281,14 @@
         "service_domain": "logbook",
         "service": "log",
         "entityId": "",
-        "data": "{\"name\":\"node-red\",\"message\":\"Yamaha Alexa Input Select flow executed successfully.\",\"domain\":\"automation\"}",
+        "data": "{\"name\":\"node-red\",\"message\":\"Yamaha Input Select flow executed successfully.\",\"domain\":\"automation\"}",
         "dataType": "json",
         "mergecontext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 840,
-        "y": 280,
+        "x": 860,
+        "y": 160,
         "wires": [
             []
         ]
@@ -15317,8 +15310,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 380,
-        "y": 540,
+        "x": 820,
+        "y": 440,
         "wires": [
             [
                 "ba4b3a0f.4c1468"
@@ -15340,8 +15333,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 590,
-        "y": 540,
+        "x": 1030,
+        "y": 440,
         "wires": [
             [
                 "bb1adc64.4214a"
@@ -15352,242 +15345,21 @@
         "id": "bb1adc64.4214a",
         "type": "api-call-service",
         "z": "1dde2bca.3de4d4",
-        "name": "Select Alexa AV6",
+        "name": "Select Queued Input Device",
         "server": "2f5bd1e0.67e40e",
         "version": 3,
         "debugenabled": false,
         "service_domain": "media_player",
         "service": "select_source",
         "entityId": "media_player.yamaha_receiver",
-        "data": "{\"source\":\"AV6\"}",
-        "dataType": "json",
+        "data": "{\t    \"source\": msg.config.input_device\t}",
+        "dataType": "jsonata",
         "mergecontext": "",
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 830,
-        "y": 500,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d785e732.3d6988",
-        "type": "server-state-changed",
-        "z": "ac34afc0.5bb5d",
-        "name": "Flagged to select yamaha vinyl input?",
-        "server": "2f5bd1e0.67e40e",
-        "version": 3,
-        "exposeToHomeAssistant": false,
-        "haConfig": [
-            {
-                "property": "name",
-                "value": ""
-            },
-            {
-                "property": "icon",
-                "value": ""
-            }
-        ],
-        "entityidfilter": "input_boolean.pending_yamaha_vinyl_input",
-        "entityidfiltertype": "exact",
-        "outputinitially": false,
-        "state_type": "habool",
-        "haltifstate": "true",
-        "halt_if_type": "bool",
-        "halt_if_compare": "is",
-        "outputs": 2,
-        "output_only_on_state_change": true,
-        "for": "0",
-        "forType": "num",
-        "forUnits": "minutes",
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "eventData"
-            },
-            {
-                "property": "topic",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "triggerId"
-            }
-        ],
-        "x": 210,
-        "y": 380,
-        "wires": [
-            [
-                "246414b8.b4e55c",
-                "f6b01fcf.2b479"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "246414b8.b4e55c",
-        "type": "api-current-state",
-        "z": "ac34afc0.5bb5d",
-        "name": "Is yamaha on?",
-        "server": "2f5bd1e0.67e40e",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "off",
-        "halt_if_type": "str",
-        "halt_if_compare": "is_not",
-        "entity_id": "media_player.yamaha_receiver",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": 0,
-        "forType": "num",
-        "forUnits": "minutes",
-        "x": 500,
-        "y": 420,
-        "wires": [
-            [
-                "45cadb2f.d0d314"
-            ],
-            [
-                "4c9f19c0.0ad618"
-            ]
-        ]
-    },
-    {
-        "id": "f6b01fcf.2b479",
-        "type": "api-call-service",
-        "z": "ac34afc0.5bb5d",
-        "name": "Clear select vinyl input flag",
-        "server": "2f5bd1e0.67e40e",
-        "version": 3,
-        "debugenabled": false,
-        "service_domain": "input_boolean",
-        "service": "turn_off",
-        "entityId": "input_boolean.pending_yamaha_vinyl_input",
-        "data": "",
-        "dataType": "json",
-        "mergecontext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 540,
-        "y": 220,
-        "wires": [
-            [
-                "6584f56f.3ba98c"
-            ]
-        ]
-    },
-    {
-        "id": "6584f56f.3ba98c",
-        "type": "api-call-service",
-        "z": "ac34afc0.5bb5d",
-        "name": "Log execution to HA logbook",
-        "server": "2f5bd1e0.67e40e",
-        "version": 3,
-        "debugenabled": false,
-        "service_domain": "logbook",
-        "service": "log",
-        "entityId": "",
-        "data": "{\"name\":\"node-red\",\"message\":\"Yamaha Vinyl Input Select flow executed successfully.\",\"domain\":\"automation\"}",
-        "dataType": "json",
-        "mergecontext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 860,
-        "y": 220,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "4c9f19c0.0ad618",
-        "type": "api-call-service",
-        "z": "ac34afc0.5bb5d",
-        "name": "Turn on Yamaha",
-        "server": "2f5bd1e0.67e40e",
-        "version": 3,
-        "debugenabled": false,
-        "service_domain": "media_player",
-        "service": "turn_on",
-        "entityId": "media_player.yamaha_receiver",
-        "data": "",
-        "dataType": "json",
-        "mergecontext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 400,
-        "y": 480,
-        "wires": [
-            [
-                "9edee56f.eb5b58"
-            ]
-        ]
-    },
-    {
-        "id": "9edee56f.eb5b58",
-        "type": "delay",
-        "z": "ac34afc0.5bb5d",
-        "name": "Allow 5s to turn on",
-        "pauseType": "delay",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 610,
-        "y": 480,
-        "wires": [
-            [
-                "45cadb2f.d0d314"
-            ]
-        ]
-    },
-    {
-        "id": "45cadb2f.d0d314",
-        "type": "api-call-service",
-        "z": "ac34afc0.5bb5d",
-        "name": "Select Vinyl Phono",
-        "server": "2f5bd1e0.67e40e",
-        "version": 3,
-        "debugenabled": false,
-        "service_domain": "media_player",
-        "service": "select_source",
-        "entityId": "media_player.yamaha_receiver",
-        "data": "{\"source\":\"PHONO\"}",
-        "dataType": "json",
-        "mergecontext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 850,
-        "y": 440,
+        "x": 1120,
+        "y": 340,
         "wires": [
             []
         ]
@@ -16020,6 +15792,262 @@
         "wires": [
             [
                 "a14400a6.04e44"
+            ]
+        ]
+    },
+    {
+        "id": "716b2de9.59ba54",
+        "type": "server-state-changed",
+        "z": "1dde2bca.3de4d4",
+        "name": "Flagged to select yamaha vinyl input?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.pending_yamaha_vinyl_input",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 170,
+        "y": 420,
+        "wires": [
+            [
+                "29616937.d3c436",
+                "c89524a2.61eb18"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "29616937.d3c436",
+        "type": "api-call-service",
+        "z": "1dde2bca.3de4d4",
+        "name": "Clear select vinyl input flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.pending_yamaha_vinyl_input",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 520,
+        "y": 400,
+        "wires": [
+            [
+                "2e428a1c.7a8656"
+            ]
+        ]
+    },
+    {
+        "id": "c89524a2.61eb18",
+        "type": "change",
+        "z": "1dde2bca.3de4d4",
+        "name": "Queue select Vinyl Phono",
+        "rules": [
+            {
+                "t": "set",
+                "p": "config.input_device",
+                "pt": "msg",
+                "to": "PHONO",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 460,
+        "wires": [
+            [
+                "8a08bb78.cd59d8"
+            ]
+        ]
+    },
+    {
+        "id": "7c04824a.c496cc",
+        "type": "change",
+        "z": "1dde2bca.3de4d4",
+        "name": "Queue select Alexa AV6",
+        "rules": [
+            {
+                "t": "set",
+                "p": "config.input_device",
+                "pt": "msg",
+                "to": "AV6",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 340,
+        "wires": [
+            [
+                "8a08bb78.cd59d8"
+            ]
+        ]
+    },
+    {
+        "id": "99ae1732.5ae3e8",
+        "type": "server-state-changed",
+        "z": "1dde2bca.3de4d4",
+        "name": "Flagged to select yamaha airplay input?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.pending_yamaha_airplay_input",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "15acf116.dee48f",
+                "6bc137d0.1b6e98"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "15acf116.dee48f",
+        "type": "api-call-service",
+        "z": "1dde2bca.3de4d4",
+        "name": "Clear select airplay input flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.pending_yamaha_airplay_input",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 520,
+        "y": 160,
+        "wires": [
+            [
+                "2e428a1c.7a8656"
+            ]
+        ]
+    },
+    {
+        "id": "6bc137d0.1b6e98",
+        "type": "change",
+        "z": "1dde2bca.3de4d4",
+        "name": "Queue select Airplay",
+        "rules": [
+            {
+                "t": "set",
+                "p": "config.input_device",
+                "pt": "msg",
+                "to": "AirPlay",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 220,
+        "wires": [
+            [
+                "8a08bb78.cd59d8"
             ]
         ]
     }
