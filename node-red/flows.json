@@ -15234,8 +15234,8 @@
         "for": 0,
         "forType": "num",
         "forUnits": "minutes",
-        "x": 840,
-        "y": 460,
+        "x": 820,
+        "y": 340,
         "wires": [
             [
                 "bb1adc64.4214a"
@@ -15287,8 +15287,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 840,
-        "y": 280,
+        "x": 860,
+        "y": 160,
         "wires": [
             []
         ]
@@ -15310,8 +15310,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 660,
-        "y": 600,
+        "x": 820,
+        "y": 440,
         "wires": [
             [
                 "ba4b3a0f.4c1468"
@@ -15333,8 +15333,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 870,
-        "y": 600,
+        "x": 1030,
+        "y": 440,
         "wires": [
             [
                 "bb1adc64.4214a"
@@ -15358,8 +15358,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1100,
-        "y": 520,
+        "x": 1120,
+        "y": 340,
         "wires": [
             []
         ]
@@ -15928,6 +15928,123 @@
         "reg": false,
         "x": 510,
         "y": 340,
+        "wires": [
+            [
+                "8a08bb78.cd59d8"
+            ]
+        ]
+    },
+    {
+        "id": "99ae1732.5ae3e8",
+        "type": "server-state-changed",
+        "z": "1dde2bca.3de4d4",
+        "name": "Flagged to select yamaha airplay input?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.pending_yamaha_airplay_input",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "15acf116.dee48f",
+                "6bc137d0.1b6e98"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "15acf116.dee48f",
+        "type": "api-call-service",
+        "z": "1dde2bca.3de4d4",
+        "name": "Clear select airplay input flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.pending_yamaha_airplay_input",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 520,
+        "y": 160,
+        "wires": [
+            [
+                "2e428a1c.7a8656"
+            ]
+        ]
+    },
+    {
+        "id": "6bc137d0.1b6e98",
+        "type": "change",
+        "z": "1dde2bca.3de4d4",
+        "name": "Queue select Airplay",
+        "rules": [
+            {
+                "t": "set",
+                "p": "config.input_device",
+                "pt": "msg",
+                "to": "AirPlay",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 220,
         "wires": [
             [
                 "8a08bb78.cd59d8"

@@ -104,6 +104,7 @@ views:
           - input_boolean.pending_power_select_tvpc_office_ir
           - input_boolean.pending_power_select_tvpc_office_ol
           - input_boolean.pending_yamaha_skip_next
+          - input_boolean.pending_yamaha_airplay_input
           - input_boolean.pending_yamaha_alexa_input
           - input_boolean.pending_yamaha_vinyl_input
       - type: entities
