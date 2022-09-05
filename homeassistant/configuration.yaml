@@ -284,6 +284,9 @@ lovelace:
       filename: ui-by-type.yaml
       title: By Type
       icon: mdi:billiards-rack
+  resources:
+    - url: /local/zigbee2mqtt-networkmap.js?v=0.7.0
+      type: module
 
 
 media_player:
@@ -311,15 +314,6 @@ media_player:
       AV6: "Alexa Echo"
 
 mobile_app:
-
-
-panel_iframe:
-  networkmap:
-    title: 'Zigbee Map'
-    url: '/local/community/zigbee2mqtt_networkmap/map.html?engine=fdp'
-    icon: 'mdi:graphql'
-
-
 python_script:
 recorder:
 
@@ -360,7 +354,3 @@ updater:
 # variable:
 wake_on_lan:
 webhook:
-
-
-zigbee2mqtt_networkmap:
-  #topic: your topic (optional, default zigbee2mqtt)
