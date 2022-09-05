@@ -633,6 +633,28 @@
      "file": "/data/node_modules/node-red-contrib-credentials/credentials/credentials.js"
     }
    }
+  },
+  "node-red-contrib-telegrambot": {
+   "name": "node-red-contrib-telegrambot",
+   "version": "14.1.0",
+   "local": false,
+   "nodes": {
+    "telegrambot": {
+     "name": "telegrambot",
+     "types": [
+      "telegram bot",
+      "telegram receiver",
+      "telegram command",
+      "telegram event",
+      "telegram sender",
+      "telegram reply"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-telegrambot",
+     "file": "/data/node_modules/node-red-contrib-telegrambot/telegrambot/99-telegrambot.js"
+    }
+   }
   }
  },
  "_credentialSecret": "9613f9c304db2ed505dff47a454142f66264ec296dae54ab600c5965a6bf2340",

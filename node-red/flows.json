@@ -304,6 +304,32 @@
         "willPayload": ""
     },
     {
+        "id": "2a1a6f5b.75e03",
+        "type": "telegram bot",
+        "z": "",
+        "botname": "jchass_bot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
         "id": "3b8bc8cf.939ae8",
         "type": "api-call-service",
         "z": "bf163cd5.f84c",
@@ -16131,7 +16157,8 @@
         "y": 360,
         "wires": [
             [
-                "4ccea9c7.1b8558"
+                "4ccea9c7.1b8558",
+                "1af5863.f53847a"
             ]
         ]
     },
@@ -16200,7 +16227,8 @@
         "y": 500,
         "wires": [
             [
-                "6f2775f9.02792c"
+                "6f2775f9.02792c",
+                "d5ce9a58.24a128"
             ]
         ]
     },
@@ -17498,6 +17526,93 @@
         "y": 280,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "f8a62d7f.baa43",
+        "type": "telegram sender",
+        "z": "565376c8.b1ec28",
+        "name": "Notify bot",
+        "bot": "2a1a6f5b.75e03",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 980,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d5ce9a58.24a128",
+        "type": "change",
+        "z": "565376c8.b1ec28",
+        "name": "Set to notify dry",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"type\":\"message\",\"content\":\"Floater water leak cleared:  A dry condition exists at the Aqara Floater water leak sensor.\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 560,
+        "wires": [
+            [
+                "5b6111b9.d7f4a"
+            ]
+        ]
+    },
+    {
+        "id": "1af5863.f53847a",
+        "type": "change",
+        "z": "565376c8.b1ec28",
+        "name": "Set to notify wet",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"type\":\"message\",\"content\":\"Floater water leak detected:  A wet condition exists at the Aqara Floater water leak sensor.\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 300,
+        "wires": [
+            [
+                "5b6111b9.d7f4a"
+            ]
+        ]
+    },
+    {
+        "id": "5b6111b9.d7f4a",
+        "type": "credentials",
+        "z": "565376c8.b1ec28",
+        "name": "Set Chat ID",
+        "props": [
+            {
+                "value": "payload.chatId",
+                "type": "msg"
+            }
+        ],
+        "x": 810,
+        "y": 440,
+        "wires": [
+            [
+                "f8a62d7f.baa43"
+            ]
         ]
     }
 ]
