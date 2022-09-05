@@ -6411,8 +6411,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 510,
-        "y": 400,
+        "x": 490,
+        "y": 980,
         "wires": [
             [
                 "e5555214.29cd9",
@@ -6438,8 +6438,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 2080,
-        "y": 620,
+        "x": 2060,
+        "y": 1200,
         "wires": [
             []
         ]
@@ -6450,8 +6450,8 @@
         "z": "bc4cdd27.07d12",
         "name": "Philips Hue dimmer event codes / MQTT payloads",
         "info": "## Samsung switch events\n\n### Which button\n - 1xxx / on-<event>: On\n - 2xxx / up-<event>: Brighter\n - 3xxx / down/<event>: Darker\n - 4xxx / off-<event>: Off\n\n### Which event (deconz)\n - xxx0: Button down-press\n - xxx1: Periodic hold report (1 per sec)\n - xxx2: Button up-release (not held)\n - xxx3: Button up-release (after held)\n\n### Which event (zigbee2mqtt)\n - <btn>-press: Button single press and release\n - <btn>-hold: Button hold (1 per sec)\n - <btn>-hold-release: Button up-release (after held)",
-        "x": 330,
-        "y": 320,
+        "x": 230,
+        "y": 940,
         "wires": []
     },
     {
@@ -6472,8 +6472,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 530,
-        "y": 600,
+        "x": 510,
+        "y": 1180,
         "wires": [
             [
                 "6cec8a8d.f7da44",
@@ -6500,8 +6500,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 530,
-        "y": 800,
+        "x": 510,
+        "y": 1380,
         "wires": [
             [
                 "5e0b7800.bb81c8",
@@ -6528,8 +6528,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 510,
-        "y": 1000,
+        "x": 490,
+        "y": 1580,
         "wires": [
             [
                 "d5c128ee.86c3d8",
@@ -6556,11 +6556,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 740,
-        "y": 360,
+        "x": 720,
+        "y": 940,
         "wires": [
             [
-                "d90cb327.7605d"
+                "b7a3953b.d7d6f8"
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
@@ -6583,11 +6583,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 750,
-        "y": 440,
+        "x": 730,
+        "y": 1020,
         "wires": [
             [
-                "d90cb327.7605d"
+                "b7a3953b.d7d6f8"
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
@@ -6610,8 +6610,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 740,
-        "y": 560,
+        "x": 720,
+        "y": 1140,
         "wires": [
             [
                 "92891f4.88410e"
@@ -6637,8 +6637,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 750,
-        "y": 640,
+        "x": 730,
+        "y": 1220,
         "wires": [
             [
                 "92891f4.88410e"
@@ -6664,8 +6664,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 740,
-        "y": 760,
+        "x": 720,
+        "y": 1340,
         "wires": [
             [
                 "eca1d1.f2a16e3"
@@ -6691,8 +6691,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 750,
-        "y": 840,
+        "x": 730,
+        "y": 1420,
         "wires": [
             [
                 "eca1d1.f2a16e3"
@@ -6718,8 +6718,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 740,
-        "y": 960,
+        "x": 720,
+        "y": 1540,
         "wires": [
             [
                 "3d4f1b64.d3fdb4"
@@ -6745,8 +6745,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 750,
-        "y": 1040,
+        "x": 730,
+        "y": 1620,
         "wires": [
             [
                 "fcba3ca1.0b313"
@@ -6771,8 +6771,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1580,
-        "y": 400,
+        "x": 1560,
+        "y": 980,
         "wires": [
             [
                 "8c232c56.e74bc"
@@ -6796,8 +6796,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1560,
-        "y": 1040,
+        "x": 1540,
+        "y": 1620,
         "wires": [
             [
                 "49c40833.49f1c8"
@@ -6836,8 +6836,8 @@
         "output_location_type": "msg",
         "output_location": "payload",
         "output_results_count": 1,
-        "x": 1190,
-        "y": 620,
+        "x": 1170,
+        "y": 1200,
         "wires": [
             [
                 "d300391.76a4fc8"
@@ -6853,8 +6853,8 @@
         "func": "var min_bright = null;\nvar max_bright = null;\nvar new_bright = null;\n\nvar inc_dec_pct = 0.1;\n\nconst src_payload = msg.payloads_merged;\n\n\nfunction inc_bright(old_bright) {\n    if (!old_bright) {\n        return null;\n    }\n    \n    // Add 1 in case off from last conversion\n    var old_bright_pct = (old_bright+1)/255;\n    var new_bright_pct = old_bright_pct + inc_dec_pct;\n    // Want to round to nearest 10%\n    new_bright_pct = Math.round(new_bright_pct*10)/10;\n    \n    var new_inc_bright = Math.round(new_bright_pct * 255);\n    new_inc_bright = Math.min(new_inc_bright, 255);\n    return new_inc_bright;\n}\n\n\nfunction dec_bright(old_bright) {\n    if (!old_bright) {\n        return null;\n    }\n    \n    // Subtract 1 in case off from last conversion\n    var old_bright_pct = (old_bright-1)/255;\n    var new_bright_pct = old_bright_pct - inc_dec_pct;\n    // Want to round to nearest 10%\n    new_bright_pct = Math.round(new_bright_pct*10)/10;\n    \n    var new_dec_bright = Math.round(new_bright_pct * 255);\n    new_dec_bright = Math.max(new_dec_bright, 1);\n    return new_dec_bright;\n}\n\n\nsrc_payload.forEach(function(value, index) {\n    if (!(value.attributes.brightness)) {\n        return;\n    }\n    \n    if (min_bright===null ||\n            value.attributes.brightness < min_bright) {\n        min_bright = value.attributes.brightness;\n    }\n    \n    if (max_bright===null ||\n            value.attributes.brightness > max_bright) {\n        max_bright = value.attributes.brightness;\n    }\n})\n\n\nif (msg.config.inc_or_dec == \"increase\") {\n    new_bright = inc_bright(min_bright)\n} else if (msg.config.inc_or_dec == \"decrease\") {\n    new_bright = dec_bright(max_bright)\n}\n// Else leave new_bright as null\n\nif (new_bright===null) {\n    return null;\n}\n\nmsg.config.new_brightness = new_bright;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1240,
-        "y": 700,
+        "x": 1220,
+        "y": 1280,
         "wires": [
             [
                 "b020e374.198e8"
@@ -6887,8 +6887,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 940,
-        "y": 560,
+        "x": 920,
+        "y": 1140,
         "wires": [
             [
                 "115dde08.f75952"
@@ -6921,8 +6921,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 950,
-        "y": 760,
+        "x": 930,
+        "y": 1340,
         "wires": [
             [
                 "115dde08.f75952"
@@ -6937,8 +6937,8 @@
         "func": "var new_payloads = [];\nvar new_cache_data = {};\n\nconst src_payload = msg.payloads_merged;\n\n\nsrc_payload.forEach((e) => {\n    var change_brightness = true;\n    if (e.state == \"off\") {\n        change_brightness = false;\n    } else if (msg.config.inc_or_dec == \"increase\") {\n        if (e.attributes.brightness >=\n                msg.config.new_brightness) {\n            change_brightness = false;\n        }\n    } else if (msg.config.inc_or_dec == \"decrease\") {\n        if (e.attributes.brightness <=\n                msg.config.new_brightness) {\n            change_brightness = false;\n        }\n    } else {\n        change_brightness = false;\n    }\n    \n    var cache_data;\n    if (change_brightness) {\n        const payload = {};\n        payload.domain = \"light\";\n        payload.service = \"turn_on\";\n        payload.data = {\n            entity_id: e.entity_id,\n            brightness: msg.config.new_brightness,\n        }\n        \n        cache_data = {\n            entity_id: e.entity_id,\n            state: \"on\",\n            brightness: msg.config.new_brightness\n        };\n        \n        new_payloads.push(payload);\n    } else {\n        if (e.state == \"off\") {\n            cache_data = {\n                entity_id: e.entity_id,\n                state: \"off\"\n            };\n        } else {\n            cache_data = {\n                entity_id: e.entity_id,\n                state: \"on\",\n                brightness: e.attributes.brightness\n            };\n        }\n    }\n    \n    new_cache_data[e.entity_id] = cache_data;\n});\n\nif (src_payload.length == new_payloads.length) {\n    msg.cache_data_new = {\n        all: {\n            state: \"on\",\n            brightness: msg.config.new_brightness\n        }\n    };\n    return [msg, null];\n}\n\nnew_msg = {\n    payload: new_payloads,\n    cache_data_new: {\n        individual: new_cache_data\n    }\n};\n\nreturn [null, new_msg];",
         "outputs": 2,
         "noerr": 0,
-        "x": 1260,
-        "y": 760,
+        "x": 1240,
+        "y": 1340,
         "wires": [
             [
                 "8bc9ac76.7fa38"
@@ -6965,8 +6965,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1540,
-        "y": 720,
+        "x": 1520,
+        "y": 1300,
         "wires": [
             [
                 "49c40833.49f1c8"
@@ -6997,8 +6997,8 @@
             }
         ],
         "queue": "none",
-        "x": 1550,
-        "y": 800,
+        "x": 1530,
+        "y": 1380,
         "wires": [
             [
                 "b11361dd.f5c02"
@@ -7037,8 +7037,8 @@
         "output_location_type": "msg",
         "output_location": "payload",
         "output_results_count": 1,
-        "x": 1190,
-        "y": 220,
+        "x": 1170,
+        "y": 800,
         "wires": [
             [
                 "80893134.dc2fb"
@@ -7054,8 +7054,8 @@
         "func": "// 0, 3 not expected to be used\nconst light_on_config = {\n    0: [],\n    1: ['light.upstairs_bathroom_middle'],\n    2: ['light.upstairs_bathroom_left',\n            'light.upstairs_bathroom_right'],\n    3: ['light.upstairs_bathroom_left',\n            'light.upstairs_bathroom_middle',\n            'light.upstairs_bathroom_right'],\n};\n\nvar new_payloads = [];\nvar new_cache_data = {};\n\nconst num_lights_max = 3;\nvar num_lights_total = 0;\nvar num_lights_on = 0;\n\n\nconst src_payload = msg.payloads_merged;\n\n\nsrc_payload.forEach((e) => {\n    num_lights_total += 1;\n    if (e.state == 'on') {\n        num_lights_on +=1 ;\n    }\n});\n\n\nif (num_lights_on + 1 >= num_lights_total ||\n        num_lights_on < 0 ||\n        num_lights_total > num_lights_max) {\n    // Store individual cache -- have it, easier\n    src_payload.forEach((e) => {\n        var e_cache = {};\n        Object.assign(e_cache, e);\n        e_cache.state = \"on\";\n        new_cache_data[e.entity_id] = e_cache;\n    });\n    msg.cache_data_new = {\n        individual: new_cache_data\n    };\n    \n    // Route to turn on all lights\n    return [null, msg];\n}\n\n\nfunction add_brightness(entity, payload) {\n    if (!flow.get('pending_brightness')) {\n        return;\n    }\n    \n    var pending_lights = flow.get('pending_brightness.pending_lights');\n    var pending_index = pending_lights.indexOf(entity.entity_id);\n    if (pending_index == -1) {\n        return;\n    }\n    \n    payload.data.brightness = flow.get('pending_brightness.brightness');\n    // Delete pending light from list\n    pending_lights.splice(pending_index, 1);\n    \n    if (pending_lights.length === 0) {\n        flow.set('pending_brightness', undefined);\n    }\n}\n\n\nfunction build_payload(entity, turn_on) {\n    const payload = {};\n    payload.domain = 'light';\n    \n    if (turn_on) {\n        payload.service = 'turn_on';\n    } else {\n        payload.service = 'turn_off';\n    }\n    \n    payload.data = {\n        entity_id: entity.entity_id\n    };\n    \n    if (turn_on) {\n        add_brightness(entity, payload);\n    }\n    \n    return payload;\n}\n\n\nfunction build_new_cache(src_entity, payload) {\n    const e_cache = {};\n    e_cache.entity_id = payload.data.entity_id;\n    e_cache.state = payload.service.substring(5);\n    \n    if (e_cache.state == \"on\") {\n        if (\"brightness\" in payload.data) {\n            e_cache.brightness =\n                    payload.data.brightness;\n        } else if (\"brightness\" in\n                src_entity.attributes) {\n            e_cache.brightness =\n                    src_entity.attributes.brightness;\n        }\n    }\n    return e_cache;\n}\n\n\nconst desired_lights_on = light_on_config[num_lights_on+1];\n\nfunction add_light_msgs(turn_on) {\n    src_payload.forEach((e) => {\n        if ((desired_lights_on.includes(e.entity_id) &&\n                turn_on) || (!turn_on &&\n                !desired_lights_on.includes(e.entity_id))) {\n            const payload = build_payload(e, turn_on);\n            new_payloads.push(payload);\n            const e_cache = build_new_cache(e,\n                    payload);\n            new_cache_data[e.entity_id] = e_cache;\n        }\n    });\n}\n\n// Want on first in case overload hub\nadd_light_msgs(true);\nadd_light_msgs(false);\nnew_msg = {\n    payload: new_payloads,\n    cache_data_new: new_cache_data\n};\nreturn [new_msg, null];\n",
         "outputs": 2,
         "noerr": 0,
-        "x": 1270,
-        "y": 340,
+        "x": 1250,
+        "y": 920,
         "wires": [
             [
                 "35e40288.ede27e"
@@ -7089,8 +7089,8 @@
             }
         ],
         "queue": "none",
-        "x": 1610,
-        "y": 280,
+        "x": 1590,
+        "y": 860,
         "wires": [
             [
                 "a6d2f398.8e406"
@@ -7098,32 +7098,10 @@
         ]
     },
     {
-        "id": "d90cb327.7605d",
-        "type": "time-range-switch",
-        "z": "bc4cdd27.07d12",
-        "name": "Is night-light time?",
-        "lat": "",
-        "lon": "",
-        "startTime": "21:00",
-        "endTime": "04:30",
-        "startOffset": 0,
-        "endOffset": 0,
-        "x": 970,
-        "y": 360,
-        "wires": [
-            [
-                "c8fcfd1e.3c3f9"
-            ],
-            [
-                "cc34ce75.e30b8"
-            ]
-        ]
-    },
-    {
         "id": "b57bcf8f.84fe4",
         "type": "inject",
         "z": "bc4cdd27.07d12",
-        "name": "Day ended, Night started",
+        "name": "My Day ended, Night started",
         "topic": "",
         "payload": "",
         "payloadType": "date",
@@ -7131,11 +7109,11 @@
         "crontab": "00 21 * * *",
         "once": false,
         "onceDelay": 0.1,
-        "x": 310,
-        "y": 140,
+        "x": 230,
+        "y": 320,
         "wires": [
             [
-                "bc8c9712.d4dcb8"
+                "83bbbe09.f65b"
             ]
         ]
     },
@@ -7143,7 +7121,7 @@
         "id": "145d75d.9914d8a",
         "type": "inject",
         "z": "bc4cdd27.07d12",
-        "name": "Day started, Night ended",
+        "name": "Day started, Night ended for all",
         "topic": "",
         "payload": "",
         "payloadType": "date",
@@ -7151,11 +7129,11 @@
         "crontab": "30 04 * * *",
         "once": false,
         "onceDelay": 0.1,
-        "x": 310,
-        "y": 200,
+        "x": 230,
+        "y": 560,
         "wires": [
             [
-                "2a862f25.f1b53"
+                "2c066123.02a58e"
             ]
         ]
     },
@@ -7167,8 +7145,8 @@
         "func": "var data = {}\n\ndata.brightness = 20;\ndata.pending_lights = [\n        'light.upstairs_bathroom_left',\n        'light.upstairs_bathroom_middle',\n        'light.upstairs_bathroom_right',\n];\ndata.pending_clear = false;\n\nflow.set('pending_brightness', data);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 610,
-        "y": 140,
+        "x": 1330,
+        "y": 120,
         "wires": [
             []
         ]
@@ -7181,8 +7159,8 @@
         "func": "var data = {}\n\ndata.brightness = Math.round(255*0.8);\ndata.pending_lights = [\n        'light.upstairs_bathroom_left',\n        'light.upstairs_bathroom_middle',\n        'light.upstairs_bathroom_right',\n];\ndata.pending_clear = false;\n\nflow.set('pending_brightness', data);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 600,
-        "y": 200,
+        "x": 1320,
+        "y": 360,
         "wires": [
             []
         ]
@@ -7195,8 +7173,8 @@
         "func": "if (flow.get('pending_brightness.pending_clear') === true) {\n    flow.set('pending_brightness', undefined);\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1640,
-        "y": 480,
+        "x": 1620,
+        "y": 1060,
         "wires": [
             [
                 "49c40833.49f1c8"
@@ -7211,8 +7189,8 @@
         "func": "if (flow.get('pending_brightness')) {\n    flow.set('pending_brightness.pending_clear', true);\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1270,
-        "y": 400,
+        "x": 1250,
+        "y": 980,
         "wires": [
             [
                 "567a2da5.82ad14"
@@ -13289,8 +13267,8 @@
         "func": "\nconst merged_payloads = [];\nconst cached_state = flow.get(\"cached_state\");\n\n\nfunction update_from_cache(payload, cache) {\n    payload.state = cache.state;\n        \n    if (\"brightness\" in cache) {\n        payload.attributes.brightness =\n                cache.brightness;\n    } else if (\"brightness_pct\" in cache) {\n        const brightness = Math.round(\n                cache.brightness_pct * 255 / 100);\n        payload.attributes.brightness = brightness;\n    }\n}\n\n\nmsg.payload.forEach((e) => {\n    const payload = {\n        entity_id: e.entity_id,\n        state: e.state,\n        attributes: {\n            brightness: e.attributes.brightness\n        }\n    };\n    \n    if (cached_state && (\"all\" in cached_state)) {\n        const a_cache = cached_state.all;\n        update_from_cache(payload, a_cache);\n        \n    } else if (cached_state && (\"individual\" in cached_state)) {\n        const i_cache = cached_state.individual;\n        if (e.entity_id in i_cache) {\n            const e_cache = i_cache[e.entity_id];\n            update_from_cache(payload, e_cache);\n        }\n    }\n    \n    merged_payloads.push(payload);\n});\n\n\nmsg.payloads_merged = merged_payloads;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1440,
-        "y": 620,
+        "x": 1420,
+        "y": 1200,
         "wires": [
             [
                 "e1bd8367.a5f03"
@@ -13308,8 +13286,8 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 1330,
-        "y": 820,
+        "x": 1310,
+        "y": 1400,
         "wires": [
             [
                 "70a23297.261e4c"
@@ -13332,8 +13310,8 @@
         "timeout": "",
         "count": "",
         "reduceRight": false,
-        "x": 1750,
-        "y": 760,
+        "x": 1730,
+        "y": 1340,
         "wires": [
             [
                 "49c40833.49f1c8"
@@ -13348,8 +13326,8 @@
         "func": "\nflow.set(\"cached_state\", msg.cache_data_new);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2010,
-        "y": 700,
+        "x": 1990,
+        "y": 1280,
         "wires": [
             [
                 "bdfc83d4.9d004",
@@ -13366,8 +13344,8 @@
         "payloadtype": "num",
         "payloadval": "0",
         "name": "",
-        "x": 2040,
-        "y": 760,
+        "x": 2020,
+        "y": 1340,
         "wires": [
             [
                 "60165168.9a581"
@@ -13383,8 +13361,8 @@
         "func": "\nflow.set(\"cached_state\", undefined);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2100,
-        "y": 820,
+        "x": 2080,
+        "y": 1400,
         "wires": [
             []
         ]
@@ -13395,8 +13373,8 @@
         "z": "bc4cdd27.07d12",
         "name": "Assumes no external activity",
         "info": "This caching works by assuming there is no simultaneous external activity.\n\nIf there is simultaneous external activity between when the cache is stored and the next switch activation (before cache timeout), the cached data will be used, effectively nullifying the external activity effects.\n\nExternal activity can be factored into the caching, but it adds complexity...",
-        "x": 2040,
-        "y": 880,
+        "x": 2020,
+        "y": 1460,
         "wires": []
     },
     {
@@ -13407,8 +13385,8 @@
         "func": "\nmsg.cache_data_new = {\n    all: {\n        state: \"off\"\n    }\n};\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1220,
-        "y": 1040,
+        "x": 1200,
+        "y": 1620,
         "wires": [
             [
                 "4323a289.d98c8c"
@@ -13432,8 +13410,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1550,
-        "y": 960,
+        "x": 1530,
+        "y": 1540,
         "wires": [
             [
                 "49c40833.49f1c8"
@@ -13448,8 +13426,8 @@
         "func": "\nmsg.cache_data_new = {\n    all: {\n        state: \"on\",\n        brightness_pct: 1\n    }\n};\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1220,
-        "y": 960,
+        "x": 1200,
+        "y": 1540,
         "wires": [
             [
                 "ba155282.2476c"
@@ -13464,8 +13442,8 @@
         "func": "\nconst merged_payloads = [];\nconst cached_state = flow.get(\"cached_state\");\n\n\nfunction update_from_cache(payload, cache) {\n    payload.state = cache.state;\n        \n    if (\"brightness\" in cache) {\n        payload.attributes.brightness =\n                cache.brightness;\n    } else if (\"brightness_pct\" in cache) {\n        const brightness = Math.round(\n                cache.brightness_pct * 255 / 100);\n        payload.attributes.brightness = brightness;\n    }\n}\n\n\nmsg.payload.forEach((e) => {\n    const payload = {\n        entity_id: e.entity_id,\n        state: e.state,\n        attributes: {\n            brightness: e.attributes.brightness\n        }\n    };\n    \n    if (cached_state && (\"all\" in cached_state)) {\n        const a_cache = cached_state.all;\n        update_from_cache(payload, a_cache);\n        \n    } else if (cached_state && (\"individual\" in cached_state)) {\n        const i_cache = cached_state.individual;\n        if (e.entity_id in i_cache) {\n            const e_cache = i_cache[e.entity_id];\n            update_from_cache(payload, e_cache);\n        }\n    }\n    \n    merged_payloads.push(payload);\n});\n\n\nmsg.payloads_merged = merged_payloads;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1220,
-        "y": 280,
+        "x": 1200,
+        "y": 860,
         "wires": [
             [
                 "78e7e8a1.515548"
@@ -13480,8 +13458,8 @@
         "func": "\nvar cache_data_new = {\n    all: {\n        state: \"on\"\n    }\n};\n\ncached_state = flow.get(\"cached_state\")\n// Force on, use cache for brightness if exists\nif (cached_state && (\"all\" in cached_state)) {\n    cache_data_new = cached_state;\n    cache_data_new.all.state = \"on\";\n} else if (cached_state && (\"individual\" in cached_state)) {\n    cache_data_new = cached_state;\n    Object.keys(cache_data_new.individual).forEach((eid) => {\n        cache_data_new.individual[eid].state = \"on\"\n    });\n}\n\nmsg.cache_data_new = cache_data_new\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1100,
-        "y": 460,
+        "x": 1080,
+        "y": 1040,
         "wires": [
             [
                 "fdc8e3dd.02692"
@@ -13499,8 +13477,8 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 1510,
-        "y": 340,
+        "x": 1490,
+        "y": 920,
         "wires": [
             [
                 "65edb766.1b0748"
@@ -13523,8 +13501,8 @@
         "timeout": "",
         "count": "",
         "reduceRight": false,
-        "x": 1710,
-        "y": 340,
+        "x": 1690,
+        "y": 920,
         "wires": [
             [
                 "49c40833.49f1c8"
@@ -13681,8 +13659,8 @@
         "qos": "2",
         "datatype": "auto",
         "broker": "2ac9b613.9a48fa",
-        "x": 210,
-        "y": 700,
+        "x": 190,
+        "y": 1280,
         "wires": [
             [
                 "820c4df9.ca0ea",
@@ -16564,6 +16542,757 @@
         "wires": [
             [
                 "6f413a4d.18e804"
+            ]
+        ]
+    },
+    {
+        "id": "51a1973.cd3a168",
+        "type": "time-range-switch",
+        "z": "bc4cdd27.07d12",
+        "name": "Is my night-light time?",
+        "lat": "",
+        "lon": "",
+        "startTime": "21:00",
+        "endTime": "05:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 860,
+        "y": 120,
+        "wires": [
+            [
+                "bc8c9712.d4dcb8"
+            ],
+            [
+                "2a862f25.f1b53"
+            ]
+        ]
+    },
+    {
+        "id": "ec9b3f70.7b4f8",
+        "type": "time-range-switch",
+        "z": "bc4cdd27.07d12",
+        "name": "Is deviant late-night-light time?",
+        "lat": "",
+        "lon": "",
+        "startTime": "23:00",
+        "endTime": "01:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 910,
+        "y": 180,
+        "wires": [
+            [
+                "b803f716.2ca978"
+            ],
+            [
+                "bc8c9712.d4dcb8"
+            ]
+        ]
+    },
+    {
+        "id": "fb965424.327758",
+        "type": "time-range-switch",
+        "z": "bc4cdd27.07d12",
+        "name": "Is deviant night-light time?",
+        "lat": "",
+        "lon": "",
+        "startTime": "23:00",
+        "endTime": "05:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 870,
+        "y": 240,
+        "wires": [
+            [
+                "ec9b3f70.7b4f8"
+            ],
+            [
+                "2a862f25.f1b53"
+            ]
+        ]
+    },
+    {
+        "id": "7c90a2d7.bef3cc",
+        "type": "switch",
+        "z": "bc4cdd27.07d12",
+        "name": "Which occupancy mode?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Solo",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guest (compatible)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guest (deviant)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Party",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 550,
+        "y": 180,
+        "wires": [
+            [
+                "51a1973.cd3a168"
+            ],
+            [
+                "51a1973.cd3a168"
+            ],
+            [
+                "fb965424.327758"
+            ],
+            [
+                "b803f716.2ca978"
+            ]
+        ]
+    },
+    {
+        "id": "83bbbe09.f65b",
+        "type": "api-current-state",
+        "z": "bc4cdd27.07d12",
+        "name": "Get occupancy mode",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is_not",
+        "entity_id": "input_select.occupancy_mode",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 560,
+        "y": 320,
+        "wires": [
+            [
+                "17256de1.fd0522"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "780fd297.38459c",
+        "type": "server-state-changed",
+        "z": "bc4cdd27.07d12",
+        "name": "Occupancy mode changed",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_select.occupancy_mode",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is_not",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 240,
+        "y": 180,
+        "wires": [
+            [
+                "7c90a2d7.bef3cc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b803f716.2ca978",
+        "type": "function",
+        "z": "bc4cdd27.07d12",
+        "name": "Queue semi-night brightness",
+        "func": "var data = {}\n\ndata.brightness = 50;\ndata.pending_lights = [\n        'light.upstairs_bathroom_left',\n        'light.upstairs_bathroom_middle',\n        'light.upstairs_bathroom_right',\n];\ndata.pending_clear = false;\n\nflow.set('pending_brightness', data);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1340,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "17256de1.fd0522",
+        "type": "switch",
+        "z": "bc4cdd27.07d12",
+        "name": "Which occupancy mode?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Solo",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guest (compatible)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guest (deviant)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Party",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 830,
+        "y": 320,
+        "wires": [
+            [
+                "bc8c9712.d4dcb8"
+            ],
+            [
+                "bc8c9712.d4dcb8"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c686ffa0.b16ee",
+        "type": "inject",
+        "z": "bc4cdd27.07d12",
+        "name": "Deviant Day ended, Early-Night started",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 23 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 260,
+        "y": 400,
+        "wires": [
+            [
+                "7cf7fcd.4b06a04"
+            ]
+        ]
+    },
+    {
+        "id": "7cf7fcd.4b06a04",
+        "type": "api-current-state",
+        "z": "bc4cdd27.07d12",
+        "name": "Get occupancy mode",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is_not",
+        "entity_id": "input_select.occupancy_mode",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 560,
+        "y": 400,
+        "wires": [
+            [
+                "5d5ab733.d6a748"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5d5ab733.d6a748",
+        "type": "switch",
+        "z": "bc4cdd27.07d12",
+        "name": "Which occupancy mode?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Solo",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guest (compatible)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guest (deviant)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Party",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 830,
+        "y": 400,
+        "wires": [
+            [],
+            [],
+            [
+                "b803f716.2ca978"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d2c32494.d5b298",
+        "type": "inject",
+        "z": "bc4cdd27.07d12",
+        "name": "Deviant Day ended, Late-Night started",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 01 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 260,
+        "y": 480,
+        "wires": [
+            [
+                "35927d85.4e60a2"
+            ]
+        ]
+    },
+    {
+        "id": "2c066123.02a58e",
+        "type": "api-current-state",
+        "z": "bc4cdd27.07d12",
+        "name": "Get occupancy mode",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is_not",
+        "entity_id": "input_select.occupancy_mode",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 560,
+        "y": 560,
+        "wires": [
+            [
+                "58b98f4a.fa775"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "58b98f4a.fa775",
+        "type": "switch",
+        "z": "bc4cdd27.07d12",
+        "name": "Which occupancy mode?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Solo",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guest (compatible)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guest (deviant)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Party",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 830,
+        "y": 560,
+        "wires": [
+            [
+                "2a862f25.f1b53"
+            ],
+            [
+                "2a862f25.f1b53"
+            ],
+            [
+                "2a862f25.f1b53"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "35927d85.4e60a2",
+        "type": "api-current-state",
+        "z": "bc4cdd27.07d12",
+        "name": "Get occupancy mode",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is_not",
+        "entity_id": "input_select.occupancy_mode",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 560,
+        "y": 480,
+        "wires": [
+            [
+                "ab357cf7.4e6ed"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ab357cf7.4e6ed",
+        "type": "switch",
+        "z": "bc4cdd27.07d12",
+        "name": "Which occupancy mode?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Solo",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guest (compatible)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guest (deviant)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Party",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 830,
+        "y": 480,
+        "wires": [
+            [],
+            [],
+            [
+                "bc8c9712.d4dcb8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b7a3953b.d7d6f8",
+        "type": "api-current-state",
+        "z": "bc4cdd27.07d12",
+        "name": "Get occupancy mode",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is_not",
+        "entity_id": "input_select.occupancy_mode",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 300,
+        "y": 800,
+        "wires": [
+            [
+                "eacad3a1.119d7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "eacad3a1.119d7",
+        "type": "switch",
+        "z": "bc4cdd27.07d12",
+        "name": "Which occupancy mode?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Solo",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guest (compatible)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guest (deviant)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Party",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 550,
+        "y": 800,
+        "wires": [
+            [
+                "dfeada82.538548"
+            ],
+            [
+                "dfeada82.538548"
+            ],
+            [
+                "39a2b123.84ce3e"
+            ],
+            [
+                "cc34ce75.e30b8"
+            ]
+        ]
+    },
+    {
+        "id": "dfeada82.538548",
+        "type": "time-range-switch",
+        "z": "bc4cdd27.07d12",
+        "name": "Is my night-light time?",
+        "lat": "",
+        "lon": "",
+        "startTime": "21:00",
+        "endTime": "05:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 820,
+        "y": 680,
+        "wires": [
+            [
+                "c8fcfd1e.3c3f9"
+            ],
+            [
+                "cc34ce75.e30b8"
+            ]
+        ]
+    },
+    {
+        "id": "771707ba.11d658",
+        "type": "time-range-switch",
+        "z": "bc4cdd27.07d12",
+        "name": "Is deviant late-night-light time?",
+        "lat": "",
+        "lon": "",
+        "startTime": "23:00",
+        "endTime": "01:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 870,
+        "y": 740,
+        "wires": [
+            [
+                "cc34ce75.e30b8"
+            ],
+            [
+                "c8fcfd1e.3c3f9"
+            ]
+        ]
+    },
+    {
+        "id": "39a2b123.84ce3e",
+        "type": "time-range-switch",
+        "z": "bc4cdd27.07d12",
+        "name": "Is deviant night-light time?",
+        "lat": "",
+        "lon": "",
+        "startTime": "23:00",
+        "endTime": "05:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 830,
+        "y": 800,
+        "wires": [
+            [
+                "771707ba.11d658"
+            ],
+            [
+                "cc34ce75.e30b8"
             ]
         ]
     }
