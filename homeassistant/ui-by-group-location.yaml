@@ -119,7 +119,7 @@ views:
       - type: entities
         title: HA Config
         entities:
-          - input_boolean.single_occupant
+          - input_select.occupancy_mode
           - input_boolean.spotlight_mode
           - input_boolean.ignore_time_of_day
           - input_boolean.use_digoo_over_aqara

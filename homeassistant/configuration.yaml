@@ -179,9 +179,6 @@ input_boolean:
   ignore_time_of_day:
     name: Ignore time of day, light/dark
     icon: mdi:timer-off
-  single_occupant:
-    name: Single occupant mode
-    icon: mdi:account-check
   pending_mercedes_start:
     name: Flag Mercedes to start
     initial: false

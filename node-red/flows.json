@@ -3046,10 +3046,10 @@
         "server": "2f5bd1e0.67e40e",
         "version": 3,
         "outputs": 2,
-        "halt_if": "true",
-        "halt_if_type": "bool",
+        "halt_if": "Solo",
+        "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "input_boolean.single_occupant",
+        "entity_id": "input_select.occupant_mode",
         "state_type": "habool",
         "blockInputOverrides": false,
         "outputProperties": [
