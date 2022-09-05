@@ -242,6 +242,14 @@ input_select:
       - Alert active
       - Acknowledged
     icon: mdi:shield
+  occupancy_mode:
+    name: Occupancy Mode
+    options:
+      - Solo
+      - Guests (compatible)
+      - Guests (deviant)
+      - Party
+    icon: mdi:account-box-multiple
 
 
 input_text:

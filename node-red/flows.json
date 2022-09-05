@@ -947,7 +947,7 @@
         "wires": [
             [
                 "dd8ba79c.bea668",
-                "55c8cbae.a6c8e4"
+                "c8353197.0acda"
             ],
             []
         ]
@@ -969,8 +969,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1230,
-        "y": 700,
+        "x": 1770,
+        "y": 660,
         "wires": [
             [
                 "d9ab294f.c1d178"
@@ -1181,8 +1181,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1540,
-        "y": 740,
+        "x": 1580,
+        "y": 780,
         "wires": [
             []
         ]
@@ -1250,15 +1250,15 @@
         "id": "55c8cbae.a6c8e4",
         "type": "time-range-switch",
         "z": "62ce34cf.a7671c",
-        "name": "Is night-light time?",
+        "name": "Is my night-light time?",
         "lat": "",
         "lon": "",
         "startTime": "21:00",
         "endTime": "05:00",
         "startOffset": 0,
         "endOffset": 0,
-        "x": 1010,
-        "y": 660,
+        "x": 1440,
+        "y": 440,
         "wires": [
             [
                 "100c1cb7.820a43"
@@ -1285,8 +1285,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1230,
-        "y": 620,
+        "x": 1790,
+        "y": 480,
         "wires": [
             [
                 "d9ab294f.c1d178"
@@ -2254,7 +2254,7 @@
         "wires": [
             [
                 "349190a0.746a8",
-                "c5646bb.48f7798"
+                "d447b4f5.ebe968"
             ],
             []
         ]
@@ -2276,8 +2276,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1230,
-        "y": 760,
+        "x": 1830,
+        "y": 660,
         "wires": [
             [
                 "6f413a4d.18e804"
@@ -2486,8 +2486,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1540,
-        "y": 800,
+        "x": 1600,
+        "y": 820,
         "wires": [
             []
         ]
@@ -2552,28 +2552,6 @@
         ]
     },
     {
-        "id": "c5646bb.48f7798",
-        "type": "time-range-switch",
-        "z": "35ab222c.a6eb9e",
-        "name": "Is night-light time?",
-        "lat": "",
-        "lon": "",
-        "startTime": "21:00",
-        "endTime": "05:00",
-        "startOffset": 0,
-        "endOffset": 0,
-        "x": 1010,
-        "y": 720,
-        "wires": [
-            [
-                "8b6e9372.7f0e2"
-            ],
-            [
-                "8e2ed4f8.60bd58"
-            ]
-        ]
-    },
-    {
         "id": "8b6e9372.7f0e2",
         "type": "api-call-service",
         "z": "35ab222c.a6eb9e",
@@ -2590,8 +2568,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1230,
-        "y": 680,
+        "x": 1890,
+        "y": 480,
         "wires": [
             [
                 "6f413a4d.18e804"
@@ -13739,7 +13717,7 @@
         "type": "mqtt in",
         "z": "1e7298d6.94a3d7",
         "name": "Guest bedroom dimmer MQTT action",
-        "topic": "zigbee2mqtt/button_hue_dim_guest_bedroom/action",
+        "topic": "zigbee2mqtt/button_hue_dim_floater_bad/action",
         "qos": "2",
         "datatype": "auto",
         "broker": "2ac9b613.9a48fa",
@@ -16238,6 +16216,354 @@
         "wires": [
             [
                 "6f2775f9.02792c"
+            ]
+        ]
+    },
+    {
+        "id": "c8353197.0acda",
+        "type": "api-current-state",
+        "z": "62ce34cf.a7671c",
+        "name": "Get occupancy mode",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is_not",
+        "entity_id": "input_select.occupancy_mode",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 900,
+        "y": 680,
+        "wires": [
+            [
+                "a0f9e943.7564d8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a0f9e943.7564d8",
+        "type": "switch",
+        "z": "62ce34cf.a7671c",
+        "name": "Which occupancy mode?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Solo",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guest (compatible)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guest (deviant)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Party",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 1150,
+        "y": 660,
+        "wires": [
+            [
+                "55c8cbae.a6c8e4"
+            ],
+            [
+                "55c8cbae.a6c8e4"
+            ],
+            [
+                "876debf2.4291e8"
+            ],
+            [
+                "a5900649.72c568"
+            ]
+        ]
+    },
+    {
+        "id": "876debf2.4291e8",
+        "type": "time-range-switch",
+        "z": "62ce34cf.a7671c",
+        "name": "Is deviant night-light time?",
+        "lat": "",
+        "lon": "",
+        "startTime": "01:00",
+        "endTime": "05:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 1470,
+        "y": 580,
+        "wires": [
+            [
+                "4f873bbc.cb5e74"
+            ],
+            [
+                "7f74d9fe.189ad8"
+            ]
+        ]
+    },
+    {
+        "id": "4f873bbc.cb5e74",
+        "type": "time-range-switch",
+        "z": "62ce34cf.a7671c",
+        "name": "Is deviant late-night-light time?",
+        "lat": "",
+        "lon": "",
+        "startTime": "11:00",
+        "endTime": "01:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 1490,
+        "y": 520,
+        "wires": [
+            [
+                "a5900649.72c568"
+            ],
+            [
+                "100c1cb7.820a43"
+            ]
+        ]
+    },
+    {
+        "id": "a5900649.72c568",
+        "type": "api-call-service",
+        "z": "62ce34cf.a7671c",
+        "name": "Turn on light (mid)",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.upstairs_hallway",
+        "data": "{\"brightness\":128}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1790,
+        "y": 600,
+        "wires": [
+            [
+                "d9ab294f.c1d178"
+            ]
+        ]
+    },
+    {
+        "id": "b276492.a60edb8",
+        "type": "time-range-switch",
+        "z": "35ab222c.a6eb9e",
+        "name": "Is my night-light time?",
+        "lat": "",
+        "lon": "",
+        "startTime": "21:00",
+        "endTime": "05:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 1520,
+        "y": 480,
+        "wires": [
+            [
+                "8b6e9372.7f0e2"
+            ],
+            [
+                "8e2ed4f8.60bd58"
+            ]
+        ]
+    },
+    {
+        "id": "e783749.efe3288",
+        "type": "time-range-switch",
+        "z": "35ab222c.a6eb9e",
+        "name": "Is deviant night-light time?",
+        "lat": "",
+        "lon": "",
+        "startTime": "01:00",
+        "endTime": "05:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 1550,
+        "y": 620,
+        "wires": [
+            [
+                "2ec87c57.ff91c4"
+            ],
+            [
+                "8e2ed4f8.60bd58"
+            ]
+        ]
+    },
+    {
+        "id": "2ec87c57.ff91c4",
+        "type": "time-range-switch",
+        "z": "35ab222c.a6eb9e",
+        "name": "Is deviant late-night-light time?",
+        "lat": "",
+        "lon": "",
+        "startTime": "11:00",
+        "endTime": "01:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 1570,
+        "y": 560,
+        "wires": [
+            [
+                "afb3d9c5.91e3f8"
+            ],
+            [
+                "8b6e9372.7f0e2"
+            ]
+        ]
+    },
+    {
+        "id": "806f8742.3f4888",
+        "type": "switch",
+        "z": "35ab222c.a6eb9e",
+        "name": "Which occupancy mode?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Solo",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guest (compatible)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guest (deviant)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Party",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 1230,
+        "y": 700,
+        "wires": [
+            [
+                "b276492.a60edb8"
+            ],
+            [
+                "b276492.a60edb8"
+            ],
+            [
+                "e783749.efe3288"
+            ],
+            [
+                "afb3d9c5.91e3f8"
+            ]
+        ]
+    },
+    {
+        "id": "d447b4f5.ebe968",
+        "type": "api-current-state",
+        "z": "35ab222c.a6eb9e",
+        "name": "Get occupancy mode",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is_not",
+        "entity_id": "input_select.occupancy_mode",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 980,
+        "y": 720,
+        "wires": [
+            [
+                "806f8742.3f4888"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "afb3d9c5.91e3f8",
+        "type": "api-call-service",
+        "z": "35ab222c.a6eb9e",
+        "name": "Turn on light (mid)",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.downstairs_hallway",
+        "data": "{\"brightness\":128}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1870,
+        "y": 580,
+        "wires": [
+            [
+                "6f413a4d.18e804"
             ]
         ]
     }
