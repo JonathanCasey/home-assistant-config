@@ -48,6 +48,15 @@ views:
         entities:
           - sensor.remote_fob_digoo_floater_1
           - sensor.remote_fob_digoo_floater_2
+      - type: entities
+        title: Water Leak
+        entities:
+          - binary_sensor.water_aqara_floater_water_leak
+          - sensor.water_aqara_floater_device_temperature
+          - sensor.water_aqara_floater_battery
+          - binary_sensor.water_aqara_floater_battery_low
+          - sensor.water_aqara_floater_power_outage_count
+          - sensor.water_aqara_floater_linkquality
 
 
 

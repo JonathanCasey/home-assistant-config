@@ -1,0 +1,8 @@
+# Supported device list: https://www.zigbee2mqtt.io/information/supported_devices.html
+
+# __ Devices in this file __
+# Aqara water leak: https://www.zigbee2mqtt.io/devices/SJCGQ11LM.html
+#                   / https://www.zigbee2mqtt.io/devices/SJCGQ12LM.html
+
+'0x00158d0007e58884':   # Aqara Water Leak #01
+  friendly_name: 'water_aqara_floater'

@@ -865,6 +865,10 @@ views:
           - sensor.sm_n970u_battery_health
           - sensor.sm_n970u_battery_level
           - sensor.sm_n970u_battery_temperature
+          - type: section
+            label: Water Leak
+          - sensor.water_aqara_floater_battery
+          - binary_sensor.water_aqara_floater_battery_low
       - type: entities
         title: Cars
         entities:
@@ -928,6 +932,7 @@ views:
           - sensor.button_hue_dim_upstairs_bathroom_linkquality
           - sensor.motion_aqara_upstairs_hallway_linkquality
           - sensor.doorwin_aqara_pantry_door_linkquality
+          - sensor.water_aqara_floater_linkquality
       - type: entities
         title: Motion
         entities:
@@ -946,6 +951,11 @@ views:
         entities:
           - sensor.motion_hue_foyer_occupancy_timeout
       - type: entities
+        title: Power Status
+        entities:
+          - sensor.water_aqara_floater_power_outage_count
+          - sensor.water_aqara_floater_voltage
+      - type: entities
         title: Tamper
         entities:
           - binary_sensor.doorwin_st_front_door_tamper
@@ -961,6 +971,7 @@ views:
           - sensor.button_st_laundry_room_temperature_2
           - sensor.button_st_master_bedroom_temperature_2
           - sensor.button_st_office_temperature
+          - sensor.water_aqara_floater_device_temperature
       - type: entities
         title: Updates
         entities:
@@ -974,3 +985,7 @@ views:
           - binary_sensor.button_hue_dim_upstairs_bathroom_update_available
           - sensor.button_hue_dim_upstairs_bathroom_update_state
           - binary_sensor.button_hue_dim_floater_bad_update_available
+      - type: entities
+        title: Water Leak
+        entities:
+          - binary_sensor.water_aqara_floater_water_leak
