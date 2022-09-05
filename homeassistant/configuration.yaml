@@ -199,6 +199,10 @@ input_boolean:
     name: "Flag power on and select source for TV+PC Office All"
     initial: false
     icon: mdi:arrow-split-vertical
+  pending_reset_alexa_volume:
+    name: Flag reset of Alexa volume
+    initial: false
+    icon: mdi:volume-equal
   pending_workout_finish:
     name: Flag workout finish
     initial: false

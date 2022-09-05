@@ -217,6 +217,13 @@
         "info": ""
     },
     {
+        "id": "56b36195.a6ac7",
+        "type": "tab",
+        "label": "Alexa Management",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -17331,6 +17338,166 @@
             [
                 "61c0d9aa.dc7c48"
             ]
+        ]
+    },
+    {
+        "id": "af55c6de.3cf828",
+        "type": "server-state-changed",
+        "z": "56b36195.a6ac7",
+        "name": "Flagged to reset Alexa volume?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.pending_reset_alexa_volume",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 230,
+        "y": 160,
+        "wires": [
+            [
+                "2e801424.9bddbc",
+                "5adf78e8.fa5e38",
+                "1b86e59d.5f38fa"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "2e801424.9bddbc",
+        "type": "api-call-service",
+        "z": "56b36195.a6ac7",
+        "name": "Clear reset Alexa volume flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.pending_reset_alexa_volume",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 600,
+        "y": 140,
+        "wires": [
+            [
+                "2fde1f5c.e73c6"
+            ]
+        ]
+    },
+    {
+        "id": "2fde1f5c.e73c6",
+        "type": "api-call-service",
+        "z": "56b36195.a6ac7",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Alexa Management flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 940,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5adf78e8.fa5e38",
+        "type": "api-call-service",
+        "z": "56b36195.a6ac7",
+        "name": "Reset most Alexa volume to 40%",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.alexa_dining_room, media_player.alexa_downstairs_bathroom, media_player.alexa_kitchen, media_player.alexa_laundry_room, media_player.alexa_living_room, media_player.alexa_master_bedroom, media_player.alexa_office, media_player.alexa_upstairs_bathroom, media_player.jonathan_s_7th_echo_dot, media_player.jonathan_s_guest_bedroom_echo_dot",
+        "data": "{\"volume_level\":0.4}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 630,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1b86e59d.5f38fa",
+        "type": "api-call-service",
+        "z": "56b36195.a6ac7",
+        "name": "Reset yamaha flex to 100%",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.jonathan_s_3rd_echo_flex",
+        "data": "{\"volume_level\":1.00}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 620,
+        "y": 280,
+        "wires": [
+            []
         ]
     }
 ]
