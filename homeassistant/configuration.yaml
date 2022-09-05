@@ -187,6 +187,18 @@ input_boolean:
     name: Flag relinquish to motion
     initial: false
     icon: mdi:motion-sensor
+  pending_occupancy_mode_solo:
+    name: Flag occupancy mode to solo
+    icon: mdi:account
+  pending_occupancy_mode_guests_compatible:
+    name: Flag occupancy mode to guests (compatible)
+    icon: mdi:account-group
+  pending_occupancy_mode_guests_deviant:
+    name: Flag occupancy mode to guests (deviant)
+    icon: mdi:deviantart
+  pending_occupancy_mode_party:
+    name: Flag occupancy mode to party
+    icon: mdi:party-popper
   pending_power_select_tvpc_office_ir:
     name: "Flag power on and select source for TV+PC Office Inside/Right"
     initial: false

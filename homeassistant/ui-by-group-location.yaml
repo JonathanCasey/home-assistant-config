@@ -112,6 +112,10 @@ views:
           - input_boolean.pending_power_select_tvpc_office_all
           - input_boolean.pending_power_select_tvpc_office_ir
           - input_boolean.pending_power_select_tvpc_office_ol
+          - input_boolean.pending_occupancy_mode_solo
+          - input_boolean.pending_occupancy_mode_guests_compatible
+          - input_boolean.pending_occupancy_mode_guests_deviant
+          - input_boolean.pending_occupancy_mode_party
           - input_boolean.pending_reset_alexa_volume
           - input_boolean.pending_yamaha_skip_next
           - input_boolean.pending_yamaha_airplay_input
