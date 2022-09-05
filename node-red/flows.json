@@ -16240,20 +16240,5 @@
                 "6f2775f9.02792c"
             ]
         ]
-    },
-    {
-        "id": "75167370.8fd70c",
-        "type": "debug",
-        "z": "1e7298d6.94a3d7",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 480,
-        "y": 1140,
-        "wires": []
     }
 ]
