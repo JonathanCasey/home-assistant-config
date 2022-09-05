@@ -5813,7 +5813,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^on-[a-zA-Z\\-]+$",
+                "v": "^on_[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -5874,7 +5874,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^up-[a-zA-Z\\-]+$",
+                "v": "^up_[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -5902,7 +5902,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^down-[a-zA-Z\\-]+$",
+                "v": "^down_[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -5930,7 +5930,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^off-[a-zA-Z\\-]+$",
+                "v": "^off_[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -5958,7 +5958,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-hold$",
+                "v": "^[a-zA-Z]+_hold$",
                 "vt": "str",
                 "case": false
             }
@@ -5985,7 +5985,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-press$",
+                "v": "^[a-zA-Z]+_press$",
                 "vt": "str",
                 "case": false
             }
@@ -6012,7 +6012,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-hold$",
+                "v": "^[a-zA-Z]+_hold$",
                 "vt": "str",
                 "case": false
             }
@@ -6039,7 +6039,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-press$",
+                "v": "^[a-zA-Z]+_press$",
                 "vt": "str",
                 "case": false
             }
@@ -6066,7 +6066,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-hold$",
+                "v": "^[a-zA-Z]+_hold$",
                 "vt": "str",
                 "case": false
             }
@@ -6093,7 +6093,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-press$",
+                "v": "^[a-zA-Z]+_press$",
                 "vt": "str",
                 "case": false
             }
@@ -6120,7 +6120,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-hold$",
+                "v": "^[a-zA-Z]+_hold$",
                 "vt": "str",
                 "case": false
             }
@@ -6147,7 +6147,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-press$",
+                "v": "^[a-zA-Z]+_press$",
                 "vt": "str",
                 "case": false
             }
@@ -6425,7 +6425,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^on-[a-zA-Z\\-]+$",
+                "v": "^on_[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -6486,7 +6486,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^up-[a-zA-Z\\-]+$",
+                "v": "^up_[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -6514,7 +6514,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^down-[a-zA-Z\\-]+$",
+                "v": "^down_[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -6542,7 +6542,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^off-[a-zA-Z\\-]+$",
+                "v": "^off_[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -6570,7 +6570,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-hold$",
+                "v": "^[a-zA-Z]+_hold$",
                 "vt": "str",
                 "case": false
             }
@@ -6597,7 +6597,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-press$",
+                "v": "^[a-zA-Z]+_press$",
                 "vt": "str",
                 "case": false
             }
@@ -6624,7 +6624,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-hold$",
+                "v": "^[a-zA-Z]+_hold$",
                 "vt": "str",
                 "case": false
             }
@@ -6651,7 +6651,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-press$",
+                "v": "^[a-zA-Z]+_press$",
                 "vt": "str",
                 "case": false
             }
@@ -6678,7 +6678,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-hold$",
+                "v": "^[a-zA-Z]+_hold$",
                 "vt": "str",
                 "case": false
             }
@@ -6705,7 +6705,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-press$",
+                "v": "^[a-zA-Z]+_press$",
                 "vt": "str",
                 "case": false
             }
@@ -6732,7 +6732,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-hold$",
+                "v": "^[a-zA-Z]+_hold$",
                 "vt": "str",
                 "case": false
             }
@@ -6759,7 +6759,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-press$",
+                "v": "^[a-zA-Z]+_press$",
                 "vt": "str",
                 "case": false
             }
@@ -11609,7 +11609,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^on-[a-zA-Z\\-]+$",
+                "v": "^on_[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -11670,7 +11670,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^up-[a-zA-Z\\-]+$",
+                "v": "^up_[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -11698,7 +11698,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^down-[a-zA-Z\\-]+$",
+                "v": "^down_[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -11726,7 +11726,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^off-[a-zA-Z\\-]+$",
+                "v": "^off_[a-zA-Z\\-]+$",
                 "vt": "str",
                 "case": false
             }
@@ -11754,7 +11754,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-hold$",
+                "v": "^[a-zA-Z]+_hold$",
                 "vt": "str",
                 "case": false
             }
@@ -11781,7 +11781,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-press$",
+                "v": "^[a-zA-Z]+_press$",
                 "vt": "str",
                 "case": false
             }
@@ -11808,7 +11808,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-hold$",
+                "v": "^[a-zA-Z]+_hold$",
                 "vt": "str",
                 "case": false
             }
@@ -11835,7 +11835,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-press$",
+                "v": "^[a-zA-Z]+_press$",
                 "vt": "str",
                 "case": false
             }
@@ -11862,7 +11862,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-hold$",
+                "v": "^[a-zA-Z]+_hold$",
                 "vt": "str",
                 "case": false
             }
@@ -11889,7 +11889,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-press$",
+                "v": "^[a-zA-Z]+_press$",
                 "vt": "str",
                 "case": false
             }
@@ -11916,7 +11916,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-hold$",
+                "v": "^[a-zA-Z]+_hold$",
                 "vt": "str",
                 "case": false
             }
@@ -11943,7 +11943,7 @@
         "rules": [
             {
                 "t": "regex",
-                "v": "^[a-zA-Z]+-press$",
+                "v": "^[a-zA-Z]+_press$",
                 "vt": "str",
                 "case": false
             }
