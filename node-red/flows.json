@@ -16299,12 +16299,12 @@
             },
             {
                 "t": "eq",
-                "v": "Guest (compatible)",
+                "v": "Guests (compatible)",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "Guest (deviant)",
+                "v": "Guests (deviant)",
                 "vt": "str"
             },
             {
@@ -16483,12 +16483,12 @@
             },
             {
                 "t": "eq",
-                "v": "Guest (compatible)",
+                "v": "Guests (compatible)",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "Guest (deviant)",
+                "v": "Guests (deviant)",
                 "vt": "str"
             },
             {
@@ -16668,12 +16668,12 @@
             },
             {
                 "t": "eq",
-                "v": "Guest (compatible)",
+                "v": "Guests (compatible)",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "Guest (deviant)",
+                "v": "Guests (deviant)",
                 "vt": "str"
             },
             {
@@ -16840,12 +16840,12 @@
             },
             {
                 "t": "eq",
-                "v": "Guest (compatible)",
+                "v": "Guests (compatible)",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "Guest (deviant)",
+                "v": "Guests (deviant)",
                 "vt": "str"
             },
             {
@@ -16950,12 +16950,12 @@
             },
             {
                 "t": "eq",
-                "v": "Guest (compatible)",
+                "v": "Guests (compatible)",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "Guest (deviant)",
+                "v": "Guests (deviant)",
                 "vt": "str"
             },
             {
@@ -17058,12 +17058,12 @@
             },
             {
                 "t": "eq",
-                "v": "Guest (compatible)",
+                "v": "Guests (compatible)",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "Guest (deviant)",
+                "v": "Guests (deviant)",
                 "vt": "str"
             },
             {
@@ -17150,12 +17150,12 @@
             },
             {
                 "t": "eq",
-                "v": "Guest (compatible)",
+                "v": "Guests (compatible)",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "Guest (deviant)",
+                "v": "Guests (deviant)",
                 "vt": "str"
             },
             {
@@ -17238,12 +17238,12 @@
             },
             {
                 "t": "eq",
-                "v": "Guest (compatible)",
+                "v": "Guests (compatible)",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "Guest (deviant)",
+                "v": "Guests (deviant)",
                 "vt": "str"
             },
             {
