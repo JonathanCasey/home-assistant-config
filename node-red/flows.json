@@ -811,7 +811,9 @@
                 "7c5a2e5c.bd53",
                 "d2caa878.c990f8"
             ],
-            []
+            [
+                "ff01124d.fd3b3"
+            ]
         ]
     },
     {
@@ -1618,7 +1620,9 @@
                 "188eb2ed.d8ca8d",
                 "f86bebf4.644dc8"
             ],
-            []
+            [
+                "1bd15942.0cdcd7"
+            ]
         ]
     },
     {
@@ -1981,7 +1985,9 @@
                 "70032b8c.d97914",
                 "e3887ade.188898"
             ],
-            []
+            [
+                "5e283f8b.dcc53"
+            ]
         ]
     },
     {
@@ -2481,7 +2487,9 @@
                 "ec7a30c8.1f8a8",
                 "54f9b66e.05ccf8"
             ],
-            []
+            [
+                "bd2b2ea3.b939b"
+            ]
         ]
     },
     {
@@ -18094,6 +18102,119 @@
         "x": 590,
         "y": 660,
         "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bd2b2ea3.b939b",
+        "type": "api-current-state",
+        "z": "35ab222c.a6eb9e",
+        "name": "Ignore day/time?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.ignore_time_of_day",
+        "state_type": "habool",
+        "blockInputOverrides": false,
+        "outputProperties": [],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 550,
+        "y": 720,
+        "wires": [
+            [
+                "ec7a30c8.1f8a8",
+                "54f9b66e.05ccf8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1bd15942.0cdcd7",
+        "type": "api-current-state",
+        "z": "e9868773.797078",
+        "name": "Ignore day/time?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.ignore_time_of_day",
+        "state_type": "habool",
+        "blockInputOverrides": false,
+        "outputProperties": [],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 550,
+        "y": 720,
+        "wires": [
+            [
+                "f86bebf4.644dc8",
+                "9bbf440e.7b9318",
+                "188eb2ed.d8ca8d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5e283f8b.dcc53",
+        "type": "api-current-state",
+        "z": "884319a9.e92148",
+        "name": "Ignore day/time?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.ignore_time_of_day",
+        "state_type": "habool",
+        "blockInputOverrides": false,
+        "outputProperties": [],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 550,
+        "y": 760,
+        "wires": [
+            [
+                "70032b8c.d97914",
+                "e3887ade.188898"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ff01124d.fd3b3",
+        "type": "api-current-state",
+        "z": "1d296556.09592b",
+        "name": "Ignore day/time?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.ignore_time_of_day",
+        "state_type": "habool",
+        "blockInputOverrides": false,
+        "outputProperties": [],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 590,
+        "y": 560,
+        "wires": [
+            [
+                "7c5a2e5c.bd53",
+                "d2caa878.c990f8"
+            ],
             []
         ]
     }
