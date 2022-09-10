@@ -991,7 +991,9 @@
                 "c8353197.0acda",
                 "d47b9f70.810db"
             ],
-            []
+            [
+                "945217e9.58eb28"
+            ]
         ]
     },
     {
@@ -1229,8 +1231,8 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 800,
-        "y": 920,
+        "x": 840,
+        "y": 940,
         "wires": [
             [
                 "d36ab12a.bf533"
@@ -14304,7 +14306,7 @@
         "datatype": "json",
         "broker": "2ac9b613.9a48fa",
         "x": 130,
-        "y": 880,
+        "y": 820,
         "wires": [
             [
                 "f7ab0b99.042e68"
@@ -14318,7 +14320,7 @@
         "name": "TODO: Pantry better integration with spotlight",
         "info": "For now, will bypass spotlight (because should work independent of spotlight), but may cause contention issues when spotlight is enabled in the future.",
         "x": 190,
-        "y": 960,
+        "y": 1100,
         "wires": []
     },
     {
@@ -14347,7 +14349,7 @@
                 "ba91b17f.0c531"
             ],
             [
-                "d4db5027.93ab9"
+                "9389d963.6c9b78"
             ]
         ],
         "outputLabels": [
@@ -14386,8 +14388,8 @@
         "for": 0,
         "forType": "num",
         "forUnits": "minutes",
-        "x": 400,
-        "y": 840,
+        "x": 600,
+        "y": 920,
         "wires": [
             [
                 "7593d428.38fefc"
@@ -18133,7 +18135,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 1090,
-        "y": 560,
+        "y": 520,
         "wires": [
             []
         ]
@@ -18143,7 +18145,7 @@
         "type": "function",
         "z": "62ce34cf.a7671c",
         "name": "Is on from sensors?",
-        "func": "var light_on_sensors = flow.get(\n        'light_on_sensors') || [];\n\nif (light_on_sensors.size > 0) {\n    return msg;\n}\nreturn null;",
+        "func": "var light_on_sensors = new Set(\n        flow.get('light_on_sensors') || []);\n\nif (light_on_sensors.size > 0) {\n    return msg;\n}\nreturn null;",
         "outputs": 1,
         "noerr": 0,
         "x": 630,
@@ -18159,7 +18161,7 @@
         "type": "function",
         "z": "62ce34cf.a7671c",
         "name": "Is on from sensors?",
-        "func": "var light_on_sensors = flow.get(\n        'light_on_sensors') || [];\n\nif (light_on_sensors.size > 0) {\n    return msg;\n}\nreturn null;",
+        "func": "var light_on_sensors = new Set(\n        flow.get('light_on_sensors') || []);\n\nif (light_on_sensors.size > 0) {\n    return msg;\n}\nreturn null;",
         "outputs": 1,
         "noerr": 0,
         "x": 350,
@@ -18168,6 +18170,72 @@
             [
                 "7a861800.e44a98",
                 "ba91b17f.0c531"
+            ]
+        ]
+    },
+    {
+        "id": "945217e9.58eb28",
+        "type": "function",
+        "z": "62ce34cf.a7671c",
+        "name": "Is on from sensors?",
+        "func": "var light_on_sensors = new Set(\n        flow.get('light_on_sensors') || []);\n\nif (light_on_sensors.size > 0) {\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1030,
+        "y": 600,
+        "wires": [
+            [
+                "d47b9f70.810db"
+            ]
+        ]
+    },
+    {
+        "id": "9389d963.6c9b78",
+        "type": "api-current-state",
+        "z": "62ce34cf.a7671c",
+        "name": "Is immediate off enabled?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.immediate_closet_off",
+        "state_type": "habool",
+        "blockInputOverrides": false,
+        "outputProperties": [],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 310,
+        "y": 980,
+        "wires": [
+            [
+                "b59ca4a2.44faa8"
+            ],
+            [
+                "d4db5027.93ab9"
+            ]
+        ]
+    },
+    {
+        "id": "b59ca4a2.44faa8",
+        "type": "function",
+        "z": "62ce34cf.a7671c",
+        "name": "Is on from ONLY door?",
+        "func": "var light_on_sensors = new Set(\n        flow.get('light_on_sensors') || []);\n\nif (light_on_sensors.has(\n        'zigbee2mqtt/doorwin_aqara_pantry_door')) {\n    return [msg, null];\n}\nreturn [null. msg];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 360,
+        "y": 880,
+        "wires": [
+            [
+                "ba91b17f.0c531",
+                "dc2ca952.cc4cb8",
+                "d36ab12a.bf533"
+            ],
+            [
+                "d4db5027.93ab9"
             ]
         ]
     }
