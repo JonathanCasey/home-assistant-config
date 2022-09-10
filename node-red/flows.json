@@ -17347,26 +17347,6 @@
         ]
     },
     {
-        "id": "5ac498b8.d6cbd8",
-        "type": "inject",
-        "z": "bec3a76b.4b57e8",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 120,
-        "y": 680,
-        "wires": [
-            [
-                "3689482c.522928"
-            ]
-        ]
-    },
-    {
         "id": "d76a2648.822bb8",
         "type": "catch",
         "z": "bec3a76b.4b57e8",

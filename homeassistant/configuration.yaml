@@ -214,7 +214,7 @@ input_boolean:
   pending_reset_alexa_volume:
     name: Flag reset of Alexa volume
     initial: false
-    icon: mdi:volume-equal
+    icon: mdi:volume-source
   pending_workout_finish:
     name: Flag workout finish
     initial: false
