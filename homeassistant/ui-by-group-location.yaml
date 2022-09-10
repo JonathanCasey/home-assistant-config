@@ -127,6 +127,7 @@ views:
           - input_select.occupancy_mode
           - input_boolean.spotlight_mode
           - input_boolean.ignore_time_of_day
+          - input_boolean.immediate_closet_off
           - input_boolean.use_digoo_over_aqara
           - input_boolean.pending_relinquish_to_motion
           - sensor.hacs

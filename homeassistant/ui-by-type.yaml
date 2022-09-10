@@ -827,6 +827,7 @@ views:
           - sensor.button_hue_dim_guest_bedroom_battery
           - sensor.button_hue_dim_living_room_battery
           - sensor.button_hue_dim_upstairs_bathroom_battery
+          - sensor.button_hue_dim_floater_bad_battery
           - sensor.0x000d6ffffea6c3bf_battery # Tradfri button
           - sensor.button_st_floater_battery
           - sensor.button_st_kitchen_battery

@@ -946,7 +946,7 @@
         "wires": [
             [
                 "ad0c1937.a3d408",
-                "e2377e7b.8d444"
+                "275db2e8.7f977e"
             ],
             [
                 "8ca5b256.32671"
@@ -988,8 +988,8 @@
         "y": 600,
         "wires": [
             [
-                "dd8ba79c.bea668",
-                "c8353197.0acda"
+                "c8353197.0acda",
+                "d47b9f70.810db"
             ],
             []
         ]
@@ -1091,54 +1091,6 @@
         ]
     },
     {
-        "id": "dd8ba79c.bea668",
-        "type": "change",
-        "z": "62ce34cf.a7671c",
-        "name": "Mark light on by sensor",
-        "rules": [
-            {
-                "t": "set",
-                "p": "did_turn_light_on",
-                "pt": "flow",
-                "to": "true",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1090,
-        "y": 560,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "eb2fd5d5.268818",
-        "type": "switch",
-        "z": "62ce34cf.a7671c",
-        "name": "Is on from sensor?",
-        "property": "did_turn_light_on",
-        "propertyType": "flow",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 630,
-        "y": 800,
-        "wires": [
-            [
-                "cfe91e14.483f7"
-            ]
-        ]
-    },
-    {
         "id": "ad0c1937.a3d408",
         "type": "api-current-state",
         "z": "62ce34cf.a7671c",
@@ -1185,14 +1137,12 @@
         "id": "d36ab12a.bf533",
         "type": "change",
         "z": "62ce34cf.a7671c",
-        "name": "Clear light on by sensor or user",
+        "name": "Clear light on by sensors",
         "rules": [
             {
-                "t": "set",
-                "p": "did_turn_light_on",
-                "pt": "flow",
-                "to": "false",
-                "tot": "bool"
+                "t": "delete",
+                "p": "light_on_sensors",
+                "pt": "flow"
             }
         ],
         "action": "",
@@ -1200,7 +1150,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1130,
+        "x": 1110,
         "y": 880,
         "wires": [
             []
@@ -3097,8 +3047,8 @@
         "halt_if": "Solo",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "input_select.occupant_mode",
-        "state_type": "habool",
+        "entity_id": "input_select.occupancy_mode",
+        "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [
             {
@@ -3358,7 +3308,7 @@
         "y": 520,
         "wires": [
             [
-                "dd8ba79c.bea668"
+                "d47b9f70.810db"
             ],
             []
         ]
@@ -3552,30 +3502,6 @@
             [
                 "d2caa878.c990f8",
                 "7c5a2e5c.bd53"
-            ]
-        ]
-    },
-    {
-        "id": "e2377e7b.8d444",
-        "type": "switch",
-        "z": "62ce34cf.a7671c",
-        "name": "Is on from sensor?",
-        "property": "did_turn_light_on",
-        "propertyType": "flow",
-        "rules": [
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 350,
-        "y": 580,
-        "wires": [
-            [
-                "ba91b17f.0c531",
-                "7a861800.e44a98"
             ]
         ]
     },
@@ -13743,7 +13669,7 @@
         "type": "mqtt in",
         "z": "1e7298d6.94a3d7",
         "name": "Guest bedroom dimmer MQTT action",
-        "topic": "zigbee2mqtt/button_hue_dim_floater_bad/action",
+        "topic": "zigbee2mqtt/button_hue_dim_guest_bedroom/action",
         "qos": "2",
         "datatype": "auto",
         "broker": "2ac9b613.9a48fa",
@@ -14464,7 +14390,7 @@
         "y": 840,
         "wires": [
             [
-                "eb2fd5d5.268818"
+                "7593d428.38fefc"
             ],
             []
         ]
@@ -14504,7 +14430,7 @@
         "y": 780,
         "wires": [
             [
-                "eb2fd5d5.268818"
+                "7593d428.38fefc"
             ],
             []
         ]
@@ -15612,8 +15538,8 @@
         "y": 640,
         "wires": [
             [
-                "e2377e7b.8d444",
-                "ad0c1937.a3d408"
+                "ad0c1937.a3d408",
+                "275db2e8.7f977e"
             ],
             [
                 "8ca5b256.32671"
@@ -18196,6 +18122,53 @@
                 "d2caa878.c990f8"
             ],
             []
+        ]
+    },
+    {
+        "id": "d47b9f70.810db",
+        "type": "function",
+        "z": "62ce34cf.a7671c",
+        "name": "Mark light on by sensor",
+        "func": "var light_on_sensors = new Set(\n        flow.get('light_on_sensors') || []);\nlight_on_sensors.add(msg.topic);\n\nflow.set('light_on_sensors',\n        Array.from(light_on_sensors));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1090,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7593d428.38fefc",
+        "type": "function",
+        "z": "62ce34cf.a7671c",
+        "name": "Is on from sensors?",
+        "func": "var light_on_sensors = flow.get(\n        'light_on_sensors') || [];\n\nif (light_on_sensors.size > 0) {\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 630,
+        "y": 800,
+        "wires": [
+            [
+                "cfe91e14.483f7"
+            ]
+        ]
+    },
+    {
+        "id": "275db2e8.7f977e",
+        "type": "function",
+        "z": "62ce34cf.a7671c",
+        "name": "Is on from sensors?",
+        "func": "var light_on_sensors = flow.get(\n        'light_on_sensors') || [];\n\nif (light_on_sensors.size > 0) {\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 580,
+        "wires": [
+            [
+                "7a861800.e44a98",
+                "ba91b17f.0c531"
+            ]
         ]
     }
 ]

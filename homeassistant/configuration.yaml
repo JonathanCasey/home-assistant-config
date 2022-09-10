@@ -179,6 +179,9 @@ input_boolean:
   ignore_time_of_day:
     name: Ignore time of day, light/dark
     icon: mdi:timer-off
+  immediate_closet_off:
+    name: Immediately respond to closet closing to turn lights off
+    icon: mdi:lightbulb-auto
   pending_mercedes_start:
     name: Flag Mercedes to start
     initial: false
