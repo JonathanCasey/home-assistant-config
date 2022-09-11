@@ -946,7 +946,7 @@
         "wires": [
             [
                 "ad0c1937.a3d408",
-                "275db2e8.7f977e"
+                "2104e7fe.989048"
             ],
             [
                 "8ca5b256.32671"
@@ -2209,7 +2209,7 @@
         "wires": [
             [
                 "4afa2ec9.d218",
-                "919570dc.eb83a"
+                "e56c5a3f.13cde8"
             ],
             [
                 "f5a2fd42.d486e"
@@ -9797,8 +9797,8 @@
         "for": 0,
         "forType": "num",
         "forUnits": "minutes",
-        "x": 140,
-        "y": 520,
+        "x": 160,
+        "y": 420,
         "wires": [
             [
                 "fb3e86e1.e68a28"
@@ -9824,8 +9824,8 @@
         "for": 0,
         "forType": "num",
         "forUnits": "minutes",
-        "x": 140,
-        "y": 580,
+        "x": 160,
+        "y": 460,
         "wires": [
             [
                 "19a3e8f6.8fed97"
@@ -13461,7 +13461,7 @@
         "datatype": "json",
         "broker": "2ac9b613.9a48fa",
         "x": 150,
-        "y": 440,
+        "y": 340,
         "wires": [
             [
                 "7542545.11ba9ac"
@@ -13477,8 +13477,8 @@
         "qos": "2",
         "datatype": "json",
         "broker": "2ac9b613.9a48fa",
-        "x": 150,
-        "y": 500,
+        "x": 170,
+        "y": 380,
         "wires": [
             [
                 "19863ef.06735c1"
@@ -15469,7 +15469,7 @@
         "wires": [
             [
                 "ad0c1937.a3d408",
-                "275db2e8.7f977e"
+                "2104e7fe.989048"
             ],
             [
                 "8ca5b256.32671"
@@ -15527,7 +15527,7 @@
             }
         ],
         "x": 130,
-        "y": 320,
+        "y": 220,
         "wires": [
             [
                 "5620bfa5.20cbe"
@@ -15553,7 +15553,7 @@
         "forType": "num",
         "forUnits": "minutes",
         "x": 370,
-        "y": 320,
+        "y": 220,
         "wires": [
             [
                 "41eeffde.e5efb"
@@ -15580,7 +15580,7 @@
         "forType": "num",
         "forUnits": "minutes",
         "x": 410,
-        "y": 440,
+        "y": 340,
         "wires": [
             [
                 "9e728add.a96578"
@@ -15635,7 +15635,7 @@
         "forType": "num",
         "forUnits": "minutes",
         "x": 600,
-        "y": 380,
+        "y": 280,
         "wires": [
             [
                 "96546fd3.f8ee6"
@@ -18085,23 +18085,6 @@
         ]
     },
     {
-        "id": "275db2e8.7f977e",
-        "type": "function",
-        "z": "62ce34cf.a7671c",
-        "name": "Is on from sensors?",
-        "func": "var light_on_sensors = new Set(\n        flow.get('light_on_sensors') || []);\n\nif (light_on_sensors.size > 0) {\n    return msg;\n}\nreturn null;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 350,
-        "y": 580,
-        "wires": [
-            [
-                "7a861800.e44a98",
-                "ba91b17f.0c531"
-            ]
-        ]
-    },
-    {
         "id": "945217e9.58eb28",
         "type": "function",
         "z": "62ce34cf.a7671c",
@@ -18164,23 +18147,6 @@
             ],
             [
                 "d4db5027.93ab9"
-            ]
-        ]
-    },
-    {
-        "id": "919570dc.eb83a",
-        "type": "function",
-        "z": "35ab222c.a6eb9e",
-        "name": "Is on from sensors?",
-        "func": "var light_on_sensors = new Set(\n        flow.get('light_on_sensors') || []);\n\nif (light_on_sensors.size > 0) {\n    return msg;\n}\nreturn null;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 350,
-        "y": 640,
-        "wires": [
-            [
-                "ec7a30c8.1f8a8",
-                "54f9b66e.05ccf8"
             ]
         ]
     },
@@ -18277,6 +18243,132 @@
         "wires": [
             [
                 "32f467e2.731fd8"
+            ]
+        ]
+    },
+    {
+        "id": "2104e7fe.989048",
+        "type": "api-current-state",
+        "z": "62ce34cf.a7671c",
+        "name": "Is immediate off enabled?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.immediate_closet_off",
+        "state_type": "habool",
+        "blockInputOverrides": false,
+        "outputProperties": [],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 350,
+        "y": 520,
+        "wires": [
+            [
+                "3db4a7c3.493f28"
+            ],
+            [
+                "575c312e.dfe67"
+            ]
+        ]
+    },
+    {
+        "id": "3db4a7c3.493f28",
+        "type": "function",
+        "z": "62ce34cf.a7671c",
+        "name": "Is on from ONLY door?",
+        "func": "var light_on_sensors = new Set(\n        flow.get('light_on_sensors') || []);\n\nif (light_on_sensors.has(\n        'zigbee2mqtt/doorwin_aqara_pantry_door') &&\n        light_on_sensors.size == 1) {\n    return [msg, null];\n}\nreturn [null, msg];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 500,
+        "y": 460,
+        "wires": [
+            [],
+            [
+                "575c312e.dfe67"
+            ]
+        ]
+    },
+    {
+        "id": "575c312e.dfe67",
+        "type": "function",
+        "z": "62ce34cf.a7671c",
+        "name": "Is on from sensors?",
+        "func": "var light_on_sensors = new Set(\n        flow.get('light_on_sensors') || []);\n\nif (light_on_sensors.size > 0) {\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 580,
+        "wires": [
+            [
+                "7a861800.e44a98",
+                "ba91b17f.0c531"
+            ]
+        ]
+    },
+    {
+        "id": "e56c5a3f.13cde8",
+        "type": "api-current-state",
+        "z": "35ab222c.a6eb9e",
+        "name": "Is immediate off enabled?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "input_boolean.immediate_closet_off",
+        "state_type": "habool",
+        "blockInputOverrides": false,
+        "outputProperties": [],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 230,
+        "y": 640,
+        "wires": [
+            [
+                "ece1b77a.7b7358"
+            ],
+            [
+                "a293d75.4980228"
+            ]
+        ]
+    },
+    {
+        "id": "ece1b77a.7b7358",
+        "type": "function",
+        "z": "35ab222c.a6eb9e",
+        "name": "Is on from ONLY door?",
+        "func": "var light_on_sensors = new Set(\n        flow.get('light_on_sensors') || []);\n\nif (light_on_sensors.has(\n        'binary_sensor.doorwin_digoo_under_stairs_door') &&\n        light_on_sensors.size == 1) {\n    return [msg, null];\n}\nreturn [null, msg];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 300,
+        "y": 580,
+        "wires": [
+            [],
+            [
+                "a293d75.4980228"
+            ]
+        ]
+    },
+    {
+        "id": "a293d75.4980228",
+        "type": "function",
+        "z": "35ab222c.a6eb9e",
+        "name": "Is on from sensors?",
+        "func": "var light_on_sensors = new Set(\n        flow.get('light_on_sensors') || []);\n\nif (light_on_sensors.size > 0) {\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 490,
+        "y": 640,
+        "wires": [
+            [
+                "ec7a30c8.1f8a8",
+                "54f9b66e.05ccf8"
             ]
         ]
     }
