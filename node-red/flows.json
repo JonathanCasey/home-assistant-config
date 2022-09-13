@@ -7060,7 +7060,7 @@
         "type": "function",
         "z": "bc4cdd27.07d12",
         "name": "Queue day brightness",
-        "func": "var data = {}\n\nvar brightness = Math.round(255*0.8);\ndata.pending_brightness_lights = {\n        'light.upstairs_bathroom_left': brightness,\n        'light.upstairs_bathroom_middle': brightness,\n        'light.upstairs_bathroom_right': brightness,\n};\ndata.pending_clear = false;\n\nflow.set('pending_brightness', data);\n\nreturn msg;",
+        "func": "var data = {}\n\nvar brightness = Math.round(255*0.8);\ndata.brightness = brightness;\ndata.pending_brightness_lights = {\n        'light.upstairs_bathroom_left': brightness,\n        'light.upstairs_bathroom_middle': brightness,\n        'light.upstairs_bathroom_right': brightness,\n};\ndata.pending_clear = false;\n\nflow.set('pending_brightness', data);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 1320,
@@ -18583,5 +18583,15 @@
                 "adc3ea04.4a0798"
             ]
         ]
+    },
+    {
+        "id": "2578fe46.e73952",
+        "type": "comment",
+        "z": "bc4cdd27.07d12",
+        "name": "TODO: Need to refactor hack",
+        "info": "When pending brightness was moved to a dict, it did not mesh well with how day flow worked.  Day flow assumed all lights the same brightness, so it loaded it that way.\n\nThere are 2 ways this can be done:\n1. Refactor so even pending brightness for the day can be specified on a per-light basis.  This would probably mean having a flag for what turn on sequence is desired (the m -> l/r -> l/m/r, vs l/m/r).  Then, the occupancy mode filter after button press can be deleted.  The bulk turn on node probaly needs to change since it is pulling from the flow save state directly for its brightness setting, if any.\n2. Allow specifying either as a dict with individual brightnesses or a list with the same brightness.\n\nThis hack is effectively doing number 2 right now, but it does not feel robust...",
+        "x": 1260,
+        "y": 620,
+        "wires": []
     }
 ]
