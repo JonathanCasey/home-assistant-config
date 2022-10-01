@@ -18513,7 +18513,9 @@
             [
                 "e07a540f.81be58"
             ],
-            []
+            [
+                "4ddd3b80.4710d4"
+            ]
         ]
     },
     {
@@ -18545,7 +18547,7 @@
         "id": "9bec402.a65d9c",
         "type": "stoptimer",
         "z": "390fc521.dffd0a",
-        "duration": "2",
+        "duration": "5",
         "units": "Minute",
         "payloadtype": "num",
         "payloadval": "0",
@@ -18593,5 +18595,28 @@
         "x": 1260,
         "y": 620,
         "wires": []
+    },
+    {
+        "id": "4ddd3b80.4710d4",
+        "type": "switch",
+        "z": "390fc521.dffd0a",
+        "name": "Is on from pause?",
+        "property": "did_turn_light_on",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 810,
+        "y": 800,
+        "wires": [
+            [
+                "9bec402.a65d9c"
+            ]
+        ]
     }
 ]
