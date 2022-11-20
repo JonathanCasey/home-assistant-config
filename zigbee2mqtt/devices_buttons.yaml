@@ -37,6 +37,9 @@
 '0x286d9700010bc174':   # SmartThings Button #04
   friendly_name: button_st_laundry_room
   legacy: false
+  # debounce: 1
+  # debounce_ignore:
+  #   - action
 
 
 '0x0017880108067607':   # Philips Hue Dimmer #02

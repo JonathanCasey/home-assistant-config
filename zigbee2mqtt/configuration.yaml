@@ -39,6 +39,7 @@ serial:
 
 
 advanced:
+  # log_level: debug
   # Optional: ZigBee channel, changing requires re-pairing of all devices. (Note: use a ZLL channel: 11, 15, 20, or 25 to avoid Problems)
   # (default: 11)
   channel: 25
