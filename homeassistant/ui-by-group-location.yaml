@@ -126,6 +126,7 @@ views:
         entities:
           - input_select.occupancy_mode
           - input_boolean.spotlight_mode
+          - input_boolean.stealth_mode
           - input_boolean.ignore_time_of_day
           - input_boolean.immediate_closet_off
           - input_boolean.use_digoo_over_aqara

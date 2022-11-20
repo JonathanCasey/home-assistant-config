@@ -245,6 +245,9 @@ input_boolean:
   spotlight_mode:
     name: Spotlight mode (single occ)
     icon: mdi:spotlight
+  stealth_mode:
+    name: Stealth mode
+    icon: mdi:incognito-circle
   use_digoo_over_aqara:
     name: Use Digoo isntead of Aqara
     icon: mdi:test-tube
