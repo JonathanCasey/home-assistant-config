@@ -382,7 +382,7 @@
         "y": 520,
         "wires": [
             [
-                "3b8bc8cf.939ae8"
+                "d8a94ed3.5c78c"
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
@@ -456,7 +456,7 @@
         "y": 580,
         "wires": [
             [
-                "52b13ab7.819424"
+                "2bdb67c5.1f2248"
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
@@ -530,7 +530,7 @@
         "y": 560,
         "wires": [
             [
-                "e1166209.a2d2e"
+                "1b1835a0.4ae11a"
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
@@ -5487,7 +5487,7 @@
         "y": 700,
         "wires": [
             [
-                "68b5974a.f10e78"
+                "b48f1aa4.b2ac28"
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
@@ -5588,7 +5588,7 @@
         "y": 860,
         "wires": [
             [
-                "fa969d60.fa40c"
+                "e9899e16.d9b71"
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
@@ -9196,7 +9196,7 @@
         "y": 580,
         "wires": [
             [
-                "f1fbb6c7.bc4808"
+                "38b631da.02607e"
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
@@ -12142,7 +12142,7 @@
         "y": 420,
         "wires": [
             [
-                "5ee1e3d2.fa8e1c"
+                "fcf3e8f8.ba0a28"
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
@@ -12298,7 +12298,7 @@
         "to": "",
         "reg": false,
         "x": 630,
-        "y": 340,
+        "y": 320,
         "wires": [
             [
                 "80059bb6.bce928"
@@ -12429,7 +12429,7 @@
         "y": 620,
         "wires": [
             [
-                "c455e19b.e7c32"
+                "c6b70d0d.d430d"
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
@@ -18616,6 +18616,200 @@
         "wires": [
             [
                 "9bec402.a65d9c"
+            ]
+        ]
+    },
+    {
+        "id": "d8a94ed3.5c78c",
+        "type": "delay",
+        "z": "bf163cd5.f84c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "3",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 520,
+        "y": 480,
+        "wires": [
+            [
+                "3b8bc8cf.939ae8"
+            ]
+        ]
+    },
+    {
+        "id": "fcf3e8f8.ba0a28",
+        "type": "delay",
+        "z": "bf163cd5.f84c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "3",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 520,
+        "y": 380,
+        "wires": [
+            [
+                "5ee1e3d2.fa8e1c"
+            ]
+        ]
+    },
+    {
+        "id": "c6b70d0d.d430d",
+        "type": "delay",
+        "z": "bf163cd5.f84c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "3",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 520,
+        "y": 580,
+        "wires": [
+            [
+                "c455e19b.e7c32"
+            ]
+        ]
+    },
+    {
+        "id": "420c7343.7e89fc",
+        "type": "comment",
+        "z": "bf163cd5.f84c",
+        "name": "Note: Rate limit imperfections",
+        "info": "Have seen duplicate messages appear as much as 5 seconds later if multiple presses; but 3 seconds should cover the vast majority of common cases.\n\nAlso, for this one, the rate limit should really be done per action per source; but this will be sufficient as long as it is reasonable to not expect sources to be performing multiple actions between each other in quick succession.",
+        "x": 160,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "2bdb67c5.1f2248",
+        "type": "delay",
+        "z": "4c3e78a1.ebb138",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "3",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 500,
+        "y": 540,
+        "wires": [
+            [
+                "52b13ab7.819424"
+            ]
+        ]
+    },
+    {
+        "id": "1b1835a0.4ae11a",
+        "type": "delay",
+        "z": "7b5378f9.154968",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "3",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 460,
+        "y": 520,
+        "wires": [
+            [
+                "e1166209.a2d2e"
+            ]
+        ]
+    },
+    {
+        "id": "b48f1aa4.b2ac28",
+        "type": "delay",
+        "z": "e6c80f9f.2d85a",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "3",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 500,
+        "y": 660,
+        "wires": [
+            [
+                "68b5974a.f10e78"
+            ]
+        ]
+    },
+    {
+        "id": "e9899e16.d9b71",
+        "type": "delay",
+        "z": "e6c80f9f.2d85a",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "3",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 540,
+        "y": 820,
+        "wires": [
+            [
+                "fa969d60.fa40c"
+            ]
+        ]
+    },
+    {
+        "id": "38b631da.02607e",
+        "type": "delay",
+        "z": "ae1f782f.839ce8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "3",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 480,
+        "y": 540,
+        "wires": [
+            [
+                "f1fbb6c7.bc4808"
             ]
         ]
     }
