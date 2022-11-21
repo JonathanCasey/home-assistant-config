@@ -19027,5 +19027,120 @@
             ],
             []
         ]
+    },
+    {
+        "id": "7eaa06f8.6a6668",
+        "type": "server-state-changed",
+        "z": "1dde2bca.3de4d4",
+        "name": "Flagged to select yamaha shield input?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.pending_yamaha_nvidia_shield_input",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 170,
+        "y": 540,
+        "wires": [
+            [
+                "3bc07883.6f58c8",
+                "35c2e4e2.1bad6c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3bc07883.6f58c8",
+        "type": "api-call-service",
+        "z": "1dde2bca.3de4d4",
+        "name": "Clear select Shield input flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.pending_yamaha_nvidia_shield_input",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 520,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "35c2e4e2.1bad6c",
+        "type": "change",
+        "z": "1dde2bca.3de4d4",
+        "name": "Queue select Shield HDMI1",
+        "rules": [
+            {
+                "t": "set",
+                "p": "config.input_device",
+                "pt": "msg",
+                "to": "HDMI1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 580,
+        "wires": [
+            [
+                "8a08bb78.cd59d8"
+            ]
+        ]
     }
 ]

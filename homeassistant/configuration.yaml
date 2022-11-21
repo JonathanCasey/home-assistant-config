@@ -230,6 +230,10 @@ input_boolean:
     name: Flag yamaha alexa input select
     initial: False
     icon: mdi:cast-audio
+  pending_yamaha_nvidia_shield_input:
+    name: Flag yamaha NVidia Shield input select
+    initial: False
+    icon: mdi:album
   pending_yamaha_vinyl_input:
     name: Flag yamaha vinyl input select
     initial: False
