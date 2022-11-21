@@ -280,6 +280,19 @@ input_text:
         "event": "actionable.skill.test"}'
 
 
+intent_script:
+  SetVolumeIntent:
+    action:
+      service: media_player.volume_set
+      target:
+        entity_id: media_player.yamaha_receiver
+      data:
+        volume_level: "{{ [[0.2, 1 - (volume_db | float | abs) / 100] | max, 1] | min }}"
+    speech:
+      type: plain
+      text: Yamaha set to {{ -1 * ([[0, volume_db | float | abs] | max, 80] | min) }} db
+
+
 light: !include lights.yaml
 
 logbook:
