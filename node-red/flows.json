@@ -171,7 +171,7 @@
         "id": "e7792035.7e5bc",
         "type": "tab",
         "label": "Christmas Trees",
-        "disabled": true,
+        "disabled": false,
         "info": ""
     },
     {
@@ -12648,7 +12648,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 390,
+        "x": 650,
         "y": 440,
         "wires": [
             [
@@ -12673,7 +12673,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 390,
+        "x": 650,
         "y": 520,
         "wires": [
             [
@@ -12697,7 +12697,7 @@
         "y": 440,
         "wires": [
             [
-                "bf6ab1c3.ff541"
+                "6f99b9eb.8c8248"
             ]
         ]
     },
@@ -12717,7 +12717,7 @@
         "y": 520,
         "wires": [
             [
-                "2402d811.edc588"
+                "df732c07.4b581"
             ]
         ]
     },
@@ -12738,7 +12738,7 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 660,
+        "x": 920,
         "y": 480,
         "wires": [
             []
@@ -19141,6 +19141,90 @@
             [
                 "8a08bb78.cd59d8"
             ]
+        ]
+    },
+    {
+        "id": "6f99b9eb.8c8248",
+        "type": "function",
+        "z": "e7792035.7e5bc",
+        "name": "Is Christmas season?",
+        "func": "var nowDate = new Date(msg.payload);\nvar startDate = new Date(msg.payload);\nvar endDate = new Date(msg.payload);\n\n// Month is 0-indexed\n// Earliest Thanksgiving can be is 22nd\nstartDate.setMonth(10);\nstartDate.setDate(23);\nendDate.setMonth(0);\nendDate.setDate(10);\n\nif (endDate < startDate) {\n    endDate.setYear(endDate.Year + 1);\n}\n\nfunction isWithinRange(testDate) {\n   return !(testDate < startDate ||\n        testDate > endDate);\n}\n\n// msg.dateNow = nowDate.toDateString();\n// msg.dateStart = startDate.toDateString();\n// msg.dateEnd = endDate.toDateString();\n// if (isWithinRange(nowDate)) {\n//     msg.success = 'Yes'\n//     return msg;\n// }\n// else {\n//     msg.fail = 'No'\n//     return msg;\n// }\n\nif (isWithinRange(nowDate)) {\n    return msg;\n}\nreturn null;\n",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 380,
+        "y": 440,
+        "wires": [
+            [
+                "bf6ab1c3.ff541"
+            ],
+            []
+        ],
+        "outputLabels": [
+            "Yes",
+            "No"
+        ]
+    },
+    {
+        "id": "df732c07.4b581",
+        "type": "function",
+        "z": "e7792035.7e5bc",
+        "name": "Is Christmas season?",
+        "func": "var nowDate = new Date(msg.payload);\nvar startDate = new Date(msg.payload);\nvar endDate = new Date(msg.payload);\n\n// Month is 0-indexed\n// Earliest Thanksgiving can be is 22nd\nstartDate.setMonth(10);\nstartDate.setDate(23);\nendDate.setMonth(0);\nendDate.setDate(10);\n\nif (endDate < startDate) {\n    endDate.setYear(endDate.Year + 1);\n}\n\nfunction isWithinRange(testDate) {\n   return !(testDate < startDate ||\n        testDate > endDate);\n}\n\n// msg.dateNow = nowDate.toDateString();\n// msg.dateStart = startDate.toDateString();\n// msg.dateEnd = endDate.toDateString();\n// if (isWithinRange(nowDate)) {\n//     msg.success = 'Yes'\n//     return msg;\n// }\n// else {\n//     msg.fail = 'No'\n//     return msg;\n// }\n\nif (isWithinRange(nowDate)) {\n    return msg;\n}\nreturn null;\n",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 380,
+        "y": 520,
+        "wires": [
+            [
+                "d2eda013.9d44c"
+            ],
+            []
+        ],
+        "outputLabels": [
+            "Yes",
+            "No"
+        ]
+    },
+    {
+        "id": "d2eda013.9d44c",
+        "type": "function",
+        "z": "e7792035.7e5bc",
+        "name": "Is Christmas Eve?",
+        "func": "var nowDate = new Date(msg.payload);\nvar startDate = new Date(msg.payload);\nvar endDate = new Date(msg.payload);\n\n// Month is 0-indexed\n// Earliest Thanksgiving can be is 22nd\nstartDate.setMonth(11);\nstartDate.setDate(24);\nendDate.setMonth(11);\nendDate.setDate(24);\n\nif (endDate < startDate) {\n    endDate.setYear(endDate.Year + 1);\n}\n\nfunction isWithinRange(testDate) {\n   return !(testDate < startDate ||\n        testDate > endDate);\n}\n\n// msg.dateNow = nowDate.toDateString();\n// msg.dateStart = startDate.toDateString();\n// msg.dateEnd = endDate.toDateString();\n// if (isWithinRange(nowDate)) {\n//     msg.success = 'Yes'\n//     return msg;\n// }\n// else {\n//     msg.fail = 'No'\n//     return msg;\n// }\n\nif (isWithinRange(nowDate)) {\n    return msg;\n}\nreturn null;\n",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 370,
+        "y": 580,
+        "wires": [
+            [],
+            [
+                "cfcd0e30.b73cc"
+            ]
+        ],
+        "outputLabels": [
+            "Yes",
+            "No"
+        ]
+    },
+    {
+        "id": "cfcd0e30.b73cc",
+        "type": "function",
+        "z": "e7792035.7e5bc",
+        "name": "Is New Year's Eve?",
+        "func": "var nowDate = new Date(msg.payload);\nvar startDate = new Date(msg.payload);\nvar endDate = new Date(msg.payload);\n\n// Month is 0-indexed\n// Earliest Thanksgiving can be is 22nd\nstartDate.setMonth(11);\nstartDate.setDate(31);\nendDate.setMonth(11);\nendDate.setDate(31);\n\nif (endDate < startDate) {\n    endDate.setYear(endDate.Year + 1);\n}\n\nfunction isWithinRange(testDate) {\n   return !(testDate < startDate ||\n        testDate > endDate);\n}\n\n// msg.dateNow = nowDate.toDateString();\n// msg.dateStart = startDate.toDateString();\n// msg.dateEnd = endDate.toDateString();\n// if (isWithinRange(nowDate)) {\n//     msg.success = 'Yes'\n//     return msg;\n// }\n// else {\n//     msg.fail = 'No'\n//     return msg;\n// }\n\nif (isWithinRange(nowDate)) {\n    return msg;\n}\nreturn null;\n",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 370,
+        "y": 640,
+        "wires": [
+            [],
+            [
+                "2402d811.edc588"
+            ]
+        ],
+        "outputLabels": [
+            "Yes",
+            "No"
         ]
     }
 ]
