@@ -145,6 +145,8 @@
   entities:
     - light.outside_front
     - light.outside_kitchen
+    - light.patio_string_lights
+    - light.smart_ground_lights
 
 
 # -- See Hue group (same name)

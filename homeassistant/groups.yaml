@@ -195,6 +195,8 @@ outside:
     - light.outside_individual
     - light.outside_front
     - light.outside_kitchen
+    - light.patio_string_lights
+    - light.smart_ground_lights
 
 # -- See lights.yaml
 # outside_individual:

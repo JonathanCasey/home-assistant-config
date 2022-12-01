@@ -614,6 +614,10 @@ views:
             name: Front
           - entity: light.outside_kitchen
             name: Kitchen
+          - entity: light.patio_string_lights
+            name: Patio String Lights
+          - entity: light.smart_ground_lights
+            name: Smart Ground Lights (floaters)
       - type: entities
         title: Upstairs Bathroom
         show_header_toggle: true
