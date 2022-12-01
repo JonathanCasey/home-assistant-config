@@ -87,6 +87,8 @@ views:
         title: Lights
         entities:
           - light.house_lights
+          - light.inside_lights
+          - light.kitchen_dining
 
 
   - title: HA / No Location
@@ -243,7 +245,9 @@ views:
       - type: entities
         title: Lights
         entities:
+          - light.all_lights_except_guest_bedroom
           - light.all_lights_except_living_room_and_bathrooms
+          - light.all_except_guest
           - light.all_except_living_room
           - light.all_except_living_room_bathroom
 

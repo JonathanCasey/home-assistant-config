@@ -199,6 +199,13 @@
 
 
 - platform: group
+  name: Inside Lights
+  entities:
+    - light.dining_room
+    - light.inside
+
+
+- platform: group
   name: Kitchen, Dining
   entities:
     - light.dining_room
@@ -213,6 +220,13 @@
   entities:
     - light.dining_room
     - light.all_except_living_room_bathroom
+
+
+- platform: group
+  name: All Lights except Guest Bedroom
+  entities:
+    - light.dining_room
+    - light.all_except_guest
 
 
 
