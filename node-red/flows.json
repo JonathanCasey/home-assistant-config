@@ -238,6 +238,13 @@
         "info": ""
     },
     {
+        "id": "a4adc49d.4a3f08",
+        "type": "tab",
+        "label": "Outdoor/Ikea Switch",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -19263,29 +19270,6 @@
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
     },
     {
-        "id": "7fea151.0c510ec",
-        "type": "api-call-service",
-        "z": "87bafeb1.e209e",
-        "name": "Log execution to HA logbook",
-        "server": "2f5bd1e0.67e40e",
-        "version": 3,
-        "debugenabled": false,
-        "service_domain": "logbook",
-        "service": "log",
-        "entityId": "",
-        "data": "{\"name\":\"node-red\",\"message\":\"Guest Bedroom Switch flow executed successfully.\",\"domain\":\"automation\"}",
-        "dataType": "json",
-        "mergecontext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 1100,
-        "y": 560,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "ca3546d6.3d9808",
         "type": "comment",
         "z": "87bafeb1.e209e",
@@ -19588,6 +19572,119 @@
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
     },
     {
+        "id": "35ed1875.18ab48",
+        "type": "mqtt in",
+        "z": "87bafeb1.e209e",
+        "name": "Guest bedroom dimmer MQTT action",
+        "topic": "zigbee2mqtt/button_hue_dim_floater_bad/action",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2ac9b613.9a48fa",
+        "x": 190,
+        "y": 540,
+        "wires": [
+            [
+                "a6c851b6.f8cc5",
+                "9a887cae.ed737",
+                "2598c6eb.26110a",
+                "2d4a57c.85acca8"
+            ]
+        ]
+    },
+    {
+        "id": "857fa52d.c34518",
+        "type": "mqtt in",
+        "z": "a4adc49d.4a3f08",
+        "name": "Ikea floater on/off MQTT action",
+        "topic": "zigbee2mqtt/button_ikea_tradfri_on_off_floater/action",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2ac9b613.9a48fa",
+        "x": 170,
+        "y": 520,
+        "wires": [
+            [
+                "9a39595c.6198a8",
+                "a1d06a9d.dae708"
+            ]
+        ]
+    },
+    {
+        "id": "9a39595c.6198a8",
+        "type": "switch",
+        "z": "a4adc49d.4a3f08",
+        "name": "Is on button?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 460,
+        "wires": [
+            [
+                "3515c878.596f68"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "a1d06a9d.dae708",
+        "type": "switch",
+        "z": "a4adc49d.4a3f08",
+        "name": "Is off button?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 580,
+        "wires": [
+            [
+                "69e84eaf.5a2f3"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "7fea151.0c510ec",
+        "type": "api-call-service",
+        "z": "87bafeb1.e209e",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Outdoor/Floater Switch flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1100,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "244b5e79.480ec2",
         "type": "api-call-service",
         "z": "87bafeb1.e209e",
@@ -19623,26 +19720,6 @@
         "wires": []
     },
     {
-        "id": "35ed1875.18ab48",
-        "type": "mqtt in",
-        "z": "87bafeb1.e209e",
-        "name": "Guest bedroom dimmer MQTT action",
-        "topic": "zigbee2mqtt/button_hue_dim_floater_bad/action",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "2ac9b613.9a48fa",
-        "x": 190,
-        "y": 540,
-        "wires": [
-            [
-                "a6c851b6.f8cc5",
-                "9a887cae.ed737",
-                "2598c6eb.26110a",
-                "2d4a57c.85acca8"
-            ]
-        ]
-    },
-    {
         "id": "25fced7.6ea7b12",
         "type": "api-call-service",
         "z": "87bafeb1.e209e",
@@ -19664,6 +19741,79 @@
         "wires": [
             [
                 "7fea151.0c510ec"
+            ]
+        ]
+    },
+    {
+        "id": "b05a728b.f9f0a",
+        "type": "api-call-service",
+        "z": "a4adc49d.4a3f08",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Outdoor/Ikea Switch flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 900,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3515c878.596f68",
+        "type": "api-call-service",
+        "z": "a4adc49d.4a3f08",
+        "name": "Turn on patio string lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.patio_string_lights",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 630,
+        "y": 460,
+        "wires": [
+            [
+                "b05a728b.f9f0a"
+            ]
+        ]
+    },
+    {
+        "id": "69e84eaf.5a2f3",
+        "type": "api-call-service",
+        "z": "a4adc49d.4a3f08",
+        "name": "Turn off patio string lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.patio_string_lights",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 630,
+        "y": 580,
+        "wires": [
+            [
+                "b05a728b.f9f0a"
             ]
         ]
     }
