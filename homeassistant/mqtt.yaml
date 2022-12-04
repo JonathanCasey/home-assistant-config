@@ -1,8 +1,8 @@
+binary_sensor:
 
 # Digoo Door and Window (open only) #01
-- platform: mqtt
+- name: Doorwin Digoo Floater 1
   state_topic: rtl_433/Digoo-Security__201099
-  name: Doorwin Digoo Floater 1
   device_class: door # could also change to window, etc
   value_template: "{{ value_json.opened }}"
   payload_on: 1
@@ -11,9 +11,8 @@
 
 
 # Digoo Door and Window (open only) #02
-- platform: mqtt
+- name: Doorwin Digoo Floater 2
   state_topic: rtl_433/Digoo-Security__199445
-  name: Doorwin Digoo Floater 2
   device_class: door # could also change to window, etc
   value_template: "{{ value_json.opened }}"
   payload_on: 1
@@ -22,9 +21,8 @@
 
 
 # Digoo Door and Window (open only) #03
-- platform: mqtt
+- name: Doorwin Digoo Floater 3
   state_topic: rtl_433/Digoo-Security__187865
-  name: Doorwin Digoo Floater 3
   device_class: door # could also change to window, etc
   value_template: "{{ value_json.opened }}"
   payload_on: 1
@@ -33,20 +31,24 @@
 
 
 # Digoo Door and Window #04
-- platform: mqtt
+- name: Doorwin Digoo Under Stairs Door
   state_topic: rtl_433/Digoo-Security__157068
-  name: Doorwin Digoo Under Stairs Door
   device_class: door
   value_template: "{{ value_json.opened }}"
+  # value_template: >
+  #   {% if not is_state('binary_sensor.doorwin_digoo_under_stairs_door', 'unknown') %}
+  #     off
+  #   {% else %}
+  #     {{ value_json.opened }}
+  #   {% endif %}
   payload_off: 0
   payload_on: 1
   qos: 1
 
 
 # Digoo Door and Window #05
-- platform: mqtt
+- name: Doorwin Digoo Floater 5
   state_topic: rtl_433/Digoo-Security__143959
-  name: Doorwin Digoo Floater 5
   device_class: door # could also change to window, etc
   value_template: "{{ value_json.opened }}"
   payload_off: 0
@@ -55,9 +57,8 @@
 
 
 # Digoo Door and Window #06
-- platform: mqtt
+- name: Doorwin Digoo Floater 6
   state_topic: rtl_433/Digoo-Security__160766
-  name: Doorwin Digoo Floater 6
   device_class: door # could also change to window, etc
   value_template: "{{ value_json.opened }}"
   payload_off: 0
@@ -66,9 +67,8 @@
 
 
 # Digoo Door and Window (open only) #07
-- platform: mqtt
+- name: Doorwin Digoo Floater 7
   state_topic: rtl_433/Digoo-Security__298934
-  name: Doorwin Digoo Floater 7
   device_class: door # could also change to window, etc
   value_template: "{{ value_json.opened }}"
   payload_on: 1
@@ -77,9 +77,8 @@
 
 
 # Digoo Door and Window (open only) #08
-- platform: mqtt
+- name: Doorwin Digoo Floater 8
   state_topic: rtl_433/Digoo-Security__282279
-  name: Doorwin Digoo Floater 8
   device_class: door # could also change to window, etc
   value_template: "{{ value_json.opened }}"
   payload_on: 1
@@ -88,9 +87,8 @@
 
 
 # Digoo Motion #01
-- platform: mqtt
+- name: Motion Digoo Upstairs Hallway
   state_topic: rtl_433/Digoo-Security__654569
-  name: Motion Digoo Upstairs Hallway
   device_class: motion
   value_template: "{{ value_json.motion }}"
   payload_on: 1
@@ -99,9 +97,8 @@
 
 
 # Digoo Motion #02
-- platform: mqtt
+- name: Motion Digoo Floater 2
   state_topic: rtl_433/Digoo-Security__968593
-  name: Motion Digoo Floater 2
   device_class: motion
   value_template: "{{ value_json.motion }}"
   payload_on: 1
@@ -110,9 +107,8 @@
 
 
 # Digoo Motion #03
-- platform: mqtt
+- name: Motion Digoo Floater 3
   state_topic: rtl_433/Digoo-Security__273728
-  name: Motion Digoo Floater 3
   device_class: motion
   value_template: "{{ value_json.motion }}"
   payload_on: 1
@@ -121,9 +117,8 @@
 
 
 # Digoo Motion #04
-- platform: mqtt
+- name: Motion Digoo Floater 4
   state_topic: rtl_433/Digoo-Security__529296
-  name: Motion Digoo Floater 4
   device_class: motion
   value_template: "{{ value_json.motion }}"
   payload_on: 1
@@ -132,9 +127,8 @@
 
 
 # Digoo Motion #05
-- platform: mqtt
+- name: Motion Digoo Floater 5
   state_topic: rtl_433/Digoo-Security__680769
-  name: Motion Digoo Floater 5
   device_class: motion
   value_template: "{{ value_json.motion }}"
   payload_on: 1
@@ -143,9 +137,8 @@
 
 
 # Digoo Motion #06
-- platform: mqtt
+- name: Motion Digoo Floater 6
   state_topic: rtl_433/Digoo-Security__694352
-  name: Motion Digoo Floater 6
   device_class: motion
   value_template: "{{ value_json.motion }}"
   payload_on: 1
@@ -154,9 +147,8 @@
 
 
 # Digoo Motion #07
-- platform: mqtt
+- name: Motion Digoo Floater 7
   state_topic: rtl_433/Digoo-Security__296292
-  name: Motion Digoo Floater 7
   device_class: motion
   value_template: "{{ value_json.motion }}"
   payload_on: 1
@@ -165,11 +157,41 @@
 
 
 # Digoo Motion #08
-- platform: mqtt
+- name: Motion Digoo Floater 8
   state_topic: rtl_433/Digoo-Security__595861
-  name: Motion Digoo Floater 8
   device_class: motion
   value_template: "{{ value_json.motion }}"
   payload_on: 1
   qos: 1
   off_delay: 5
+
+
+
+sensor:
+
+- name: Zigbee2mqtt Networkmap
+  # if you change base_topic of Zigbee2mqtt, change state_topic accordingly
+  state_topic: zigbee2mqtt/bridge/response/networkmap
+  value_template: >-
+    {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
+  # again, if you change base_topic of Zigbee2mqtt, change json_attributes_topic accordingly
+  json_attributes_topic: zigbee2mqtt/bridge/response/networkmap
+  json_attributes_template: "{{ value_json.data.value | tojson }}"
+
+
+# Digoo Remote FOBs not really a "sensor", but convenient to debounce and name
+
+# Digoo Remote Key FOB #01
+- name: Remote FOB Digoo Floater 1
+  state_topic: rtl_433/Digoo-Security__648488
+  value_template: "{{ value_json.button }}"
+  qos: 1
+  expire_after: 1
+
+
+# Digoo Remote Key FOB #02
+- name: Remote FOB Digoo Floater 2
+  state_topic: rtl_433/Digoo-Security__380008
+  value_template: "{{ value_json.button }}"
+  qos: 1
+  expire_after: 1
