@@ -240,7 +240,7 @@
     {
         "id": "a4adc49d.4a3f08",
         "type": "tab",
-        "label": "Outdoor/Ikea Switch",
+        "label": "Outdoor/Ikea/Digoo Switch",
         "disabled": false,
         "info": ""
     },
@@ -19755,7 +19755,7 @@
         "service_domain": "logbook",
         "service": "log",
         "entityId": "",
-        "data": "{\"name\":\"node-red\",\"message\":\"Outdoor/Ikea Switch flow executed successfully.\",\"domain\":\"automation\"}",
+        "data": "{\"name\":\"node-red\",\"message\":\"Outdoor/Ikea/Digoo Switch flow executed successfully.\",\"domain\":\"automation\"}",
         "dataType": "json",
         "mergecontext": "",
         "mustacheAltTags": false,
@@ -19816,5 +19816,121 @@
                 "b05a728b.f9f0a"
             ]
         ]
+    },
+    {
+        "id": "7296cc0e.82bdc4",
+        "type": "server-state-changed",
+        "z": "a4adc49d.4a3f08",
+        "name": "Digoo FOB 1 pressed?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "sensor.remote_fob_digoo_floater_1",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 140,
+        "y": 460,
+        "wires": [
+            [
+                "cc0dd39f.c8c92",
+                "597bf833.a215b8"
+            ]
+        ]
+    },
+    {
+        "id": "cc0dd39f.c8c92",
+        "type": "switch",
+        "z": "a4adc49d.4a3f08",
+        "name": "Is unlock button?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "unlock",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 380,
+        "wires": [
+            [
+                "3515c878.596f68"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "597bf833.a215b8",
+        "type": "switch",
+        "z": "a4adc49d.4a3f08",
+        "name": "Is lock button?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "lock",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 400,
+        "y": 640,
+        "wires": [
+            [
+                "69e84eaf.5a2f3"
+            ]
+        ],
+        "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
     }
 ]
