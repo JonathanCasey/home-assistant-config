@@ -19941,31 +19941,6 @@
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
     },
     {
-        "id": "d311a0d5.96f46",
-        "type": "api-call-service",
-        "z": "77a9fbb5.83fa74",
-        "name": "Reset next response",
-        "server": "2f5bd1e0.67e40e",
-        "version": 3,
-        "debugenabled": false,
-        "service_domain": "input_text",
-        "service": "set_value",
-        "entityId": "input_text.narvans_ladder_next_response",
-        "data": "{\"value\":\"I'm really not sure\"}",
-        "dataType": "json",
-        "mergecontext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 560,
-        "y": 200,
-        "wires": [
-            [
-                "974a95b0.e1ce68"
-            ]
-        ]
-    },
-    {
         "id": "3ebf72d6.5ac48e",
         "type": "inject",
         "z": "77a9fbb5.83fa74",
@@ -20460,7 +20435,7 @@
         "y": 200,
         "wires": [
             [
-                "d311a0d5.96f46"
+                "974a95b0.e1ce68"
             ]
         ]
     },
