@@ -8,3 +8,8 @@ F9:1D:CD:32:38:30:2E:09:
   get_brightness_max: 100
   before_set_brightness_turn_on: false
   config_offline_is_off: false
+AB:47:CF:32:37:35:13:47:
+  set_brightness_max:
+  get_brightness_max: 100
+  before_set_brightness_turn_on: false
+  config_offline_is_off: false
