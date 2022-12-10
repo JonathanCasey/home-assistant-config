@@ -107,10 +107,12 @@ views:
           - input_boolean.request_alexa_wheres_the_beer
           - sensor.last_alexa
           - input_text.alexa_actionable_notification
+          - input_text.narvans_ladder_next_response
       - type: entities
         title: Device Control
         entities:
           - input_boolean.pending_mercedes_start
+          - input_boolean.pending_narvans_ladder_action_reset
           - input_boolean.pending_power_select_tvpc_office_all
           - input_boolean.pending_power_select_tvpc_office_ir
           - input_boolean.pending_power_select_tvpc_office_ol
@@ -134,6 +136,7 @@ views:
           - input_boolean.immediate_closet_off
           - input_boolean.use_digoo_over_aqara
           - input_boolean.pending_relinquish_to_motion
+          - input_select.narvans_ladder_action
           - sensor.hacs
       - type: entities
         title: HA Status

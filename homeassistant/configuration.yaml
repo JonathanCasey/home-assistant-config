@@ -184,6 +184,10 @@ input_boolean:
     name: Flag Mercedes to start
     initial: false
     icon: mdi:car-cog
+  pending_narvans_ladder_action_reset:
+    name: Flag Narvan's ladder reset
+    initial: false
+    icon: mdi:ladder
   pending_relinquish_to_motion:
     name: Flag relinquish to motion
     initial: false
@@ -263,6 +267,13 @@ input_select:
       - Alert active
       - Acknowledged
     icon: mdi:shield
+  narvans_ladder_action:
+    name: "Narvan's black step ladder (queued action)"
+    options:
+      - None
+      - Advance
+      - Reset
+    icon: mdi:ladder
   occupancy_mode:
     name: Occupancy Mode
     options:
@@ -280,9 +291,24 @@ input_text:
     initial: '{"text":
         "This is a test of the alexa actions custom skill. Did it work?",
         "event": "actionable.skill.test"}'
+  narvans_ladder_next_response:
+    name: "Narvan's black step ladder (next response)"
+    max: 255
+    initial: "I'm not sure"
 
 
 intent_script:
+  NarvansLadderIntent:
+    action:
+      service: input_select.select_option
+      data:
+        option: Advance
+      target:
+        entity_id: input_select.narvans_ladder_action
+    async_action: true
+    speech:
+      type: plain
+      text: "{{ states('input_text.narvans_ladder_next_response') }}"
   SetVolumeIntent:
     action:
       service: media_player.volume_set

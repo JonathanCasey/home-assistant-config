@@ -245,6 +245,13 @@
         "info": ""
     },
     {
+        "id": "77a9fbb5.83fa74",
+        "type": "tab",
+        "label": "Narvan's Ladder",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -19932,5 +19939,665 @@
             ]
         ],
         "info": "### Samsung button event codes\n - 1001: Long press\n - 1002: Single press\n - 1004: Double press"
+    },
+    {
+        "id": "d311a0d5.96f46",
+        "type": "api-call-service",
+        "z": "77a9fbb5.83fa74",
+        "name": "Reset next response",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_text",
+        "service": "set_value",
+        "entityId": "input_text.narvans_ladder_next_response",
+        "data": "{\"value\":\"I'm really not sure\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 560,
+        "y": 200,
+        "wires": [
+            [
+                "974a95b0.e1ce68"
+            ]
+        ]
+    },
+    {
+        "id": "3ebf72d6.5ac48e",
+        "type": "inject",
+        "z": "77a9fbb5.83fa74",
+        "name": "Daily response reset",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 04 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 160,
+        "y": 140,
+        "wires": [
+            [
+                "dfaf055d.913b28"
+            ]
+        ]
+    },
+    {
+        "id": "b58be0a3.8b67f",
+        "type": "delay",
+        "z": "77a9fbb5.83fa74",
+        "name": "Wait to let previous response be used",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 230,
+        "y": 600,
+        "wires": [
+            [
+                "221877a0.2824f8"
+            ]
+        ]
+    },
+    {
+        "id": "10a3ba93.d5ae75",
+        "type": "server-state-changed",
+        "z": "77a9fbb5.83fa74",
+        "name": "Queued advance",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_select.narvans_ladder_action",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "Advance",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 120,
+        "y": 720,
+        "wires": [
+            [
+                "415d42b1.9f3c5c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c249c934.eb5278",
+        "type": "server-state-changed",
+        "z": "77a9fbb5.83fa74",
+        "name": "Queued reset",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_select.narvans_ladder_action",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "Reset",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 110,
+        "y": 200,
+        "wires": [
+            [
+                "dfaf055d.913b28"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5cab336b.6071cc",
+        "type": "function",
+        "z": "77a9fbb5.83fa74",
+        "name": "Randomize list",
+        "func": "var num_responses = msg.responses.length;\n\nfunction shuffle(o) {\n    for(var j, x, i = o.length; i;\n            j = parseInt(Math.random() * i),\n            x = o[--i], o[i] = o[j], o[j] = x);\n    return o;\n}\n\nvar response_indices = Array.from(Array(\n        num_responses).keys());\nvar response_order = shuffle(response_indices);\n\nflow.set(\"response_order\", response_indices);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 580,
+        "y": 380,
+        "wires": [
+            [
+                "813ec9bc.ba23e8"
+            ]
+        ]
+    },
+    {
+        "id": "813ec9bc.ba23e8",
+        "type": "function",
+        "z": "77a9fbb5.83fa74",
+        "name": "Reset index",
+        "func": "// var test = flow.get(\"invalid-name\");\n\n// msg.test = test;\n// if (test === undefined) {\n//     msg.test3 = \"is null\";\n// }\n// msg.test2 = \"test2\";\n\nflow.set('loaded_response_index', -1);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 790,
+        "y": 380,
+        "wires": [
+            [
+                "5f7ebe47.50965"
+            ]
+        ]
+    },
+    {
+        "id": "979762e5.9db1d",
+        "type": "function",
+        "z": "77a9fbb5.83fa74",
+        "name": "Needs initialization?",
+        "func": "var loaded_response_index = flow.get(\n        \"loaded_response_index\");\nvar response_order = flow.get(\n        \"response_order\");\n\nif (loaded_response_index === undefined ||\n        response_order === undefined) {\n    msgs = [msg, null];\n}\nelse {\n    msgs = [null, msg];\n}\n\nreturn msgs;",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 520,
+        "y": 540,
+        "wires": [
+            [
+                "5cab336b.6071cc"
+            ],
+            [
+                "5f7ebe47.50965"
+            ]
+        ],
+        "outputLabels": [
+            "yes",
+            "no"
+        ]
+    },
+    {
+        "id": "974a95b0.e1ce68",
+        "type": "change",
+        "z": "77a9fbb5.83fa74",
+        "name": "Flag reset source",
+        "rules": [
+            {
+                "t": "set",
+                "p": "source",
+                "pt": "msg",
+                "to": "Reset",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 170,
+        "y": 300,
+        "wires": [
+            [
+                "34443fe0.8cf09"
+            ]
+        ]
+    },
+    {
+        "id": "221877a0.2824f8",
+        "type": "change",
+        "z": "77a9fbb5.83fa74",
+        "name": "Flag advance source",
+        "rules": [
+            {
+                "t": "set",
+                "p": "source",
+                "pt": "msg",
+                "to": "Advance",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 160,
+        "y": 480,
+        "wires": [
+            [
+                "34443fe0.8cf09"
+            ]
+        ]
+    },
+    {
+        "id": "34443fe0.8cf09",
+        "type": "function",
+        "z": "77a9fbb5.83fa74",
+        "name": "Inject list of responses",
+        "func": "var responses = [\n    \"I'll never tell.\",\n    \"In the liquor room, there is a wooden cigar\" +\n        \" box.  If you put in 20 dollars, it may\" +\n        \" help me remember.\",\n    \"Did you look... ...behind you?\",\n    \"It's probably the last place someone left it.\",\n    \"The location of the ladder is...\",\n    \"Searching...\",\n    \"Here are some things I found on the web:\" +\n        \" Ladders are good to get high.\",\n    \"Would you like me to order a black step ladder\" +\n        \" that Narvan won't lose this time?\",\n    \"I plead the fifth.\",\n    \"Are you sure the ladder ever existed?  Do you\" +\n        \" have proof?\",\n    \"How do I know you are not the ladder?\",\n    \"How does one define ladder?  Or step?  Or\" +\n        \" black?  Or Narván?\",\n    \"Hm, I'm not sure.\",\n    \"Ask again later. \",\n    \"Outlook not so good.\",\n    \"It was inside of you all along.\",\n    \"Maybe the real treasure was the friends we\" +\n        \" made along the way.\",\n];\n\nmsg.responses = responses;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 280,
+        "y": 380,
+        "wires": [
+            [
+                "141ef2ce.00819d"
+            ]
+        ]
+    },
+    {
+        "id": "141ef2ce.00819d",
+        "type": "switch",
+        "z": "77a9fbb5.83fa74",
+        "name": "Reset or Advance?",
+        "property": "source",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Reset",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Advance",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 430,
+        "y": 480,
+        "wires": [
+            [
+                "5cab336b.6071cc"
+            ],
+            [
+                "979762e5.9db1d"
+            ]
+        ]
+    },
+    {
+        "id": "b75d7810.08a7b8",
+        "type": "switch",
+        "z": "77a9fbb5.83fa74",
+        "name": "Reset or Advance?",
+        "property": "source",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Reset",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Advance",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1130,
+        "y": 620,
+        "wires": [
+            [
+                "d052e261.481e2"
+            ],
+            [
+                "78864ee4.75732"
+            ]
+        ]
+    },
+    {
+        "id": "5f7ebe47.50965",
+        "type": "function",
+        "z": "77a9fbb5.83fa74",
+        "name": "Load response, advance",
+        "func": "var loaded_response_index = flow.get(\n        \"loaded_response_index\");\nvar response_order = flow.get(\n        \"response_order\");\n\nvar next_response_index = loaded_response_index + 1;\nvar next_response = \"\";\n\nif (next_response_index == msg.responses.length) {\n    next_response = \"I'm done answering these\" +\n            \" questions. I want my lawyer.\";\n}\nelse if (next_response_index > msg.responses.length) {\n    next_response = \"I want my lawyer.\";\n}\nelse {\n    next_response = msg.responses[\n            response_order[next_response_index]];\n}\n\nmsg.next_response = next_response;\n\nflow.set(\"loaded_response_index\", next_response_index);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 830,
+        "y": 540,
+        "wires": [
+            [
+                "c6af1742.f42d88"
+            ]
+        ]
+    },
+    {
+        "id": "c6af1742.f42d88",
+        "type": "api-call-service",
+        "z": "77a9fbb5.83fa74",
+        "name": "Update next response",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_text",
+        "service": "set_value",
+        "entityId": "input_text.narvans_ladder_next_response",
+        "data": "{\t    \"value\": msg.next_response\t}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 820,
+        "y": 620,
+        "wires": [
+            [
+                "b75d7810.08a7b8"
+            ]
+        ]
+    },
+    {
+        "id": "d052e261.481e2",
+        "type": "api-call-service",
+        "z": "77a9fbb5.83fa74",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Narvan's Ladder [Reset] flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1160,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "78864ee4.75732",
+        "type": "api-call-service",
+        "z": "77a9fbb5.83fa74",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Narvan's Ladder [Advance] flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1160,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "415d42b1.9f3c5c",
+        "type": "api-call-service",
+        "z": "77a9fbb5.83fa74",
+        "name": "Clear queued action",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_select",
+        "service": "select_option",
+        "entityId": "input_select.narvans_ladder_action",
+        "data": "{\"option\":\"None\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 160,
+        "y": 660,
+        "wires": [
+            [
+                "b58be0a3.8b67f"
+            ]
+        ]
+    },
+    {
+        "id": "dfaf055d.913b28",
+        "type": "api-call-service",
+        "z": "77a9fbb5.83fa74",
+        "name": "Clear queued action",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_select",
+        "service": "select_option",
+        "entityId": "input_select.narvans_ladder_action",
+        "data": "{\"option\":\"None\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 320,
+        "y": 200,
+        "wires": [
+            [
+                "d311a0d5.96f46"
+            ]
+        ]
+    },
+    {
+        "id": "a411264f.275f68",
+        "type": "server-state-changed",
+        "z": "77a9fbb5.83fa74",
+        "name": "Flagged to set Narvan's ladder to reset?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.pending_narvans_ladder_action_reset",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 210,
+        "y": 860,
+        "wires": [
+            [
+                "180d43a8.ca6a4c",
+                "11b50b32.8b9395"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "180d43a8.ca6a4c",
+        "type": "api-call-service",
+        "z": "77a9fbb5.83fa74",
+        "name": "Clear Narvan's ladder reset flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.pending_narvans_ladder_action_reset",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 650,
+        "y": 860,
+        "wires": [
+            [
+                "9176a85b.43b0c8"
+            ]
+        ]
+    },
+    {
+        "id": "9176a85b.43b0c8",
+        "type": "api-call-service",
+        "z": "77a9fbb5.83fa74",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Narvan's Ladder [Flag Reset] flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1100,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "11b50b32.8b9395",
+        "type": "api-call-service",
+        "z": "77a9fbb5.83fa74",
+        "name": "Select Reset",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_select",
+        "service": "select_option",
+        "entityId": "input_select.narvans_ladder_action",
+        "data": "{\"option\":\"Reset\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 590,
+        "y": 920,
+        "wires": [
+            []
+        ]
     }
 ]
