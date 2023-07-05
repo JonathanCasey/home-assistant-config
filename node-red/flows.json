@@ -135,7 +135,7 @@
     {
         "id": "a28e9600.dc1528",
         "type": "tab",
-        "label": "Finish Workout",
+        "label": "Workout",
         "disabled": false,
         "info": ""
     },
@@ -2687,7 +2687,8 @@
         "wires": [
             [
                 "7d8308dc.e52bb8",
-                "946a044.bc3e4f8"
+                "946a044.bc3e4f8",
+                "d5583ca8.fe197"
             ],
             [
                 "bca4e90.5a43f18"
@@ -8951,7 +8952,7 @@
             }
         ],
         "x": 150,
-        "y": 460,
+        "y": 620,
         "wires": [
             [
                 "eb7e7599.5b5708",
@@ -8993,10 +8994,10 @@
         "forType": "num",
         "forUnits": "minutes",
         "x": 420,
-        "y": 500,
+        "y": 660,
         "wires": [
             [
-                "67b02314.fbc45c"
+                "3c94b436.b277cc"
             ],
             []
         ]
@@ -9018,8 +9019,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 640,
-        "y": 500,
+        "x": 660,
+        "y": 700,
         "wires": [
             [
                 "9d5ebc30.eec99"
@@ -9044,7 +9045,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 450,
-        "y": 300,
+        "y": 460,
         "wires": [
             [
                 "88e01428.13a4d8"
@@ -9069,7 +9070,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 780,
-        "y": 300,
+        "y": 460,
         "wires": [
             []
         ]
@@ -9089,8 +9090,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 850,
-        "y": 500,
+        "x": 690,
+        "y": 780,
         "wires": [
             [
                 "e4df0ccb.23ae9"
@@ -9113,7 +9114,7 @@
         "randomUnits": "seconds",
         "drop": false,
         "x": 450,
-        "y": 420,
+        "y": 580,
         "wires": [
             [
                 "d4393221.77afa"
@@ -9138,7 +9139,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 750,
-        "y": 420,
+        "y": 580,
         "wires": [
             []
         ]
@@ -9160,8 +9161,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 640,
-        "y": 600,
+        "x": 720,
+        "y": 840,
         "wires": [
             []
         ]
@@ -18811,7 +18812,7 @@
         "timeout": "5",
         "timeoutUnits": "seconds",
         "rate": "1",
-        "nbRateUnits": "3",
+        "nbRateUnits": "4",
         "rateUnits": "second",
         "randomFirst": "1",
         "randomLast": "5",
@@ -19169,7 +19170,7 @@
         "type": "function",
         "z": "e7792035.7e5bc",
         "name": "Is Christmas season?",
-        "func": "var nowDate = new Date(msg.payload);\nvar startDate = new Date(msg.payload);\nvar endDate = new Date(msg.payload);\n\n// Month is 0-indexed\n// Earliest Thanksgiving can be is 22nd\nstartDate.setMonth(10);\nstartDate.setDate(23);\nendDate.setMonth(0);\nendDate.setDate(10);\n\nif (endDate < startDate) {\n    endDate.setYear(endDate.Year + 1);\n}\n\nfunction isWithinRange(testDate) {\n   return !(testDate < startDate ||\n        testDate > endDate);\n}\n\n// msg.dateNow = nowDate.toDateString();\n// msg.dateStart = startDate.toDateString();\n// msg.dateEnd = endDate.toDateString();\n// if (isWithinRange(nowDate)) {\n//     msg.success = 'Yes'\n//     return msg;\n// }\n// else {\n//     msg.fail = 'No'\n//     return msg;\n// }\n\nif (isWithinRange(nowDate)) {\n    msgs = [msg, null];\n}\nelse {\n    msgs = [null, msg];\n}\nreturn msgs;\n",
+        "func": "var nowDate = new Date(msg.payload);\nvar startDate = new Date(msg.payload);\nvar endDate = new Date(msg.payload);\n\n// Month is 0-indexed\n// Earliest Thanksgiving can be is 22nd\nstartDate.setMonth(10);\nstartDate.setDate(23);\nendDate.setMonth(0);\nendDate.setDate(10);\n\nif (endDate < startDate) {\n    // Want to err on side of assuming in range\n    if (nowDate <= endDate) {\n        startDate.setYear(startDate.Year - 1);\n    }\n    else {\n        endDate.setYear(endDate.Year + 1);\n    }\n}\n\nfunction isWithinRange(testDate) {\n   return !(testDate < startDate ||\n        testDate > endDate);\n}\n\n// msg.dateNow = nowDate.toDateString();\n// msg.dateStart = startDate.toDateString();\n// msg.dateEnd = endDate.toDateString();\n// if (isWithinRange(nowDate)) {\n//     msg.success = 'Yes'\n//     return msg;\n// }\n// else {\n//     msg.fail = 'No'\n//     return msg;\n// }\n\nif (isWithinRange(nowDate)) {\n    msgs = [msg, null];\n}\nelse {\n    msgs = [null, msg];\n}\nreturn msgs;\n",
         "outputs": 2,
         "noerr": 0,
         "x": 380,
@@ -19190,7 +19191,7 @@
         "type": "function",
         "z": "e7792035.7e5bc",
         "name": "Is Christmas season?",
-        "func": "var nowDate = new Date(msg.payload);\nvar startDate = new Date(msg.payload);\nvar endDate = new Date(msg.payload);\n\n// Month is 0-indexed\n// Earliest Thanksgiving can be is 22nd\nstartDate.setMonth(10);\nstartDate.setDate(23);\nendDate.setMonth(0);\nendDate.setDate(10);\n\nif (endDate < startDate) {\n    endDate.setYear(endDate.Year + 1);\n}\n\nfunction isWithinRange(testDate) {\n   return !(testDate < startDate ||\n        testDate > endDate);\n}\n\n// msg.dateNow = nowDate.toDateString();\n// msg.dateStart = startDate.toDateString();\n// msg.dateEnd = endDate.toDateString();\n// if (isWithinRange(nowDate)) {\n//     msg.success = 'Yes'\n//     return msg;\n// }\n// else {\n//     msg.fail = 'No'\n//     return msg;\n// }\n\nif (isWithinRange(nowDate)) {\n    msgs = [msg, null];\n}\nelse {\n    msgs = [null, msg];\n}\nreturn msgs;\n",
+        "func": "var nowDate = new Date(msg.payload);\nvar startDate = new Date(msg.payload);\nvar endDate = new Date(msg.payload);\n\n// Month is 0-indexed\n// Earliest Thanksgiving can be is 22nd\nstartDate.setMonth(10);\nstartDate.setDate(23);\nendDate.setMonth(0);\nendDate.setDate(10);\n\nif (endDate < startDate) {\n    // Want to err on side of assuming in range\n    if (nowDate <= endDate) {\n        startDate.setYear(startDate.Year - 1);\n    }\n    else {\n        endDate.setYear(endDate.Year + 1);\n    }\n}\n\nfunction isWithinRange(testDate) {\n   return !(testDate < startDate ||\n        testDate > endDate);\n}\n\n// msg.dateNow = nowDate.toDateString();\n// msg.dateStart = startDate.toDateString();\n// msg.dateEnd = endDate.toDateString();\n// if (isWithinRange(nowDate)) {\n//     msg.success = 'Yes'\n//     return msg;\n// }\n// else {\n//     msg.fail = 'No'\n//     return msg;\n// }\n\nif (isWithinRange(nowDate)) {\n    msgs = [msg, null];\n}\nelse {\n    msgs = [null, msg];\n}\nreturn msgs;\n",
         "outputs": 2,
         "noerr": 0,
         "x": 380,
@@ -19211,7 +19212,7 @@
         "type": "function",
         "z": "e7792035.7e5bc",
         "name": "Is Christmas Eve?",
-        "func": "var nowDate = new Date(msg.payload);\nvar startDate = new Date(msg.payload);\nvar endDate = new Date(msg.payload);\n\n// Month is 0-indexed\n// Earliest Thanksgiving can be is 22nd\nstartDate.setMonth(11);\nstartDate.setDate(24);\nendDate.setMonth(11);\nendDate.setDate(24);\n\nif (endDate < startDate) {\n    endDate.setYear(endDate.Year + 1);\n}\n\nfunction isWithinRange(testDate) {\n   return !(testDate < startDate ||\n        testDate > endDate);\n}\n\n// msg.dateNow = nowDate.toDateString();\n// msg.dateStart = startDate.toDateString();\n// msg.dateEnd = endDate.toDateString();\n// if (isWithinRange(nowDate)) {\n//     msg.success = 'Yes'\n//     return msg;\n// }\n// else {\n//     msg.fail = 'No'\n//     return msg;\n// }\n\nif (isWithinRange(nowDate)) {\n    msgs = [msg, null];\n}\nelse {\n    msgs = [null, msg];\n}\nreturn msgs;\n",
+        "func": "var nowDate = new Date(msg.payload);\nvar startDate = new Date(msg.payload);\nvar endDate = new Date(msg.payload);\n\n// Month is 0-indexed\n// Earliest Thanksgiving can be is 22nd\nstartDate.setMonth(11);\nstartDate.setDate(24);\nendDate.setMonth(11);\nendDate.setDate(24);\n\nif (endDate < startDate) {\n    // Want to err on side of assuming in range\n    if (nowDate <= endDate) {\n        startDate.setYear(startDate.Year - 1);\n    }\n    else {\n        endDate.setYear(endDate.Year + 1);\n    }\n}\n\nfunction isWithinRange(testDate) {\n   return !(testDate < startDate ||\n        testDate > endDate);\n}\n\n// msg.dateNow = nowDate.toDateString();\n// msg.dateStart = startDate.toDateString();\n// msg.dateEnd = endDate.toDateString();\n// if (isWithinRange(nowDate)) {\n//     msg.success = 'Yes'\n//     return msg;\n// }\n// else {\n//     msg.fail = 'No'\n//     return msg;\n// }\n\nif (isWithinRange(nowDate)) {\n    msgs = [msg, null];\n}\nelse {\n    msgs = [null, msg];\n}\nreturn msgs;\n",
         "outputs": 2,
         "noerr": 0,
         "x": 370,
@@ -19232,7 +19233,7 @@
         "type": "function",
         "z": "e7792035.7e5bc",
         "name": "Is New Year's Eve?",
-        "func": "var nowDate = new Date(msg.payload);\nvar startDate = new Date(msg.payload);\nvar endDate = new Date(msg.payload);\n\n// Month is 0-indexed\n// Earliest Thanksgiving can be is 22nd\nstartDate.setMonth(11);\nstartDate.setDate(31);\nendDate.setMonth(11);\nendDate.setDate(31);\n\nif (endDate < startDate) {\n    endDate.setYear(endDate.Year + 1);\n}\n\nfunction isWithinRange(testDate) {\n   return !(testDate < startDate ||\n        testDate > endDate);\n}\n\n// msg.dateNow = nowDate.toDateString();\n// msg.dateStart = startDate.toDateString();\n// msg.dateEnd = endDate.toDateString();\n// if (isWithinRange(nowDate)) {\n//     msg.success = 'Yes'\n//     return msg;\n// }\n// else {\n//     msg.fail = 'No'\n//     return msg;\n// }\n\nif (isWithinRange(nowDate)) {\n    msgs = [msg, null];\n}\nelse {\n    msgs = [null, msg];\n}\nreturn msgs;\n",
+        "func": "var nowDate = new Date(msg.payload);\nvar startDate = new Date(msg.payload);\nvar endDate = new Date(msg.payload);\n\n// Month is 0-indexed\n// Earliest Thanksgiving can be is 22nd\nstartDate.setMonth(11);\nstartDate.setDate(31);\nendDate.setMonth(11);\nendDate.setDate(31);\n\nif (endDate < startDate) {\n    // Want to err on side of assuming in range\n    if (nowDate <= endDate) {\n        startDate.setYear(startDate.Year - 1);\n    }\n    else {\n        endDate.setYear(endDate.Year + 1);\n    }\n}\n\nfunction isWithinRange(testDate) {\n   return !(testDate < startDate ||\n        testDate > endDate);\n}\n\n// msg.dateNow = nowDate.toDateString();\n// msg.dateStart = startDate.toDateString();\n// msg.dateEnd = endDate.toDateString();\n// if (isWithinRange(nowDate)) {\n//     msg.success = 'Yes'\n//     return msg;\n// }\n// else {\n//     msg.fail = 'No'\n//     return msg;\n// }\n\nif (isWithinRange(nowDate)) {\n    msgs = [msg, null];\n}\nelse {\n    msgs = [null, msg];\n}\nreturn msgs;\n",
         "outputs": 2,
         "noerr": 0,
         "x": 370,
@@ -19240,7 +19241,7 @@
         "wires": [
             [],
             [
-                "2402d811.edc588"
+                "e66833e4.1872b"
             ]
         ],
         "outputLabels": [
@@ -20225,7 +20226,7 @@
         "type": "function",
         "z": "77a9fbb5.83fa74",
         "name": "Inject list of responses",
-        "func": "var responses = [\n    \"I'll never tell.\",\n    \"In the liquor room, there is a wooden cigar\" +\n        \" box.  If you put in 20 dollars, it may\" +\n        \" help me remember.\",\n    \"Did you look... ...behind you?\",\n    \"It's probably the last place someone left it.\",\n    \"The location of the ladder is...\",\n    \"Searching...\",\n    \"Here are some things I found on the web:\" +\n        \" Ladders are good to get high.\",\n    \"Would you like me to order a black step ladder\" +\n        \" that Narvan won't lose this time?\",\n    \"I plead the fifth.\",\n    \"Are you sure the ladder ever existed?  Do you\" +\n        \" have proof?\",\n    \"How do I know you are not the ladder?\",\n    \"How does one define ladder?  Or step?  Or\" +\n        \" black?  Or Narván?\",\n    \"Hm, I'm not sure.\",\n    \"Ask again later. \",\n    \"Outlook not so good.\",\n    \"It was inside of you all along.\",\n    \"Maybe the real treasure was the friends we\" +\n        \" made along the way.\",\n];\n\nmsg.responses = responses;\n\nreturn msg;",
+        "func": "var responses = [\n    \"I'll never tell.\",\n    \"In the liquor room, there is a wooden cigar\" +\n        \" box.  If you put in 20 dollars, it may\" +\n        \" help me remember.\",\n    \"Did you look... ...behind you?\",\n    \"It's probably the last place someone left it.\",\n    \"The location of the ladder is...\",\n    \"Searching...\",\n    \"Here are some things I found on the web:\" +\n        \" Ladders are good to get high.\",\n    \"Would you like me to order a black step ladder\" +\n        \" that Narvan won't lose this time?\",\n    \"I plead the fifth.\",\n    \"Are you sure the ladder ever existed?  Do you\" +\n        \" have proof?\",\n    \"How do I know you are not the ladder?\",\n    \"How does one define ladder?  Or step?  Or\" +\n        \" black?  Or Narván?\",\n    \"Hm, I'm not sure.\",\n    \"Ask again later. \",\n    \"Outlook not so good.\",\n    \"It was inside of you all along.\",\n    \"Maybe the real treasure was the friends we\" +\n        \" made along the way.\",\n    \"Maybe you lost it while you were\" +\n        \" discussing politics\",\n    \"Based on Narván's order history, I found a\" +\n        \" black step ladder.  It is $34.21, with\" +\n        \" delivery by tomorrow.  I've added it to\" +\n        \" your Amazon cart.  Would you like to\" +\n        \" order it now?\",\n];\n\nmsg.responses = responses;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 280,
@@ -20574,5 +20575,435 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "e66833e4.1872b",
+        "type": "function",
+        "z": "e7792035.7e5bc",
+        "name": "Is Party?",
+        "func": "var nowDate = new Date(msg.payload);\nvar startDate = new Date(msg.payload);\nvar endDate = new Date(msg.payload);\n\n// Month is 0-indexed\n// Earliest Thanksgiving can be is 22nd\nstartDate.setMonth(6);\nstartDate.setDate(16);\nendDate.setMonth(6);\nendDate.setDate(16);\n// Set month to 6 to disable party\n// (since well outside Christmas season range)\n\nif (endDate < startDate) {\n    // Want to err on side of assuming in range\n    if (nowDate <= endDate) {\n        startDate.setYear(startDate.Year - 1);\n    }\n    else {\n        endDate.setYear(endDate.Year + 1);\n    }\n}\n\nfunction isWithinRange(testDate) {\n   return !(testDate < startDate ||\n        testDate > endDate);\n}\n\n// msg.dateNow = nowDate.toDateString();\n// msg.dateStart = startDate.toDateString();\n// msg.dateEnd = endDate.toDateString();\n// if (isWithinRange(nowDate)) {\n//     msg.success = 'Yes'\n//     return msg;\n// }\n// else {\n//     msg.fail = 'No'\n//     return msg;\n// }\n\nif (isWithinRange(nowDate)) {\n    msgs = [msg, null];\n}\nelse {\n    msgs = [null, msg];\n}\nreturn msgs;\n",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 440,
+        "y": 700,
+        "wires": [
+            [],
+            [
+                "2402d811.edc588"
+            ]
+        ],
+        "outputLabels": [
+            "Yes",
+            "No"
+        ]
+    },
+    {
+        "id": "3c94b436.b277cc",
+        "type": "switch",
+        "z": "a28e9600.dc1528",
+        "name": "Which source?",
+        "property": "data.attributes.source",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "AirPlay",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Bluetooth",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Alexa Echo",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Spotify",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 340,
+        "y": 760,
+        "wires": [
+            [
+                "67b02314.fbc45c"
+            ],
+            [
+                "67b02314.fbc45c"
+            ],
+            [
+                "9d5ebc30.eec99",
+                "b5176dba.ec4e"
+            ],
+            [
+                "9d5ebc30.eec99",
+                "b5176dba.ec4e"
+            ]
+        ]
+    },
+    {
+        "id": "d7e95784.5f92f8",
+        "type": "server-state-changed",
+        "z": "a28e9600.dc1528",
+        "name": "Flagged to start workout?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.pending_workout_start",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "2f354c4c.c2ec14"
+            ],
+            [
+                "841c6237.257d2"
+            ]
+        ]
+    },
+    {
+        "id": "2f354c4c.c2ec14",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Clear start workout flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.pending_workout_start",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 450,
+        "y": 60,
+        "wires": [
+            [
+                "5ba6a221.8e373c"
+            ]
+        ]
+    },
+    {
+        "id": "5ba6a221.8e373c",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Start Workout flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 780,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "325670d3.3d4bc",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Set Yamaha volume to -24 dB (76%)",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.yamaha_receiver",
+        "data": "{\"volume_level\":0.76}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 610,
+        "y": 180,
+        "wires": [
+            [
+                "621a3063.017fa"
+            ]
+        ]
+    },
+    {
+        "id": "841c6237.257d2",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Flag to turn on Yamaha to Alexa Echo",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.pending_yamaha_alexa_input",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 470,
+        "y": 120,
+        "wires": [
+            [
+                "325670d3.3d4bc"
+            ]
+        ]
+    },
+    {
+        "id": "621a3063.017fa",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Select Yamaha for Spotify",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "select_source",
+        "entityId": "media_player.spotify_jonathan_casey",
+        "data": "{\"source\":\"Jonathan's Yamaha Receiver Echo Flex\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 390,
+        "y": 260,
+        "wires": [
+            [
+                "adec12b4.c3c8d"
+            ]
+        ]
+    },
+    {
+        "id": "adec12b4.c3c8d",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Select Liked Songs playlist",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "play_media",
+        "entityId": "media_player.spotify_jonathan_casey",
+        "data": "{\"media_content_id\":\"spotify:user:jcaseyri:collection\",\"media_content_type\":\"playlist\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 660,
+        "y": 260,
+        "wires": [
+            [
+                "a715b5dd.36e6e8"
+            ]
+        ]
+    },
+    {
+        "id": "a715b5dd.36e6e8",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Shuffle playlist",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "shuffle_set",
+        "entityId": "media_player.spotify_jonathan_casey",
+        "data": "{\"shuffle\":true}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 440,
+        "y": 320,
+        "wires": [
+            [
+                "9120467d.7d2b08"
+            ]
+        ]
+    },
+    {
+        "id": "9120467d.7d2b08",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Next song (so actually random)",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "media_next_track",
+        "entityId": "media_player.spotify_jonathan_casey",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 710,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b5176dba.ec4e",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Pause Spotify",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "media_pause",
+        "entityId": "media_player.spotify_jonathan_casey",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 660,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "79c659e6.6aae28",
+        "type": "api-call-service",
+        "z": "390fc521.dffd0a",
+        "name": "Pause Spotify",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "media_pause",
+        "entityId": "media_player.spotify_jonathan_casey",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 680,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d5583ca8.fe197",
+        "type": "api-current-state",
+        "z": "390fc521.dffd0a",
+        "name": "Single occupant?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "Solo",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_select.occupancy_mode",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 650,
+        "y": 200,
+        "wires": [
+            [
+                "79c659e6.6aae28"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "be26d65e.03a7e8",
+        "type": "comment",
+        "z": "390fc521.dffd0a",
+        "name": "TODO: Check source before pausing Spotify",
+        "info": "",
+        "x": 690,
+        "y": 80,
+        "wires": []
     }
 ]

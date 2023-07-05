@@ -167,7 +167,8 @@ influxdb:
 
 
 input_boolean:
-  # Icons from https://materialdesignicons.com/
+  # Icons from https://pictogrammers.com/library/mdi/
+  #  (formerly https://materialdesignicons.com/)
   car_alarm_triggered:
     name: Car Alarm Triggered
     icon: mdi:shield-car
@@ -224,6 +225,10 @@ input_boolean:
     name: Flag workout finish
     initial: false
     icon: mdi:music-rest-whole
+  pending_workout_start:
+    name: Flag workout start
+    initial: false
+    icon: mdi:music-note-whole
   pending_yamaha_airplay_input:
     name: Flag yamaha airplay input select
     initial: False

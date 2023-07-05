@@ -104,6 +104,7 @@ views:
         title: Automation Trigger
         entities:
           - input_boolean.pending_workout_finish
+          - input_boolean.pending_workout_start
           - input_boolean.request_alexa_wheres_the_beer
           - sensor.last_alexa
           - input_text.alexa_actionable_notification
