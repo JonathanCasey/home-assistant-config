@@ -112,6 +112,8 @@ views:
       - type: entities
         title: Device Control
         entities:
+          - input_boolean.pending_blast_music
+          - input_boolean.pending_init_yamaha_alexa_echo
           - input_boolean.pending_mercedes_start
           - input_boolean.pending_narvans_ladder_action_reset
           - input_boolean.pending_power_select_tvpc_office_all

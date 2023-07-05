@@ -21005,5 +21005,493 @@
         "x": 690,
         "y": 80,
         "wires": []
+    },
+    {
+        "id": "bdff4550.6f86f8",
+        "type": "server-state-changed",
+        "z": "1dde2bca.3de4d4",
+        "name": "Flagged to init yamaha alexa (with volume)?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.pending_init_yamaha_alexa_echo",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 190,
+        "y": 740,
+        "wires": [
+            [
+                "43d652c7.529d6c",
+                "2da202c6.9a59be"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "43d652c7.529d6c",
+        "type": "api-call-service",
+        "z": "1dde2bca.3de4d4",
+        "name": "Clear init yamaha alexa input flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.pending_init_yamaha_alexa_echo",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 540,
+        "y": 700,
+        "wires": [
+            [
+                "7656c602.31cb58"
+            ]
+        ]
+    },
+    {
+        "id": "2da202c6.9a59be",
+        "type": "change",
+        "z": "1dde2bca.3de4d4",
+        "name": "Queue select Alexa AV6",
+        "rules": [
+            {
+                "t": "set",
+                "p": "config.input_device",
+                "pt": "msg",
+                "to": "AV6",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 760,
+        "wires": [
+            [
+                "beb2043c.e825c8"
+            ]
+        ]
+    },
+    {
+        "id": "beb2043c.e825c8",
+        "type": "api-current-state",
+        "z": "1dde2bca.3de4d4",
+        "name": "Is yamaha on?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "entity_id": "media_player.yamaha_receiver",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 520,
+        "y": 840,
+        "wires": [
+            [
+                "cac694f4.ce44a8"
+            ],
+            [
+                "b71aa50a.1ff098"
+            ]
+        ]
+    },
+    {
+        "id": "b71aa50a.1ff098",
+        "type": "api-call-service",
+        "z": "1dde2bca.3de4d4",
+        "name": "Turn on Yamaha",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "turn_on",
+        "entityId": "media_player.yamaha_receiver",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 520,
+        "y": 940,
+        "wires": [
+            [
+                "790ec1d.6902b4"
+            ]
+        ]
+    },
+    {
+        "id": "790ec1d.6902b4",
+        "type": "delay",
+        "z": "1dde2bca.3de4d4",
+        "name": "Allow 5s to turn on",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 730,
+        "y": 940,
+        "wires": [
+            [
+                "cac694f4.ce44a8"
+            ]
+        ]
+    },
+    {
+        "id": "cac694f4.ce44a8",
+        "type": "api-call-service",
+        "z": "1dde2bca.3de4d4",
+        "name": "Select Queued Input Device",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "select_source",
+        "entityId": "media_player.yamaha_receiver",
+        "data": "{\t    \"source\": msg.config.input_device\t}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 820,
+        "y": 840,
+        "wires": [
+            [
+                "fd2d608a.f4cfb"
+            ]
+        ]
+    },
+    {
+        "id": "fd2d608a.f4cfb",
+        "type": "api-call-service",
+        "z": "1dde2bca.3de4d4",
+        "name": "Set Yamaha volume to -12 dB (88%)",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.yamaha_receiver",
+        "data": "{\"volume_level\":0.88}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 910,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a8c1bf1.43f5e4",
+        "type": "server-state-changed",
+        "z": "1dde2bca.3de4d4",
+        "name": "Flagged to blast music everywhere?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.pending_blast_music",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 160,
+        "y": 1060,
+        "wires": [
+            [
+                "2197ab86.e578e4",
+                "2da202c6.9a59be",
+                "597708ea.ffd7c8",
+                "6b0b8162.99a69",
+                "a461fbd3.294318"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "2197ab86.e578e4",
+        "type": "api-call-service",
+        "z": "1dde2bca.3de4d4",
+        "name": "Clear blast music everywhere input flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.pending_blast_music",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 540,
+        "y": 1020,
+        "wires": [
+            [
+                "ccc83d47.c8fb3"
+            ]
+        ]
+    },
+    {
+        "id": "597708ea.ffd7c8",
+        "type": "api-call-service",
+        "z": "1dde2bca.3de4d4",
+        "name": "Select Everywhere for Spotify",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "select_source",
+        "entityId": "media_player.spotify_jonathan_casey",
+        "data": "{\"source\":\"Everywhere\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 510,
+        "y": 1080,
+        "wires": [
+            [
+                "22004945.0f9646"
+            ]
+        ]
+    },
+    {
+        "id": "22004945.0f9646",
+        "type": "api-call-service",
+        "z": "1dde2bca.3de4d4",
+        "name": "Resume play",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "media_play",
+        "entityId": "media_player.spotify_jonathan_casey",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 750,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6b0b8162.99a69",
+        "type": "api-call-service",
+        "z": "1dde2bca.3de4d4",
+        "name": "Set most Alexa volume to 70%",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.alexa_dining_room, media_player.alexa_downstairs_bathroom, media_player.alexa_kitchen, media_player.alexa_laundry_room, media_player.alexa_living_room, media_player.alexa_master_bedroom, media_player.alexa_office, media_player.alexa_upstairs_bathroom, media_player.jonathan_s_7th_echo_dot, media_player.jonathan_s_guest_bedroom_echo_dot",
+        "data": "{\"volume_level\":0.7}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 530,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a461fbd3.294318",
+        "type": "api-call-service",
+        "z": "1dde2bca.3de4d4",
+        "name": "Set yamaha flex to 100%",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.jonathan_s_3rd_echo_flex",
+        "data": "{\"volume_level\":1.00}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 520,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7656c602.31cb58",
+        "type": "api-call-service",
+        "z": "1dde2bca.3de4d4",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Yamaha Input Select (init yamaha to alexa) flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 880,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ccc83d47.c8fb3",
+        "type": "api-call-service",
+        "z": "1dde2bca.3de4d4",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Yamaha Input Select (blast music) flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 900,
+        "y": 1020,
+        "wires": [
+            []
+        ]
     }
 ]
