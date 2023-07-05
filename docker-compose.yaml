@@ -43,7 +43,7 @@ services:
 
   zigbee2mqtt:
     container_name: zigbee2mqtt
-    image: koenkk/zigbee2mqtt
+    image: koenkk/zigbee2mqtt:1.28.4
     user: "1000:1000"
     volumes:
       - /opt/home-assistant/zigbee2mqtt:/app/data
