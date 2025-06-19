@@ -195,8 +195,9 @@ outside:
     - light.outside_individual
     - light.outside_front
     - light.outside_kitchen
+    - light.front_house_flood_lights
     - light.patio_string_lights
-    - light.smart_ground_lights
+    - light.patio_ground_lights
 
 # -- See lights.yaml
 # outside_individual:
@@ -247,6 +248,22 @@ upstairs_hallway:
 
 
 ########## ------------------------ Sub Rooms ------------------------ #########
+
+# Grouping just for lovelace -- See lights.yaml for one to use
+patio:
+  name: Patio
+  entities:
+    - light.patio_string_lights
+    - light.patio_ground_lights
+
+# -- See lights.yaml
+# patio_individual:
+#   name: Patio (Individual)
+#   all: true
+#   entities:
+#     - light.patio_string_lights
+#     - light.patio_ground_lights
+
 
 # -- See lights.yaml
 # washer_and_fridge:

@@ -145,8 +145,9 @@
   entities:
     - light.outside_front
     - light.outside_kitchen
+    - light.front_house_flood_lights
     - light.patio_string_lights
-    - light.smart_ground_lights
+    - light.patio_ground_lights
 
 
 # -- See Hue group (same name)
@@ -180,6 +181,20 @@
 
 
 ########## ------------------------ Sub Rooms ------------------------ #########
+
+# patio:
+#   name: Patio
+#   entities:
+#     - light.patio_string_lights
+#     - light.patio_ground_lights
+
+- platform: group
+  name: Patio (Individual)
+  # all: true
+  entities:
+    - light.patio_string_lights
+    - light.patio_ground_lights
+
 
 - platform: group
   name: Washer and Fridge
