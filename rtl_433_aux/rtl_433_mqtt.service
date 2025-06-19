@@ -26,8 +26,10 @@ SyslogIdentifier=rtl_433_mqtt
 # Note also the user must be able to create the file and logrotate must be amended to rote the log.
 #StandardOutput=file:/var/log/rtl_433.log
 
-StandardOutput=syslog
-StandardError=syslog
+# StandardOutput=syslog
+# StandardError=syslog
+StandardOutput=journal
+StandardError=journal
 
 [Install]
 WantedBy=multi-user.target

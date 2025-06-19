@@ -9,7 +9,7 @@ rtl_433="/usr/local/bin/rtl_433"
 # If did not install, can run from build dir by uncommenting line below:
 # rtl_433="$script_dir/../rtl_433/build/src/rtl_433"
 
-decoders="-R 191"
+decoders="-R 278"
 json=""
 # If want to also output json locally (for debug), uncomment below
 # json="-F json"
