@@ -25,11 +25,11 @@
 
 
 '0xb0ce1814036c02fb':   # Sengled E1C-NB7 outlet + router #02
-  friendly_name: 'outlet_router_sengled e1cnb7_foyer'
+  friendly_name: 'outlet_router_sengled_e1cnb7_foyer'
 
 
 '0xb0ce1814036bfd70':   # Sengled E1C-NB7 outlet + router #01
-  friendly_name: 'outlet_router_sengled e1cnb7_guest_bedroom'
+  friendly_name: 'outlet_router_sengled_e1cnb7_guest_bedroom'
 
 
 '0x00124b00250be522':   # Sonoff S31-Lite-ZB outlet + router #01
