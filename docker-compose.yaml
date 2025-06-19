@@ -41,6 +41,17 @@ services:
       timeout: 10s
       retries: 5
 
+  govee2mqtt:
+    container_name: govee2mqtt
+    image: ghcr.io/wez/govee2mqtt:latest
+    restart: on-failure
+    env_file:
+      - .govee2mqtt.env
+    # Host networking is required
+    network_mode: host
+    depends_on:
+      - mosquitto
+
   zigbee2mqtt:
     container_name: zigbee2mqtt
     image: koenkk/zigbee2mqtt:1.28.4
