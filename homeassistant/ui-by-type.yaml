@@ -616,8 +616,8 @@ views:
             name: Front
           - entity: light.outside_kitchen
             name: Kitchen
-          - entity: light.front_house_flood_lights
-            name: Front of House Flood Lights
+          - entity: light.trellis_flood_lights
+            name: Trellis Flood Lights
           - entity: light.patio_string_lights
             name: Patio String Lights
           - entity: light.patio_ground_lights

@@ -195,7 +195,7 @@ outside:
     - light.outside_individual
     - light.outside_front
     - light.outside_kitchen
-    - light.front_house_flood_lights
+    - light.trellis_flood_lights
     - light.patio_string_lights
     - light.patio_ground_lights
 
