@@ -1,0 +1,9 @@
+title: Quick Faves
+views:
+  - title: Main
+    path: quick-favs-main
+    cards:
+      - type: vertical-stack
+        title: HVAC Temp Override
+        cards:
+          # - type:

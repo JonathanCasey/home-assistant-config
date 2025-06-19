@@ -252,6 +252,27 @@
         "info": ""
     },
     {
+        "id": "1e88c89f.79e287",
+        "type": "tab",
+        "label": "Special Guest Home",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1d6c97cc.c24dc8",
+        "type": "tab",
+        "label": "Spotify Everywhere / Other",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "825046b1.41e718",
+        "type": "tab",
+        "label": "HVAC",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "z": "",
@@ -644,34 +665,9 @@
         "wires": [
             [
                 "442100ee.26b29",
-                "37b07451.e12c2c"
+                "6adfd37.5eefa2c"
             ],
             []
-        ]
-    },
-    {
-        "id": "37b07451.e12c2c",
-        "type": "api-call-service",
-        "z": "1d296556.09592b",
-        "name": "Turn on light",
-        "server": "2f5bd1e0.67e40e",
-        "version": 3,
-        "debugenabled": false,
-        "service_domain": "light",
-        "service": "turn_on",
-        "entityId": "light.foyer",
-        "data": "{\"brightness_pct\":50}",
-        "dataType": "json",
-        "mergecontext": "",
-        "mustacheAltTags": false,
-        "outputProperties": [],
-        "queue": "none",
-        "x": 900,
-        "y": 520,
-        "wires": [
-            [
-                "4160fc3e.761454"
-            ]
         ]
     },
     {
@@ -764,8 +760,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 950,
-        "y": 460,
+        "x": 970,
+        "y": 340,
         "wires": [
             []
         ]
@@ -878,8 +874,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 1180,
-        "y": 620,
+        "x": 2100,
+        "y": 640,
         "wires": [
             []
         ]
@@ -3543,7 +3539,7 @@
                 "value": ""
             }
         ],
-        "entityidfilter": "device_tracker.sm_n970u",
+        "entityidfilter": "device_tracker.sm_s926u1",
         "entityidfiltertype": "exact",
         "outputinitially": false,
         "state_type": "str",
@@ -3555,6 +3551,11 @@
         "for": "0",
         "forType": "num",
         "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
         "outputProperties": [
             {
                 "property": "payload",
@@ -4759,7 +4760,7 @@
         "version": 3,
         "debugenabled": false,
         "service_domain": "notify",
-        "service": "mobile_app_sm_n970u",
+        "service": "mobile_app_sm_s926u1",
         "entityId": "",
         "data": "{\"message\":\"clear_notification\",\"data\":{\"tag\":\"alarm_alert_acknowledge_clear_prompt\"}}",
         "dataType": "json",
@@ -4872,7 +4873,7 @@
         "version": 3,
         "debugenabled": false,
         "service_domain": "notify",
-        "service": "mobile_app_sm_n970u",
+        "service": "mobile_app_sm_s926u1",
         "entityId": "",
         "data": "{\"title\":\"{{alarms_triggered_name}} Alarm Triggered\",\"message\":\"Acknowledge to stop flashing, clear to return lights to previous state.\",\"data\":{\"tag\":\"alarm_alert_acknowledge_clear_prompt\",\"actions\":[{\"action\":\"acknowledge_alarm\",\"title\":\"Acknowledge\"},{\"action\":\"clear_alarm\",\"title\":\"Clear and Reset\"}]}}",
         "dataType": "json",
@@ -12732,7 +12733,7 @@
         "payload": "",
         "payloadType": "date",
         "repeat": "",
-        "crontab": "00 23 * * *",
+        "crontab": "59 23 * * *",
         "once": false,
         "onceDelay": 0.1,
         "x": 160,
@@ -15413,7 +15414,9 @@
             [
                 "78a68c2f.a43384"
             ],
-            []
+            [
+                "64929571.6bf7fc"
+            ]
         ]
     },
     {
@@ -20226,7 +20229,7 @@
         "type": "function",
         "z": "77a9fbb5.83fa74",
         "name": "Inject list of responses",
-        "func": "var responses = [\n    \"I'll never tell.\",\n    \"In the liquor room, there is a wooden cigar\" +\n        \" box.  If you put in 20 dollars, it may\" +\n        \" help me remember.\",\n    \"Did you look... ...behind you?\",\n    \"It's probably the last place someone left it.\",\n    \"The location of the ladder is...\",\n    \"Searching...\",\n    \"Here are some things I found on the web:\" +\n        \" Ladders are good to get high.\",\n    \"Would you like me to order a black step ladder\" +\n        \" that Narvan won't lose this time?\",\n    \"I plead the fifth.\",\n    \"Are you sure the ladder ever existed?  Do you\" +\n        \" have proof?\",\n    \"How do I know you are not the ladder?\",\n    \"How does one define ladder?  Or step?  Or\" +\n        \" black?  Or Narván?\",\n    \"Hm, I'm not sure.\",\n    \"Ask again later. \",\n    \"Outlook not so good.\",\n    \"It was inside of you all along.\",\n    \"Maybe the real treasure was the friends we\" +\n        \" made along the way.\",\n    \"Maybe you lost it while you were\" +\n        \" discussing politics\",\n    \"Based on Narván's order history, I found a\" +\n        \" black step ladder.  It is $34.21, with\" +\n        \" delivery by tomorrow.  I've added it to\" +\n        \" your Amazon cart.  Would you like to\" +\n        \" order it now?\",\n];\n\nmsg.responses = responses;\n\nreturn msg;",
+        "func": "var responses = [\n    \"I'll never tell.\",\n    \"In the liquor room, there is a wooden cigar\" +\n        \" box.  If you put in 20 dollars, it may\" +\n        \" help me remember.\",\n    \"Did you look... ...behind you?\",\n    \"It's probably the last place someone left it.\",\n    \"The location of the ladder is...\",\n    \"Searching...\",\n    \"Here are some things I found on the web:\" +\n        \" Ladders are good to get high.\",\n    \"Would you like me to order a black step ladder\" +\n        \" that Narvan won't lose this time?\",\n    \"I plead the fifth.\",\n    \"Are you sure the ladder ever existed?  Do you\" +\n        \" have proof?\",\n    \"How do I know YOU! are not the ladder?\",\n    \"How does one define ladder?  Or step?  Or\" +\n        \" black?  Or Narván?\",\n    \"Hm, I'm not sure.\",\n    \"Ask again later. \",\n    \"Outlook not so good.\",\n    \"It was inside of you all along.\",\n    \"Maybe the real treasure was the friends we\" +\n        \" made along the way.\",\n    \"Maybe you lost it while you were\" +\n        \" discussing politics\",\n    \"Based on Narván's order history, I found a\" +\n        \" black step ladder.  It is $34.21, with\" +\n        \" delivery by tomorrow.  I've added it to\" +\n        \" your Amazon cart.  Would you like to\" +\n        \" order it now?\"\n];\n\nmsg.responses = responses;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 280,
@@ -20858,7 +20861,7 @@
         "y": 260,
         "wires": [
             [
-                "a715b5dd.36e6e8"
+                "2860adb9.fe4f02"
             ]
         ]
     },
@@ -20883,7 +20886,7 @@
         "y": 320,
         "wires": [
             [
-                "9120467d.7d2b08"
+                "cbd91778.db12b8"
             ]
         ]
     },
@@ -20904,8 +20907,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 710,
-        "y": 320,
+        "x": 490,
+        "y": 380,
         "wires": [
             []
         ]
@@ -21493,5 +21496,2409 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "64929571.6bf7fc",
+        "type": "api-current-state",
+        "z": "35ab222c.a6eb9e",
+        "name": "Is under stairs unknown?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "unknown",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "binary_sensor.doorwin_digoo_under_stairs_door",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 450,
+        "y": 900,
+        "wires": [
+            [
+                "78a68c2f.a43384"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "acefab6f.449db8",
+        "type": "server-state-changed",
+        "z": "390fc521.dffd0a",
+        "name": "JC's Plex on Office IR changed",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "media_player.plex_plex_for_roku_43_hisense_roku_tv",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 190,
+        "y": 60,
+        "wires": [
+            [
+                "9e3e8f55.6cd01"
+            ]
+        ]
+    },
+    {
+        "id": "9e3e8f55.6cd01",
+        "type": "switch",
+        "z": "390fc521.dffd0a",
+        "name": "New play/pause state?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "playing",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "paused",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 500,
+        "y": 300,
+        "wires": [
+            [
+                "d5583ca8.fe197"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7bc29538.bbb00c",
+        "type": "server-state-changed",
+        "z": "390fc521.dffd0a",
+        "name": "JC's Plex on Master Bedroom changed",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "media_player.plex_jc_rca_roku_plex",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 170,
+        "y": 120,
+        "wires": [
+            [
+                "9e3e8f55.6cd01"
+            ]
+        ]
+    },
+    {
+        "id": "6e46a60a.359a78",
+        "type": "server-state-changed",
+        "z": "390fc521.dffd0a",
+        "name": "JC's Plex on SB2 (Win store) changed",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "media_player.plex_jc_sb2_win_store_app",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "9e3e8f55.6cd01"
+            ]
+        ]
+    },
+    {
+        "id": "598b7bb9.fe10f4",
+        "type": "server-state-changed",
+        "z": "390fc521.dffd0a",
+        "name": "JC's Plex on SB2 (Win) changed",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "media_player.plex_plex_for_windows_jc_sb2",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "9e3e8f55.6cd01"
+            ]
+        ]
+    },
+    {
+        "id": "54d22d99.43bb14",
+        "type": "server-state-changed",
+        "z": "390fc521.dffd0a",
+        "name": "JC's Plex on SB2 (?) changed",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "media_player.plex_plex_media_player_jc_sb2",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 120,
+        "y": 300,
+        "wires": [
+            [
+                "9e3e8f55.6cd01"
+            ]
+        ]
+    },
+    {
+        "id": "6adfd37.5eefa2c",
+        "type": "api-current-state",
+        "z": "1d296556.09592b",
+        "name": "Get occupancy mode",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "false",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is_not",
+        "entity_id": "input_select.occupancy_mode",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 920,
+        "y": 540,
+        "wires": [
+            [
+                "c8f8a28d.a543d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c8f8a28d.a543d",
+        "type": "switch",
+        "z": "1d296556.09592b",
+        "name": "Which occupancy mode?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Solo",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guests (compatible)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Guests (deviant)",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Party",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 1170,
+        "y": 520,
+        "wires": [
+            [
+                "b5c014f7.749888"
+            ],
+            [
+                "b5c014f7.749888"
+            ],
+            [
+                "a0580230.76281"
+            ],
+            [
+                "b4de3231.171c"
+            ]
+        ]
+    },
+    {
+        "id": "b5c014f7.749888",
+        "type": "time-range-switch",
+        "z": "1d296556.09592b",
+        "name": "Is my night-light time?",
+        "lat": "",
+        "lon": "",
+        "startTime": "21:00",
+        "endTime": "05:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 1440,
+        "y": 300,
+        "wires": [
+            [
+                "ce39b43.44a7148"
+            ],
+            [
+                "300c1b11.33d084"
+            ]
+        ]
+    },
+    {
+        "id": "d930ae2.497145",
+        "type": "time-range-switch",
+        "z": "1d296556.09592b",
+        "name": "Is deviant late-night-light time?",
+        "lat": "",
+        "lon": "",
+        "startTime": "23:00",
+        "endTime": "01:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 1490,
+        "y": 380,
+        "wires": [
+            [
+                "b4de3231.171c"
+            ],
+            [
+                "ce39b43.44a7148"
+            ]
+        ]
+    },
+    {
+        "id": "a0580230.76281",
+        "type": "time-range-switch",
+        "z": "1d296556.09592b",
+        "name": "Is deviant night-light time?",
+        "lat": "",
+        "lon": "",
+        "startTime": "23:00",
+        "endTime": "05:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 1470,
+        "y": 440,
+        "wires": [
+            [
+                "d930ae2.497145"
+            ],
+            [
+                "300c1b11.33d084"
+            ]
+        ]
+    },
+    {
+        "id": "ce39b43.44a7148",
+        "type": "api-call-service",
+        "z": "1d296556.09592b",
+        "name": "Turn on light (dim)",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.foyer",
+        "data": "{\"brightness\":1}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1790,
+        "y": 340,
+        "wires": [
+            [
+                "4160fc3e.761454"
+            ]
+        ]
+    },
+    {
+        "id": "b4de3231.171c",
+        "type": "api-call-service",
+        "z": "1d296556.09592b",
+        "name": "Turn on light (mid)",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.foyer",
+        "data": "{\"brightness\":128}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1790,
+        "y": 460,
+        "wires": [
+            [
+                "4160fc3e.761454"
+            ]
+        ]
+    },
+    {
+        "id": "300c1b11.33d084",
+        "type": "api-call-service",
+        "z": "1d296556.09592b",
+        "name": "Turn on light (mid)",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.foyer",
+        "data": "{\"brightness_pct\":50}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1770,
+        "y": 520,
+        "wires": [
+            [
+                "4160fc3e.761454"
+            ]
+        ]
+    },
+    {
+        "id": "4a2a1969.296d98",
+        "type": "api-call-service",
+        "z": "1e88c89f.79e287",
+        "name": "Prompt ack home on phone",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_sm_s926u1",
+        "entityId": "",
+        "data": "{\"title\":\"Special Guest Home\",\"message\":\"Special Guest detected home.  Mark if incorrect.  Clear or Ack if correct.\",\"data\":{\"tag\":\"special_guest_home_ack_prompt\",\"actions\":[{\"action\":\"ack_guest_home\",\"title\":\"Acknowledge\"},{\"action\":\"nack_guest_home\",\"title\":\"Incorrect\"}],\"channel\":\"Special Guest\",\"timeout\":600}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 880,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b633abb4.e8f6c8",
+        "type": "server-events",
+        "z": "1e88c89f.79e287",
+        "name": "Mobile notification action",
+        "server": "2f5bd1e0.67e40e",
+        "version": 1,
+        "event_type": "mobile_app_notification_action",
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "waitForRunning": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "tag",
+                "propertyType": "msg",
+                "value": "$outputData(\"eventData\").event.tag",
+                "valueType": "jsonata"
+            },
+            {
+                "property": "action",
+                "propertyType": "msg",
+                "value": "$outputData(\"eventData\").event.action",
+                "valueType": "jsonata"
+            }
+        ],
+        "x": 150,
+        "y": 960,
+        "wires": [
+            [
+                "5f41a607.3d9e18",
+                "f98d9905.4e42f8"
+            ]
+        ]
+    },
+    {
+        "id": "a1c73927.6e6678",
+        "type": "switch",
+        "z": "1e88c89f.79e287",
+        "name": "Ack/Nack Home?",
+        "property": "payload.event.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ack_guest_home",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "nack_guest_home",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 450,
+        "y": 880,
+        "wires": [
+            [],
+            [
+                "5ac77f33.4d51f",
+                "1327ec70.d680d4"
+            ]
+        ]
+    },
+    {
+        "id": "5f41a607.3d9e18",
+        "type": "debug",
+        "z": "1e88c89f.79e287",
+        "name": "rcvd",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 170,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "eb7a78b2.c01108",
+        "type": "server-state-changed",
+        "z": "1e88c89f.79e287",
+        "name": "",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "binary_sensor.192_168_1_69",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 210,
+        "y": 680,
+        "wires": [
+            [
+                "b2b6366d.06ce58",
+                "4250b6a.a80e248"
+            ]
+        ]
+    },
+    {
+        "id": "b2b6366d.06ce58",
+        "type": "debug",
+        "z": "1e88c89f.79e287",
+        "name": "device changes",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 340,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "d7e21f81.b0879",
+        "type": "inject",
+        "z": "1e88c89f.79e287",
+        "name": "On",
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 310,
+        "y": 520,
+        "wires": [
+            [
+                "4250b6a.a80e248"
+            ]
+        ]
+    },
+    {
+        "id": "7248c210.50b3bc",
+        "type": "inject",
+        "z": "1e88c89f.79e287",
+        "name": "Off",
+        "topic": "",
+        "payload": "off",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 320,
+        "y": 560,
+        "wires": [
+            [
+                "4250b6a.a80e248"
+            ]
+        ]
+    },
+    {
+        "id": "3eb29b2a.dd9344",
+        "type": "inject",
+        "z": "1e88c89f.79e287",
+        "name": "Unavailable",
+        "topic": "",
+        "payload": "unavailable",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 300,
+        "y": 600,
+        "wires": [
+            [
+                "4250b6a.a80e248"
+            ]
+        ]
+    },
+    {
+        "id": "f8482221.3ccc7",
+        "type": "inject",
+        "z": "1e88c89f.79e287",
+        "name": "Unknown",
+        "topic": "",
+        "payload": "unknown",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 310,
+        "y": 640,
+        "wires": [
+            [
+                "4250b6a.a80e248"
+            ]
+        ]
+    },
+    {
+        "id": "55f5251.ccbc5dc",
+        "type": "change",
+        "z": "1e88c89f.79e287",
+        "name": "Mark home",
+        "rules": [
+            {
+                "t": "set",
+                "p": "is_home",
+                "pt": "flow",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 790,
+        "y": 580,
+        "wires": [
+            [
+                "1327ec70.d680d4",
+                "4a2a1969.296d98"
+            ]
+        ]
+    },
+    {
+        "id": "5ac77f33.4d51f",
+        "type": "change",
+        "z": "1e88c89f.79e287",
+        "name": "Mark away",
+        "rules": [
+            {
+                "t": "set",
+                "p": "is_home",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 970,
+        "y": 840,
+        "wires": [
+            [
+                "e22c6926.0b2438"
+            ]
+        ]
+    },
+    {
+        "id": "1327ec70.d680d4",
+        "type": "change",
+        "z": "1e88c89f.79e287",
+        "name": "Stop timer msg",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "stop",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 700,
+        "wires": [
+            [
+                "db08c502.3aa1f8"
+            ]
+        ]
+    },
+    {
+        "id": "db08c502.3aa1f8",
+        "type": "stoptimer",
+        "z": "1e88c89f.79e287",
+        "duration": "35",
+        "units": "Minute",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "",
+        "x": 880,
+        "y": 780,
+        "wires": [
+            [
+                "5ac77f33.4d51f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e22c6926.0b2438",
+        "type": "api-call-service",
+        "z": "1e88c89f.79e287",
+        "name": "Prompt ack away on phone",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_sm_s926u1",
+        "entityId": "",
+        "data": "{\"title\":\"Special Guest Away\",\"message\":\"Special Guest detected away.  Mark if incorrect.  Clear or Ack if correct.\",\"data\":{\"tag\":\"special_guest_away_ack_prompt\",\"actions\":[{\"action\":\"ack_guest_away\",\"title\":\"Acknowledge\"},{\"action\":\"nack_guest_away\",\"title\":\"Incorrect\"}],\"channel\":\"Special Guest\",\"timeout\":600}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1000,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4250b6a.a80e248",
+        "type": "switch",
+        "z": "1e88c89f.79e287",
+        "name": "Newly home/away?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "unavailable",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "unknown",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 520,
+        "y": 680,
+        "wires": [
+            [
+                "f6ee9ec7.743df"
+            ],
+            [
+                "bb7b0348.c4677"
+            ],
+            [
+                "bb7b0348.c4677"
+            ],
+            [
+                "bb7b0348.c4677"
+            ]
+        ],
+        "outputLabels": [
+            "home",
+            "away",
+            "unavailable",
+            "unknown"
+        ]
+    },
+    {
+        "id": "f6ee9ec7.743df",
+        "type": "switch",
+        "z": "1e88c89f.79e287",
+        "name": "Is not already home?",
+        "property": "is_home",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "false"
+            },
+            {
+                "t": "null"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 580,
+        "y": 580,
+        "wires": [
+            [
+                "55f5251.ccbc5dc"
+            ],
+            [
+                "55f5251.ccbc5dc"
+            ],
+            [
+                "1327ec70.d680d4"
+            ]
+        ]
+    },
+    {
+        "id": "f98d9905.4e42f8",
+        "type": "switch",
+        "z": "1e88c89f.79e287",
+        "name": "Home/Away response?",
+        "property": "tag",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "special_guest_home_ack_prompt",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "special_guest_away_ack_prompt",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 410,
+        "y": 960,
+        "wires": [
+            [
+                "a1c73927.6e6678"
+            ],
+            [
+                "acece13.40ef02"
+            ]
+        ]
+    },
+    {
+        "id": "acece13.40ef02",
+        "type": "switch",
+        "z": "1e88c89f.79e287",
+        "name": "Ack/Nack Away?",
+        "property": "payload.event.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ack_guest_away",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "nack_guest_away",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 450,
+        "y": 1060,
+        "wires": [
+            [],
+            [
+                "f6ee9ec7.743df"
+            ]
+        ]
+    },
+    {
+        "id": "bb7b0348.c4677",
+        "type": "switch",
+        "z": "1e88c89f.79e287",
+        "name": "Is not already away?",
+        "property": "is_home",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "null"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 640,
+        "y": 800,
+        "wires": [
+            [
+                "db08c502.3aa1f8"
+            ],
+            [
+                "5ac77f33.4d51f"
+            ]
+        ]
+    },
+    {
+        "id": "b221f5a5.7744e8",
+        "type": "server-state-changed",
+        "z": "1d6c97cc.c24dc8",
+        "name": "Flagged to play Spotify everywhere?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.pending_spotify_everywhere",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 200,
+        "y": 200,
+        "wires": [
+            [
+                "259715c4.ed894a"
+            ],
+            [
+                "bba5dc2a.162db"
+            ]
+        ]
+    },
+    {
+        "id": "bba5dc2a.162db",
+        "type": "api-call-service",
+        "z": "1d6c97cc.c24dc8",
+        "name": "Flag to turn on Yamaha to Alexa Echo",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.pending_yamaha_alexa_input",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 530,
+        "y": 200,
+        "wires": [
+            [
+                "25f0d459.c4019c"
+            ]
+        ]
+    },
+    {
+        "id": "25f0d459.c4019c",
+        "type": "api-call-service",
+        "z": "1d6c97cc.c24dc8",
+        "name": "Set Yamaha volume to -24 dB (76%)",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.yamaha_receiver",
+        "data": "{\"volume_level\":0.76}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 670,
+        "y": 260,
+        "wires": [
+            [
+                "54b21996.7a0b68"
+            ]
+        ]
+    },
+    {
+        "id": "54b21996.7a0b68",
+        "type": "api-call-service",
+        "z": "1d6c97cc.c24dc8",
+        "name": "Select Yamaha for Spotify",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "select_source",
+        "entityId": "media_player.spotify_jonathan_casey",
+        "data": "{\"source\":\"Everywhere\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 450,
+        "y": 340,
+        "wires": [
+            [
+                "3a6d2fc5.e9fb5"
+            ]
+        ]
+    },
+    {
+        "id": "94bc906e.1e8e2",
+        "type": "inject",
+        "z": "1d6c97cc.c24dc8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 180,
+        "y": 260,
+        "wires": [
+            [
+                "54b21996.7a0b68"
+            ]
+        ]
+    },
+    {
+        "id": "259715c4.ed894a",
+        "type": "api-call-service",
+        "z": "1d6c97cc.c24dc8",
+        "name": "Clear Spotify everywhere flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.pending_spotify_everywhere",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 540,
+        "y": 100,
+        "wires": [
+            [
+                "63fbaaaf.75dc84"
+            ]
+        ]
+    },
+    {
+        "id": "63fbaaaf.75dc84",
+        "type": "api-call-service",
+        "z": "1d6c97cc.c24dc8",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Spotify Everywhere / Other (everywhere) flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 860,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b0155774.5680b8",
+        "type": "catch",
+        "z": "1d6c97cc.c24dc8",
+        "name": "",
+        "scope": [
+            "54b21996.7a0b68"
+        ],
+        "uncaught": false,
+        "x": 270,
+        "y": 500,
+        "wires": [
+            [
+                "7df6ad47.205f94"
+            ]
+        ]
+    },
+    {
+        "id": "18c50c81.5451b3",
+        "type": "debug",
+        "z": "1d6c97cc.c24dc8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 460,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "f26ea017.4c7a3",
+        "type": "delay",
+        "z": "1d6c97cc.c24dc8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 360,
+        "y": 660,
+        "wires": [
+            [
+                "ad7dcdad.e2be4"
+            ]
+        ]
+    },
+    {
+        "id": "fd8a676d.1ef7e8",
+        "type": "delay",
+        "z": "1d6c97cc.c24dc8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "45",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 360,
+        "y": 740,
+        "wires": [
+            [
+                "54b21996.7a0b68"
+            ]
+        ]
+    },
+    {
+        "id": "839a8093.f16e3",
+        "type": "api-call-service",
+        "z": "1d6c97cc.c24dc8",
+        "name": "Turn off Yamaha flex",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "switch.yamaha_echo_flex",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 140,
+        "y": 660,
+        "wires": [
+            [
+                "f26ea017.4c7a3"
+            ]
+        ]
+    },
+    {
+        "id": "ad7dcdad.e2be4",
+        "type": "api-call-service",
+        "z": "1d6c97cc.c24dc8",
+        "name": "Turn off Yamaha flex",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "switch.yamaha_echo_flex",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 140,
+        "y": 740,
+        "wires": [
+            [
+                "fd8a676d.1ef7e8"
+            ]
+        ]
+    },
+    {
+        "id": "86454ecc.282bc",
+        "type": "change",
+        "z": "1d6c97cc.c24dc8",
+        "name": "Increment fails",
+        "rules": [
+            {
+                "t": "set",
+                "p": "fail_count_everywhere",
+                "pt": "flow",
+                "to": "1",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 140,
+        "y": 600,
+        "wires": [
+            [
+                "839a8093.f16e3"
+            ]
+        ]
+    },
+    {
+        "id": "7df6ad47.205f94",
+        "type": "switch",
+        "z": "1d6c97cc.c24dc8",
+        "name": "Too many fails?",
+        "property": "fail_count_everywhere",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 140,
+        "y": 560,
+        "wires": [
+            [
+                "18c50c81.5451b3"
+            ],
+            [
+                "86454ecc.282bc"
+            ]
+        ]
+    },
+    {
+        "id": "3a6d2fc5.e9fb5",
+        "type": "change",
+        "z": "1d6c97cc.c24dc8",
+        "name": "Clear fails",
+        "rules": [
+            {
+                "t": "set",
+                "p": "fail_count_everywhere",
+                "pt": "flow",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2860adb9.fe4f02",
+        "type": "delay",
+        "z": "a28e9600.dc1528",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 240,
+        "y": 320,
+        "wires": [
+            [
+                "a715b5dd.36e6e8"
+            ]
+        ]
+    },
+    {
+        "id": "cbd91778.db12b8",
+        "type": "delay",
+        "z": "a28e9600.dc1528",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 240,
+        "y": 380,
+        "wires": [
+            [
+                "9120467d.7d2b08"
+            ]
+        ]
+    },
+    {
+        "id": "ca64aae2.93e688",
+        "type": "inject",
+        "z": "1e88c89f.79e287",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 680,
+        "y": 980,
+        "wires": [
+            [
+                "1327ec70.d680d4",
+                "5ac77f33.4d51f"
+            ]
+        ]
+    },
+    {
+        "id": "886dd79e.99ec88",
+        "type": "inject",
+        "z": "825046b1.41e718",
+        "name": "Manual/Placeholder",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 480,
+        "wires": [
+            [
+                "51ce8cb0.860704"
+            ]
+        ]
+    },
+    {
+        "id": "d029259d.f56c58",
+        "type": "change",
+        "z": "825046b1.41e718",
+        "name": "Stop timer msg",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "stop",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 560,
+        "wires": [
+            [
+                "b2053d52.ea9eb"
+            ]
+        ]
+    },
+    {
+        "id": "b2053d52.ea9eb",
+        "type": "stoptimer",
+        "z": "825046b1.41e718",
+        "duration": "120",
+        "units": "Minute",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "",
+        "x": 630,
+        "y": 480,
+        "wires": [
+            [
+                "993abd19.08444"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "688da815.da7618",
+        "type": "api-call-service",
+        "z": "825046b1.41e718",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"HVAC flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 1100,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "680edb65.a43814",
+        "type": "inject",
+        "z": "825046b1.41e718",
+        "name": "Cancel",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 210,
+        "y": 560,
+        "wires": [
+            [
+                "d029259d.f56c58"
+            ]
+        ]
+    },
+    {
+        "id": "993abd19.08444",
+        "type": "api-call-service",
+        "z": "825046b1.41e718",
+        "name": "Turn off HVAC air",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "climate",
+        "service": "turn_off",
+        "entityId": "climate.upstairs_air",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 770,
+        "y": 360,
+        "wires": [
+            [
+                "688da815.da7618"
+            ]
+        ]
+    },
+    {
+        "id": "df28afd8.f25d1",
+        "type": "server-state-changed",
+        "z": "825046b1.41e718",
+        "name": "Queued delayed HVAC air turn off?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.queue_delayed_hvac_air_turn_off",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 460,
+        "y": 160,
+        "wires": [
+            [
+                "3e8b928b.8c861e",
+                "b2053d52.ea9eb"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3e8b928b.8c861e",
+        "type": "api-call-service",
+        "z": "825046b1.41e718",
+        "name": "Cleared queued delayed HVAC air turn off",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.queue_delayed_hvac_air_turn_off",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 680,
+        "y": 80,
+        "wires": [
+            [
+                "688da815.da7618"
+            ]
+        ]
+    },
+    {
+        "id": "a98ea438.be3128",
+        "type": "server-state-changed",
+        "z": "825046b1.41e718",
+        "name": "Queued temp cool?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.queue_temp_cool",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "e446237a.1df72",
+                "51ce8cb0.860704"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e446237a.1df72",
+        "type": "api-call-service",
+        "z": "825046b1.41e718",
+        "name": "Cleared queued temp cool",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.queue_temp_cool",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 380,
+        "y": 220,
+        "wires": [
+            [
+                "688da815.da7618"
+            ]
+        ]
+    },
+    {
+        "id": "bb33cb95.315178",
+        "type": "server-state-changed",
+        "z": "825046b1.41e718",
+        "name": "Clear delayed HVAC air turn off?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.clear_delayed_hvac_air_turn_off",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 170,
+        "y": 640,
+        "wires": [
+            [
+                "20f1258a.33aa6a",
+                "d029259d.f56c58"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "20f1258a.33aa6a",
+        "type": "api-call-service",
+        "z": "825046b1.41e718",
+        "name": "Cleared clear delayed HVAC air turn off",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.clear_delayed_hvac_air_turn_off",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 640,
+        "y": 640,
+        "wires": [
+            [
+                "688da815.da7618"
+            ]
+        ]
+    },
+    {
+        "id": "75f3af50.1ddea",
+        "type": "inject",
+        "z": "825046b1.41e718",
+        "name": "Manual/Placeholder",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 690,
+        "y": 540,
+        "wires": [
+            [
+                "993abd19.08444"
+            ]
+        ]
+    },
+    {
+        "id": "71599f19.8a106",
+        "type": "inject",
+        "z": "825046b1.41e718",
+        "name": "Manual/Placeholder",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fc1fb7ba.eca138",
+        "type": "inject",
+        "z": "825046b1.41e718",
+        "name": "Manual/Placeholder",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9668375b.666808",
+        "type": "api-call-service",
+        "z": "825046b1.41e718",
+        "name": "Set HVAC air temp and cool mode",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "climate",
+        "service": "set_temperature",
+        "entityId": "climate.upstairs_air",
+        "data": "{\"temperature\":65,\"hvac_mode\":\"cool\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 400,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "51ce8cb0.860704",
+        "type": "api-call-service",
+        "z": "825046b1.41e718",
+        "name": "Set HVAC air to cool",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "climate",
+        "service": "set_hvac_mode",
+        "entityId": "climate.upstairs_air",
+        "data": "{\"hvac_mode\":\"cool\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 280,
+        "y": 300,
+        "wires": [
+            [
+                "271687c2.39a958"
+            ]
+        ]
+    },
+    {
+        "id": "271687c2.39a958",
+        "type": "api-call-service",
+        "z": "825046b1.41e718",
+        "name": "Set HVAC air to temp cool (home)",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "climate",
+        "service": "set_preset_mode",
+        "entityId": "climate.upstairs_air",
+        "data": "{\"preset_mode\":\"away_indefinitely\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 380,
+        "y": 380,
+        "wires": [
+            [
+                "b2053d52.ea9eb",
+                "10e1bfdf.3309d8"
+            ]
+        ]
+    },
+    {
+        "id": "2372b043.54ccf",
+        "type": "comment",
+        "z": "825046b1.41e718",
+        "name": "TEMP workaround",
+        "info": "There is no \"home indefinitely\" in the HA Ecobee integration, so using \"away indefinitely\".\n\nWould prefer to use home rather than away, because away might be useful to use as an actual away temp (high temp for cooling)...\n\nIn the future, could get this integrated somehow...or could use a vacation mode, but would need to calculate a future date/time (or just set it to some distant future and then delete it when turning off manually later).",
+        "x": 390,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "10e1bfdf.3309d8",
+        "type": "api-call-service",
+        "z": "825046b1.41e718",
+        "name": "Set non-air heat lower",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "climate",
+        "service": "set_temperature",
+        "entityId": "climate.bedrooms, climate.downstairs_common, climate.upstairs_common",
+        "data": "{\"temperature\":62}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 580,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "35bce635.acff3a",
+        "type": "server-state-changed",
+        "z": "1d6c97cc.c24dc8",
+        "name": "Flagged to turn Spotify repeat off?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.pending_spotify_repeat_off",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 200,
+        "y": 940,
+        "wires": [
+            [
+                "dc994ad4.3d2e88",
+                "d5967e7b.e5ef9"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "dc994ad4.3d2e88",
+        "type": "api-call-service",
+        "z": "1d6c97cc.c24dc8",
+        "name": "Clear Spotify repeat off flag",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.pending_spotify_repeat_off",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 540,
+        "y": 840,
+        "wires": [
+            [
+                "3d57dda9.a6b3fa"
+            ]
+        ]
+    },
+    {
+        "id": "3d57dda9.a6b3fa",
+        "type": "api-call-service",
+        "z": "1d6c97cc.c24dc8",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "logbook",
+        "service": "log",
+        "entityId": "",
+        "data": "{\"name\":\"node-red\",\"message\":\"Spotify Everywhere / Other (repeat off) flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 860,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d5967e7b.e5ef9",
+        "type": "api-call-service",
+        "z": "1d6c97cc.c24dc8",
+        "name": "Repeat off",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "repeat_set",
+        "entityId": "media_player.spotify_jonathan_casey",
+        "data": "{\"repeat\":\"off\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 530,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "141ee23e.69c056",
+        "type": "comment",
+        "z": "825046b1.41e718",
+        "name": "TODO heat and generic",
+        "info": "How to also do temp heat (forced water)?\n\nWay to handle more generically (i.e., save mode for each, turn each off/away indef, then revert mode for each after?)",
+        "x": 720,
+        "y": 840,
+        "wires": []
     }
 ]

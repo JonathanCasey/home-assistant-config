@@ -176,6 +176,10 @@ input_boolean:
   car_alarm_triggered:
     name: Car Alarm Triggered
     icon: mdi:shield-car
+  clear_delayed_hvac_air_turn_off:
+    name: Clear a delayed turn off of the HVAC air system
+    initial: false
+    icon: mdi:timer-remove-outline
   house_alarm_triggered:
     name: House Alarm Triggered
     icon: mdi:shield-home
@@ -233,6 +237,10 @@ input_boolean:
     name: Flag reset of Alexa volume
     initial: false
     icon: mdi:volume-source
+  pending_spotify_repeat_off:
+    name: Flag Spotify repeat off
+    initial: false
+    icon: mdi:repeat-off
   pending_workout_finish:
     name: Flag workout finish
     initial: false
@@ -261,6 +269,18 @@ input_boolean:
     name: Flag skip next on yamaha
     initial: false
     icon: mdi:skip-next
+  queue_delayed_hvac_air_turn_off:
+    name: Queue a delayed turn off of the HVAC air system
+    initial: false
+    icon: mdi:timer-minus-outline
+  queue_temp_cool:
+    name: Queue a temporary turn on and delayed turn off of the HVAC cool system
+    initial: false
+    icon: mdi:weather-windy
+  queue_temp_heat:
+    name: Queue a temporary turn on and delayed turn off of the HVAC heat system
+    initial: false
+    icon: mdi:heat-wave
   request_alexa_wheres_the_beer:
     name: Request where's the beer from Alexa
     initial: false
@@ -349,11 +369,18 @@ logger:
     # custom_components.mbapi2020: debug
     # homeassistant.components.alexa: debug
     #homeassistant.components.python_script: debug
+    # homeassistant.components.spotify.coordinator: debug
+    # spotipy.client: debug
 
 
 lovelace:
   mode: yaml
   dashboards:
+    lovelace-quick-favs:
+      mode: yaml
+      filename: ui-quick-favs.yaml
+      title: Quick Favs
+      icon: mdi:star-shooting
     lovelace-by-location:
       mode: yaml
       filename: ui-by-location.yaml
