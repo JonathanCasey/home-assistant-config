@@ -20,6 +20,9 @@ frontend:
     # Optional, default: 8080
     port: 18080
 
+    # Optional, enables authentication, disabled by default, cleartext (no hashing required)
+    auth_token: '!secret auth_token'
+
 
 # Required: Home Assistant integration (MQTT discovery) (default: false)
 homeassistant:
