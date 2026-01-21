@@ -64,6 +64,7 @@ mosquitto/.passwd
 node-red/flows_cred.json
 node-red/node_modules/
 node-red/*.backup
+node-red/.npm/
 
 # Organizr
 organizr/keys/

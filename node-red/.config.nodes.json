@@ -448,7 +448,7 @@
     },
     "node-red-node-tail": {
         "name": "node-red-node-tail",
-        "version": "0.3.1",
+        "version": "0.4.0",
         "local": true,
         "user": true,
         "nodes": {
@@ -467,34 +467,53 @@
     },
     "node-red-contrib-home-assistant-websocket": {
         "name": "node-red-contrib-home-assistant-websocket",
-        "version": "0.41.3",
+        "version": "0.80.3",
         "local": true,
         "user": true,
         "nodes": {
             "all": {
                 "name": "all",
                 "types": [
-                    "ha-api",
-                    "ha-button",
                     "api-call-service",
+                    "ha-api",
+                    "ha-binary-sensor",
+                    "ha-button",
                     "server",
                     "api-current-state",
                     "ha-device",
-                    "ha-entity-config",
+                    "ha-device-config",
                     "ha-entity",
+                    "ha-entity-config",
                     "server-events",
+                    "ha-events-calendar",
                     "server-state-changed",
                     "ha-fire-event",
                     "ha-get-entities",
                     "api-get-history",
+                    "ha-number",
                     "poll-state",
                     "api-render-template",
+                    "ha-select",
+                    "ha-sensor",
+                    "ha-sentence",
+                    "ha-switch",
                     "ha-tag",
+                    "ha-text",
                     "ha-time",
+                    "ha-time-entity",
                     "trigger-state",
+                    "ha-update-config",
                     "ha-wait-until",
                     "ha-webhook",
-                    "ha-zone"
+                    "ha-zone",
+                    "ha_entity_filter",
+                    "ha_sidebar",
+                    "ha_sidebar_toolbar",
+                    "x-tmpl-handlebars",
+                    "x-tmpl-handlebars",
+                    "x-tmpl-handlebars",
+                    "x-tmpl-handlebars",
+                    "x-tmpl-handlebars"
                 ],
                 "enabled": true,
                 "local": true,
@@ -525,7 +544,7 @@
     },
     "node-red-contrib-time-range-switch": {
         "name": "node-red-contrib-time-range-switch",
-        "version": "1.1.2",
+        "version": "1.2.0",
         "local": true,
         "user": true,
         "nodes": {
@@ -544,7 +563,7 @@
     },
     "node-red-contrib-bigtimer": {
         "name": "node-red-contrib-bigtimer",
-        "version": "2.8.1",
+        "version": "2.8.6",
         "local": true,
         "user": true,
         "nodes": {
@@ -584,7 +603,7 @@
     },
     "node-red-contrib-huemagic": {
         "name": "node-red-contrib-huemagic",
-        "version": "4.0.4",
+        "version": "4.2.2",
         "local": true,
         "user": true,
         "nodes": {
@@ -713,7 +732,7 @@
     },
     "node-red-contrib-credentials": {
         "name": "node-red-contrib-credentials",
-        "version": "0.2.1",
+        "version": "0.2.3",
         "local": true,
         "user": true,
         "nodes": {
@@ -732,7 +751,7 @@
     },
     "node-red-contrib-telegrambot": {
         "name": "node-red-contrib-telegrambot",
-        "version": "14.1.0",
+        "version": "17.0.5",
         "local": true,
         "user": true,
         "nodes": {
@@ -744,7 +763,8 @@
                     "telegram command",
                     "telegram event",
                     "telegram sender",
-                    "telegram reply"
+                    "telegram reply",
+                    "telegram control"
                 ],
                 "enabled": true,
                 "local": true,
