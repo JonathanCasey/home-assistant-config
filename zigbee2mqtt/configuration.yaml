@@ -1,22 +1,54 @@
+
 devices:
+  # - devices_new.yaml  # This MUST stay at top of list so new are added here
   - devices_buttons.yaml
   - devices_doorwins.yaml
   - devices_motion.yaml
   - devices_outlets.yaml
   - devices_water.yaml
+
+
+# Required: Home Assistant integration (MQTT discovery) (default: false)
 homeassistant:
   enabled: true
+  # Optional: Home Assistant status topic (default: shown below)
   status_topic: homeassistant/status
+
+
+
+# Required: MQTT settings
 mqtt:
+  # Required: MQTT base topic for Zigbee2MQTT MQTT messages
   base_topic: zigbee2mqtt
+
+  # Required: MQTT server URL (use mqtts:// for SSL/TLS connection)
   server: mqtt://localhost
+
+  # MQTT server authentication, uncomment if required:
   user: '!secret user'
   password: '!secret password'
+
+
+# Required: serial settings
 serial:
+  # Required: location of the adapter (e.g. CC2531).
+  # To autodetect the port, set 'port: null'.
   port: /dev/ttyACM0
   adapter: zstack
+
+
 advanced:
+  # log_level: debug
+
+  # Optional: ZigBee channel, changing requires re-pairing of all devices. (Note: use a ZLL channel: 11, 15, 20, or 25 to avoid Problems)
+  # (default: 11)
   channel: 25
+
+  # Optional: network encryption key, will improve security (Note: changing requires repairing of all devices) (default: shown below)
   network_key: '!secret network_key'
+
+
 device_options: {}
+
+
 version: 4
