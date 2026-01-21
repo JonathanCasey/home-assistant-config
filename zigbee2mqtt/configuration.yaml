@@ -1,4 +1,7 @@
 
+device_options: {}
+
+
 devices:
   # - devices_new.yaml  # This MUST stay at top of list so new are added here
   - devices_buttons.yaml
@@ -8,12 +11,21 @@ devices:
   - devices_water.yaml
 
 
+frontend:
+    enabled: true
+
+    # Optional, default: zigbee2mqtt-frontend, possible: zigbee2mqtt-frontend, zigbee2mqtt-windfront
+    package: zigbee2mqtt-frontend
+
+    # Optional, default: 8080
+    port: 18080
+
+
 # Required: Home Assistant integration (MQTT discovery) (default: false)
 homeassistant:
   enabled: true
   # Optional: Home Assistant status topic (default: shown below)
   status_topic: homeassistant/status
-
 
 
 # Required: MQTT settings
@@ -46,9 +58,6 @@ advanced:
 
   # Optional: network encryption key, will improve security (Note: changing requires repairing of all devices) (default: shown below)
   network_key: '!secret network_key'
-
-
-device_options: {}
 
 
 version: 4
