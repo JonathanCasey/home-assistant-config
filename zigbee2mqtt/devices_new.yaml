@@ -1,0 +1,5 @@
+# Keep this file committed like this
+# New discoveries will overwrite this -- those can then be moved to other yaml
+
+'0x00000000000dummy':   # Dummy device so file is not empty
+  friendly_name: 'zigbee2mqtt_new_device_dummy'
