@@ -189,6 +189,9 @@ input_boolean:
   immediate_closet_off:
     name: Immediately respond to closet closing to turn lights off
     icon: mdi:lightbulb-auto
+  is_main_res_1_home:
+    name: Tracks whether the 1st main resident is home
+    icon: mdi:home-floor-1
   pending_blast_music:
     name: Flag Blast music everywhere
     initial: False
@@ -429,6 +432,19 @@ mobile_app:
 
 mqtt: !include mqtt.yaml
 
+notify:
+  - name: "Default Gmail"
+    platform: smtp
+    server: "smtp.gmail.com"
+    port: 587
+    timeout: 15
+    sender: !secret notify__gmail__sender
+    encryption: starttls
+    username: !secret notify__gmail__username
+    password: !secret notify__gmail__password
+    recipient: !secret notify__gmail__recipient
+    sender_name: !secret notify__gmail__sender_name
+
 python_script:
 recorder:
 
@@ -463,6 +479,20 @@ switch:
 
 system_health:
 sun:
+
+template:
+  - trigger:
+      - platform: time_pattern
+        minutes: "/1"
+    sensor:
+      - name: Upstairs Air Target Temperature History
+        unit_of_measurement: "°F"
+        state_class: "Measurement"
+        state: "{{ state_attr('climate.upstairs_air', 'temperature') }}"
+        attributes:
+          min0: "{{ state_attr('climate.upstairs_air', 'temperature') | float(0) }}"
+          min1: "{{ this.attributes['min0'] }}"
+
 # variable:
 wake_on_lan:
 webhook:

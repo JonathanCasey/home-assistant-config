@@ -13,6 +13,7 @@ decoders="-R 278"
 json=""
 # If want to also output json locally (for debug), uncomment below
 # json="-F json"
+# json="-F log"
 mqtt="-F \"mqtt://localhost:1883,user=$MQTT_USERNAME,pass=$MQTT_PASSWORD,retain=0,events=rtl_433[/model]__[id]\""
 
 eval $rtl_433 $decoders $json $mqtt

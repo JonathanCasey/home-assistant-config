@@ -1,5 +1,159 @@
+- id: '1751916229337'
+  alias: Test - Email
+  description: ''
+  triggers:
+  - type: changed_states
+    device_id: 82f2acaa18274d4cb1b541576eac223d
+    entity_id: 990928192877e3a08bd47a6fcd851913
+    domain: light
+    trigger: device
+  conditions: []
+  actions:
+  - action: notify.default_gmail
+    metadata: {}
+    data:
+      message: This is a test message.
+      title: Test Title
+  mode: single
+- id: '1751917375255'
+  alias: Low Battery (ST)
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.button_st_kitchen_battery
+    - sensor.button_st_kitchen_sink_battery
+    - sensor.button_st_laundry_room_battery
+    - sensor.button_st_master_bedroom_battery
+    - sensor.button_st_office_battery
+    - sensor.doorwin_st_front_door_battery
+    - sensor.doorwin_st_kitchen_door_battery
+    for:
+      hours: 168
+      minutes: 0
+      seconds: 0
+    below: 0.55
+  - trigger: state
+    entity_id:
+    - input_boolean.stealth_mode
+    enabled: false
+  conditions: []
+  actions:
+  - action: notify.default_gmail
+    metadata: {}
+    data:
+      title: '[warn] Low battery (ST) in HA'
+      message: The device "{{ trigger.to_state.name }}" has had a battery level below
+        55% for 1 week.  Consider replacing soon.
+  mode: single
+- id: '1751922136820'
+  alias: Detect Upstairs Air not cooling
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.upstairs_air_temperature_diff_on_pos_filter
+    for:
+      hours: 0
+      minutes: 45
+      seconds: 0
+    above: 1
+  conditions:
+  - condition: numeric_state
+    entity_id: sensor.upstairs_air_temperature_diff_on_pos_filter_derivative
+    above: 0
+  actions:
+  - action: notify.default_gmail
+    metadata: {}
+    data:
+      title: '[Error] Upstairs Air not cooling'
+      message: ''
+      data:
+        html: '<html><body> Upstairs Air has been on for 45 minutes, but temperature
+          for last 30 minutes is still rising. <br><br> May be in a state where it
+          thinks it is running but really isn''t. <br><br> Should just need to turn
+          off and then back to cool (or temp up and then back down after it turns
+          off). </body></html>
 
-# Samsung button events:
-#  - 1001: Long press
-#  - 1002: Single press
-#  - 1004: Double press
+          '
+  - action: climate.set_hvac_mode
+    metadata: {}
+    data:
+      hvac_mode: 'off'
+    target:
+      device_id: e44a81c740ee0a7506f6f69f620c27ea
+    enabled: true
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+    enabled: true
+  - action: climate.set_hvac_mode
+    metadata: {}
+    data:
+      hvac_mode: cool
+    target:
+      device_id: e44a81c740ee0a7506f6f69f620c27ea
+    enabled: true
+  mode: single
+- id: '1757378637995'
+  alias: Low Battery / Idle (ST)
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - input_boolean.stealth_mode
+    enabled: false
+  - alias: When no temperature change for 1 day
+    trigger: state
+    entity_id:
+    - sensor.button_st_kitchen_temperature
+    - sensor.button_st_kitchen_sink_temperature
+    - sensor.button_st_laundry_room_temperature
+    - sensor.button_st_master_bedroom_temperature
+    - sensor.button_st_office_temperature
+    - sensor.doorwin_st_front_door_temperature
+    - sensor.doorwin_st_kitchen_door_temperature
+    to:
+    for:
+      hours: 24
+      minutes: 0
+      seconds: 0
+  conditions: []
+  actions:
+  - action: notify.default_gmail
+    metadata: {}
+    data:
+      title: '[warn] Low battery / Idle (ST) in HA'
+      message: The device "{{ trigger.to_state.name }}" has not changed temperature
+        in 1 day and is likely offline.  Check battery, consider replacing now.
+  mode: single
+- id: '1768942616321'
+  alias: Low Battery SMA (ST)
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.button_st_kitchen_battery_sma
+    - sensor.button_st_kitchen_sink_battery_sma
+    - sensor.button_st_laundry_room_battery_sma
+    - sensor.button_st_master_bedroom_battery_sma
+    - sensor.button_st_office_battery_sma
+    - sensor.doorwin_st_front_door_battery_sma
+    - sensor.doorwin_st_kitchen_door_battery_sma
+    below: 0.55
+    alias: When battery SMA below 0.55
+  - trigger: state
+    entity_id:
+    - input_boolean.stealth_mode
+    enabled: false
+  conditions: []
+  actions:
+  - action: notify.default_gmail
+    metadata: {}
+    data:
+      title: '[warn] Low battery SMA (ST) in HA'
+      message: The device "{{ trigger.to_state.name }}" has had a battery level below
+        55% for 1 week.  Consider replacing soon.
+  mode: single

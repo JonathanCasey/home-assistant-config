@@ -14,6 +14,7 @@ views:
         title: Buttons / Switches
         entities:
           - sensor.button_st_floater_battery
+          - sensor.button_st_floater_battery_sma
           - sensor.button_st_floater_linkquality
           - sensor.button_st_floater_temperature
           - sensor.remote_fob_digoo_floater_1
@@ -229,12 +230,15 @@ views:
         title: Sensors
         entities:
           - sensor.button_st_kitchen_battery
+          - sensor.button_st_kitchen_battery_sma
           - sensor.button_st_kitchen_linkquality
-          - sensor.button_st_kitchen_temperature_2
+          - sensor.button_st_kitchen_temperature
           - sensor.button_st_kitchen_sink_battery
+          - sensor.button_st_kitchen_sink_battery_sma
           - sensor.button_st_kitchen_sink_linkquality
-          - sensor.button_st_kitchen_sink_temperature_2
+          - sensor.button_st_kitchen_sink_temperature
           - sensor.doorwin_st_kitchen_door_battery
+          - sensor.doorwin_st_kitchen_door_battery_sma
           - binary_sensor.doorwin_st_kitchen_door_battery_low
           - sensor.doorwin_st_kitchen_door_linkquality
           - sensor.doorwin_st_kitchen_door_temperature

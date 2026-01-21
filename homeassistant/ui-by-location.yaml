@@ -151,6 +151,7 @@ views:
         title: Sensors
         entities:
           - sensor.doorwin_st_front_door_battery
+          - sensor.doorwin_st_front_door_battery_sma
           - binary_sensor.doorwin_st_front_door_battery_low
           - sensor.doorwin_st_front_door_linkquality
           - sensor.doorwin_st_front_door_temperature
@@ -269,12 +270,15 @@ views:
         title: Sensors
         entities:
           - sensor.button_st_kitchen_battery
+          - sensor.button_st_kitchen_battery_sma
           - sensor.button_st_kitchen_linkquality
-          - sensor.button_st_kitchen_temperature_2
+          - sensor.button_st_kitchen_temperature
           - sensor.button_st_kitchen_sink_battery
+          - sensor.button_st_kitchen_sink_battery_sma
           - sensor.button_st_kitchen_sink_linkquality
-          - sensor.button_st_kitchen_sink_temperature_2
+          - sensor.button_st_kitchen_sink_temperature
           - sensor.doorwin_st_kitchen_door_battery
+          - sensor.doorwin_st_kitchen_door_battery_sma
           - binary_sensor.doorwin_st_kitchen_door_battery_low
           - sensor.doorwin_st_kitchen_door_linkquality
           - sensor.doorwin_st_kitchen_door_temperature
@@ -314,8 +318,9 @@ views:
         title: Sensors
         entities:
           - sensor.button_st_laundry_room_battery
+          - sensor.button_st_laundry_room_battery_sma
           - sensor.button_st_laundry_room_linkquality
-          - sensor.button_st_laundry_room_temperature_2
+          - sensor.button_st_laundry_room_temperature
 
 
   - title: Liquor Room
@@ -464,8 +469,9 @@ views:
         title: Sensors
         entities:
           - sensor.button_st_master_bedroom_battery
+          - sensor.button_st_master_bedroom_battery_sma
           - sensor.button_st_master_bedroom_linkquality
-          - sensor.button_st_master_bedroom_temperature_2
+          - sensor.button_st_master_bedroom_temperature
       - type: grid
         title: TV
         square: false
@@ -599,6 +605,7 @@ views:
         title: Sensors
         entities:
           - sensor.button_st_office_battery
+          - sensor.button_st_office_battery_sma
           - sensor.button_st_office_linkquality
           - sensor.button_st_office_temperature
       - type: grid

@@ -847,11 +847,17 @@ views:
           - sensor.button_hue_dim_floater_bad_battery
           - sensor.0x000d6ffffea6c3bf_battery # Tradfri button
           - sensor.button_st_floater_battery
+          - sensor.button_st_floater_battery_sma
           - sensor.button_st_kitchen_battery
+          - sensor.button_st_kitchen_battery_sma
           - sensor.button_st_kitchen_sink_battery
+          - sensor.button_st_kitchen_sink_battery_sma
           - sensor.button_st_laundry_room_battery
+          - sensor.button_st_laundry_room_battery_sma
           - sensor.button_st_master_bedroom_battery
+          - sensor.button_st_master_bedroom_battery_sma
           - sensor.button_st_office_battery
+          - sensor.button_st_office_battery_sma
           - type: section
             label: Computers
           - sensor.tvpc_office_ir_battery_full_lifetime
@@ -868,8 +874,10 @@ views:
             label: Door / Window / Contact
           - sensor.doorwin_aqara_pantry_door_battery
           - sensor.doorwin_st_front_door_battery
+          - sensor.doorwin_st_front_door_battery_sma
           - binary_sensor.doorwin_st_front_door_battery_low
           - sensor.doorwin_st_kitchen_door_battery
+          - sensor.doorwin_st_kitchen_door_battery_sma
           - binary_sensor.doorwin_st_kitchen_door_battery_low
           - type: section
             label: Motion
@@ -983,11 +991,11 @@ views:
         entities:
           - sensor.motion_hue_foyer_temperature
           - sensor.doorwin_st_front_door_temperature
-          - sensor.button_st_kitchen_temperature_2
-          - sensor.button_st_kitchen_sink_temperature_2
+          - sensor.button_st_kitchen_temperature
+          - sensor.button_st_kitchen_sink_temperature
           - sensor.doorwin_st_kitchen_door_temperature
-          - sensor.button_st_laundry_room_temperature_2
-          - sensor.button_st_master_bedroom_temperature_2
+          - sensor.button_st_laundry_room_temperature
+          - sensor.button_st_master_bedroom_temperature
           - sensor.button_st_office_temperature
           - sensor.water_aqara_floater_device_temperature
       - type: entities
