@@ -1262,7 +1262,7 @@
         "name": "Is my night-light time?",
         "lat": "",
         "lon": "",
-        "startTime": "21:00",
+        "startTime": "22:00",
         "endTime": "05:00",
         "startOffset": 0,
         "endOffset": 0,
@@ -1373,7 +1373,7 @@
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is_not",
-        "entity_id": "light.outside_front",
+        "entity_id": "light.outside_front_group",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [
@@ -1413,7 +1413,7 @@
         "debugenabled": false,
         "service_domain": "light",
         "service": "turn_on",
-        "entityId": "light.outside_front",
+        "entityId": "light.outside_front_group",
         "data": "{\"brightness_pct\":100}",
         "dataType": "json",
         "mergecontext": "",
@@ -1484,7 +1484,7 @@
         "debugenabled": false,
         "service_domain": "light",
         "service": "turn_off",
-        "entityId": "light.outside_front",
+        "entityId": "light.outside_front_group",
         "data": "",
         "dataType": "json",
         "mergecontext": "",
@@ -1738,7 +1738,7 @@
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is_not",
-        "entity_id": "light.outside_kitchen",
+        "entity_id": "light.outside_kitchen_group",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [
@@ -1778,7 +1778,7 @@
         "debugenabled": false,
         "service_domain": "light",
         "service": "turn_on",
-        "entityId": "light.outside_kitchen",
+        "entityId": "light.outside_kitchen_group",
         "data": "{\"brightness_pct\":100}",
         "dataType": "json",
         "mergecontext": "",
@@ -1849,7 +1849,7 @@
         "debugenabled": false,
         "service_domain": "light",
         "service": "turn_off",
-        "entityId": "light.outside_kitchen",
+        "entityId": "light.outside_kitchen_group",
         "data": "",
         "dataType": "json",
         "mergecontext": "",
@@ -3363,7 +3363,7 @@
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "light.outside_front",
+        "entity_id": "light.outside_front_group",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [
@@ -3419,7 +3419,7 @@
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "light.outside_kitchen",
+        "entity_id": "light.outside_kitchen_group",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [
@@ -3581,9 +3581,12 @@
         "wires": [
             [
                 "229f2e70.a0b3a2",
-                "17d225c7.3c968a"
+                "828c87db.b42978"
             ],
-            []
+            [
+                "229f2e70.a0b3a2",
+                "46c7946d.4a6094"
+            ]
         ]
     },
     {
@@ -3603,8 +3606,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 640,
-        "y": 520,
+        "x": 680,
+        "y": 440,
         "wires": [
             []
         ]
@@ -3618,7 +3621,7 @@
             "c578334b.d5d9d"
         ],
         "x": 535,
-        "y": 460,
+        "y": 320,
         "wires": []
     },
     {
@@ -5347,9 +5350,7 @@
         "x": 530,
         "y": 300,
         "wires": [
-            [
-                "557ae43.ca7501c"
-            ]
+            []
         ]
     },
     {
@@ -5406,7 +5407,8 @@
         "y": 300,
         "wires": [
             [
-                "2f6a9b49.e71a94"
+                "2f6a9b49.e71a94",
+                "557ae43.ca7501c"
             ],
             []
         ]
@@ -5428,8 +5430,8 @@
         "mustacheAltTags": false,
         "outputProperties": [],
         "queue": "none",
-        "x": 720,
-        "y": 300,
+        "x": 400,
+        "y": 220,
         "wires": [
             [
                 "e2b7ecee.0930c"
@@ -16289,7 +16291,7 @@
         "name": "Is my night-light time?",
         "lat": "",
         "lon": "",
-        "startTime": "21:00",
+        "startTime": "22:00",
         "endTime": "05:00",
         "startOffset": 0,
         "endOffset": 0,
@@ -20643,10 +20645,12 @@
             ],
             [
                 "9d5ebc30.eec99",
+                "79d5e2f2.76d6bc",
                 "b5176dba.ec4e"
             ],
             [
                 "9d5ebc30.eec99",
+                "79d5e2f2.76d6bc",
                 "b5176dba.ec4e"
             ]
         ]
@@ -20931,7 +20935,7 @@
         "outputProperties": [],
         "queue": "none",
         "x": 660,
-        "y": 900,
+        "y": 980,
         "wires": [
             []
         ]
@@ -21984,7 +21988,7 @@
         "name": "Is my night-light time?",
         "lat": "",
         "lon": "",
-        "startTime": "21:00",
+        "startTime": "22:00",
         "endTime": "05:00",
         "startOffset": 0,
         "endOffset": 0,
@@ -23900,5 +23904,165 @@
         "x": 720,
         "y": 840,
         "wires": []
+    },
+    {
+        "id": "79d5e2f2.76d6bc",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Select Phone for Spotify",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "select_source",
+        "entityId": "media_player.spotify_jonathan_casey",
+        "data": "{\"source\":\"SM-S926U1\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 690,
+        "y": 920,
+        "wires": [
+            [
+                "5c3176e7.e0928"
+            ]
+        ]
+    },
+    {
+        "id": "5c3176e7.e0928",
+        "type": "delay",
+        "z": "a28e9600.dc1528",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 940,
+        "y": 920,
+        "wires": [
+            [
+                "b5176dba.ec4e"
+            ]
+        ]
+    },
+    {
+        "id": "b6479db7.5eaae8",
+        "type": "server-state-changed",
+        "z": "c35af4f2.4cd108",
+        "name": "Did main res 1 arrive home?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.is_main_res_1_home",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 320,
+        "y": 420,
+        "wires": [
+            [
+                "17d225c7.3c968a"
+            ],
+            [
+                "229f2e70.a0b3a2"
+            ]
+        ]
+    },
+    {
+        "id": "828c87db.b42978",
+        "type": "api-call-service",
+        "z": "c35af4f2.4cd108",
+        "name": "Set main res 1 home",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.is_main_res_1_home",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 660,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "46c7946d.4a6094",
+        "type": "api-call-service",
+        "z": "c35af4f2.4cd108",
+        "name": "Set main res 1 away",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.is_main_res_1_home",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 660,
+        "y": 540,
+        "wires": [
+            []
+        ]
     }
 ]
