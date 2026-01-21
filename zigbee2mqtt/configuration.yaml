@@ -6,7 +6,7 @@ permit_join: false
 
 
 devices:
-  - devices_new.yaml  # This MUST stay at top of list so new are added here
+  # - devices_new.yaml  # This MUST stay at top of list so new are added here
   - devices_buttons.yaml
   - devices_doorwins.yaml
   - devices_motion.yaml
@@ -15,7 +15,8 @@ devices:
 
 
 # Required: Home Assistant integration (MQTT discovery) (default: false)
-homeassistant: true
+homeassistant:
+  enabled: true
 
 
 # Required: MQTT settings
@@ -36,6 +37,7 @@ serial:
   # Required: location of the adapter (e.g. CC2531).
   # To autodetect the port, set 'port: null'.
   port: /dev/ttyACM0
+  adapter: zstack
 
 
 advanced:
@@ -45,8 +47,8 @@ advanced:
   channel: 25
   # Optional: network encryption key, will improve security (Note: changing requires repairing of all devices) (default: shown below)
   network_key: '!secret network_key'
-  # Optional: Home Assistant discovery topic (default: shown below)
-  homeassistant_discovery_topic: 'homeassistant'
+  # Obsolete: Home Assistant discovery topic (default: shown below)
+  # homeassistant_discovery_topic: 'homeassistant'
   # Optional: Home Assistant status topic (default: shown below)
   homeassistant_status_topic: 'homeassistant/status'
   # Optional: Home Assistant legacy triggers (default: shown below), when enabled:
