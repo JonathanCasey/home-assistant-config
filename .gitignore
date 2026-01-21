@@ -55,6 +55,7 @@ homeassistant/custom_components/**
 !homeassistant/custom_components/variable/**
 homeassistant/themes/**
 homeassistant/www/community/zigbee2mqtt_networkmap/**
+homeassistant/.ha_run.lock
 
 # mosquitto
 mosquitto/.passwd
@@ -83,3 +84,6 @@ zigbee2mqtt/coordinator_backup.json
 zigbee2mqtt/database.db.backup
 zigbee2mqtt/log
 zigbee2mqtt/state.json
+zigbee2mqtt/configuration_backup_v1.yaml
+zigbee2mqtt/configuration_backup_v2.yaml
+zigbee2mqtt/configuration_backup_v3.yaml
