@@ -16,6 +16,10 @@
 # Sonoff S31 Lite zb outlet + router: https://www.zigbee2mqtt.io/devices/S31ZB.html
 
 
+'0x00158d008c74ed2f':   # Aqara ZNCZ12LM outlet + router #01
+  friendly_name: 'outlet_router_aqara_zncz12lm_guest_bedroom'
+
+
 '0x90fd9ffffe2ac05e':   # Ikea Tradfri outlet + router #01
   friendly_name: 'outlet_router_ikea_tradfri_guest_bedroom'
 
