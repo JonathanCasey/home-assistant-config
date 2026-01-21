@@ -15,3 +15,7 @@
 
 '0x00158d0003cecdd2':   # Aqara Door and Window #01
   friendly_name: doorwin_aqara_pantry_door
+
+
+'0x0008890001d9d8d5':   # Sage Doorbell #01
+  friendly_name: doorbell_sage_house
