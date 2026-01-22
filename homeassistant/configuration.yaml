@@ -399,6 +399,26 @@ lovelace:
       filename: ui-by-type.yaml
       title: By Type
       icon: mdi:billiards-rack
+    separator-1:
+      mode: yaml
+      filename: ui-blank.yaml
+      title: "──────────"
+      icon: mdi:minus
+    separator-2:
+      mode: yaml
+      filename: ui-blank.yaml
+      title: "──────────"
+      icon: mdi:minus
+    separator-3:
+      mode: yaml
+      filename: ui-blank.yaml
+      title: "──────────"
+      icon: mdi:minus
+    separator-4:
+      mode: yaml
+      filename: ui-blank.yaml
+      title: "──────────"
+      icon: mdi:minus
   resources:
     - url: /local/zigbee2mqtt-networkmap.js?v=0.7.0
       type: module
@@ -444,6 +464,61 @@ notify:
     password: !secret notify__gmail__password
     recipient: !secret notify__gmail__recipient
     sender_name: !secret notify__gmail__sender_name
+
+panel_custom:
+  - name: panel_integrations
+    sidebar_title: Integrations
+    sidebar_icon: mdi:puzzle
+    url_path: 'config/integrations/dashboard'
+    module_url: /api/hassio/app/entrypoint.js
+    embed_iframe: true
+    require_admin: true
+  - name: panel_devices
+    sidebar_title: Devices
+    sidebar_icon: mdi:devices
+    url_path: 'config/devices/dashboard'
+    module_url: /api/hassio/app/entrypoint.js
+    embed_iframe: true
+    require_admin: true
+  - name: panel_entities
+    sidebar_title: Entities
+    sidebar_icon: mdi:shape
+    url_path: 'config/entities'
+    module_url: /api/hassio/app/entrypoint.js
+    embed_iframe: true
+    require_admin: true
+  - name: panel_helpers
+    sidebar_title: Helpers
+    sidebar_icon: mdi:tools
+    url_path: 'config/helpers/dashboard'
+    module_url: /api/hassio/app/entrypoint.js
+    embed_iframe: true
+    require_admin: true
+  - name: panel_automations
+    sidebar_title: Automations
+    sidebar_icon: mdi:robot
+    url_path: 'config/automation/dashboard'
+    module_url: /api/hassio/app/entrypoint.js
+    embed_iframe: true
+    require_admin: true
+  - name: panel_yaml
+    sidebar_title: YAML / Server
+    sidebar_icon: mdi:yahoo
+    url_path: 'developer-tools/yaml'
+    module_url: /api/hassio/app/entrypoint.js
+    embed_iframe: true
+    require_admin: true
+  - name: panel_logs
+    sidebar_title: Logs
+    sidebar_icon: mdi:notebook-outline
+    url_path: 'config/logs'
+    module_url: /api/hassio/app/entrypoint.js
+    embed_iframe: true
+    require_admin: true
+  # - name: panel_separator_1
+  #   sidebar_title: "──────────"
+  #   sidebar_icon: mdi:minus
+  #   module_url: ""
 
 python_script:
 recorder:
