@@ -281,6 +281,14 @@
         "env": []
     },
     {
+        "id": "6eb61b0ba68bf0b4",
+        "type": "tab",
+        "label": "Spotify Like",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "name": "Home Assistant",
@@ -14647,7 +14655,7 @@
         "domain": "input_boolean",
         "service": "turn_off",
         "x": 450,
-        "y": 460,
+        "y": 500,
         "wires": [
             [
                 "88e01428.13a4d8"
@@ -14678,7 +14686,7 @@
         "domain": "logbook",
         "service": "log",
         "x": 780,
-        "y": 460,
+        "y": 500,
         "wires": [
             []
         ]
@@ -14903,7 +14911,8 @@
                 "2f354c4c.c2ec14"
             ],
             [
-                "841c6237.257d2"
+                "841c6237.257d2",
+                "621a3063.017fa"
             ]
         ]
     },
@@ -14994,12 +15003,10 @@
         "blockInputOverrides": false,
         "domain": "media_player",
         "service": "volume_set",
-        "x": 610,
+        "x": 710,
         "y": 180,
         "wires": [
-            [
-                "621a3063.017fa"
-            ]
+            []
         ]
     },
     {
@@ -15031,7 +15038,7 @@
         "y": 120,
         "wires": [
             [
-                "325670d3.3d4bc"
+                "eb58eec530b54246"
             ]
         ]
     },
@@ -15060,11 +15067,11 @@
         "blockInputOverrides": false,
         "domain": "media_player",
         "service": "select_source",
-        "x": 390,
-        "y": 260,
+        "x": 330,
+        "y": 200,
         "wires": [
             [
-                "adec12b4.c3c8d"
+                "3c43cce8ebe35490"
             ]
         ]
     },
@@ -15093,7 +15100,7 @@
         "blockInputOverrides": false,
         "domain": "media_player",
         "service": "play_media",
-        "x": 660,
+        "x": 500,
         "y": 260,
         "wires": [
             [
@@ -15162,7 +15169,9 @@
         "x": 490,
         "y": 380,
         "wires": [
-            []
+            [
+                "54404d05c9dac027"
+            ]
         ]
     },
     {
@@ -15300,6 +15309,129 @@
                 "b5176dba.ec4e"
             ]
         ]
+    },
+    {
+        "id": "eb58eec530b54246",
+        "type": "delay",
+        "z": "a28e9600.dc1528",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 740,
+        "y": 120,
+        "wires": [
+            [
+                "325670d3.3d4bc"
+            ]
+        ]
+    },
+    {
+        "id": "3c43cce8ebe35490",
+        "type": "delay",
+        "z": "a28e9600.dc1528",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 240,
+        "y": 260,
+        "wires": [
+            [
+                "adec12b4.c3c8d"
+            ]
+        ]
+    },
+    {
+        "id": "644675f99de94c37",
+        "type": "api-call-service",
+        "z": "a28e9600.dc1528",
+        "name": "Select Yamaha for Spotify",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "media_player.select_source",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.spotify_jonathan_casey"
+        ],
+        "labelId": [],
+        "data": "{\"source\":\"Jonathan's Yamaha Receiver Echo Flex\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "media_player",
+        "service": "select_source",
+        "x": 470,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "54404d05c9dac027",
+        "type": "delay",
+        "z": "a28e9600.dc1528",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 240,
+        "y": 440,
+        "wires": [
+            [
+                "644675f99de94c37"
+            ]
+        ]
+    },
+    {
+        "id": "7fc6f186387e70c5",
+        "type": "comment",
+        "z": "a28e9600.dc1528",
+        "name": "Intentionally Twice",
+        "info": "Backup in case the first one fails\n(common failure point)",
+        "x": 690,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "716cfba951144cb8",
+        "type": "comment",
+        "z": "a28e9600.dc1528",
+        "name": "Force reshuffle?",
+        "info": "Could set to not shuffled\nbefore setting to shuffled\nto force a re-shuffle...",
+        "x": 740,
+        "y": 260,
+        "wires": []
     },
     {
         "id": "f1fbb6c7.bc4808",
@@ -25780,5 +25912,84 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "44c9dafb470286fa",
+        "type": "trigger-state",
+        "z": "6eb61b0ba68bf0b4",
+        "name": "",
+        "server": "2f5bd1e0.67e40e",
+        "version": 5,
+        "inputs": 0,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "media_player.spotify_jonathan_casey"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "debugEnabled": false,
+        "constraints": [
+            {
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "property",
+                "propertyValue": "new_state.attributes.media_content_id",
+                "comparatorType": "is_not",
+                "comparatorValueDatatype": "prevEntity",
+                "comparatorValue": "attributes.media_content_id"
+            }
+        ],
+        "customOutputs": [],
+        "outputInitially": false,
+        "stateType": "str",
+        "enableInput": false,
+        "x": 330,
+        "y": 680,
+        "wires": [
+            [
+                "73d0caa63c516cf1"
+            ],
+            [
+                "480991252f354a7e"
+            ]
+        ]
+    },
+    {
+        "id": "73d0caa63c516cf1",
+        "type": "debug",
+        "z": "6eb61b0ba68bf0b4",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "480991252f354a7e",
+        "type": "debug",
+        "z": "6eb61b0ba68bf0b4",
+        "d": true,
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 860,
+        "wires": []
     }
 ]

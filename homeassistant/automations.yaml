@@ -157,3 +157,45 @@
       message: The device "{{ trigger.to_state.name }}" has had a battery level below
         55% for 1 week.  Consider replacing soon.
   mode: single
+- id: '1769126673298'
+  alias: Spotify Refresher
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - media_player.spotify_jonathan_casey
+    to:
+    - playing
+  conditions: []
+  actions:
+  - repeat:
+      while:
+      - condition: state
+        entity_id: media_player.spotify_jonathan_casey
+        state:
+        - playing
+      sequence:
+      - action: homeassistant.update_entity
+        metadata: {}
+        data:
+          entity_id:
+          - media_player.spotify_jonathan_casey
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 5
+          milliseconds: 0
+      - action: logbook.log
+        metadata: {}
+        data:
+          name: Spotify Refresh progress
+          message: About to be updated again
+        enabled: false
+  - action: logbook.log
+    metadata: {}
+    data:
+      name: Spotify Refresh
+      message: Automation action loop ended
+      domain: automation
+      entity_id: automation.spotify_refresher_2
+  mode: single
