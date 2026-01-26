@@ -231,6 +231,12 @@
 ########## --------------------- Negative Groups --------------------- #########
 
 - platform: group
+  name: All Lights except Liv, Baths, Outside
+  entities:
+    - light.dining_room
+    - light.all_except_liv_baths_outside
+
+- platform: group
   name: All Lights except Living Room and Bathrooms
   entities:
     - light.dining_room

@@ -104,6 +104,7 @@ views:
       - type: entities
         title: Automation Trigger
         entities:
+          - input_boolean.expecting_delivery_guest
           - input_boolean.pending_workout_finish
           - input_boolean.pending_workout_start
           - input_boolean.request_alexa_wheres_the_beer
@@ -260,6 +261,7 @@ views:
           - light.all_except_guest
           - light.all_except_living_room
           - light.all_except_living_room_bathroom
+          - light.all_except_liv_baths_outside
 
 
 

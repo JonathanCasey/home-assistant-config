@@ -180,6 +180,9 @@ input_boolean:
     name: Clear a delayed turn off of the HVAC air system
     initial: false
     icon: mdi:timer-remove-outline
+  expecting_delivery_guest:
+    name: Expecting a delivery or guest
+    icon: mdi:truck-delivery
   house_alarm_triggered:
     name: House Alarm Triggered
     icon: mdi:shield-home

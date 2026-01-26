@@ -289,6 +289,22 @@
         "env": []
     },
     {
+        "id": "d112d316427b596e",
+        "type": "tab",
+        "label": "Rassilon",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "692206f594d070bf",
+        "type": "tab",
+        "label": "Delivery/Guest",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "name": "Home Assistant",
@@ -5159,6 +5175,40 @@
         ]
     },
     {
+        "id": "32c3fee6148d5376",
+        "type": "link in",
+        "z": "e9868773.797078",
+        "name": "In: Disable front/kitchen door sensors",
+        "links": [
+            "a480851e6c53a953"
+        ],
+        "x": 205,
+        "y": 880,
+        "wires": [
+            [
+                "188eb2ed.d8ca8d",
+                "c19e807c.79ea8"
+            ]
+        ]
+    },
+    {
+        "id": "0c4ebff14b1c2ffd",
+        "type": "link in",
+        "z": "e9868773.797078",
+        "name": "In: Enable front/kitchen door sensors",
+        "links": [
+            "584cb735d6566359"
+        ],
+        "x": 205,
+        "y": 940,
+        "wires": [
+            [
+                "2741eb95.e54344",
+                "d060b09f.a0a13"
+            ]
+        ]
+    },
+    {
         "id": "210c5d3b.b91672",
         "type": "switch",
         "z": "884319a9.e92148",
@@ -5807,6 +5857,40 @@
         ]
     },
     {
+        "id": "a569e3147155c87d",
+        "type": "link in",
+        "z": "884319a9.e92148",
+        "name": "In: Disable front/kitchen door sensors",
+        "links": [
+            "a480851e6c53a953"
+        ],
+        "x": 345,
+        "y": 960,
+        "wires": [
+            [
+                "c25cc010.43d42",
+                "e3887ade.188898"
+            ]
+        ]
+    },
+    {
+        "id": "3a6d7ecaf79c5475",
+        "type": "link in",
+        "z": "884319a9.e92148",
+        "name": "In: Enable front/kitchen door sensors",
+        "links": [
+            "584cb735d6566359"
+        ],
+        "x": 395,
+        "y": 1020,
+        "wires": [
+            [
+                "26c8be2e.7537e2",
+                "45061cb8.b1e6c4"
+            ]
+        ]
+    },
+    {
         "id": "b6d92969.1e42f8",
         "type": "server-state-changed",
         "z": "390fc521.dffd0a",
@@ -5973,7 +6057,7 @@
         "domain": "light",
         "service": "turn_off",
         "x": 1050,
-        "y": 400,
+        "y": 520,
         "wires": [
             [
                 "adc3ea04.4a0798"
@@ -6040,8 +6124,8 @@
         "for": 0,
         "forType": "num",
         "forUnits": "minutes",
-        "x": 770,
-        "y": 580,
+        "x": 780,
+        "y": 640,
         "wires": [
             [
                 "8807a907.455148",
@@ -6069,8 +6153,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1040,
-        "y": 620,
+        "x": 1060,
+        "y": 660,
         "wires": [
             []
         ]
@@ -6219,8 +6303,8 @@
         "blockInputOverrides": false,
         "domain": "light",
         "service": "turn_on",
-        "x": 1030,
-        "y": 520,
+        "x": 1050,
+        "y": 600,
         "wires": [
             [
                 "adc3ea04.4a0798"
@@ -6319,7 +6403,7 @@
         "y": 420,
         "wires": [
             [
-                "82112456.ef2958"
+                "0d2ccbec4e011e02"
             ],
             []
         ]
@@ -7013,6 +7097,86 @@
         "wires": [
             [
                 "9e3e8f55.6cd01"
+            ]
+        ]
+    },
+    {
+        "id": "0d2ccbec4e011e02",
+        "type": "api-current-state",
+        "z": "390fc521.dffd0a",
+        "name": "Expecting Delivery/Guest?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "",
+        "halt_if_type": "habool",
+        "halt_if_compare": "includes",
+        "entity_id": "input_boolean.expecting_delivery_guest",
+        "state_type": "str",
+        "blockInputOverrides": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 1020,
+        "y": 460,
+        "wires": [
+            [
+                "4f1b1fd5c9d67d85"
+            ],
+            [
+                "82112456.ef2958"
+            ]
+        ]
+    },
+    {
+        "id": "4f1b1fd5c9d67d85",
+        "type": "api-call-service",
+        "z": "390fc521.dffd0a",
+        "name": "Turn off non-living/outside lights",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.all_except_liv_baths_outside"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_off",
+        "x": 1070,
+        "y": 400,
+        "wires": [
+            [
+                "adc3ea04.4a0798"
             ]
         ]
     },
@@ -25991,5 +26155,380 @@
         "x": 460,
         "y": 860,
         "wires": []
+    },
+    {
+        "id": "633809e416b9c65e",
+        "type": "server-state-changed",
+        "z": "692206f594d070bf",
+        "name": "Now expecting delivery/guest?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.expecting_delivery_guest"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "habool",
+        "ifStateOperator": "includes",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 280,
+        "y": 440,
+        "wires": [
+            [
+                "7ba97e1e23c9b3cd",
+                "a480851e6c53a953",
+                "f29f62fab28779a8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e71c4fd56ac0db58",
+        "type": "bigtimer",
+        "z": "692206f594d070bf",
+        "d": true,
+        "outtopic": "",
+        "outpayload1": "dusk",
+        "outpayload2": "dawn",
+        "name": "Is it night?",
+        "comment": "",
+        "lat": 0,
+        "lon": 0,
+        "starttime": 5001,
+        "endtime": "5000",
+        "starttime2": 0,
+        "endtime2": 0,
+        "startoff": 0,
+        "endoff": 0,
+        "startoff2": 0,
+        "endoff2": 0,
+        "offs": 0,
+        "outtext1": "",
+        "outtext2": "",
+        "timeout": 1440,
+        "sun": true,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "jan": true,
+        "feb": true,
+        "mar": true,
+        "apr": true,
+        "may": true,
+        "jun": true,
+        "jul": true,
+        "aug": true,
+        "sep": true,
+        "oct": true,
+        "nov": true,
+        "dec": true,
+        "day1": 0,
+        "month1": 0,
+        "day2": 0,
+        "month2": 0,
+        "day3": 0,
+        "month3": 0,
+        "day4": 0,
+        "month4": 0,
+        "day5": 0,
+        "month5": 0,
+        "day6": 0,
+        "month6": 0,
+        "day7": 0,
+        "month7": 0,
+        "day8": 0,
+        "month8": 0,
+        "day9": 0,
+        "month9": 0,
+        "day10": 0,
+        "month10": 0,
+        "day11": 0,
+        "month11": 0,
+        "day12": 0,
+        "month12": 0,
+        "d1": 0,
+        "w1": 0,
+        "d2": 0,
+        "w2": 0,
+        "d3": 0,
+        "w3": 0,
+        "d4": 0,
+        "w4": 0,
+        "d5": 0,
+        "w5": 0,
+        "d6": 0,
+        "w6": 0,
+        "xday1": 0,
+        "xmonth1": 0,
+        "xday2": 0,
+        "xmonth2": 0,
+        "xday3": 0,
+        "xmonth3": 0,
+        "xday4": 0,
+        "xmonth4": 0,
+        "xday5": 0,
+        "xmonth5": 0,
+        "xday6": 0,
+        "xmonth6": 0,
+        "xday7": 0,
+        "xmonth7": 0,
+        "xday8": 0,
+        "xmonth8": 0,
+        "xday9": 0,
+        "xmonth9": 0,
+        "xday10": 0,
+        "xmonth10": 0,
+        "xday11": 0,
+        "xmonth11": 0,
+        "xday12": 0,
+        "xmonth12": 0,
+        "xd1": 0,
+        "xw1": 0,
+        "xd2": 0,
+        "xw2": 0,
+        "xd3": 0,
+        "xw3": 0,
+        "xd4": 0,
+        "xw4": 0,
+        "xd5": 0,
+        "xw5": 0,
+        "xd6": 0,
+        "xw6": 0,
+        "suspend": false,
+        "random": false,
+        "randon1": false,
+        "randoff1": false,
+        "randon2": false,
+        "randoff2": false,
+        "repeat": true,
+        "atstart": true,
+        "odd": false,
+        "even": false,
+        "x": 270,
+        "y": 540,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "7ba97e1e23c9b3cd",
+        "type": "api-call-service",
+        "z": "692206f594d070bf",
+        "name": "Turn on light",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.outside"
+        ],
+        "labelId": [],
+        "data": "{\"brightness_pct\":100}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "x": 570,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fe4c59de4024e0f9",
+        "type": "server-state-changed",
+        "z": "692206f594d070bf",
+        "name": "No longer expecting delivery/guest?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "input_boolean.expecting_delivery_guest"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "habool",
+        "ifStateOperator": "does_not_include",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 260,
+        "y": 640,
+        "wires": [
+            [
+                "584cb735d6566359",
+                "240af5d6881d6b54",
+                "f29f62fab28779a8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "240af5d6881d6b54",
+        "type": "api-call-service",
+        "z": "692206f594d070bf",
+        "d": true,
+        "name": "Turn off light",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.outside"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_off",
+        "x": 570,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a480851e6c53a953",
+        "type": "link out",
+        "z": "692206f594d070bf",
+        "name": "Out: Disable front/kitchen door sensors",
+        "mode": "link",
+        "links": [
+            "32c3fee6148d5376",
+            "a569e3147155c87d"
+        ],
+        "x": 515,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "584cb735d6566359",
+        "type": "link out",
+        "z": "692206f594d070bf",
+        "name": "Out: Enable front/kitchen door sensors",
+        "mode": "link",
+        "links": [
+            "0c4ebff14b1c2ffd",
+            "3a6d7ecaf79c5475"
+        ],
+        "x": 515,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "f29f62fab28779a8",
+        "type": "api-call-service",
+        "z": "692206f594d070bf",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "logbook.log",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\"name\":\"node-red\",\"message\":\"Delivery/Guest flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "logbook",
+        "service": "log",
+        "x": 620,
+        "y": 520,
+        "wires": [
+            []
+        ]
     }
 ]
