@@ -26157,6 +26157,244 @@
         "wires": []
     },
     {
+        "id": "01bc0688c81eecc5",
+        "type": "server-state-changed",
+        "z": "d112d316427b596e",
+        "name": "On Battery?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "sensor.rassilon_ups_status"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "ONBATT",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 270,
+        "y": 480,
+        "wires": [
+            [
+                "b71c8f7cfabbf1a6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b71c8f7cfabbf1a6",
+        "type": "api-call-service",
+        "z": "d112d316427b596e",
+        "name": "Notify phone",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "notify.mobile_app_sm_s926u1",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\"title\":\"Rassilon UPS OnBatt!\",\"message\":\"Rassilon on battery!\",\"data\":{\"channel\":\"Rassilon UPS OnBatt\",\"notification_icon\":\"mdi:battery-alert\"}}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "notify",
+        "service": "mobile_app_sm_s926u1",
+        "x": 510,
+        "y": 480,
+        "wires": [
+            [
+                "978659baee8f925f"
+            ]
+        ]
+    },
+    {
+        "id": "978659baee8f925f",
+        "type": "api-call-service",
+        "z": "d112d316427b596e",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "logbook.log",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\"name\":\"node-red\",\"message\":\"Rassilon (OnBatt) flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "logbook",
+        "service": "log",
+        "x": 800,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5ef96549ae08ec9e",
+        "type": "server-state-changed",
+        "z": "d112d316427b596e",
+        "name": "Plugged In?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "sensor.rassilon_ups_status"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "ONLINE",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 270,
+        "y": 600,
+        "wires": [
+            [
+                "bd6f3a356f8fdedb"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "bd6f3a356f8fdedb",
+        "type": "api-call-service",
+        "z": "d112d316427b596e",
+        "name": "Notify phone",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "notify.mobile_app_sm_s926u1",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\"title\":\"Rassilon UPS recovered\",\"message\":\"Rassilon back on mains.\",\"data\":{\"channel\":\"Rassilon UPS Online\",\"notification_icon\":\"mdi:power-plug-battery\"}}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "notify",
+        "service": "mobile_app_sm_s926u1",
+        "x": 510,
+        "y": 600,
+        "wires": [
+            [
+                "f64f8114d764997e"
+            ]
+        ]
+    },
+    {
+        "id": "f64f8114d764997e",
+        "type": "api-call-service",
+        "z": "d112d316427b596e",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "logbook.log",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\"name\":\"node-red\",\"message\":\"Rassilon (Online) flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "logbook",
+        "service": "log",
+        "x": 800,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "633809e416b9c65e",
         "type": "server-state-changed",
         "z": "692206f594d070bf",
