@@ -773,5 +773,24 @@
                 "file": "/data/node_modules/node-red-contrib-telegrambot/telegrambot/99-telegrambot.js"
             }
         }
+    },
+    "@waldbaer/node-red-retry": {
+        "name": "@waldbaer/node-red-retry",
+        "version": "1.1.0",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "retry": {
+                "name": "retry",
+                "types": [
+                    "retry"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "@waldbaer/node-red-retry",
+                "file": "/data/node_modules/@waldbaer/node-red-retry/nodes/retry.js"
+            }
+        }
     }
 }

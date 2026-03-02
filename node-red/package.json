@@ -5,6 +5,7 @@
     "private": true,
     "dependencies": {
         "@node-red-contrib-themes/midnight-red": "^1.4.6",
+        "@waldbaer/node-red-retry": "~1.1.0",
         "node-red-contrib-bigtimer": "~2.8.6",
         "node-red-contrib-credentials": "~0.2.3",
         "node-red-contrib-home-assistant-websocket": "~0.80.3",

@@ -15216,7 +15216,7 @@
             ],
             [
                 "841c6237.257d2",
-                "621a3063.017fa"
+                "36c303d59f38964a"
             ]
         ]
     },
@@ -15371,7 +15371,7 @@
         "blockInputOverrides": false,
         "domain": "media_player",
         "service": "select_source",
-        "x": 330,
+        "x": 390,
         "y": 200,
         "wires": [
             [
@@ -15782,6 +15782,50 @@
             [
                 "7ae09245361e2f57"
             ]
+        ]
+    },
+    {
+        "id": "2717e4801fb2c0ed",
+        "type": "catch",
+        "z": "a28e9600.dc1528",
+        "name": "Spotify Error?",
+        "scope": [
+            "621a3063.017fa",
+            "adec12b4.c3c8d",
+            "a715b5dd.36e6e8",
+            "9120467d.7d2b08",
+            "644675f99de94c37",
+            "7ae09245361e2f57"
+        ],
+        "uncaught": false,
+        "x": 70,
+        "y": 260,
+        "wires": [
+            [
+                "36c303d59f38964a"
+            ]
+        ]
+    },
+    {
+        "id": "36c303d59f38964a",
+        "type": "retry",
+        "z": "a28e9600.dc1528",
+        "name": "",
+        "retryAttempts": 3,
+        "retryStrategy": "fixed_delay",
+        "retryStrategyFixedDelay": 5,
+        "retryStrategyFixedDelayUnit": "sec",
+        "retryStrategyRandomDelayMin": 3,
+        "retryStrategyRandomDelayMax": 10,
+        "retryStrategyRandomDelayUnit": "sec",
+        "throwAsErrorOnLimitExceeded": true,
+        "x": 160,
+        "y": 200,
+        "wires": [
+            [
+                "621a3063.017fa"
+            ],
+            []
         ]
     },
     {
