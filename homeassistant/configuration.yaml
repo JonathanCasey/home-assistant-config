@@ -341,6 +341,26 @@ input_text:
 
 
 intent_script:
+  MeBeforeILeaveIntent:
+    action:
+      - service: todo.add_item
+        data:
+          item: "{{reminder}}"
+        target:
+          entity_id: todo.remind_me_before_i_leave
+    speech:
+      type: plain
+      text: "I will remind you regarding {{reminder}} before you leave."
+  OnlyMeBeforeILeaveIntent:
+    action:
+      - service: todo.add_item
+        data:
+          item: "{{reminder}}"
+        target:
+          entity_id: todo.remind_only_me_before_i_leave
+    speech:
+      type: plain
+      text: "I will remind you regarding {{reminder}} before you leave."
   NarvansLadderIntent:
     action:
       service: input_select.select_option
