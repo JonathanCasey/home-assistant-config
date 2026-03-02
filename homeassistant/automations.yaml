@@ -98,7 +98,7 @@
     enabled: true
   mode: single
 - id: '1757378637995'
-  alias: Low Battery / Idle (ST)
+  alias: Low Battery / Idle (ST, Aqara)
   description: ''
   triggers:
   - trigger: state
@@ -115,6 +115,11 @@
     - sensor.button_st_office_temperature
     - sensor.doorwin_st_front_door_temperature
     - sensor.doorwin_st_kitchen_door_temperature
+    - sensor.doorwin_aqara_pantry_door_device_temperature
+    - sensor.motion_aqara_downstairs_hallway_device_temperature
+    - sensor.motion_aqara_foyer_device_temperature
+    - sensor.motion_aqara_liquor_room_device_temperature
+    - sensor.motion_aqara_upstairs_hallway_device_temperature
     to:
     for:
       hours: 24
