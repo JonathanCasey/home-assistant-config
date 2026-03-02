@@ -305,6 +305,14 @@
         "env": []
     },
     {
+        "id": "053ede44dfdaf002",
+        "type": "tab",
+        "label": "Before I Leave",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "name": "Home Assistant",
@@ -4617,7 +4625,8 @@
         "y": 740,
         "wires": [
             [
-                "acffe831.84ea58"
+                "acffe831.84ea58",
+                "17ca3666231d1e85"
             ],
             [
                 "564a61f6.d4c24",
@@ -5091,11 +5100,12 @@
         "links": [
             "17d225c7.3c968a"
         ],
-        "x": 415,
+        "x": 165,
         "y": 780,
         "wires": [
             [
-                "a9c95ae4.58e688"
+                "a9c95ae4.58e688",
+                "6e6b7704c34f1060"
             ]
         ]
     },
@@ -5207,6 +5217,44 @@
                 "d060b09f.a0a13"
             ]
         ]
+    },
+    {
+        "id": "6e6b7704c34f1060",
+        "type": "delay",
+        "z": "e9868773.797078",
+        "name": "Wait for phone to turn on light",
+        "pauseType": "delay",
+        "timeout": "15",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 160,
+        "y": 840,
+        "wires": [
+            [
+                "564a61f6.d4c24"
+            ]
+        ]
+    },
+    {
+        "id": "17ca3666231d1e85",
+        "type": "link out",
+        "z": "e9868773.797078",
+        "name": "Out: Front Door Open Triggered",
+        "mode": "link",
+        "links": [
+            "668f2380f80678fd"
+        ],
+        "x": 395,
+        "y": 540,
+        "wires": []
     },
     {
         "id": "210c5d3b.b91672",
@@ -7369,16 +7417,18 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 350,
-        "y": 520,
+        "x": 290,
+        "y": 700,
         "wires": [
             [
                 "229f2e70.a0b3a2",
-                "828c87db.b42978"
+                "771fc1b242c5bf74",
+                "feea5bd28d67bf61"
             ],
             [
                 "229f2e70.a0b3a2",
-                "46c7946d.4a6094"
+                "ed50a231c413ea99",
+                "cd97ae5e3126044e"
             ]
         ]
     },
@@ -7509,8 +7559,8 @@
         "blockInputOverrides": false,
         "domain": "input_boolean",
         "service": "turn_on",
-        "x": 660,
-        "y": 500,
+        "x": 820,
+        "y": 600,
         "wires": [
             []
         ]
@@ -7540,10 +7590,100 @@
         "blockInputOverrides": false,
         "domain": "input_boolean",
         "service": "turn_off",
-        "x": 660,
-        "y": 540,
+        "x": 820,
+        "y": 800,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "ed50a231c413ea99",
+        "type": "change",
+        "z": "c35af4f2.4cd108",
+        "name": "Stop timer msg",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "stop",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 660,
+        "wires": [
+            [
+                "771fc1b242c5bf74"
+            ]
+        ]
+    },
+    {
+        "id": "771fc1b242c5bf74",
+        "type": "stoptimer",
+        "z": "c35af4f2.4cd108",
+        "duration": "15",
+        "units": "Second",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "",
+        "x": 590,
+        "y": 600,
+        "wires": [
+            [
+                "828c87db.b42978"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "cd97ae5e3126044e",
+        "type": "stoptimer",
+        "z": "c35af4f2.4cd108",
+        "duration": "15",
+        "units": "Second",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "",
+        "x": 590,
+        "y": 800,
+        "wires": [
+            [
+                "46c7946d.4a6094"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "feea5bd28d67bf61",
+        "type": "change",
+        "z": "c35af4f2.4cd108",
+        "name": "Stop timer msg",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "stop",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 740,
+        "wires": [
+            [
+                "cd97ae5e3126044e"
+            ]
         ]
     },
     {
@@ -14710,7 +14850,7 @@
             }
         ],
         "x": 150,
-        "y": 620,
+        "y": 680,
         "wires": [
             [
                 "eb7e7599.5b5708",
@@ -14752,7 +14892,7 @@
         "forType": "num",
         "forUnits": "minutes",
         "x": 420,
-        "y": 660,
+        "y": 720,
         "wires": [
             [
                 "3c94b436.b277cc"
@@ -14786,7 +14926,7 @@
         "domain": "media_player",
         "service": "media_pause",
         "x": 660,
-        "y": 700,
+        "y": 760,
         "wires": [
             [
                 "9d5ebc30.eec99"
@@ -14819,7 +14959,7 @@
         "domain": "input_boolean",
         "service": "turn_off",
         "x": 450,
-        "y": 500,
+        "y": 560,
         "wires": [
             [
                 "88e01428.13a4d8"
@@ -14850,7 +14990,7 @@
         "domain": "logbook",
         "service": "log",
         "x": 780,
-        "y": 500,
+        "y": 560,
         "wires": [
             []
         ]
@@ -14872,7 +15012,7 @@
         "drop": false,
         "outputs": 1,
         "x": 690,
-        "y": 780,
+        "y": 840,
         "wires": [
             [
                 "e4df0ccb.23ae9"
@@ -14896,7 +15036,7 @@
         "drop": false,
         "outputs": 1,
         "x": 450,
-        "y": 580,
+        "y": 640,
         "wires": [
             [
                 "d4393221.77afa"
@@ -14929,7 +15069,7 @@
         "domain": "light",
         "service": "turn_off",
         "x": 750,
-        "y": 580,
+        "y": 640,
         "wires": [
             []
         ]
@@ -14960,7 +15100,7 @@
         "domain": "media_player",
         "service": "turn_off",
         "x": 720,
-        "y": 840,
+        "y": 900,
         "wires": [
             []
         ]
@@ -14998,7 +15138,7 @@
         "repair": false,
         "outputs": 4,
         "x": 340,
-        "y": 760,
+        "y": 820,
         "wires": [
             [
                 "67b02314.fbc45c"
@@ -15276,7 +15416,7 @@
         "id": "a715b5dd.36e6e8",
         "type": "api-call-service",
         "z": "a28e9600.dc1528",
-        "name": "Shuffle playlist",
+        "name": "Unshuffle playlist",
         "server": "2f5bd1e0.67e40e",
         "version": 7,
         "debugenabled": false,
@@ -15288,7 +15428,7 @@
             "media_player.spotify_jonathan_casey"
         ],
         "labelId": [],
-        "data": "{\"shuffle\":true}",
+        "data": "{\"shuffle\":false}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -15297,11 +15437,11 @@
         "blockInputOverrides": false,
         "domain": "media_player",
         "service": "shuffle_set",
-        "x": 440,
+        "x": 450,
         "y": 320,
         "wires": [
             [
-                "cbd91778.db12b8"
+                "937026d16871a973"
             ]
         ]
     },
@@ -15331,7 +15471,7 @@
         "domain": "media_player",
         "service": "media_next_track",
         "x": 490,
-        "y": 380,
+        "y": 440,
         "wires": [
             [
                 "54404d05c9dac027"
@@ -15364,7 +15504,7 @@
         "domain": "media_player",
         "service": "media_pause",
         "x": 660,
-        "y": 980,
+        "y": 1040,
         "wires": [
             []
         ]
@@ -15410,7 +15550,7 @@
         "drop": false,
         "outputs": 1,
         "x": 240,
-        "y": 380,
+        "y": 440,
         "wires": [
             [
                 "9120467d.7d2b08"
@@ -15443,7 +15583,7 @@
         "domain": "media_player",
         "service": "select_source",
         "x": 690,
-        "y": 920,
+        "y": 980,
         "wires": [
             [
                 "5c3176e7.e0928"
@@ -15467,7 +15607,7 @@
         "drop": false,
         "outputs": 1,
         "x": 940,
-        "y": 920,
+        "y": 980,
         "wires": [
             [
                 "b5176dba.ec4e"
@@ -15548,7 +15688,7 @@
         "domain": "media_player",
         "service": "select_source",
         "x": 470,
-        "y": 440,
+        "y": 500,
         "wires": [
             []
         ]
@@ -15570,7 +15710,7 @@
         "drop": false,
         "outputs": 1,
         "x": 240,
-        "y": 440,
+        "y": 500,
         "wires": [
             [
                 "644675f99de94c37"
@@ -15584,18 +15724,65 @@
         "name": "Intentionally Twice",
         "info": "Backup in case the first one fails\n(common failure point)",
         "x": 690,
-        "y": 440,
+        "y": 500,
         "wires": []
     },
     {
-        "id": "716cfba951144cb8",
-        "type": "comment",
+        "id": "7ae09245361e2f57",
+        "type": "api-call-service",
         "z": "a28e9600.dc1528",
-        "name": "Force reshuffle?",
-        "info": "Could set to not shuffled\nbefore setting to shuffled\nto force a re-shuffle...",
-        "x": 740,
-        "y": 260,
-        "wires": []
+        "name": "Shuffle playlist",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "media_player.shuffle_set",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.spotify_jonathan_casey"
+        ],
+        "labelId": [],
+        "data": "{\"shuffle\":true}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "media_player",
+        "service": "shuffle_set",
+        "x": 440,
+        "y": 380,
+        "wires": [
+            [
+                "cbd91778.db12b8"
+            ]
+        ]
+    },
+    {
+        "id": "937026d16871a973",
+        "type": "delay",
+        "z": "a28e9600.dc1528",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 240,
+        "y": 380,
+        "wires": [
+            [
+                "7ae09245361e2f57"
+            ]
+        ]
     },
     {
         "id": "f1fbb6c7.bc4808",
@@ -19884,7 +20071,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "media_player.office_ir_hisense_roku_tv"
+            "media_player.office_ir_roku_tv"
         ],
         "labelId": [],
         "data": "",
@@ -20094,10 +20281,10 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "remote.office_ir_hisense_roku_tv"
+            "remote.office_ir_roku_tv"
         ],
         "labelId": [],
-        "data": "{\"command\":\"input_hdmi2\"}",
+        "data": "{\"command\":\"input_hdmi3\"}",
         "dataType": "json",
         "mergeContext": "",
         "mustacheAltTags": false,
@@ -26767,6 +26954,703 @@
         "y": 520,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "668f2380f80678fd",
+        "type": "link in",
+        "z": "053ede44dfdaf002",
+        "name": "In: Front Door Open Triggered",
+        "links": [
+            "17ca3666231d1e85"
+        ],
+        "x": 185,
+        "y": 360,
+        "wires": [
+            [
+                "94b05940dcab9759"
+            ]
+        ]
+    },
+    {
+        "id": "d4a60dc813515106",
+        "type": "api-current-state",
+        "z": "053ede44dfdaf002",
+        "name": "Is stealth disabled?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "",
+        "halt_if_type": "habool",
+        "halt_if_compare": "does_not_include",
+        "entity_id": "input_boolean.stealth_mode",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 270,
+        "y": 740,
+        "wires": [
+            [
+                "53cbf117b1914d82"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "762adcc0b6269051",
+        "type": "inject",
+        "z": "053ede44dfdaf002",
+        "name": "Car started",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 400,
+        "wires": [
+            [
+                "94b05940dcab9759"
+            ]
+        ]
+    },
+    {
+        "id": "1ad0c15dccbcce55",
+        "type": "api-call-service",
+        "z": "053ede44dfdaf002",
+        "name": "Me Items",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "todo.get_items",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "todo.remind_me_before_i_leave"
+        ],
+        "labelId": [],
+        "data": "{\"status\":\"needs_action\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [
+            {
+                "property": "result",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "results"
+            }
+        ],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "todo",
+        "service": "get_items",
+        "x": 300,
+        "y": 660,
+        "wires": [
+            [
+                "cf7334c3baa3c418"
+            ]
+        ]
+    },
+    {
+        "id": "cf7334c3baa3c418",
+        "type": "function",
+        "z": "053ede44dfdaf002",
+        "name": "Extract items",
+        "func": "\nmsg.items = msg.result['todo.remind_me_before_i_leave'].items;\n\nvar num_items = msg.items.length;\nmsg.num_items = num_items;\n\nmsg.alexa_speech = 'Before you leave, you have ' +\n        num_items + ' reminders.';\n\nvar msgs;\nif (num_items > 0) {\n    msgs = [msg, msg];\n} else {\n    msgs = [msg, null];\n}\nreturn msgs;",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 660,
+        "wires": [
+            [
+                "95adb0b963912acb"
+            ],
+            [
+                "d4a60dc813515106"
+            ]
+        ]
+    },
+    {
+        "id": "53cbf117b1914d82",
+        "type": "api-call-service",
+        "z": "053ede44dfdaf002",
+        "name": "Notify on Alexa",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "notify.alexa_media",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\t    \"message\": msg.alexa_speech,\t    \"target\": [\t        \"media_player.alexa_dining_room\"\t    ],\t    \"data\": {\t        \"type\":\"tts\"\t    }\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "notify",
+        "service": "alexa_media",
+        "x": 480,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7a4922f39554677c",
+        "type": "api-call-service",
+        "z": "053ede44dfdaf002",
+        "name": "Before you leave phone notification",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "notify.mobile_app_sm_s926u1",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\t    \"title\": \"Before you leave\",\t    \"message\": msg.message,\t    \"data\": {\t        \"tag\": msg.tag,\t        \"notification_icon\": \"mdi:reminder\",\t        \"channel\": \"Before I Leave (me)\"\t    }\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "notify",
+        "service": "mobile_app_sm_s926u1",
+        "x": 840,
+        "y": 580,
+        "wires": [
+            [
+                "425ec16850587a74"
+            ]
+        ]
+    },
+    {
+        "id": "95adb0b963912acb",
+        "type": "function",
+        "z": "053ede44dfdaf002",
+        "name": "Prep next notification",
+        "func": "\nvar msgs;\nvar num_items = msg.items.length;\n\nif (num_items > 0) {\n    var item = msg.items.shift();\n    msg.message = item.summary;\n    msg.tag = item.uid;\n    msgs = [msg, null];\n} else {\n    msgs = [null, msg];\n}\n\nreturn msgs;",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 640,
+        "wires": [
+            [
+                "7a4922f39554677c"
+            ],
+            [
+                "6bdecfd29afdf013"
+            ]
+        ]
+    },
+    {
+        "id": "425ec16850587a74",
+        "type": "delay",
+        "z": "053ede44dfdaf002",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 580,
+        "y": 520,
+        "wires": [
+            [
+                "95adb0b963912acb"
+            ]
+        ]
+    },
+    {
+        "id": "6bdecfd29afdf013",
+        "type": "api-call-service",
+        "z": "053ede44dfdaf002",
+        "name": "Only Me Items",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "todo.get_items",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "todo.remind_only_me_before_i_leave"
+        ],
+        "labelId": [],
+        "data": "{\"status\":\"needs_action\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [
+            {
+                "property": "result",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "results"
+            }
+        ],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "todo",
+        "service": "get_items",
+        "x": 260,
+        "y": 960,
+        "wires": [
+            [
+                "690e786b79ced001"
+            ]
+        ]
+    },
+    {
+        "id": "690e786b79ced001",
+        "type": "function",
+        "z": "053ede44dfdaf002",
+        "name": "Extract items",
+        "func": "\nmsg.items = msg.result['todo.remind_only_me_before_i_leave'].items;\n\nmsg.num_items = msg.items.length;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 960,
+        "wires": [
+            [
+                "9075ef6d1eb64cf6"
+            ]
+        ]
+    },
+    {
+        "id": "785c022aeabf40a1",
+        "type": "api-call-service",
+        "z": "053ede44dfdaf002",
+        "name": "Before you leave phone notification",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "notify.mobile_app_sm_s926u1",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\t    \"title\": \"Before you leave...\",\t    \"message\": msg.message,\t    \"data\": {\t        \"tag\": msg.tag,\t        \"notification_icon\": \"mdi:reminder\",\t        \"channel\": \"Before I Leave (only me)\"\t    }\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "notify",
+        "service": "mobile_app_sm_s926u1",
+        "x": 840,
+        "y": 880,
+        "wires": [
+            [
+                "aaab9c45174b3626"
+            ]
+        ]
+    },
+    {
+        "id": "9075ef6d1eb64cf6",
+        "type": "function",
+        "z": "053ede44dfdaf002",
+        "name": "Prep next notification",
+        "func": "\nvar msgs;\nvar num_items = msg.items.length;\n\nif (num_items > 0) {\n    var item = msg.items.shift();\n    msg.message = item.summary;\n    msg.tag = item.uid;\n    msgs = [msg, null];\n} else {\n    msgs = [null, msg];\n}\n\nreturn msgs;",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 940,
+        "wires": [
+            [
+                "785c022aeabf40a1"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "aaab9c45174b3626",
+        "type": "delay",
+        "z": "053ede44dfdaf002",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 580,
+        "y": 820,
+        "wires": [
+            [
+                "9075ef6d1eb64cf6"
+            ]
+        ]
+    },
+    {
+        "id": "3a5a336a049759e6",
+        "type": "server-events",
+        "z": "053ede44dfdaf002",
+        "name": "Mobile notification cleared",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "eventType": "mobile_app_notification_cleared",
+        "eventData": "",
+        "waitForRunning": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "tag",
+                "propertyType": "msg",
+                "value": "$outputData(\"eventData\").event.tag",
+                "valueType": "jsonata"
+            },
+            {
+                "property": "channel",
+                "propertyType": "msg",
+                "value": "$outputData(\"eventData\").event.channel",
+                "valueType": "jsonata"
+            }
+        ],
+        "x": 170,
+        "y": 1100,
+        "wires": [
+            [
+                "e7710c1bb953b31d"
+            ]
+        ]
+    },
+    {
+        "id": "e7710c1bb953b31d",
+        "type": "function",
+        "z": "053ede44dfdaf002",
+        "name": "Set list entity and data (or drop)",
+        "func": "\nvar clear_msg = {\n    // 'domain': 'todo',\n    // 'service': 'remove_item',\n    'target': {\n        'entity_id': []\n    },\n    'data': {\n        'item': msg.tag\n    }\n};\n\nif (msg.channel == 'Before I Leave (me)') {\n    clear_msg.target.entity_id = [\n            'todo.remind_me_before_i_leave'\n    ];\n} else if (msg.channel == 'Before I Leave (only me)') {\n    clear_msg.target.entity_id = [\n            'todo.remind_only_me_before_i_leave'\n    ];\n} else {\n    return null;\n}\n\nreturn clear_msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 1100,
+        "wires": [
+            [
+                "7e5d2f17b0875db4"
+            ]
+        ]
+    },
+    {
+        "id": "7e5d2f17b0875db4",
+        "type": "api-call-service",
+        "z": "053ede44dfdaf002",
+        "name": "Remove cleared item from list",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "todo.remove_item",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "{{target.entity_id}}"
+        ],
+        "labelId": [],
+        "data": "{\t    'item': msg.data.item\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "todo",
+        "service": "remove_item",
+        "x": 770,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "94b05940dcab9759",
+        "type": "delay",
+        "z": "053ede44dfdaf002",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "10",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": true,
+        "outputs": 1,
+        "x": 360,
+        "y": 380,
+        "wires": [
+            [
+                "1ad0c15dccbcce55"
+            ]
+        ]
+    },
+    {
+        "id": "5936ad16ca2382fb",
+        "type": "server-state-changed",
+        "z": "053ede44dfdaf002",
+        "name": "Remind Me Before updated?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "todo.remind_me_before_i_leave"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 160,
+        "y": 160,
+        "wires": [
+            [
+                "0b87a33ee0c725b9"
+            ]
+        ]
+    },
+    {
+        "id": "0b87a33ee0c725b9",
+        "type": "switch",
+        "z": "053ede44dfdaf002",
+        "name": "Did an item get added?",
+        "property": "data.new_state.state > data.old_state.state",
+        "propertyType": "jsonata",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 430,
+        "y": 160,
+        "wires": [
+            [
+                "594c798c85bc3815"
+            ]
+        ]
+    },
+    {
+        "id": "594c798c85bc3815",
+        "type": "function",
+        "z": "053ede44dfdaf002",
+        "name": "Reset delay",
+        "func": "msg.reset = true;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 160,
+        "wires": [
+            [
+                "94b05940dcab9759"
+            ]
+        ]
+    },
+    {
+        "id": "d1772284e1dd5e16",
+        "type": "server-state-changed",
+        "z": "053ede44dfdaf002",
+        "name": "Remind Only Me Before updated?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "todo.remind_only_me_before_i_leave"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 180,
+        "y": 260,
+        "wires": [
+            [
+                "571ecf63349ec939"
+            ]
+        ]
+    },
+    {
+        "id": "571ecf63349ec939",
+        "type": "switch",
+        "z": "053ede44dfdaf002",
+        "name": "Did an item get added?",
+        "property": "data.new_state.state > data.old_state.state",
+        "propertyType": "jsonata",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 470,
+        "y": 260,
+        "wires": [
+            [
+                "cf915f175a1ea9d0"
+            ]
+        ]
+    },
+    {
+        "id": "cf915f175a1ea9d0",
+        "type": "function",
+        "z": "053ede44dfdaf002",
+        "name": "Reset delay",
+        "func": "msg.reset = true;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 260,
+        "wires": [
+            [
+                "94b05940dcab9759"
+            ]
         ]
     }
 ]
