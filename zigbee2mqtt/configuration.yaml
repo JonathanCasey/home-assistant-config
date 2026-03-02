@@ -6,6 +6,7 @@ devices:
   - devices_new.yaml  # This MUST stay at top of list so new are added here
   - devices_buttons.yaml
   - devices_doorwins.yaml
+  - devices_env.yaml
   - devices_motion.yaml
   - devices_outlets.yaml
   - devices_water.yaml
