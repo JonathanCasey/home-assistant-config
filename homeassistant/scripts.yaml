@@ -31,3 +31,76 @@ toggle_pc_speakers_power:
       command: Power
   alias: Toggle PC Speakers Power
   description: ''
+pc_lg_monitor_fan_low:
+  sequence:
+  - action: remote.send_command
+    metadata: {}
+    target:
+      entity_id: remote.broadlink_rm4m_office
+    data:
+      device: pc_lg_monitor
+      command: In Start
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - action: remote.send_command
+    metadata: {}
+    target:
+      entity_id: remote.broadlink_rm4m_office
+    data:
+      num_repeats: 20
+      delay_secs: 0.4
+      device: pc_lg_monitor
+      command: Down Arrow
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - action: remote.send_command
+    metadata: {}
+    target:
+      entity_id: remote.broadlink_rm4m_office
+    data:
+      num_repeats: 25
+      delay_secs: 0.4
+      device: pc_lg_monitor
+      command: Left Arrow
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - action: remote.send_command
+    metadata: {}
+    target:
+      entity_id: remote.broadlink_rm4m_office
+    data:
+      device: pc_lg_monitor
+      command: Ok
+  alias: PC LG Monitor Fan Low
+  description: ''
+office_ir_tv_volume_up:
+  sequence:
+  - action: remote.send_command
+    metadata: {}
+    target:
+      entity_id: remote.broadlink_rm4m_office
+    data:
+      device: office_ir_tv
+      command: Volume Up
+  alias: Office IR TV - Volume Up
+  description: ''
+office_ir_tv_volume_down:
+  sequence:
+  - action: remote.send_command
+    metadata: {}
+    target:
+      entity_id: remote.broadlink_rm4m_office
+    data:
+      device: office_ir_tv
+      command: Volume Down
+  alias: Office IR TV - Volume Down
+  description: ''
