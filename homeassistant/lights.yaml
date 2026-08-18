@@ -66,6 +66,14 @@
     - light.kitchen_sink_north
     - light.kitchen_sink_south
 
+
+- platform: group
+  name: Kitchen Cabinets (Individual)
+  entities:
+    - light.kitchen_cabinets_left
+    - light.kitchen_cabinets_right
+
+
 # Should be here, but for naming convention consistency, moved to groups.yaml
 # - platform: group
 #   name: (Entire) Kitchen
@@ -148,6 +156,10 @@
     - light.trellis_flood_lights
     - light.patio_string_lights
     - light.patio_ground_lights
+    - light.driveway_ground_lights
+    - light.drive_side_path_lights
+    - light.living_path_lights
+    - light.house_west_path_lights
 
 
 # -- See Hue group (same name)
@@ -181,6 +193,31 @@
 
 
 ########## ------------------------ Sub Rooms ------------------------ #########
+
+
+- platform: group
+  name: Front Door Motion Lights (Individual)
+  entities:
+    - light.outside_front
+    - light.driveway_ground_lights
+    - light.drive_side_path_lights
+    - light.living_path_lights
+
+
+- platform: group
+  name: Kitchen Door Lights (Individual)
+  entities:
+    - light.outside_kitchen
+    - light.house_west_path_lights
+
+
+- platform: group
+  name: Path Lights (Individual)
+  entities:
+    - light.drive_side_path_lights
+    - light.living_path_lights
+    - light.house_west_path_lights
+
 
 # patio:
 #   name: Patio
@@ -226,6 +263,12 @@
     - light.dining_room
     - light.kitchen
 
+
+- platform: group
+  name: Stairs (Individual)
+  entities:
+    - light.lower_stairs_strip
+    - light.upper_stairs_strip
 
 
 ########## --------------------- Negative Groups --------------------- #########

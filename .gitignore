@@ -56,6 +56,7 @@ homeassistant/custom_components/**
 homeassistant/themes/**
 homeassistant/www/community/zigbee2mqtt_networkmap/**
 homeassistant/.ha_run.lock
+homeassistant/certs
 
 # mosquitto
 mosquitto/.passwd

@@ -6,6 +6,35 @@ views:
       # TODO: Change to alerts (see ui-lovelace for outline)
 
 
+  - title: Attic
+    path: attic
+    cards:
+      - type: entities
+        title: Controls
+        entities:
+          - entity: switch.ac_heater
+            name: HVAC Ambient Heater
+      - type: entities
+        title: HVAC Sensors
+        entities:
+          - entity: sensor.env_thirdreality_attic_ac_humidity
+            name: Attic HVAC Humidity
+          - entity: sensor.env_thirdreality_attic_ac_temperature
+            name: Attic HVAC Temperature
+          - entity: sensor.hvac_air_indoor_only_total_energy
+            name: HVAC Indoor Only - Total Energy
+          - entity: sensor.hvac_air_indoor_only_total_power
+            name: HVAC Indoor Only - Total Power
+      - type: entities
+        title: Space Heater Sensors
+        entities:
+          - entity: sensor.ac_heater_current
+            name: Space Heater Current
+          - entity: sensor.ac_heater_current_consumption
+            name: Space Heater Current Consumption
+          - entity: sensor.ac_heater_voltage
+            name: Space Heater Voltage
+
 
   - title: Cars
     path: location-cars
@@ -266,6 +295,12 @@ views:
             name: Sink north
           - entity: light.kitchen_sink_south
             name: Sink south
+          - entity: light.kitchen_cabinets_individual
+            name: Kitchen Cabinets (Individual)
+          - entity: light.kitchen_cabinets_left
+            name: Kitchen Cabinets Left
+          - entity: light.kitchen_cabinets_right
+            name: Kitchen Cabinets Right
       - type: entities
         title: Sensors
         entities:
@@ -321,6 +356,10 @@ views:
           - sensor.button_st_laundry_room_battery_sma
           - sensor.button_st_laundry_room_linkquality
           - sensor.button_st_laundry_room_temperature
+          - entity: sensor.hvac_air_outdoor_and_indoor_total_energy
+            name: HVAC Outdoor + Indoor - Total Energy
+          - entity: sensor.hvac_air_outdoor_and_indoor_total_power
+            name: HVAC Outdoor + Indoor - Total Power
 
 
   - title: Liquor Room
@@ -644,6 +683,25 @@ views:
             name: Patio String Lights
           - entity: light.patio_ground_lights
             name: Patio Ground Lights
+          - entity: light.driveway_ground_lights
+            name: Driveway Ground Lights
+          - entity: light.drive_side_path_lights
+            name: Drive Side Path Lights
+          - entity: light.living_path_lights
+            name: Living Path Lights
+          - entity: light.house_west_path_lights
+            name: House West Path Lights
+      - type: entities
+        title: Sensors
+        entities:
+          - entity: sensor.sensor_hvac_air_outdoor_only_total_power
+            name: HVAC Outdoor Only - Total Power
+          - entity: sensor.motion_hue_outdoor_outdoor_front_battery
+            name: Motion Front Battery
+          - entity: sensor.motion_hue_outdoor_outdoor_front_illuminance
+            name: Motion Front Illuminance
+          - entity: binary_sensor.motion_hue_outdoor_outdoor_front_motion
+            name: Motion Front Motion
 
   - title: Patio
     path: patio
@@ -656,6 +714,22 @@ views:
             name: Patio String Lights
           - entity: light.patio_ground_lights
             name: Patio Ground Lights
+
+
+
+  - title: Stairs
+    path: stairs
+    cards:
+      - type: entities
+        title: Lights
+        show_header_toggle: true
+        entities:
+          - entity: light.stairs_individual
+            name: Stairs (Individual)
+          - entity: light.lower_stairs_strip
+            name: Lower Stairs Strip
+          - entity: light.upper_stairs_strip
+            name: Upper Stairs Strip
 
 
 

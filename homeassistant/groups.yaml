@@ -198,6 +198,11 @@ outside:
     - light.trellis_flood_lights
     - light.patio_string_lights
     - light.patio_ground_lights
+    - light.driveway_ground_lights
+    - light.path_lights_individual
+    - light.drive_side_path_lights
+    - light.living_path_lights
+    - light.house_west_path_lights
 
 # -- See lights.yaml
 # outside_individual:
@@ -249,10 +254,48 @@ upstairs_hallway:
 
 ########## ------------------------ Sub Rooms ------------------------ #########
 
+
+# Grouping just for lovelace -- See lights.yaml for one to use
+front_door_motion_lights:
+  name: Front Door Motion Lights
+  entities:
+    - light.front_door_motion_lights_individual
+    - light.outside_front
+    - light.driveway_ground_lights
+    - light.drive_side_path_lights
+    - light.living_path_lights
+
+
+kitchen_cabinets:
+  name: Kitchen Cabinets
+  entities:
+    - switch.kitchen_cabinets_power_switch
+
+
+# Grouping just for lovelace -- See lights.yaml for one to use
+kitchen_door_lights:
+  name: Kitchen Door Lights
+  entities:
+    - light.kitchen_door_lights_individual
+    - light.outside_kitchen
+    - light.house_west_path_lights
+
+
+# Grouping just for lovelace -- See lights.yaml for one to use
+path_lights:
+  name: Path Lights
+  entities:
+    - light.path_lights_individual
+    - light.drive_side_path_lights
+    - light.living_path_lights
+    - light.house_west_path_lights
+
+
 # Grouping just for lovelace -- See lights.yaml for one to use
 patio:
   name: Patio
   entities:
+    - light.patio_individual
     - light.patio_string_lights
     - light.patio_ground_lights
 
@@ -307,6 +350,11 @@ christmas_trees:
     - switch.christmas_tree_upstairs
     - switch.christmas_tree_downstairs
 
+
+stairs:
+  name: Stairs
+  entities:
+    - switch.stairs_strips_power_switch
 
 
 ########## --------------------- Negative Groups --------------------- #########

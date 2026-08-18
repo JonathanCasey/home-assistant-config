@@ -162,6 +162,7 @@ influxdb:
   default_measurement: state
   ssl: true
   verify_ssl: false
+  # ssl_ca_cert: /config/certs/influxdb.pem
 # exclude stuff that is pointless to log
   # exclude:
   #   domains:
@@ -397,6 +398,9 @@ logger:
     #homeassistant.components.python_script: debug
     # homeassistant.components.spotify.coordinator: debug
     # spotipy.client: debug
+  filters:
+    py.warnings:
+      - "InsecureRequestWarning"
 
 
 lovelace:

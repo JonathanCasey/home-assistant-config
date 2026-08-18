@@ -221,6 +221,7 @@ views:
         title: Outlets
         show_header_toggle: true
         entities:
+          - switch.ac_heater
           - switch.bar_bridge
           - switch.dining_room_hutch
           - switch.christmas_tree_upstairs
@@ -549,6 +550,12 @@ views:
             name: Sink north
           - entity: light.kitchen_sink_south
             name: Sink south
+          - entity: light.kitchen_cabinets_individual
+            name: Kitchen Cabinets (Individual)
+          - entity: light.kitchen_cabinets_left
+            name: Kitchen Cabinets Left
+          - entity: light.kitchen_cabinets_right
+            name: Kitchen Cabinets Right
       - type: entities
         title: Laundry Room
         show_header_toggle: true
@@ -623,6 +630,14 @@ views:
             name: Patio String Lights
           - entity: light.patio_ground_lights
             name: Patio Ground Lights
+          - entity: light.driveway_ground_lights
+            name: Driveway Ground Lights
+          - entity: light.drive_side_path_lights
+            name: Drive Side Path Lights
+          - entity: light.living_path_lights
+            name: Living Path Lights
+          - entity: light.house_west_path_lights
+            name: House West Path Lights
       - type: entities
         title: Patio
         show_header_toggle: true
@@ -631,6 +646,16 @@ views:
             name: Patio String Lights
           - entity: light.patio_ground_lights
             name: Patio Ground Lights
+      - type: entities
+        title: Stairs
+        show_header_toggle: true
+        entities:
+          - entity: light.stairs_individual
+            name: Stairs (Individual)
+          - entity: light.lower_stairs_strip
+            name: Lower Stairs Strip
+          - entity: light.upper_stairs_strip
+            name: Upper Stairs Strip
       - type: entities
         title: Upstairs Bathroom
         show_header_toggle: true
@@ -645,7 +670,7 @@ views:
           - entity: light.upstairs_bathroom_right
             name: Right
       - type: entities
-        title: Upstairs Bathroom
+        title: Upstairs Hallway
         show_header_toggle: true
         entities:
           - light.upstairs_hallway
@@ -887,6 +912,7 @@ views:
           - sensor.motion_aqara_liquor_room_battery
           - sensor.motion_aqara_upstairs_hallway_battery
           - sensor.motion_hue_foyer_battery
+          - sensor.motion_hue_outdoor_outdoor_front_battery
           - type: section
             label: Phone
           - sensor.sm_n970u_battery_health
@@ -928,6 +954,25 @@ views:
           - binary_sensor.doorwin_digoo_under_stairs_door
           - binary_sensor.doorwin_aqara_pantry_door_contact
       - type: entities
+        title: Electrical
+        entities:
+          - entity: sensor.hvac_air_indoor_only_total_energy
+            name: HVAC Indoor Only - Total Energy
+          - entity: sensor.hvac_air_indoor_only_total_power
+            name: HVAC Indoor Only - Total Power
+          - entity: sensor.hvac_air_outdoor_and_indoor_total_energy
+            name: HVAC Outdoor + Indoor - Total Energy
+          - entity: sensor.hvac_air_outdoor_and_indoor_total_power
+            name: HVAC Outdoor + Indoor - Total Power
+          - entity: sensor.sensor_hvac_air_outdoor_only_total_power
+            name: HVAC Outdoor Only - Total Power
+          - entity: sensor.ac_heater_current
+            name: Space Heater Current
+          - entity: sensor.ac_heater_current_consumption
+            name: Space Heater Current Consumption
+          - entity: sensor.ac_heater_voltage
+            name: Space Heater Voltage
+      - type: entities
         title: Illuminance
         entities:
           - sensor.motion_aqara_downstairs_hallway_illuminance
@@ -938,6 +983,7 @@ views:
           - sensor.motion_hue_foyer_illuminance_lux
           - sensor.motion_aqara_liquor_room_illuminance
           - sensor.motion_aqara_liquor_room_illuminance_lux
+          - sensor.motion_hue_outdoor_outdoor_front_illuminance
           - sensor.motion_aqara_upstairs_hallway_illuminance
           - sensor.motion_aqara_upstairs_hallway_illuminance_lux
       - type: entities
@@ -967,6 +1013,7 @@ views:
           - binary_sensor.motion_aqara_foyer_occupancy
           - binary_sensor.motion_hue_foyer_occupancy
           - binary_sensor.motion_aqara_liquor_room_occupancy
+          - binary_sensor.motion_hue_outdoor_outdoor_front_motion
           - binary_sensor.motion_aqara_upstairs_hallway_occupancy
           - binary_sensor.motion_digoo_upstairs_hallway
       - type: entities
@@ -988,8 +1035,12 @@ views:
           - binary_sensor.doorwin_st_front_door_tamper
           - binary_sensor.doorwin_st_kitchen_door_tamper
       - type: entities
-        title: Temperature
+        title: Temperature and Humidity
         entities:
+          - entity: sensor.env_thirdreality_attic_ac_humidity
+            name: Attic HVAC Humidity
+          - entity: sensor.env_thirdreality_attic_ac_temperature
+            name: Attic HVAC Temperature
           - sensor.motion_hue_foyer_temperature
           - sensor.doorwin_st_front_door_temperature
           - sensor.button_st_kitchen_temperature

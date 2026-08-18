@@ -42,6 +42,14 @@
         "info": ""
     },
     {
+        "id": "9f20c191181c304a",
+        "type": "tab",
+        "label": "Stairway Lights",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "e9868773.797078",
         "type": "tab",
         "label": "Front Door Entry/Exit",
@@ -313,6 +321,116 @@
         "env": []
     },
     {
+        "id": "5a9cf045c255eca0",
+        "type": "tab",
+        "label": "Subwoofer",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2ee79ca1aceee95b",
+        "type": "subflow",
+        "name": "Is dark (inside)?",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 80,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "0402ab323b51ef4f"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 600,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "0402ab323b51ef4f",
+                        "port": 0
+                    },
+                    {
+                        "id": "95b3a819d2fd74f9",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 600,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "95b3a819d2fd74f9",
+                        "port": 1
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99",
+        "outputLabels": [
+            "Yes",
+            "No"
+        ]
+    },
+    {
+        "id": "1c3e6e1a9085abb6",
+        "type": "subflow",
+        "name": "Is dark (outside)?",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 80,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "c9234bd55e3c6153"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 580,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "27874234275ff9d0",
+                        "port": 0
+                    },
+                    {
+                        "id": "c9234bd55e3c6153",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 580,
+                "y": 180,
+                "wires": [
+                    {
+                        "id": "27874234275ff9d0",
+                        "port": 1
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99",
+        "outputLabels": [
+            "Yes",
+            "No"
+        ]
+    },
+    {
         "id": "2f5bd1e0.67e40e",
         "type": "server",
         "name": "Home Assistant",
@@ -426,6 +544,172 @@
         "useselfsignedcertificate": false,
         "sslterminated": false,
         "verboselogging": false
+    },
+    {
+        "id": "95b3a819d2fd74f9",
+        "type": "api-current-state",
+        "z": "2ee79ca1aceee95b",
+        "name": "Is dark outside?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "400",
+        "halt_if_type": "num",
+        "halt_if_compare": "lte",
+        "entity_id": "sensor.motion_hue_outdoor_outdoor_front_illuminance",
+        "state_type": "str",
+        "blockInputOverrides": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 400,
+        "y": 140,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "0402ab323b51ef4f",
+        "type": "api-current-state",
+        "z": "2ee79ca1aceee95b",
+        "name": "Is after sunset, before sunrise?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "below_horizon",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "sun.sun",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 270,
+        "y": 80,
+        "wires": [
+            [],
+            [
+                "95b3a819d2fd74f9"
+            ]
+        ]
+    },
+    {
+        "id": "c9234bd55e3c6153",
+        "type": "api-current-state",
+        "z": "1c3e6e1a9085abb6",
+        "name": "Is after sunset, before sunrise?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "below_horizon",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "sun.sun",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 270,
+        "y": 80,
+        "wires": [
+            [],
+            [
+                "27874234275ff9d0"
+            ]
+        ]
+    },
+    {
+        "id": "27874234275ff9d0",
+        "type": "api-current-state",
+        "z": "1c3e6e1a9085abb6",
+        "name": "Is dark outside?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "200",
+        "halt_if_type": "num",
+        "halt_if_compare": "lte",
+        "entity_id": "sensor.motion_hue_outdoor_outdoor_front_illuminance",
+        "state_type": "str",
+        "blockInputOverrides": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 400,
+        "y": 140,
+        "wires": [
+            [],
+            []
+        ]
     },
     {
         "id": "3b8bc8cf.939ae8",
@@ -1504,7 +1788,8 @@
                 "d7a3b4dc.7719a8"
             ],
             [
-                "af9ec202.685c7"
+                "af9ec202.685c7",
+                "238d57a30dfb9015"
             ]
         ]
     },
@@ -1673,49 +1958,6 @@
         "wires": [
             [
                 "c6f41175.b52d8"
-            ]
-        ]
-    },
-    {
-        "id": "881f2136.3abd6",
-        "type": "api-current-state",
-        "z": "1d296556.09592b",
-        "name": "Is dark?",
-        "server": "2f5bd1e0.67e40e",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "below_horizon",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "sun.sun",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": 0,
-        "forType": "num",
-        "forUnits": "minutes",
-        "x": 420,
-        "y": 540,
-        "wires": [
-            [
-                "7c5a2e5c.bd53",
-                "d2caa878.c990f8"
-            ],
-            [
-                "ff01124d.fd3b3"
             ]
         ]
     },
@@ -1998,12 +2240,13 @@
         "for": 0,
         "forType": "num",
         "forUnits": "minutes",
-        "x": 230,
+        "x": 190,
         "y": 540,
         "wires": [
             [
                 "1e3cfe7.c8f8702",
-                "881f2136.3abd6"
+                "4032c54daa7f7f35",
+                "a64aab5ced83a93a"
             ],
             []
         ]
@@ -2268,6 +2511,49 @@
         ]
     },
     {
+        "id": "4032c54daa7f7f35",
+        "type": "subflow:2ee79ca1aceee95b",
+        "z": "1d296556.09592b",
+        "name": "",
+        "x": 400,
+        "y": 540,
+        "wires": [
+            [
+                "7c5a2e5c.bd53",
+                "d2caa878.c990f8"
+            ],
+            [
+                "ff01124d.fd3b3"
+            ]
+        ]
+    },
+    {
+        "id": "a64aab5ced83a93a",
+        "type": "link out",
+        "z": "1d296556.09592b",
+        "name": "Out: Foyer Motion Approved Triggered",
+        "mode": "link",
+        "links": [
+            "dd1921afe6f43fef"
+        ],
+        "x": 335,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "238d57a30dfb9015",
+        "type": "link out",
+        "z": "1d296556.09592b",
+        "name": "Out: Foyer Motion Approved Timeout",
+        "mode": "link",
+        "links": [
+            "39fb1a6f6d82d31d"
+        ],
+        "x": 335,
+        "y": 640,
+        "wires": []
+    },
+    {
         "id": "fb3e86e1.e68a28",
         "type": "switch",
         "z": "62ce34cf.a7671c",
@@ -2292,7 +2578,8 @@
                 "9715e3ea.c8a25"
             ],
             [
-                "8ca5b256.32671"
+                "8ca5b256.32671",
+                "edea6775495c3ebf"
             ]
         ]
     },
@@ -2448,49 +2735,6 @@
         "wires": [
             [
                 "d9ab294f.c1d178"
-            ]
-        ]
-    },
-    {
-        "id": "ad0c1937.a3d408",
-        "type": "api-current-state",
-        "z": "62ce34cf.a7671c",
-        "name": "Is dark?",
-        "server": "2f5bd1e0.67e40e",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "below_horizon",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "sun.sun",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": 0,
-        "forType": "num",
-        "forUnits": "minutes",
-        "x": 460,
-        "y": 640,
-        "wires": [
-            [
-                "7a861800.e44a98",
-                "ba91b17f.0c531"
-            ],
-            [
-                "926a5ad6.a68318"
             ]
         ]
     },
@@ -2926,7 +3170,8 @@
                 "9715e3ea.c8a25"
             ],
             [
-                "8ca5b256.32671"
+                "8ca5b256.32671",
+                "edea6775495c3ebf"
             ]
         ]
     },
@@ -3445,7 +3690,8 @@
         "wires": [
             [
                 "2104e7fe.989048",
-                "ad0c1937.a3d408"
+                "288127ed430560a3",
+                "a66de4343136bfed"
             ],
             []
         ]
@@ -3479,6 +3725,49 @@
         ]
     },
     {
+        "id": "288127ed430560a3",
+        "type": "subflow:2ee79ca1aceee95b",
+        "z": "62ce34cf.a7671c",
+        "name": "",
+        "x": 420,
+        "y": 640,
+        "wires": [
+            [
+                "7a861800.e44a98",
+                "ba91b17f.0c531"
+            ],
+            [
+                "926a5ad6.a68318"
+            ]
+        ]
+    },
+    {
+        "id": "a66de4343136bfed",
+        "type": "link out",
+        "z": "62ce34cf.a7671c",
+        "name": "Out: Upstairs Hallway Motion Approved Triggered",
+        "mode": "link",
+        "links": [
+            "f70f92e1e1109b14"
+        ],
+        "x": 315,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "edea6775495c3ebf",
+        "type": "link out",
+        "z": "62ce34cf.a7671c",
+        "name": "Out: Upstairs Hallway Motion Approved Timeout",
+        "mode": "link",
+        "links": [
+            "2e429992ea56dee0"
+        ],
+        "x": 315,
+        "y": 700,
+        "wires": []
+    },
+    {
         "id": "19a3e8f6.8fed97",
         "type": "switch",
         "z": "35ab222c.a6eb9e",
@@ -3503,7 +3792,8 @@
                 "4b058b4c.db51e4"
             ],
             [
-                "f5a2fd42.d486e"
+                "f5a2fd42.d486e",
+                "3ba804fd90528bf2"
             ]
         ]
     },
@@ -3659,49 +3949,6 @@
         "wires": [
             [
                 "6f413a4d.18e804"
-            ]
-        ]
-    },
-    {
-        "id": "4afa2ec9.d218",
-        "type": "api-current-state",
-        "z": "35ab222c.a6eb9e",
-        "name": "Is dark?",
-        "server": "2f5bd1e0.67e40e",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "below_horizon",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "sun.sun",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": 0,
-        "forType": "num",
-        "forUnits": "minutes",
-        "x": 460,
-        "y": 700,
-        "wires": [
-            [
-                "ec7a30c8.1f8a8",
-                "54f9b66e.05ccf8"
-            ],
-            [
-                "bd2b2ea3.b939b"
             ]
         ]
     },
@@ -4558,7 +4805,8 @@
         "wires": [
             [
                 "e56c5a3f.13cde8",
-                "4afa2ec9.d218"
+                "f1134a8090e4c33e",
+                "f57cd565c61c7157"
             ],
             []
         ]
@@ -4604,6 +4852,1100 @@
         ]
     },
     {
+        "id": "f1134a8090e4c33e",
+        "type": "subflow:2ee79ca1aceee95b",
+        "z": "35ab222c.a6eb9e",
+        "name": "",
+        "x": 380,
+        "y": 720,
+        "wires": [
+            [
+                "ec7a30c8.1f8a8",
+                "54f9b66e.05ccf8"
+            ],
+            [
+                "bd2b2ea3.b939b"
+            ]
+        ]
+    },
+    {
+        "id": "f57cd565c61c7157",
+        "type": "link out",
+        "z": "35ab222c.a6eb9e",
+        "name": "Out: Downstairs Hallway Motion Approved Triggered",
+        "mode": "link",
+        "links": [
+            "bdb3b50bb74d240e"
+        ],
+        "x": 315,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "3ba804fd90528bf2",
+        "type": "link out",
+        "z": "35ab222c.a6eb9e",
+        "name": "Out: Downstairs Hallway Motion Approved Timeout",
+        "mode": "link",
+        "links": [
+            "bae8b2dab6c1ee75"
+        ],
+        "x": 145,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "dd1921afe6f43fef",
+        "type": "link in",
+        "z": "9f20c191181c304a",
+        "name": "In: Foyer Motion Approved Triggered",
+        "links": [
+            "a64aab5ced83a93a"
+        ],
+        "x": 65,
+        "y": 400,
+        "wires": [
+            [
+                "f11b769f861d5a6c"
+            ]
+        ]
+    },
+    {
+        "id": "39fb1a6f6d82d31d",
+        "type": "link in",
+        "z": "9f20c191181c304a",
+        "name": "In: Foyer Motion Approved Timeout",
+        "links": [
+            "238d57a30dfb9015"
+        ],
+        "x": 325,
+        "y": 660,
+        "wires": [
+            [
+                "0cc4dc271d47f6a4"
+            ]
+        ]
+    },
+    {
+        "id": "f70f92e1e1109b14",
+        "type": "link in",
+        "z": "9f20c191181c304a",
+        "name": "In: Upstairs Hallway Motion Approved Triggered",
+        "links": [
+            "a66de4343136bfed"
+        ],
+        "x": 65,
+        "y": 340,
+        "wires": [
+            [
+                "9dd3c11f18209f05"
+            ]
+        ]
+    },
+    {
+        "id": "2e429992ea56dee0",
+        "type": "link in",
+        "z": "9f20c191181c304a",
+        "name": "In: Upstairs Hallway Motion Approved Timeout",
+        "links": [
+            "edea6775495c3ebf"
+        ],
+        "x": 325,
+        "y": 600,
+        "wires": [
+            [
+                "0cc4dc271d47f6a4"
+            ]
+        ]
+    },
+    {
+        "id": "bdb3b50bb74d240e",
+        "type": "link in",
+        "z": "9f20c191181c304a",
+        "name": "In: Downstairs Hallway Motion Approved Triggered",
+        "links": [
+            "f57cd565c61c7157"
+        ],
+        "x": 65,
+        "y": 460,
+        "wires": [
+            [
+                "5ffde81405fed9b9"
+            ]
+        ]
+    },
+    {
+        "id": "bae8b2dab6c1ee75",
+        "type": "link in",
+        "z": "9f20c191181c304a",
+        "name": "In: Downstairs Hallway Motion Approved Timeout",
+        "links": [
+            "3ba804fd90528bf2"
+        ],
+        "x": 325,
+        "y": 720,
+        "wires": [
+            [
+                "0cc4dc271d47f6a4"
+            ]
+        ]
+    },
+    {
+        "id": "378838e7b1d1a6cf",
+        "type": "switch",
+        "z": "9f20c191181c304a",
+        "name": "Is on from motion?",
+        "property": "did_turn_light_on",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            },
+            {
+                "t": "null"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 530,
+        "y": 360,
+        "wires": [
+            [
+                "1bbf75b482ff2565",
+                "233c8c097cb21236"
+            ],
+            [
+                "ae523a625f67a9e0"
+            ],
+            [
+                "ae523a625f67a9e0"
+            ]
+        ]
+    },
+    {
+        "id": "ae523a625f67a9e0",
+        "type": "subflow:2ee79ca1aceee95b",
+        "z": "9f20c191181c304a",
+        "name": "",
+        "x": 500,
+        "y": 440,
+        "wires": [
+            [
+                "1bbf75b482ff2565",
+                "233c8c097cb21236"
+            ],
+            [
+                "32ac04ea9341c87f"
+            ]
+        ]
+    },
+    {
+        "id": "0cc4dc271d47f6a4",
+        "type": "switch",
+        "z": "9f20c191181c304a",
+        "name": "Is on from motion?",
+        "property": "did_turn_light_on",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 660,
+        "wires": [
+            [
+                "2f753356e28dc142"
+            ]
+        ]
+    },
+    {
+        "id": "1eb4627153c125f2",
+        "type": "server-state-changed",
+        "z": "9f20c191181c304a",
+        "name": "Was light turned off by this or user?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "light.stairs"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "off",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 740,
+        "y": 780,
+        "wires": [
+            [
+                "51907d8402a04b8a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "51907d8402a04b8a",
+        "type": "change",
+        "z": "9f20c191181c304a",
+        "name": "Clear light on by motion or user",
+        "rules": [
+            {
+                "t": "set",
+                "p": "did_turn_light_on",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1090,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "80d4738d6923e0a9",
+        "type": "api-call-service",
+        "z": "9f20c191181c304a",
+        "name": "Turn off light",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.stairs_strips_power_switch"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "x": 1010,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2f753356e28dc142",
+        "type": "stoptimer",
+        "z": "9f20c191181c304a",
+        "duration": "4",
+        "units": "Minute",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "",
+        "x": 780,
+        "y": 660,
+        "wires": [
+            [
+                "80d4738d6923e0a9",
+                "51907d8402a04b8a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1bbf75b482ff2565",
+        "type": "change",
+        "z": "9f20c191181c304a",
+        "name": "Stop timer msg",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "stop",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 600,
+        "wires": [
+            [
+                "2f753356e28dc142"
+            ]
+        ]
+    },
+    {
+        "id": "32ac04ea9341c87f",
+        "type": "api-current-state",
+        "z": "9f20c191181c304a",
+        "name": "Ignore day/time?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "",
+        "halt_if_type": "habool",
+        "halt_if_compare": "includes",
+        "entity_id": "input_boolean.ignore_time_of_day",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 510,
+        "y": 520,
+        "wires": [
+            [
+                "1bbf75b482ff2565",
+                "233c8c097cb21236"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "76ddb2c0e73cdad4",
+        "type": "api-current-state",
+        "z": "9f20c191181c304a",
+        "name": "Light not on yet (upper)?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "entity_id": "switch.upper_stairs_strip_power_switch",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 810,
+        "y": 380,
+        "wires": [
+            [
+                "69ce46124f0c44ca"
+            ],
+            [
+                "5f22a0986a172f9e"
+            ]
+        ]
+    },
+    {
+        "id": "4c5f17e8e28cbf40",
+        "type": "api-current-state",
+        "z": "9f20c191181c304a",
+        "name": "Light already on?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "light.stairs",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 790,
+        "y": 240,
+        "wires": [
+            [
+                "3c023cf188325f59"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "91b6e982bf88f331",
+        "type": "link in",
+        "z": "9f20c191181c304a",
+        "name": "In: Relinquish to Motion Triggered",
+        "links": [
+            "2d335beb.472f24"
+        ],
+        "x": 635,
+        "y": 240,
+        "wires": [
+            [
+                "4c5f17e8e28cbf40"
+            ]
+        ]
+    },
+    {
+        "id": "3c023cf188325f59",
+        "type": "change",
+        "z": "9f20c191181c304a",
+        "name": "Mark light on by motion",
+        "rules": [
+            {
+                "t": "set",
+                "p": "did_turn_light_on",
+                "pt": "flow",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1070,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "20c4a15cd821728f",
+        "type": "api-call-service",
+        "z": "9f20c191181c304a",
+        "name": "Turn on light",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.stairs_strips_power_switch"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "x": 1250,
+        "y": 320,
+        "wires": [
+            [
+                "0dd7b145c7c34e0b"
+            ]
+        ]
+    },
+    {
+        "id": "0dd7b145c7c34e0b",
+        "type": "delay",
+        "z": "9f20c191181c304a",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1240,
+        "y": 380,
+        "wires": [
+            [
+                "5c8f17dddf0d5f13"
+            ]
+        ]
+    },
+    {
+        "id": "9dd3c11f18209f05",
+        "type": "change",
+        "z": "9f20c191181c304a",
+        "name": "Flag upstairs source",
+        "rules": [
+            {
+                "t": "set",
+                "p": "source",
+                "pt": "msg",
+                "to": "Upstairs",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 220,
+        "y": 340,
+        "wires": [
+            [
+                "378838e7b1d1a6cf"
+            ]
+        ]
+    },
+    {
+        "id": "5c8f17dddf0d5f13",
+        "type": "switch",
+        "z": "9f20c191181c304a",
+        "name": "Source?",
+        "property": "source",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Upstairs",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Foyer",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Downstairs",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 1260,
+        "y": 460,
+        "wires": [
+            [
+                "cc397059d4373ffe"
+            ],
+            [
+                "8897dc3e514ce351"
+            ],
+            [
+                "84d84a9a5f993f0f"
+            ]
+        ]
+    },
+    {
+        "id": "f11b769f861d5a6c",
+        "type": "change",
+        "z": "9f20c191181c304a",
+        "name": "Flag foyer source",
+        "rules": [
+            {
+                "t": "set",
+                "p": "source",
+                "pt": "msg",
+                "to": "Foyer",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 210,
+        "y": 400,
+        "wires": [
+            [
+                "378838e7b1d1a6cf"
+            ]
+        ]
+    },
+    {
+        "id": "5ffde81405fed9b9",
+        "type": "change",
+        "z": "9f20c191181c304a",
+        "name": "Flag downstairs source",
+        "rules": [
+            {
+                "t": "set",
+                "p": "source",
+                "pt": "msg",
+                "to": "Downstairs",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 230,
+        "y": 460,
+        "wires": [
+            [
+                "378838e7b1d1a6cf"
+            ]
+        ]
+    },
+    {
+        "id": "8897dc3e514ce351",
+        "type": "api-call-service",
+        "z": "9f20c191181c304a",
+        "name": "Animate from Middle",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "scene.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "scene.govee_to_mqtt_one_click_default_stairs_from_middle"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "scene",
+        "service": "turn_on",
+        "x": 1500,
+        "y": 460,
+        "wires": [
+            [
+                "768a8a75fd2609c3",
+                "a350e2a8a652f947"
+            ]
+        ]
+    },
+    {
+        "id": "cc397059d4373ffe",
+        "type": "api-call-service",
+        "z": "9f20c191181c304a",
+        "name": "Animate from Upper",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "scene.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "scene.govee_to_mqtt_one_click_default_stairs_from_upper"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "scene",
+        "service": "turn_on",
+        "x": 1500,
+        "y": 420,
+        "wires": [
+            [
+                "768a8a75fd2609c3",
+                "5af8e6a7bc9d33a3"
+            ]
+        ]
+    },
+    {
+        "id": "84d84a9a5f993f0f",
+        "type": "api-call-service",
+        "z": "9f20c191181c304a",
+        "name": "Animate from Lower",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "scene.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "scene.govee_to_mqtt_one_click_default_stairs_from_lower"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "scene",
+        "service": "turn_on",
+        "x": 1500,
+        "y": 500,
+        "wires": [
+            [
+                "768a8a75fd2609c3",
+                "c7f9447cf23f3065"
+            ]
+        ]
+    },
+    {
+        "id": "a4514dc3d8a0e2d0",
+        "type": "api-call-service",
+        "z": "9f20c191181c304a",
+        "name": "Return to Steady",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "scene.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "scene.govee_to_mqtt_one_click_default_stairs_steady"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "scene",
+        "service": "turn_on",
+        "x": 1550,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "768a8a75fd2609c3",
+        "type": "delay",
+        "z": "9f20c191181c304a",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1520,
+        "y": 560,
+        "wires": [
+            [
+                "a4514dc3d8a0e2d0"
+            ]
+        ]
+    },
+    {
+        "id": "5f22a0986a172f9e",
+        "type": "api-current-state",
+        "z": "9f20c191181c304a",
+        "name": "Light not on yet (lower)?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "entity_id": "switch.lower_stairs_strip_power_switch",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "x": 810,
+        "y": 460,
+        "wires": [
+            [
+                "069bbb6ff0207a17"
+            ],
+            [
+                "b933689da173af15"
+            ]
+        ]
+    },
+    {
+        "id": "5af8e6a7bc9d33a3",
+        "type": "debug",
+        "z": "9f20c191181c304a",
+        "name": "Animated upper",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1740,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "a350e2a8a652f947",
+        "type": "debug",
+        "z": "9f20c191181c304a",
+        "name": "Animated middle",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1750,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "c7f9447cf23f3065",
+        "type": "debug",
+        "z": "9f20c191181c304a",
+        "name": "Animated lower",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1740,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "233c8c097cb21236",
+        "type": "change",
+        "z": "9f20c191181c304a",
+        "name": "Init turn on flag",
+        "rules": [
+            {
+                "t": "set",
+                "p": "need_turn_on",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 320,
+        "wires": [
+            [
+                "76ddb2c0e73cdad4"
+            ]
+        ]
+    },
+    {
+        "id": "3ac91e42c4c10bf6",
+        "type": "change",
+        "z": "9f20c191181c304a",
+        "name": "Flag turn on",
+        "rules": [
+            {
+                "t": "set",
+                "p": "need_turn_on",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "69ce46124f0c44ca",
+        "type": "change",
+        "z": "9f20c191181c304a",
+        "name": "Flag turn on",
+        "rules": [
+            {
+                "t": "set",
+                "p": "need_turn_on",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1030,
+        "y": 380,
+        "wires": [
+            [
+                "5f22a0986a172f9e"
+            ]
+        ]
+    },
+    {
+        "id": "069bbb6ff0207a17",
+        "type": "change",
+        "z": "9f20c191181c304a",
+        "name": "Flag turn on",
+        "rules": [
+            {
+                "t": "set",
+                "p": "need_turn_on",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1030,
+        "y": 460,
+        "wires": [
+            [
+                "b933689da173af15"
+            ]
+        ]
+    },
+    {
+        "id": "b933689da173af15",
+        "type": "switch",
+        "z": "9f20c191181c304a",
+        "name": "Need turn on?",
+        "property": "need_turn_on",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1020,
+        "y": 320,
+        "wires": [
+            [
+                "3c023cf188325f59",
+                "20c4a15cd821728f"
+            ],
+            [
+                "5c8f17dddf0d5f13"
+            ]
+        ]
+    },
+    {
         "id": "ed05a9af.2d13e8",
         "type": "switch",
         "z": "e9868773.797078",
@@ -4645,14 +5987,14 @@
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is_not",
-        "entity_id": "light.outside_front_group",
+        "entity_id": "group.front_door_motion_lights",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [
             {
                 "property": "payload",
                 "propertyType": "msg",
-                "value": "",
+                "value": "string",
                 "valueType": "entityState"
             },
             {
@@ -4688,7 +6030,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.outside_front_group"
+            "light.front_door_motion_lights_individual"
         ],
         "labelId": [],
         "data": "{\"brightness_pct\":100}",
@@ -4767,7 +6109,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.outside_front_group"
+            "light.front_door_motion_lights_individual"
         ],
         "labelId": [],
         "data": "",
@@ -4832,50 +6174,6 @@
         "wires": [
             [
                 "2741eb95.e54344"
-            ]
-        ]
-    },
-    {
-        "id": "a9c95ae4.58e688",
-        "type": "api-current-state",
-        "z": "e9868773.797078",
-        "name": "Is dark?",
-        "server": "2f5bd1e0.67e40e",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "below_horizon",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "sun.sun",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": 0,
-        "forType": "num",
-        "forUnits": "minutes",
-        "x": 460,
-        "y": 700,
-        "wires": [
-            [
-                "9bbf440e.7b9318",
-                "188eb2ed.d8ca8d",
-                "f86bebf4.644dc8"
-            ],
-            [
-                "1bd15942.0cdcd7"
             ]
         ]
     },
@@ -5038,14 +6336,14 @@
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "light.outside_front_group",
+        "entity_id": "group.front_door_motion_lights",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [
             {
                 "property": "payload",
                 "propertyType": "msg",
-                "value": "",
+                "value": "string",
                 "valueType": "entityState"
             },
             {
@@ -5100,12 +6398,12 @@
         "links": [
             "17d225c7.3c968a"
         ],
-        "x": 165,
+        "x": 135,
         "y": 780,
         "wires": [
             [
-                "a9c95ae4.58e688",
-                "6e6b7704c34f1060"
+                "6e6b7704c34f1060",
+                "acffe831.84ea58"
             ]
         ]
     },
@@ -5179,7 +6477,7 @@
         "wires": [
             [
                 "173f58f.68101a7",
-                "a9c95ae4.58e688"
+                "a94c3e0c88c739fc"
             ],
             []
         ]
@@ -5257,6 +6555,88 @@
         "wires": []
     },
     {
+        "id": "a94c3e0c88c739fc",
+        "type": "subflow:1c3e6e1a9085abb6",
+        "z": "e9868773.797078",
+        "name": "",
+        "x": 400,
+        "y": 720,
+        "wires": [
+            [
+                "f86bebf4.644dc8",
+                "9bbf440e.7b9318",
+                "188eb2ed.d8ca8d"
+            ],
+            [
+                "1bd15942.0cdcd7"
+            ]
+        ]
+    },
+    {
+        "id": "09fcda5c22964a12",
+        "type": "server-state-changed",
+        "z": "e9868773.797078",
+        "d": true,
+        "name": "Outdoor Front Motion triggered",
+        "server": "2f5bd1e0.67e40e",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "binary_sensor.motion_hue_outdoor_outdoor_front_motion"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "habool",
+        "ifStateOperator": "includes",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 190,
+        "y": 1000,
+        "wires": [
+            [
+                "acffe831.84ea58",
+                "17ca3666231d1e85"
+            ],
+            [
+                "564a61f6.d4c24",
+                "330b6021.6dbe9"
+            ]
+        ]
+    },
+    {
         "id": "210c5d3b.b91672",
         "type": "switch",
         "z": "884319a9.e92148",
@@ -5296,14 +6676,14 @@
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is_not",
-        "entity_id": "light.outside_kitchen_group",
+        "entity_id": "group.kitchen_door_lights",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [
             {
                 "property": "payload",
                 "propertyType": "msg",
-                "value": "",
+                "value": "string",
                 "valueType": "entityState"
             },
             {
@@ -5339,7 +6719,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.outside_kitchen_group"
+            "light.kitchen_door_lights_individual"
         ],
         "labelId": [],
         "data": "{\"brightness_pct\":100}",
@@ -5418,7 +6798,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.outside_kitchen_group"
+            "light.kitchen_door_lights_individual"
         ],
         "labelId": [],
         "data": "",
@@ -5483,49 +6863,6 @@
         "wires": [
             [
                 "45061cb8.b1e6c4"
-            ]
-        ]
-    },
-    {
-        "id": "b49bc2c6.fad6d",
-        "type": "api-current-state",
-        "z": "884319a9.e92148",
-        "name": "Is dark?",
-        "server": "2f5bd1e0.67e40e",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "below_horizon",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "sun.sun",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": 0,
-        "forType": "num",
-        "forUnits": "minutes",
-        "x": 460,
-        "y": 740,
-        "wires": [
-            [
-                "70032b8c.d97914",
-                "e3887ade.188898"
-            ],
-            [
-                "5e283f8b.dcc53"
             ]
         ]
     },
@@ -5777,14 +7114,14 @@
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "light.outside_kitchen_group",
+        "entity_id": "group.kitchen_door_lights",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [
             {
                 "property": "payload",
                 "propertyType": "msg",
-                "value": "",
+                "value": "string",
                 "valueType": "entityState"
             },
             {
@@ -5899,7 +7236,7 @@
         "wires": [
             [
                 "596d5487.fcaf4c",
-                "b49bc2c6.fad6d"
+                "8cb3e00ccb5f8cc9"
             ],
             []
         ]
@@ -5935,6 +7272,23 @@
             [
                 "26c8be2e.7537e2",
                 "45061cb8.b1e6c4"
+            ]
+        ]
+    },
+    {
+        "id": "8cb3e00ccb5f8cc9",
+        "type": "subflow:1c3e6e1a9085abb6",
+        "z": "884319a9.e92148",
+        "name": "",
+        "x": 400,
+        "y": 760,
+        "wires": [
+            [
+                "70032b8c.d97914",
+                "e3887ade.188898"
+            ],
+            [
+                "5e283f8b.dcc53"
             ]
         ]
     },
@@ -6075,7 +7429,7 @@
                 "d5583ca8.fe197"
             ],
             [
-                "bca4e90.5a43f18"
+                "5ddb8a23d0b6248c"
             ]
         ]
     },
@@ -6204,46 +7558,6 @@
         "x": 1060,
         "y": 660,
         "wires": [
-            []
-        ]
-    },
-    {
-        "id": "bca4e90.5a43f18",
-        "type": "api-current-state",
-        "z": "390fc521.dffd0a",
-        "name": "Is dark?",
-        "server": "2f5bd1e0.67e40e",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "below_horizon",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "sun.sun",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": 0,
-        "forType": "num",
-        "forUnits": "minutes",
-        "x": 720,
-        "y": 480,
-        "wires": [
-            [
-                "904c234f.3223e"
-            ],
             []
         ]
     },
@@ -6548,51 +7862,11 @@
                 "valueType": "triggerId"
             }
         ],
-        "x": 190,
+        "x": 170,
         "y": 740,
         "wires": [
             [
-                "335a7d50.bca192"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "335a7d50.bca192",
-        "type": "api-current-state",
-        "z": "390fc521.dffd0a",
-        "name": "Is dark?",
-        "server": "2f5bd1e0.67e40e",
-        "version": 3,
-        "outputs": 2,
-        "halt_if": "below_horizon",
-        "halt_if_type": "str",
-        "halt_if_compare": "is",
-        "entity_id": "sun.sun",
-        "state_type": "str",
-        "blockInputOverrides": false,
-        "outputProperties": [
-            {
-                "property": "payload",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entityState"
-            },
-            {
-                "property": "data",
-                "propertyType": "msg",
-                "value": "",
-                "valueType": "entity"
-            }
-        ],
-        "for": 0,
-        "forType": "num",
-        "forUnits": "minutes",
-        "x": 400,
-        "y": 740,
-        "wires": [
-            [
-                "d49146cd.28ab88"
+                "91a50c68ca2ec9c9"
             ],
             []
         ]
@@ -7229,6 +8503,34 @@
         ]
     },
     {
+        "id": "91a50c68ca2ec9c9",
+        "type": "subflow:2ee79ca1aceee95b",
+        "z": "390fc521.dffd0a",
+        "name": "",
+        "x": 400,
+        "y": 740,
+        "wires": [
+            [
+                "d49146cd.28ab88"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5ddb8a23d0b6248c",
+        "type": "subflow:2ee79ca1aceee95b",
+        "z": "390fc521.dffd0a",
+        "name": "",
+        "x": 740,
+        "y": 500,
+        "wires": [
+            [
+                "904c234f.3223e"
+            ],
+            []
+        ]
+    },
+    {
         "id": "d8b81ae0.0bc7a8",
         "type": "server-state-changed",
         "z": "3aefc8fa.f61958",
@@ -7361,7 +8663,8 @@
             "973aca54.e38288",
             "864ed584.5c4428",
             "f09dd37f.d3265",
-            "7fa5d1aa.2548"
+            "7fa5d1aa.2548",
+            "91b6e982bf88f331"
         ],
         "x": 475,
         "y": 220,
@@ -20106,6 +21409,7 @@
         "id": "39543b9f.a84934",
         "type": "api-call-service",
         "z": "92466ad4.665248",
+        "d": true,
         "name": "Turn on TV",
         "server": "2f5bd1e0.67e40e",
         "version": 7,
@@ -20127,8 +21431,8 @@
         "blockInputOverrides": false,
         "domain": "media_player",
         "service": "turn_on",
-        "x": 410,
-        "y": 360,
+        "x": 450,
+        "y": 320,
         "wires": [
             [
                 "8411145a.df0ca8"
@@ -20190,7 +21494,8 @@
         "wires": [
             [
                 "39543b9f.a84934",
-                "82137f65.41f2d"
+                "82137f65.41f2d",
+                "54b76ca2774ba750"
             ],
             []
         ]
@@ -20220,8 +21525,8 @@
         "blockInputOverrides": false,
         "domain": "input_boolean",
         "service": "turn_off",
-        "x": 400,
-        "y": 300,
+        "x": 420,
+        "y": 260,
         "wires": [
             []
         ]
@@ -20250,7 +21555,7 @@
         "domain": "logbook",
         "service": "log",
         "x": 680,
-        "y": 460,
+        "y": 540,
         "wires": [
             []
         ]
@@ -20280,8 +21585,8 @@
         "blockInputOverrides": false,
         "domain": "switch",
         "service": "turn_on",
-        "x": 590,
-        "y": 360,
+        "x": 710,
+        "y": 400,
         "wires": [
             [
                 "b4aee037.63765"
@@ -20294,7 +21599,7 @@
         "z": "92466ad4.665248",
         "name": "",
         "pauseType": "delay",
-        "timeout": "3",
+        "timeout": "5",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -20303,9 +21608,10 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
+        "allowrate": false,
         "outputs": 1,
         "x": 180,
-        "y": 460,
+        "y": 540,
         "wires": [
             [
                 "f45cab89.d23278"
@@ -20338,7 +21644,201 @@
         "domain": "remote",
         "service": "send_command",
         "x": 390,
-        "y": 460,
+        "y": 540,
+        "wires": [
+            [
+                "b66982a795ad433d"
+            ]
+        ]
+    },
+    {
+        "id": "45fd5dee9e7350a8",
+        "type": "api-call-service",
+        "z": "92466ad4.665248",
+        "name": "Turn on (toggle) TV",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "script.office_ir_tv_power_toggle",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "script",
+        "service": "office_ir_tv_power_toggle",
+        "x": 510,
+        "y": 420,
+        "wires": [
+            [
+                "8411145a.df0ca8"
+            ]
+        ]
+    },
+    {
+        "id": "54b76ca2774ba750",
+        "type": "api-current-state",
+        "z": "92466ad4.665248",
+        "name": "Is TV on?",
+        "server": "2f5bd1e0.67e40e",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "",
+        "halt_if_type": "habool",
+        "halt_if_compare": "includes",
+        "entity_id": "media_player.office_ir_roku_tv",
+        "state_type": "str",
+        "blockInputOverrides": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 420,
+        "y": 360,
+        "wires": [
+            [
+                "8411145a.df0ca8"
+            ],
+            [
+                "45fd5dee9e7350a8"
+            ]
+        ]
+    },
+    {
+        "id": "b66982a795ad433d",
+        "type": "delay",
+        "z": "92466ad4.665248",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 180,
+        "y": 620,
+        "wires": [
+            [
+                "123562590ac70a0e"
+            ]
+        ]
+    },
+    {
+        "id": "123562590ac70a0e",
+        "type": "api-call-service",
+        "z": "92466ad4.665248",
+        "name": "Select TV source for PC",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "remote.send_command",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "remote.office_ir_roku_tv"
+        ],
+        "labelId": [],
+        "data": "{\"command\":\"input_hdmi3\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "remote",
+        "service": "send_command",
+        "x": 390,
+        "y": 620,
+        "wires": [
+            [
+                "6c7c89d5e2a417bc"
+            ]
+        ]
+    },
+    {
+        "id": "6c7c89d5e2a417bc",
+        "type": "delay",
+        "z": "92466ad4.665248",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 180,
+        "y": 700,
+        "wires": [
+            [
+                "34a322a69dc7c6a4"
+            ]
+        ]
+    },
+    {
+        "id": "34a322a69dc7c6a4",
+        "type": "api-call-service",
+        "z": "92466ad4.665248",
+        "name": "Select TV source for PC",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "remote.send_command",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "remote.office_ir_roku_tv"
+        ],
+        "labelId": [],
+        "data": "{\"command\":\"input_hdmi3\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "remote",
+        "service": "send_command",
+        "x": 390,
+        "y": 700,
         "wires": [
             [
                 "2b33b140.e0752e"
@@ -27694,6 +29194,219 @@
         "wires": [
             [
                 "94b05940dcab9759"
+            ]
+        ]
+    },
+    {
+        "id": "e7b92393936a3f45",
+        "type": "server-state-changed",
+        "z": "5a9cf045c255eca0",
+        "name": "Yamaha Receiver On",
+        "server": "2f5bd1e0.67e40e",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "media_player.yamaha_receiver"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "habool",
+        "ifStateOperator": "includes",
+        "outputOnlyOnStateChange": true,
+        "for": "10",
+        "forType": "num",
+        "forUnits": "seconds",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 280,
+        "y": 220,
+        "wires": [
+            [
+                "37bd620f4ceca3e9"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "37bd620f4ceca3e9",
+        "type": "api-call-service",
+        "z": "5a9cf045c255eca0",
+        "name": "Turn on subwoofer",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.subwoofer"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "switch",
+        "service": "turn_on",
+        "x": 570,
+        "y": 220,
+        "wires": [
+            [
+                "8b6a9745182bf566"
+            ]
+        ]
+    },
+    {
+        "id": "8b6a9745182bf566",
+        "type": "api-call-service",
+        "z": "5a9cf045c255eca0",
+        "name": "Log execution to HA logbook",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "logbook.log",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\"name\":\"node-red\",\"message\":\"Subwoofer flow executed successfully.\",\"domain\":\"automation\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "logbook",
+        "service": "log",
+        "x": 860,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "39a1cb1f84257a2b",
+        "type": "server-state-changed",
+        "z": "5a9cf045c255eca0",
+        "name": "Yamaha Receiver Off",
+        "server": "2f5bd1e0.67e40e",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "media_player.yamaha_receiver"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "habool",
+        "ifStateOperator": "does_not_include",
+        "outputOnlyOnStateChange": true,
+        "for": "20",
+        "forType": "num",
+        "forUnits": "seconds",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 280,
+        "y": 340,
+        "wires": [
+            [
+                "a2f4725254a957c2"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a2f4725254a957c2",
+        "type": "api-call-service",
+        "z": "5a9cf045c255eca0",
+        "name": "Turn on subwoofer",
+        "server": "2f5bd1e0.67e40e",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.subwoofer"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "switch",
+        "service": "turn_off",
+        "x": 570,
+        "y": 340,
+        "wires": [
+            [
+                "8b6a9745182bf566"
             ]
         ]
     }

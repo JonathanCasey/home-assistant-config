@@ -64,14 +64,27 @@ pc_lg_monitor_fan_low:
     target:
       entity_id: remote.broadlink_rm4m_office
     data:
-      num_repeats: 25
+      num_repeats: 24
       delay_secs: 0.4
       device: pc_lg_monitor
       command: Left Arrow
   - delay:
       hours: 0
       minutes: 0
-      seconds: 1
+      seconds: 5
+      milliseconds: 0
+  - action: remote.send_command
+    metadata: {}
+    target:
+      entity_id: remote.broadlink_rm4m_office
+    data:
+      delay_secs: 0.4
+      device: pc_lg_monitor
+      command: Left Arrow
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
       milliseconds: 0
   - action: remote.send_command
     metadata: {}
@@ -103,4 +116,15 @@ office_ir_tv_volume_down:
       device: office_ir_tv
       command: Volume Down
   alias: Office IR TV - Volume Down
+  description: ''
+office_ir_tv_power_toggle:
+  sequence:
+  - action: remote.send_command
+    metadata: {}
+    target:
+      entity_id: remote.broadlink_rm4m_office
+    data:
+      device: office_ir_tv
+      command: Power Toggle
+  alias: Office IR TV - Power Toggle
   description: ''
